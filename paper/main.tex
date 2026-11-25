@@ -1,0 +1,589 @@
+\documentclass[11pt]{article}
+\input{macros}
+
+\title{Planks through points: covering a ball by slabs\\ around spanned hyperplanes}
+\author{Michael Werman}
+\date{Draft, \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $P$ be a set of $n$ points in the unit ball $\ball^d$, consider the hyperplanes spanned by its
+affinely independent $d$-subsets, and write $K=\binom nd$. Let $\lambda_d(n)$ be the infimum, over all such
+$P$, of the least $\eps$ for which the $\eps$-slabs around these hyperplanes cover the ball. Bang's plank
+theorem gives $K\lambda_d(n)\ge1$, and freely placed hyperplanes attain this bound. We prove that for
+$n>d$ spanned hyperplanes never attain it, and that they lose a constant factor in every dimension:
+$\liminf n^d\lambda_d(n)\ge d!\,(1+q_d)$ with an explicit $q_d>0$. The proof integrates a quadratic test
+function against a measure built from $3$-dimensional sphere sections. Conversely, clusters whose
+hyperplane directions are sums of $d$ angles taken from restricted additive bases of cyclic groups give
+$\lambda_d(n)=\Theta(n^{-d})$. As a by-product, restricted additive $2$-bases of cyclic groups with $n$
+elements exist with modulus $(7/18-o(1))n^2$, which, to the best of our knowledge, improves the published
+constants $5/18$ (restricted) and $1/3$ (unrestricted). For $n$ random points in a convex body $\Omega\subset\R^d$,
+$n^d\rho/\log n$ converges in probability to an explicit constant $c_\Omega$ ($9\pi^2/8$ for the disc), so random sets lose
+a logarithmic factor.
+We also show that $2.1714\le\liminf n^2\lambda_2(n)$ and $\limsup n^2\lambda_2(n)\le9\pi/7$, that the centred square and the regular hexagon beat shrinking clusters
+for $n=4$ and (with a computer-assisted bound) $n=6$, and we treat great hyperspheres, points anywhere in $\R^d$, flats spanned by $j+1$
+points, and general convex bodies.
+\end{abstract}
+
+\section{Results}\label{sec:results}
+
+For $P\subset\ball^d$ with $|P|=n$, let $\mathcal H_P$ be the set of hyperplanes through $d$ affinely
+independent points of $P$, and
+\[
+K=\binom nd,\qquad \rho(P)=\max_{x\in \ball^d}\,\min_{H\in\mathcal H_P}\dist(x,H),\qquad
+\lambda_d(n)=\inf_{|P|=n}\rho(P).
+\]
+Here $\rho(P)=\infty$ if $P$ has no $d$ affinely independent points, and $n\ge d$ throughout. Several
+$d$-subsets may span the same hyperplane, and dependent $d$-subsets span none, so $\mathcal H_P$ has
+$K'\le K$ elements; the proofs write $N_H\ge1$ for the number of independent $d$-subsets lying in
+$H\in\mathcal H_P$.
+
+For comparison, if the $\eps$-slabs around any $k$ hyperplanes cover $\ball^d$, then $\eps\ge1/k$ (Bang
+\cite{Bang}); if the hyperplanes all pass through the centre, then $\eps\ge\sin(\pi/2k)$ (the zone theorem
+of Jiang and Polyanskii \cite{JP}, in Zhao's form \cite{Zhao}). Equality is attained by $k$ parallel,
+equally spaced hyperplanes in the first case, and by $k$ hyperplanes through a common $(d-2)$-flat
+through the centre at successive angles $\pi/k$ in the second.
+
+\begin{thmA}
+For $d\ge2$ and $n\ge d$, every $n$-point set $P\subset\ball^d$, with $\rho=\rho(P)$, satisfies
+\[
+\binom nd\,\rho\ \ge\ \frac{1+q_d}{1+2\rho/A_d},\qquad A_d=\frac{3d-1}{d-1},\qquad
+q_d=\min_{|m|\le1}\frac{1/3+m^2}{\Lambda_d(m)},
+\]
+where $\Lambda_2=A_2$ and, for $d\ge3$,
+$\Lambda_d(m)=A_d+(1+|m|)^2(C_d-1)+4(1+|m|)\tfrac{d-3}{d-1}$
+with $C_d=\sqrt\pi\,\Gamma(\tfrac{d-1}2)/\Gamma(\tfrac{d-2}2)$; since $C_3=1$, $\Lambda_3=A_3$.
+\end{thmA}
+
+So $q_2=1/15$ and $q_3=1/12$, and the bound reads $\binom n2\rho\ge 16/(15+6\rho)$ in the plane and
+$\binom n3\rho\ge 13/(12+6\rho)$ in space; for $d\ge4$, $q_d\ge0.08/\sqrt{d-2}$, by hand: exact values of
+$C_d$ for $4\le d\le7$, and for $d\ge8$ one quadratic in $m$ with negative discriminant, using
+$C_d\le\sqrt{\pi(d-2)/2}$ (Appendix~\ref{sec:A-qd}). So
+$\liminf n^d\lambda_d(n)\ge L_d:=d!\,(1+q_d)$, with $L_2=32/15$, $L_3=13/2$, $L_4\ge25.41$ and
+$L_5\ge125.95$. For $d=2,3$ the exact position of the points on their hyperplanes gives larger limit constants:
+$\binom n3\rho\ge70/(63+60\rho)$, so $\liminf n^3\lambda_3(n)\ge20/3$, and
+$\liminf n^2\lambda_2(n)\ge6864/3161>2.1714$. Complete proofs are in Appendix~\ref{app:A}; the sharper
+constants are in Appendix~\ref{sec:A-sharp}.
+
+\begin{thmB}
+For $n\ge d+1$, $\lambda_d(n)\le\sin(\pi/2p_d(n))$, where $p_d(n)$ is the largest $N$ such that some
+$n$-subset of $\Z_N$ has every residue as a sum of $d$ distinct elements; $n\le p_d(n)\le\binom nd$.
+More generally, $\lambda_d(n)\le\sin(G/2)$ whenever $G$ is the largest gap mod $\pi$ of the sums of $d$
+distinct elements of some $n$ distinct $\theta$'s in $(0,\pi)$. Moreover,
+$\sigma_d=\lim p_d(n)/n^d$ exists and equals $\sup_{n>d}p_d(n)/n^d\le 1/d!$.
+\end{thmB}
+
+\begin{corC}
+$\lambda_d(n)=\Theta(n^{-d})$, since $\sigma_d=\sup p_d(n)/n^d\ge p_d(d+1)/(d+1)^d\ge(d+1)^{1-d}>0$ by
+Theorem~B ($p_d(n)\ge n$); the examples in the table below yield stronger constants for $d\le5$. More
+precisely, with $\ell_2=6864/3161$, $\ell_3=20/3$ and $\ell_d=L_d$ for $d\ge4$,
+\[
+\ell_d\;\le\;\liminf_{n\to\infty}n^d\lambda_d(n)\;\le\;\limsup_{n\to\infty}n^d\lambda_d(n)\;\le\;
+\frac{\pi}{2\sigma_d}.
+\]
+\end{corC}
+
+\begin{center}
+\small
+\begin{tabular}{p{4.3cm}cccc}
+\toprule
+$d$ & 2 & 3 & 4 & 5\\
+\midrule
+proved lower bound for $\liminf n^d\lambda_d(n)$ & $2.1714$ & $20/3$ & $25.41$ & $125.95$\\
+upper bound $\pi n^d/(2N)\ge\pi/(2\sigma_d)$ & $9\pi/7\approx4.04$ & $100\pi/19\approx16.5$ &
+$1024\pi/33\approx97.5$ & $5000\pi/21\approx748$\\
+from the example $(n,N)$ & $(12,56)$ & $(10,95)$ & $(8,66)$ & $(10,210)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thmD}
+In the plane, the centred square gives $\lambda_2(4)\le 1/\sqrt{10+4\sqrt2}\approx0.25272$, and the
+regular hexagon gives $\lambda_2(6)\le1/\sqrt{56+16\sqrt3}\approx0.10930$. Both beat every cluster
+shrinking to the centre: such clusters have a strictly larger $\liminf\rho$ (Figure~\ref{fig:square}; for $n=6$ this
+uses the computer-assisted bound on $\gamma_6$ of Table~\ref{tab:gamma}).
+\end{thmD}
+
+Here $\gamma_n$ denotes the infimum, over $n$-point sets in the plane, of the largest gap mod $\pi$
+between the directions of their spanned lines; a cluster shrinking to the centre has
+$\rho\to\sin(G/2)$, with $G$ its own largest gap, so the best clusters give $\sin(\gamma_n/2)$. (If all spanned lines pass within $r$ of the centre, each
+is within $r$ of a parallel line through the centre, so $\rho\ge\sin(G/2)-r$; hence clusters shrinking to
+the centre have $\liminf\rho\ge\sin(\gamma_n/2)$.) The
+same quantity appears, as $\rho_2(n)=\sin(\gamma_n/2)$, in Frankl and Maehara's work on projecting
+finite point sets \cite{FM} (we have seen only the zbMATH review; the full text is not online). OEIS
+A004131, the sequence $p_2(n)$, cites their paper, so they may already have used the link between chord
+directions and restricted cyclic bases that underlies Theorem~B for $d=2$. We therefore claim that link
+as new only for $d\ge3$, and even this claim rests on the review, not on the full text.
+
+\begin{thmE}
+Let $\Omega\subset\R^d$ ($d\ge2$) be a convex body and $X_1,\dots,X_n$ independent uniform points of
+$\Omega$. The covering radius $\rho_\Omega=\max_{x\in\Omega}\min_H\dist(x,H)$, over the hyperplanes $H$ spanned by
+$d$ of the points, satisfies $n^d\rho_\Omega/\log n\to c_\Omega=d^2\,d!/m_\Omega$ in probability. Here
+$m_\Omega=\min_{z\in\Omega}h_\Omega(z)$, where $h_\Omega(z)=\lim_{t\to0}\Pr(\dist(z,H)<t)/t$ for the hyperplane $H$ through
+$d$ independent uniform points of $\Omega$. In the plane
+$c_\Omega=12|\Omega|^2/\min_{z\in\Omega}\int_0^\pi L_z(\theta)^3\,d\theta$, with $L_z(\theta)$ the chord through $z$ in direction
+$\theta$; for the unit disc, $n^2\rho/\log n\to9\pi^2/8\approx11.10$.
+\end{thmE}
+
+Theorem~A, Corollary~1$'$ and the small-$n$ results use the ball; Section~\ref{sec:convex} says what extends to
+other convex bodies.
+
+\section{The lower bound}\label{sec:lower}
+
+\begin{lemOne}
+If the closed $\eps$-slabs around hyperplanes $\{\ip{x}{u_j}=m_j\}$ with $|u_j|=1$ cover $\ball^d$, then
+$\eps\cdot\max_{|v|=1}\sum_j|\ip{u_j}{v}|\ge1$.
+\end{lemOne}
+
+\begin{proof}
+For $\eps'>\eps$ choose signs $\sigma$ maximising $|x_\sigma|^2-2\eps'\sum\sigma_jm_j$, where
+$x_\sigma=\eps'\sum\sigma_ju_j$. Flipping $\sigma_i$ changes this by
+$-4\eps'[\sigma_i(\ip{x_\sigma}{u_i}-m_i)-\eps']\le0$. So $x_\sigma$ lies outside every slab, hence
+outside the ball, and $1<|x_\sigma|\le\eps'\max_v\sum|\ip{u_j}{v}|$. Let $\eps'\downarrow\eps$. (This is
+a one-line consequence of Bang's lemma as stated in Verreault's survey \cite{Verreault}, Lemma~2.5:
+Bang's point avoids every slab, and its norm is at most $\eps'\max_v\sum|\ip{u_j}{v}|$.)
+\end{proof}
+
+\begin{corOne}
+$\lambda_d(n)>1/\binom nd$ for every $d\ge2$ and $n>d$.
+\end{corOne}
+
+\begin{proof}
+By Lemma~1, $\lambda_d(n)\ge1/K$. Suppose equality, and take labelled $n$-point sets $P_k$ with
+$\rho(P_k)\to1/K$. Pass to a subsequence on which the family $I$ of independent $d$-sets is fixed, every
+point converges, and for $F\in I$ the hyperplane $\{\ip{x}{u_F}=m_F\}$ ($|u_F|=1$, $|m_F|\le1$)
+converges. If $|I|<K$, Lemma~1 gives $\rho(P_k)\ge1/(K-1)$ for all $k$, so $I$ consists of all $K$
+$d$-sets. The covering radius of a finite list is $1$-Lipschitz in the $(u,m)$, so the limit list has
+covering radius $1/K$, and its $F$-th member contains the limits of the points of $F$. By Lemma~1 with
+$\eps=1/K$, some unit $v$ has $\sum_F|\ip{u_F}{v}|\ge K$, so every $u_F=\pm v$. The $K$ slabs of
+half-width $1/K$ then cover the diameter in direction $v$ with total length $2$, so their offsets are
+distinct. But the limit hyperplanes of $\{1,\dots,d\}$ and $\{2,\dots,d+1\}$ are both $\perp v$ and
+contain the limit of $p_2$. (Details in Appendix~\ref{sec:A-strict}.)
+\end{proof}
+
+Theorem~A makes this quantitative once $\binom nd>2/(q_dA_d)$: then
+\[
+\lambda_d(n)\ge\frac{A_d}{4}\Bigl(\sqrt{1+8(1+q_d)\big/\bigl(A_d\tbinom nd\bigr)}-1\Bigr)>1\Big/\tbinom nd.
+\]
+
+Applied to $\mathcal H_P$, Lemma~1 shows that if $\rho(P)$ is close to Bang's bound $1/K$, then the
+normals are nearly parallel. To quantify this, fix the maximising $v$, orient the normals so that
+$\cos\psi_H=\ip{u_H}{v}\ge0$, and define the height of $x$ as $t(x)=\ip{x}{v}$. With $\eps=\rho(P)$, Lemma~1 gives $\sum_{H\in\mathcal H_P}\cos\psi_H\ge1/\eps$, so
+$\sum_{H\in\mathcal H_P}(1-\cos\psi_H)\le K-1/\eps$. If $N_H$ $d$-subsets lie on $H$, then
+$N_H(1-\cos\psi_H)\le(1-\cos\psi_H)+(N_H-1)$; adding the dependent $d$-sets gives the \emph{tilt
+budget}
+\[
+\sum_{\text{independent }Q}(1-\cos\psi_Q)\;+\;\#\{\text{dependent }d\text{-sets}\}\;\le\;K-\frac1\eps.
+\]
+
+\begin{proof}[Proof of Theorem A (outline; the full proof is Appendix~\ref{sec:A-unified})]
+Let $\eps=\rho(P)$, let $m_0$ be the mean height of the points, and integrate $\Phi(x)=(t-m_0)^2$
+against a measure whose height is uniform on $[-1,1]$, so that $\int\Phi=1/3+m_0^2$. For $d=2$ take the
+Archimedes measure $dx/(2\pi\sqrt{1-|x|^2})$ (Gardner's relative-width measure of the disc
+\cite{Gardner}), and for $d\ge3$ the uniform measure on $\Sph^{d-1}\cap V$ averaged over random
+$3$-spaces $V\ni v$ ($V=\R^3$ when $d=3$). Dimension $3$ is forced by the method: only on the
+$2$-sphere is the height of a uniform point uniform (Archimedes); on a circle it has the arcsine law,
+whose density is unbounded at $\pm1$, so a slab of half-width $\eps$ near a pole can carry mass of order
+$\sqrt\eps$ rather than $\eps$.
+\begin{enumerate}
+\item \textbf{One slab.} On a section circle at offset $s$ and tilt $\psi$ the mean of $\Phi$ is
+$G(s)=(s\cos\psi-m_0)^2+\sin^2\psi\,(1-s^2)/2$ (for $d=2$, pull the slab and $\Phi$ back to
+$\Sph^2$ by the projection). Since $|m_0|,|m_H|\le1$, $|G'|\le(1+\cos\psi)^2\le4$ on $[-1,1]$, so
+the slab of $H$ carries $\Phi$-mass at most $\eps[G_H(m_H)+e(\psi_H)]+2\eps^2$, with $e=0$ for
+$d\le3$. For $d\ge4$ write $u_H=\cos\psi\,v+\sin\psi\,e_H$; the slab meets $V$ in a slab of half-width
+$\eps/r$, where $r=\sqrt{\cos^2\psi+\beta\sin^2\psi}$ and $\beta=|P_Ve_H|^2$ has law
+$\mathrm{Beta}(1,\frac{d-3}2)$, so $\E\beta=2/(d-1)$ and $\E\beta^{-1/2}=C_d$. The section circles have
+tilt $\arccos(\cos\psi/r)$ and centres moved in height by at most $1-r^2$, with
+$\E(1-r^2)=\frac{d-3}{d-1}\sin^2\psi$; and
+$\E[1/r]-1\le(C_d-1)(1-\cos\psi)$ (the ratio is largest for $\psi=\pi/2$, by a monotonicity argument: Lemma~R in Appendix~\ref{sec:A-unified}).
+Together these give $e(\psi)\le(\Lambda_d(m_0)-A_d)(1-\cos\psi)$: steep slabs carry more mass, but they
+also spend more of the tilt budget.
+\item \textbf{$d$-sets.} For a $d$-set $Q$ on $H$, put $X=(\text{mean height of }Q)-m_0$ and
+$Y=(\text{foot height of }H)-(\text{mean height of }Q)$, and let $\Var$ be the mean squared deviation of
+the heights in $Q$. Then $Y^2+\Var\le W^2:=\sin^2\psi\,(1-m_H^2)$, and over all $d$-sets
+$\sum X^2=\frac{n-d}{(d-1)n}\sum\Var$: mean heights cannot all sit near $m_0$ unless the $d$-sets are
+spread out. For each $H$ choose one independent $d$-set $Q\subset H$; by Cauchy--Schwarz and $Y^2\le W^2-\Var$,
+$G_H(m_H)=(X+Y)^2+W^2/2\le dX^2+\frac d{d-1}(W^2-\Var)+W^2/2$. Sum this over all independent
+$d$-sets. The identity bounds $d\sum X^2$ by $\frac d{d-1}\sum\Var$, both over all $d$-sets, so the $X^2$
+terms cancel against the $-\Var$ terms up to $\frac d{d-1}\#\{\text{dependent }d\text{-sets}\}$ (as
+$\Var\le1$). With $W^2\le2(1-\cos\psi)$ and the tilt budget, $\sum_HG_H\le A_d(K-1/\eps)$.
+\item \textbf{Conclusion.} Summing over $H$ with the tilt budget, covering gives
+$1/3+m_0^2\le\Lambda_d(m_0)(K\eps-1)+2K\eps^2$, that is
+$K\eps\ge(1+I/\Lambda)/(1+2\eps/\Lambda)\ge(1+q_d)/(1+2\eps/A_d)$, with $I=1/3+m_0^2$ and
+$\Lambda=\Lambda_d(m_0)\ge A_d$. As $x\mapsto x(1+2x/A_d)$ is continuous and increasing, the bound
+passes to the infimum $\lambda_d(n)$, which gives the liminf.\qedhere
+\end{enumerate}
+\end{proof}
+
+\paragraph{Sharper constants for $d=2,3$.} Step~2 relaxes the position of the points of $Q$ to
+$Y^2+\Var\le W^2$. In fact every point of $Q$ has height within $W$ of the foot height of $H$, and
+$(d-1)X^2-\Var=\frac2d\sum_{i<j}x_ix_j$ in the centred heights $x_i$, which is affine in each $x_i$; so
+for a per-$d$-set inequality $G_H-B((d-1)X^2-\Var)-CX-A(1-\cos\psi)\le C_0+\lambda_0m_0^2$ the
+extreme $d$-sets have all their points at the two ends of the height range. Taking $C$ proportional to
+$m_0$ and completing the square in $m_0$ removes $m_0$, and each remaining case is a quadratic form on
+an ellipse, i.e.\ a $2\times2$ positive-semidefinite check. Summing as before (with $\sum X=0$ and
+$\sum((d-1)X^2-\Var)\le0$) gives $\binom n2\rho(\frac{3161}{3432}+\frac{8\rho}{13})\ge1$ and
+$\binom n3\rho\ge70/(63+60\rho)$ (Appendix~\ref{sec:A-sharp}). For $d\ge4$ the same idea gains little,
+because the averaging error of Step~1 dominates.
+
+\section{The upper bound}\label{sec:upper}
+
+\begin{lemTwo}
+Let $1\le j\le d-1$ and write $\R^d=\R^{j-1}\times\R^{d-j+1}$. Let $t_0,\dots,t_j\in\R^{j-1}$ affinely
+span $\R^{j-1}$, with affine dependency $c$ (unique up to scale), let $a_0,\dots,a_j\in\R^{d-j+1}$ with
+$w=\sum c_ia_i\ne0$, and put $q_i=(t_i,s\,a_i)$. Then for every $s>0$ the $q_i$ are affinely
+independent, and as $s\to0$ their $j$-flat tends to the linear subspace
+$(\R^{j-1}\times\{0\})\oplus\R(0,w)$. Hence, for a family of such $(j+1)$-sets with vectors $w_F$,
+$\rho$ of their flats tends to $\sin\delta$, where $\delta$ is the angular covering radius of the lines
+$\R w_F$ in $\R^{d-j+1}$. For hyperplanes ($j=d-1$) this is $\sin(G/2)$, with $G$ the largest gap mod
+$\pi$ of the directions of the $w_F$.
+\end{lemTwo}
+
+\begin{proof}[Proof sketch]
+An affine dependency of the $q_i$ projects to a dependency of the $t_i$, so it is $\lambda c$, and then
+$s\lambda w=0$ forces $\lambda=0$. The direction space of the flat contains $\sum c_iq_i=(0,sw)$;
+together with $j-1$ of the differences $q_i-q_{i_0}$ it has a basis that converges, as $s\to0$, to a
+basis of the limit subspace, so the distance functions converge uniformly on the ball. For a linear
+limit $L$ and $x=(x_1,x_2)$, $\dist(x,L)=|x_2|\sin\angle(x_2,\R w)$, so the max-min over the ball is
+$\sin\delta$. The full proof is in Appendix~\ref{sec:B-lemma2}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem B]
+Let $S=\{s_j\}\subset\Z_N$ be as in the theorem. Put $\theta_j=\pi s_j/N+\delta$ with
+$0<\delta<\pi/N$, and $\tau_j=-\cot\theta_j$. Identify $\mathbb C$ with $\R^2$, and for $r>0$ put
+$q_j=\bigl(\kappa\cdot(\tau_j,\dots,\tau_j^{d-2}),\,r/(i-\tau_j)\bigr)\in\R^{d-2}\times\R^2$, where
+$\kappa>0$ is so small that the first $d-2$ coordinates of every $q_j$ lie in the open unit ball. We let
+$r\to0$. By
+Lemma~2 (with $w_F\ne0$, shown below), every $d$ of the $q_j$ are affinely independent for every $r>0$.
+\begin{itemize}
+\item For a $d$-subset $F$, the affine dependence of the moment-curve points
+$(\tau_j,\dots,\tau_j^{d-2})$, $j\in F$, is unique up to scale and has coefficients
+$c_j=1/\prod_{k\in F,\,k\ne j}(\tau_j-\tau_k)$.
+\item Partial fractions give
+$w_F=\sum c_j/(i-\tau_j)=1/\prod(i-\tau_j)=\bigl(\prod\sin\theta_j\bigr)e^{-i\sum\theta_j}$.
+\item Consequently $w_F\ne0$, and its direction is $-\sum_{j\in F}\theta_j=-d\delta-(\pi/N)\sum_{j\in F}s_j\bmod\pi$. As
+$F$ varies, $\sum s_j$ runs over all of $\Z_N$, so the directions are $N$ equally spaced ones,
+$G=\pi/N$, and Lemma~2 gives $\rho\to\sin(\pi/2N)$.
+\end{itemize}
+For $d=2$ the curve $1/(i-\tau)$ is a circle, and this is the fact that a chord of a circle has
+direction $(t+u)/2+\pi/2$ (Figure~\ref{fig:sums}).
+
+\emph{Blow-up.} Given a seed $L_0=\{l_1,\dots,l_\ell\}\subset\Z_P$ with every residue a sum of $d$
+distinct elements, and a large $m$, we build a set of at most $\ell T$ elements of $\Z_{PM}$, with
+$M\ge m^d$ and $T=m+C$, where $C=Q\cdot\max_{J,k}\sum_s\bigl|(R_J^{-1}\operatorname{diag}(0,1,\dots,d-1)R_J)_{ks}\bigr|$
+does not depend on $m$ ($R_J$ the Vandermonde matrix of the levels in $J$), with the same property. Level $j$ sits at $l_j$ in the $\Z_P$ coordinate. In
+$\Z_M=\prod_k\Z_{a_k}$, with $a_k=m+(k-1)Q$ for $m\equiv1\pmod Q$, pairwise coprime ($Q$ a fixed multiple of $P$, $(d-1)!$ and
+the relevant Vandermonde determinants), level $j$ carries the progression $X_j=\{i\cdot g_j:0\le i<T\}$
+with $g_j\equiv(1,t_j,\dots,t_j^{d-1})$. For each $d$-set $J$ of levels the map
+$z\mapsto\sum z_sg_{j_s}$ has kernel $G_J\Z^d$ with $G_J=mI+O(1)$, so a box of side $T$ meets every
+coset and the $X_j$, $j\in J$, sum to $\Z_M$; summands on distinct levels are distinct. Hence
+$p_d(n)\ge Pm^d$ whenever $\ell T\le n\le PM$.
+Taking the largest such $m$ with $\ell T\le n$ gives $p_d(n)\ge(P/\ell^d-o(1))\,n^d$. Applied to every seed
+$(\ell,P)=(n_0,p_d(n_0))$, this gives $\liminf p_d(n)/n^d\ge\sup p_d(n_0)/n_0^d\ge\limsup$, so $\sigma_d$
+exists and equals the sup. The full proof is in Appendix~\ref{sec:B-blowup}.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig2_sums.png}
+\caption{Points at angles $2\pi s/6$, $s\in\{0,1,2,4\}$, on a circle (left). The chord through $s$ and
+$t$ has direction $\pi(s+t)/6+\pi/2$ (mod $\pi$: lines are unoriented), and the six pair sums hit every residue mod $6$. Shrunk to the
+centre (right), the six lines form a pencil with all gaps $\pi/6$, so $\rho\to\sin(\pi/12)$. This is
+the case $d=2$, $N=6$ of Theorem~B.}\label{fig:sums}
+\end{figure}
+
+For $d=2$, $p_2(n)$ is Graham and Sloane's $n_\gamma(n)$ \cite{GS}; they proved
+$p_2(n)>(5/18)(n-1)^2$, and Jia and Shen \cite{JS} proved $(1/3-o(1))n^2$ for the unrestricted problem,
+where a summand may repeat.
+
+\begin{corTwo}
+$\sigma_2\ge7/18$, that is, $p_2(n)\ge(7/18-o(1))n^2$; since a restricted cover is also an unrestricted
+one, the same bound holds for the unrestricted problem.
+\end{corTwo}
+
+The proof is one line: by Theorem~B, $\sigma_2=\sup_np_2(n)/n^2\ge p_2(12)/144\ge56/144$, using the seed
+$(12,56)$ from Haanpää's table \cite{Haanpaa} (Appendix~\ref{sec:B-sigma2}, where every residue mod $56$ is
+listed as a sum). This exceeds both bounds. We found no larger published
+asymptotic constant in these papers, in Haanpää's paper or in Bajnok's problem book \cite{Bajnok}, whose
+section on restricted sums with a fixed number of terms lists no results; a check by a specialist in
+additive bases is still advisable.
+
+\section{Clusters and small \texorpdfstring{$n$}{n}}\label{sec:small}
+
+\begin{propThree}
+If $k$ hyperplanes lie within distance $r$ of the centre and have covering radius $\eps<1-r$, then
+$k\cdot[\arccos(r-\eps)-\arccos(r+\eps)]\ge\pi$.
+\end{propThree}
+
+\begin{proof}
+The slab at offset $|m|\le r$ meets the boundary sphere in a spherical segment of width
+$\arccos(|m|-\eps)-\arccos(|m|+\eps)$, which increases with $|m|$. In the plane these are two arcs, so
+$2k\cdot w\ge2\pi$ directly; for $d\ge3$ we use Corollary~1.15 of Glazyrin, Karasev and Polyanskii
+\cite{GKP}: if $\Sph^{d-1}$ is covered by spherical segments, then the sum of their widths is at least
+$\pi$. There a spherical segment of width $2\delta$ is the closed $\delta$-neighbourhood, in the
+geodesic metric, of $\Sph^{d-1}\cap H$ for an affine hyperplane $H$. Our slab meets $\Sph^{d-1}$ in
+exactly such a set: the points at angle between $\arccos(|m|+\eps)$ and $\arccos(|m|-\eps)$ from $\pm u$,
+which is the geodesic neighbourhood of the level set at the middle angle. It is a proper segment because
+$\eps<1-r$ keeps $|m|\pm\eps$ inside $(-1,1)$.
+\end{proof}
+
+Configurations whose hyperplanes all pass within $o(1)$ of the centre, such as the clusters of
+Theorem~B, therefore cost at least $(\pi/2)\cdot d!$, and $\pi$ in the plane. Since
+the clusters of Theorem~B achieve $\pi/(2\sigma_d)$, any improvement of this bound for near-flat
+clusters would give $\sigma_d<1/d!$; the converse is not known.
+
+\paragraph{Small $n$ in the plane.} Figure~\ref{fig:constants} compares the best known values with
+the asymptotic constants.
+\begin{itemize}
+\item \textbf{$n=3$.} The inscribed equilateral triangle gives $\lambda_2(3)\le1/2$: its sides are
+$\ip{x}{a_i}=-1/2$ with $\sum a_i=0$, so every $x\in D$ has some $\ip{x}{a_i}\in[-1,0]$
+(Appendix~\ref{sec:B-triangle}).
+\item \textbf{$n=4$.} The square $(\pm a,\pm a)$ spans $x=\pm a$, $y=\pm a$ and $y=\pm x$. By the
+symmetries of the square take $0\le y\le x$. A point farther than $a$ from all six lines has $x>2a$,
+$y>2a$ and $x-y>\sqrt2\,a$, so $x^2+y^2>(4+(2+\sqrt2)^2)a^2=1$. Hence $\rho\le a$, with equality at
+$(0,1)$. Shrinking central clusters have $\rho\to$ at least $\sin(\pi/12)\approx0.2588$ by
+Proposition~3 ($k=6$), so the square beats them.
+\item \textbf{$n=6$.} Take the regular hexagon of radius $r=1/\sqrt{14+4\sqrt3}$ centred at $0$. Its 15
+lines are, in directions $0^\circ,60^\circ,120^\circ$, a long diagonal and two sides at offsets
+$\pm r\sqrt3/2$, and in directions $30^\circ,90^\circ,150^\circ$, two short diagonals at offsets
+$\pm r/2$. The dihedral group of order 12 permutes them, so take $0\le\arg z\le30^\circ$ (Figure~\ref{fig:hexsector}). Distance
+$>r/2$ from $y=0$ and from the side $y=r\sqrt3/2$ forces $y>(1+\sqrt3)r/2$; in this sector
+$x/2-(\sqrt3/2)y\ge0$, so distance $>r/2$ from the short diagonal $x/2-(\sqrt3/2)y=r/2$ forces
+$x>2r+\sqrt3y>(7+\sqrt3)r/2$. Then $|z|^2>r^2(14+4\sqrt3)=1$. Hence $\rho\le r/2$, with equality at
+$(0,1)$. Here Proposition~3 gives only $\sin(\pi/30)$ for clusters, hence the certificate below.
+\item \textbf{Certified $\gamma_6$.} A cluster ties the hexagon only if $\gamma_6\le12.5495^\circ$.
+Table~\ref{tab:gamma} lists the certified bounds. A box branch-and-bound in exact integer arithmetic
+gives the lower bounds, and explicit configurations evaluated in interval arithmetic give the upper
+bounds. The search prunes using the fact that $\binom n2$ directions with all gaps below $\theta$
+leave only $\binom n2\theta-\pi$ of slack.
+\item \textbf{Polygons.} A regular $m$-gon of radius $r$ centred at $0$ spans only $m$ line directions mod
+$\pi$, equally spaced (the chord through vertices $s$ and $t$ has direction $\pi(s+t)/m+\pi/2$, and the
+pairs $(0,c)$ and $(1,m-1)$ give every residue $c$ of $s+t$), and all its lines pass within $r$ of the
+centre; so $\rho\ge\sin(\pi/(2m))-r$, by the argument for clusters above. For $r\le1/m$ this gives
+$m^2\rho\ge m(m\sin(\pi/(2m))-1)\to\infty$: small regular polygons waste most of their $\binom m2$
+lines on repeated directions. We have no bound for larger radii; for $m=4$ and $m=6$, Theorem~D shows that
+suitably sized regular polygons beat every shrinking cluster.
+\end{itemize}
+
+\begin{table}[ht]
+\centering
+\caption{Certified bounds on $\gamma_5$ and $\gamma_6$.}\label{tab:gamma}
+\small
+\begin{tabular}{lp{3.1cm}lp{5.0cm}}
+\toprule
+Quantity & Lower bound & Upper bound & Runs of the lower-bound computation\\
+\midrule
+$\gamma_6$ & $12.6792^\circ$ & $12.6800^\circ$ & two, identical (45,959,045 nodes, none unresolved)\\
+$\gamma_5$ & $19.6265^\circ$ & $19.6270^\circ$ & two, identical (1,086,476 nodes, none unresolved)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/fig1_square_hexagon.png}
+\caption{The centred square ($n=4$) and the regular hexagon ($n=6$) of Theorem~D, with their spanned
+lines and the strips of half-width $\rho$ around them (darker where strips overlap). In both, $\rho$ is
+attained at the boundary point $(0,1)$.}\label{fig:square}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.62\textwidth]{figures/fig4_hexagon_sector.png}
+\caption{The sector argument for the hexagon in Theorem~D. In the sector $0\le\arg z\le30^\circ$, a point at
+distance more than $r/2$ from the long diagonal $y=0$, the side $y=r\sqrt3/2$ and the short diagonal
+$x/2-(\sqrt3/2)y=r/2$ lies in the orange region, whose corner $\bigl((7+\sqrt3)r/2,(1+\sqrt3)r/2\bigr)$ is on
+the unit circle; so no point of the disc is that far from all $15$ lines.}\label{fig:hexsector}
+\end{figure}
+
+\begin{center}
+\small
+\begin{tabular}{p{3.6cm}cccccccc}
+\toprule
+$n$ & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12\\
+\midrule
+$n^2\sin(\gamma_n/2)$, best configuration found (floating point; for $n\ge8$ the searches did not converge) & 4.261 & 3.975 & 4.051 & 4.044 & 4.045 & 4.185 & 4.095 & 4.274\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/fig3_constants.png}
+\caption{Best known $n^2\rho$ for $n=3,\dots,12$ (triangle, square and hexagon exact; the other values
+are the best clusters found, floating point) against the asymptotic constants: Bang's $2$, the lower
+constant $6864/3161\approx2.1715$ of Appendix~\ref{sec:A-sharp}, the cluster bound $\pi$ of Proposition~3, and the upper constant
+$9\pi/7$ of Theorem~B.}\label{fig:constants}
+\end{figure}
+
+\section{Random points}\label{sec:random}
+
+\begin{proof}[Proof sketch of Theorem E (full proofs in Appendix~\ref{app:C})]
+Poissonise with mean $(1\mp\theta_0)n$ and discretise $\Omega$ into tiny cells: then ``$x$ is uncovered''
+becomes ``no $d$-set of cells from a fixed family is fully occupied'', an event on independent occupancy
+indicators, and the mean number $\mu_x$ of spanned hyperplanes within $\eps$ of $x$ is of order $n^d\eps$. The
+geometric input is that the hyperplane through $d$ uniform points of $\Omega$ passes within $t$ of a given
+point $z$ with probability $h_\Omega(z)t+o(t)$, uniformly in $z$: given the first $d-1$ points, the last must make the
+hyperplane's angle in the pencil through their $(d-2)$-flat fall in an interval of length about $t$
+divided by the distance to that flat.
+\begin{itemize}
+\item \textbf{Upper bound.} Janson's inequality \cite{Janson} gives $\Pr(x\text{ uncovered})\le e^{-\mu_x+\Delta_J}$,
+where $\Delta_J=O((\log n)^3/n)$ because two $d$-sets sharing cells rarely both pass near $x$. For
+$\eps=C\log n/n^d$ with $C>c_\Omega$, $\mu_x>(d^2+\eta)\log n$ for every $x$, and a union bound over a net of
+about $n^{d^2}$ points finishes the proof.
+\item \textbf{Lower bound.} Harris's inequality \cite{Harris} gives $\Pr(x\text{ uncovered})\ge(1-o(1))e^{-\mu_x}$. A
+hyperplane passes within $t$ of two points at distance $r$ with probability $O(t^2/r)$, so Janson makes test
+points at distance $\ge(\log n)^3/n^d$ almost independent, and a second moment over about $n^{d^2}$ test points
+placed near a minimiser of $h_\Omega$ finds an uncovered one when $\mu_x<(d^2-\eta)\log n$, i.e.\ for
+$\eps=c\log n/n^d$ with any $c<c_\Omega$ (Appendix~\ref{sec:C-all-d}).\qedhere
+\end{itemize}
+\end{proof}
+
+In floating-point experiments in the disc (medians over $n=8,\dots,40$), $n^2\rho/\log n$ is about $10$ to $12$,
+against the limit $9\pi^2/8\approx11.10$, which is set by the boundary of the disc, where $h_\Omega$ is smallest.
+
+\section{Variants}\label{sec:variants}
+
+\paragraph{Great hyperspheres.} For $n>d$ points on $\Sph^d$ and the great hyperspheres through $d$ of
+them, the infimum of the angular covering radius lies between $\pi/(2K)$ and $\pi/(2p_d(n))$: project
+the construction of Theorem~B gnomonically. The bounds coincide when $p_d(n)=\binom nd$, for example for
+$n=d+1$ (take $\Z_{d+1}$) and for $(n,d)=(4,2),(6,3)$ (for the latter, the $20$ three-sums of $\{1,4,10,17,18,19\}\subset\Z_{20}$ are distinct); so the infimum is $\pi/(2(d+1))$ for $n=d+1$
+(Appendix~\ref{sec:D-spheres}).
+
+\paragraph{Points anywhere.} Let $\mu_d(n)$ be the infimum of $\rho$ when the $n$ points may lie
+anywhere in $\R^d$. Then $1/\binom nd\le\mu_d(n)\le1/N_d(n)$, where $N_d(n)$ is the longest run of
+consecutive integers among the sums of $d$ distinct elements of an $n$-set of positive integers. The
+upper bound sends the points $(Xt,\dots,Xt^{d-1},\alpha/t+\beta)$, $t=1/u$, to infinity: the hyperplane
+through $d$ of them tends to a horizontal one at height $\alpha\sum u+\beta$, because the interpolant of
+$1/t$ at $d$ nodes $t_i$ takes the value $\sum1/t_i$ at $0$. So $\mu_d(d+1)=1/(d+1)$, and digit blocks
+give $N_d(dq)\ge q^d$, so $d!\le\liminf n^d\mu_d(n)\le\limsup n^d\mu_d(n)\le d^d$. In the plane
+$N_2(n)\ge\lfloor n^2/4\rfloor$, $\mu_2(3)=1/3$ and $\mu_2(4)=1/6$ (Lemma~\ref{D:N2}).
+
+\paragraph{Flats through $j+1$ points.} For $1\le j\le d-1$, let $\lambda_d^{(j)}(n)$ be the analogue of
+$\lambda_d(n)$ for the $j$-flats spanned by $j+1$ of the $n$ points (so $j=d-1$ is the main problem).
+Then $\lambda_d^{(j)}(n)=\Theta(n^{-(j+1)/(d-j)})$. For the lower bound, if the $\rho$-neighbourhoods of
+$K$ $j$-flats cover $\ball^d$ then $K\rho^{d-j}\ge c(d,j)$, with $c(d,1)=1$ and
+$c(d,j)=\Gamma(j/2)\Gamma((d-j)/2+1)/\Gamma(d/2)$ for $j\ge2$: the density $(1-|x|^2)^{-a}$ ($a=\frac12$
+for lines, $a\uparrow1$ otherwise) has its integral over every $j$-flat bounded by the value on a
+central one. For lines the density $(1-|x|^2)^{-1/2}$ integrates to exactly $\pi$ along every line,
+which gives $k\rho^{d-1}\ge1$; this is the ellipsoid case of Bezdek and Litvak's theorem on covering
+convex bodies by cylinders \cite{BL}, proved there with the same density (for $d=2$ it is Bang's bound
+for the disc). For the upper bound, put $j+1$ groups of points at moment-curve positions in
+$\R^{j-1}\times\{0\}$, each carrying a grid in the complementary $\R^{d-j+1}$ at its own scale; as the
+cluster shrinks, the flat through one point of each group tends to $\R^{j-1}\oplus\R w$, where $w$ is
+the sum of the chosen grid vectors, and these sums form a complete digit grid of directions in one chart; $d-j+1$ rotated copies of the
+cluster cover all directions. This is
+Lemma~2. It gives
+$\limsup n^{(j+1)/(d-j)}\lambda\le\sqrt{d-j}\,\bigl((d-j+1)(j+1)\bigr)^{(j+1)/(d-j)}$; for lines in
+$\ball^3$, $\sqrt2\le\liminf n\lambda\le\limsup n\lambda\le6\sqrt2$ (Appendix~\ref{sec:D-flats}).
+
+\section{General convex bodies}\label{sec:convex}
+
+Let $\Omega$ be a convex body, with minimal width $w(\Omega)$, circumradius $R(\Omega)$, volume $|\Omega|$
+and diameter $\operatorname{diam}\Omega$, and define $\lambda_d(n;\Omega)$, $\mu_d(n;\Omega)$ and
+$\rho_\Omega$ as before, with points in $\Omega$ (or anywhere) and slabs covering $\Omega$. The order of every
+covering radius in this paper extends; the sharp results do not.
+
+\begin{center}
+\small
+\begin{tabular}{p{3.4cm}p{5.2cm}p{5.6cm}}
+\toprule
+Result & Unit ball & Convex body $\Omega$\\
+\midrule
+Order of $\lambda_d(n)$ & $\ell_d\le\liminf n^d\lambda_d(n)$ (Corollary~C), $\limsup\le\pi/(2\sigma_d)$ &
+$d!\,w(\Omega)/2\le\liminf n^d\lambda_d(n;\Omega)$, $\limsup\le\pi R(\Omega)/(2\sigma_d)$\\
+Points anywhere, $n=d+1$ & $\mu_d(d+1)=1/(d+1)$ & $\mu_d(d+1;\Omega)=w(\Omega)/(2(d+1))$\\
+Random points & $n^d\rho/\log n\to c_{\ball^d}$; $c_{\ball^2}=9\pi^2/8$ &
+$n^d\rho_\Omega/\log n\to c_\Omega$ (Theorem~E)\\
+Strict gain over Bang (Theorem~A, Corollary~1$'$) & yes & open\\
+Small $n$, $\gamma_n$, $6864/3161$, the cluster limit $\sin(G/2)$ & Theorem~D, Table~\ref{tab:gamma} & not treated\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Hyperplanes.} Bang's plank theorem (Verreault's survey \cite{Verreault}, Theorem~2.2) gives
+$\mu_d(n;\Omega)\ge w(\Omega)/(2\binom nd)$. The clusters of Theorem~B, scaled into $\Omega$ around interior
+points (taking the infimum over them), give $\lambda_d(n;\Omega)\le R(\Omega)\sin(\pi/(2p_d(n)))$; and the
+points-anywhere construction, with horizontal hyperplanes in a direction of minimal width, gives
+$\mu_d(n;\Omega)\le w(\Omega)/(2N_d(n))$. This gives the first two rows (Appendix~\ref{sec:D-convex}).
+
+\paragraph{Random points.} Theorem~E is proved for every convex body in every dimension directly
+(Appendix~\ref{app:C}), with the exact limit constant $c_\Omega$; Remark~\ref{rem:C-plane} gives its planar formula.
+
+\section{Open problems}\label{sec:open}
+
+\begin{enumerate}
+\item Does $\lim n^2\lambda_2(n)$ exist, and what is it? The liminf and limsup lie in
+$[2.1714,\,9\pi/7\approx4.04]$; floating-point searches for $n\le12$ suggest about $4$.
+\item Are shrinking clusters optimal for odd $n$, and asymptotically? For $n=5$, can any finite
+configuration beat $\sin(\gamma_5/2)$?
+\item Determine $\sigma_d$. Known: $7/18\le\sigma_2\le1/2$ and $19/200\le\sigma_3\le1/6$; the upper
+bounds are only the count $p_d(n)\le\binom nd$ (for $d=2$, Haanpää's table gives $p_2(n)<\binom n2$ for $5\le n\le14$,
+but no constant below $1/2$ is known).
+\item Is $\lambda_2(3)=1/2$? Is $\lambda_2(4)=1/\sqrt{10+4\sqrt2}$?
+\item Flats: $\lambda_d^{(j)}(n)=\Theta(n^{-(j+1)/(d-j)})$ (\S\ref{sec:variants}), but the constants are
+far apart (for lines in $\ball^3$, between $\sqrt2$ and $6\sqrt2$). Is there a strict bound beyond
+$c(d,j)$ for spanned flats, as Theorem~A gives for hyperplanes, and do better direction designs lower
+the upper constants?
+\item Does the gain over Bang survive in high dimension, that is, is $\inf_d(L_d/d!-1)>0$? Theorem~A
+gives only $L_d/d!-1\ge0.08/\sqrt{d-2}$; the loss is built into the method: under the measure of the
+proof, a slab of half-width $\eps$ through the centre with normal perpendicular to $v$ carries
+$\Phi$-mass about $C_d(m_0^2+\frac12)\eps$, where $C_d\approx\sqrt{\pi d/2}$, against
+$(m_0^2+\frac12)\eps$ in the flat case. A different measure or test function would be needed.
+\item For a convex body $\Omega$, how does $n^d\lambda_d(n;\Omega)$ depend on the shape of $\Omega$? The bounds
+$d!\,w(\Omega)/2$ and $\pi R(\Omega)/(2\sigma_d)$ are far apart for thin bodies, where a pencil of hyperplanes
+through a common $(d-2)$-flat is wasteful; points placed anywhere do reach the width scale $w(\Omega)$.
+\end{enumerate}
+
+\section*{Computations and full proofs}
+
+The only computer-assisted results are the bounds of Table~\ref{tab:gamma}: exact integer
+branch-and-bound for the lower bounds and interval arithmetic for the upper bounds. The comparison of
+the hexagon with shrinking clusters in Theorem~D rests on them. The repository accompanying this paper,
+\url{https://github.com/michael-werman/planks}, holds their code, input data, command, runtime and output (folder
+\texttt{certificates/\allowbreak gamma6\_\allowbreak gamma5}). Everything else is proved by hand; the finite examples are given
+with one representation of every residue (Lemma~\ref{lem:B-seed} and Section~\ref{sec:B-examples}). The
+repository also holds independent exact re-checks: the hexagon value ($\rho^2$ exact in $\Q(\sqrt3)$), the
+seeds and two blown-up instances of the additive bases, the seed behind
+$\sigma_2\ge7/18$, and the algebra of Appendix~\ref{app:A}. Appendices~\ref{app:A}--\ref{app:D} give
+complete proofs of the results sketched in the main text.
+
+\begin{thebibliography}{99}
+\bibitem{Bajnok} B.~Bajnok, Additive Combinatorics: A Menu of Research Problems, arXiv:1705.07444 (2017).
+\bibitem{Bang} T.~Bang, A solution of the ``plank problem'', Proc. Amer. Math. Soc. 2 (1951), 990--993.
+\bibitem{BL} K.~Bezdek and A.~E. Litvak, Covering convex bodies by cylinders and lattice points by
+flats, J. Geom. Anal. 19 (2009), 233--243.
+\bibitem{FM} P.~Frankl and H.~Maehara, Projecting a finite point-set into a hyperplane, Ryukyu Math. J.
+8 (1995), 27--35.
+\bibitem{Gardner} R.~J. Gardner, Relative width measures and the plank problem, Pacific J. Math. 135
+(1988), 299--312.
+\bibitem{GKP} A.~Glazyrin, R.~Karasev and A.~Polyanskii, Covering by planks and avoiding zeros of
+polynomials, Int. Math. Res. Not. IMRN 2023, no.~13, 11684--11700.
+\bibitem{GS} R.~L. Graham and N.~J.~A. Sloane, On additive bases and harmonious graphs, SIAM J.
+Algebraic Discrete Methods 1 (1980), 382--404.
+\bibitem{Haanpaa} H.~Haanpää, Minimum sum and difference covers of abelian groups, J. Integer Seq. 7
+(2004), Art.~04.2.6.
+\bibitem{Harris} T.~E. Harris, A lower bound for the critical probability in a certain percolation
+process, Proc. Cambridge Philos. Soc. 56 (1960), 13--20.
+\bibitem{Janson} S.~Janson, Poisson approximation for large deviations, Random Structures Algorithms 1
+(1990), 221--229.
+\bibitem{JS} X.~Jia and J.~Shen, Extremal bases for finite cyclic groups, SIAM J. Discrete Math. 31
+(2017), 796--804.
+\bibitem{JP} Z.~Jiang and A.~Polyanskii, Proof of László Fejes Tóth's zone conjecture, Geom. Funct.
+Anal. 27 (2017), 1367--1377.
+\bibitem{Verreault} W.~Verreault, Plank theorems and their applications: a survey, Bull. LMS 58 (2026),
+e70230; arXiv:2203.05540.
+\bibitem{ZhaoNotes} Y.~Zhao, Probabilistic Methods in Combinatorics, lecture notes, MIT 18.226 (version of June 18,
+2024), \url{https://yufeizhao.com/pm/probmethod_notes.pdf}.
+\bibitem{Zhao} Y.~Zhao, Exploring a planet, revisited, Amer. Math. Monthly 129 (2022), 678--680.
+\end{thebibliography}
+
+\appendix
+\IfFileExists{appendix_A.tex}{\input{appendix_A}}{}
+\IfFileExists{appendix_B.tex}{\input{appendix_B}}{}
+\IfFileExists{appendix_C.tex}{\input{appendix_C}}{}
+\IfFileExists{appendix_D.tex}{\input{appendix_D}}{}
+
+\end{document}

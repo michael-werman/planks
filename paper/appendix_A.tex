@@ -1,0 +1,515 @@
+\section{Proofs for the lower bound (Theorem A, Corollary 1$'$)}
+\label{app:A}
+
+% Local notation for this appendix.
+\newcommand{\Abb}{\bar\beta}
+\newcommand{\AH}{\mathcal{H}}
+\newcommand{\AI}{\mathcal{I}}
+\newcommand{\Aone}{\mathbf{1}}
+\newcommand{\Adep}{\#\mathrm{dep}}
+
+% ======================================================================
+\subsection{Spanned hyperplanes never attain Bang's bound, in every dimension}
+\label{sec:A-strict}
+
+This subsection proves Corollary~1$'$ of the main text, $\lambda_d(n) > 1/\binom nd$ for every
+$d \ge 2$ and $n > d$. The proof uses only Lemma~1.
+
+\subsubsection*{Definitions}
+
+\begin{itemize}
+  \item $\ball^d$ is the closed unit ball. For $P \subset \ball^d$ with $n$ points, $\AH_P$ is the
+    set of hyperplanes spanned by affinely independent $d$-subsets of $P$.
+    $\rho(P) = \max_{x \in \ball^d} \min_{H \in \AH_P} \dist(x, H)$, and $\rho = \infty$ if
+    $\AH_P = \emptyset$. $\lambda_d(n) = \inf\{\rho(P) : P \subset \ball^d,\ |P| = n\}$.
+    $K = \binom{n}{d}$.
+  \item For a finite list of hyperplanes $\{\ip{x}{u_j} = m_j\}$ ($|u_j| = 1$), its
+    \emph{covering radius} is
+    \begin{equation*}
+      \max_{x \in \ball^d} \min_j \dist(x, H_j).
+    \end{equation*}
+    It depends only on the set of hyperplanes.
+\end{itemize}
+
+By Lemma~1 (Section~\ref{sec:lower}), if the closed $\eps$-slabs around $k$ hyperplanes
+$\{\ip{x}{u_j} = m_j\}$ cover $\ball^d$, then $\eps \max_{|v|=1}\sum_j|\ip{u_j}{v}| \ge 1$. In particular a covering list of $k$ hyperplanes has covering radius at least $1/k$, so
+$\lambda_d(n) \ge 1/K$.
+
+\subsubsection*{Statement}
+
+\begin{proposition}\label{prop:A-strict}
+For $d \ge 2$ and $n \ge d + 1$, $\lambda_d(n) > 1/\binom{n}{d}$. (For $n = d$ there is at most one
+hyperplane, and $\lambda_d(d) = 1 = 1/K$, attained by $d$ independent points on a hyperplane
+through the centre.)
+\end{proposition}
+
+\begin{proof}
+Suppose $\lambda_d(n) = 1/K$, and take labelled $n$-point sets $P_k$ with $\rho(P_k) \to 1/K$.
+Pass to a subsequence along which:
+\begin{enumerate}[label=(\roman*)]
+  \item the family $\AI$ of affinely independent $d$-subsets (by labels) is the same for all $k$;
+  \item each labelled point converges, $p_i^{(k)} \to p_i \in \ball^d$;
+  \item for each $F \in \AI$, the hyperplane of $F$, written
+    $\{\ip{x}{u_F^{(k)}} = m_F^{(k)}\}$ with $|u| = 1$ and $|m| \le 1$, has $u_F^{(k)} \to u_F$
+    and $m_F^{(k)} \to m_F$.
+\end{enumerate}
+This is possible by compactness: (i) has finitely many possibilities, and $|m| \le 1$ because the
+hyperplane meets $\ball^d$. The limit hyperplane $H_F = \{\ip{x}{u_F} = m_F\}$ contains $p_i$ for
+every $i \in F$, by continuity of $\ip{p_i^{(k)}}{u_F^{(k)}} - m_F^{(k)} = 0$.
+
+For $|x| \le 1$ we have $|\dist(x, H) - \dist(x, H')| \le |u - u'| + |m - m'|$. Along the
+subsequence $\AH_{P_k} = \{H_F^{(k)} : F \in \AI\}$, and a min over a finite family followed by a
+max over $\ball^d$ is $1$-Lipschitz in the sup norm. So the covering radius of the list
+$(H_F)_{F \in \AI}$ is the limit of $\rho(P_k)$, namely $1/K$. $\AI \ne \emptyset$, since
+otherwise $\rho(P_k) = \infty$. If $|\AI| < K$, Lemma~1 would give covering radius
+$\ge 1/|\AI| > 1/K$ for each $P_k$ (a bound independent of $k$), contradicting
+$\rho(P_k) \to 1/K$. So $|\AI| = K$: every $d$-subset is independent.
+
+Apply Lemma~1 to the list $(H_F)$ with $\eps = 1/K$. Then
+$\max_v \sum_F |\ip{u_F}{v}| \ge K$. Since each term is at most $1$ and there are $K$ terms, some
+unit $v$ has $|\ip{u_F}{v}| = 1$ for all $F$. So every $H_F$ is $\{\ip{x}{v} = b_F\}$ for some
+$b_F$. Their $1/K$-slabs cover $\ball^d$, in particular the diameter $\{tv : |t| \le 1\}$. So the
+$K$ intervals $[b_F - 1/K,\, b_F + 1/K]$ cover $[-1, 1]$, whose length $2$ equals their total
+length. Hence any two of them meet in at most one point, and the $b_F$ are pairwise distinct.
+
+Since $n \ge d + 1$ and $d \ge 2$, the $d$-sets $F = \{1, \dots, d\}$ and
+$F' = \{2, \dots, d+1\}$ are distinct and share the point $p_2$. Both $H_F$ and $H_{F'}$ contain
+$p_2$, so $b_F = \ip{p_2}{v} = b_{F'}$. This is a contradiction.
+\end{proof}
+
+\begin{remark}
+The limit points $p_i$ may coincide, and the limit hyperplanes need not be spanned by the limit
+points. The proof uses only that $H_F$ contains $p_i$ for $i \in F$.
+\end{remark}
+
+% ======================================================================
+\subsection{\texorpdfstring{Theorem~A in every dimension $d \ge 2$: one statement, one proof}%
+{Theorem A in every dimension d >= 2: one statement, one proof}}
+\label{sec:A-unified}
+
+This proves the $d = 2$, $d = 3$ and $d \ge 4$ cases of Theorem~A together.
+
+\subsubsection*{Definitions}
+
+\begin{itemize}
+  \item $\ball^d$ is the closed unit ball and $\Sph^{d-1}$ its boundary. $P \subset \ball^d$ has
+    $n$ points, and $K = \binom{n}{d}$.
+  \item $\AH'$ is the set of distinct hyperplanes spanned by affinely independent $d$-subsets of
+    $P$, and $K' = |\AH'|$. For $H \in \AH'$, $N_H \ge 1$ is the number of independent $d$-subsets
+    lying in $H$.
+  \item $\eps = \rho(P) = \max_{x \in \ball^d} \min_{H \in \AH'} \dist(x, H)$, and $S_H$ is the
+    closed $\eps$-slab around $H$. If $P$ has no $d$ affinely independent points,
+    $\rho = \infty$ and there is nothing to prove.
+  \item $\lambda_d(n) = \inf\{\rho(P) : P \subset \ball^d,\ |P| = n\}$.
+  \item $A_d = (3d - 1)/(d - 1)$, so $A_2 = 5$ and $A_3 = 4$.
+  \item For $d \le 3$ put $\Lambda_d(m) = A_d$. For $d \ge 4$ put $\Abb_d = 2/(d-1)$,
+    $C_d = \sqrt{\pi}\, \Gamma((d-1)/2) / \Gamma((d-2)/2)$ (so $C_4 = \pi/2$, $C_5 = 2$,
+    $C_{d+2} = C_d (d-1)/(d-2)$), and
+    \begin{equation*}
+      \Lambda_d(m) = A_d + (1+|m|)^2(C_d - 1)
+        + 4(1+|m|)(1 - \Abb_d).
+    \end{equation*}
+  \item $q_d = \min_{|m| \le 1} (1/3 + m^2)/\Lambda_d(m)$. So $q_2 = 1/15$ and $q_3 = 1/12$.
+\end{itemize}
+
+\subsubsection*{Theorem~A}
+
+\begingroup\itshape\sloppy
+For every $d \ge 2$ and $n \ge d$, every $n$-point set $P \subset \ball^d$ with $\rho = \rho(P)$
+satisfies
+\begin{equation*}
+  \binom{n}{d} \rho \ge \frac{1 + q_d}{1 + 2\rho/A_d}.
+\end{equation*}
+(If $P$ has no $d$ affinely independent points, $\rho = \infty$ and the bound is trivial.) Hence
+$\liminf_n n^d \lambda_d(n) \ge L_d := d!\,(1 + q_d)$.
+\begin{itemize}
+  \item For $d = 2$ the bound reads $\binom{n}{2}\rho \ge 16/(15 + 6\rho)$, and $L_2 = 32/15$.
+  \item For $d = 3$ it reads $\binom{n}{3}\rho \ge 13/(12 + 6\rho)$, and $L_3 = 13/2$.
+  \item For $d \ge 4$, $q_d \ge 0.08/\sqrt{d-2}$; also $q_4 \ge 0.0588$ and $q_5 \ge 0.0496$, so
+    $L_4 \ge 25.41$ and $L_5 \ge 125.95$ (Section~\ref{sec:A-qd}).
+\end{itemize}
+\endgroup
+
+\subsubsection*{Proof}
+
+\paragraph{Step 1 (tilt budget).} This is Lemma~1 (Section~\ref{sec:lower}). Here $\eps = \rho(P) > 0$, since finitely many hyperplanes cannot cover $\ball^d$, and the closed
+$\eps$-slabs around the $K'$ hyperplanes of $\AH'$ cover $\ball^d$, since the maximum defining
+$\rho(P)$ is attained (a maximum over the compact $\ball^d$ of a minimum of finitely many continuous
+functions). Apply Lemma~1 to $\AH'$ ($k = K'$) with a maximising unit $v$. Orient each normal so that
+$\cos\psi_H = \ip{u_H}{v} \ge 0$, with $\psi_H \in [0, \pi/2]$. Write
+$H = \{\ip{x}{u_H} = m_H\}$; then $|m_H| \le 1$, since $H$ meets $P \subset \ball^d$. Put
+$\kappa_H = 1 - \cos\psi_H \in [0, 1]$. Since $\sum_H \cos\psi_H \ge 1/\eps$:
+\begin{itemize}
+  \item[(1a)] $\sum_{H \in \AH'} \kappa_H \le K' - 1/\eps \le K - 1/\eps$.
+  \item[(1b)] $\sum_{Q \text{ indep}} \kappa_{H(Q)} + \#\{\text{dependent } d\text{-sets}\} \le
+    K - 1/\eps$. Indeed,
+    $\sum_Q \kappa = \sum_H N_H \kappa_H \le \sum_H \kappa_H + \sum_H (N_H - 1) \le T - 1/\eps$,
+    where $T = \sum_H N_H$, and $\#\text{dependent} = K - T$.
+\end{itemize}
+
+The \emph{height} is $t(x) = \ip{x}{v}$. Let $m_0$ be the mean height of $P$, so $|m_0| \le 1$.
+Put $\Phi(x) = (t(x) - m_0)^2$ and $M_0 = (1 + |m_0|)^2$.
+
+\paragraph{Step 2 (test measures with uniform height).} Each case uses a probability measure
+$\sigma$ whose height $t$ is uniform on $[-1, 1]$, so $\int \Phi \, d\sigma = 1/3 + m_0^2$.
+\begin{itemize}
+  \item $d = 3$: $\sigma$ is uniform on $\Sph^2$. By Archimedes, for every unit $w$,
+    $\ip{y}{w}$ is uniform on $[-1, 1]$, and given $\ip{y}{w} = s$ the point is uniform on the
+    circle at that level.
+  \item $d = 2$: $\sigma$ is the image of the uniform measure on $\Sph^2 \subset \R^3$ under the
+    orthogonal projection onto $\R^2 \supset \ball^2$, which is
+    $dx / (2\pi\sqrt{1 - |x|^2})$ on $\ball^2$. A slab $\{|\ip{x}{u} - m| \le \eps\}$ of $\R^2$
+    pulls back to the slab of $\R^3$ with the same $u$, $m$, $\eps$, and $\Phi$ pulls back to
+    the same quadratic in $\ip{y}{v}$. So every computation below for $d = 3$ applies verbatim.
+  \item $d \ge 4$: let $\Pi$ be a uniformly random $2$-plane in $v^\perp$ and
+    $V = \R v \oplus \Pi$. Let $\sigma_V$ be uniform on $S_V = \Sph^{d-1} \cap V$, and use
+    $\sigma_V$ averaged over $\Pi$. For a unit $e \perp v$, $\beta = |P_\Pi e|^2$ has law
+    $\mathrm{Beta}(1, (d-3)/2)$, being $(g_1^2 + g_2^2)/(g_1^2 + \dots + g_{d-1}^2)$ for
+    independent Gaussians (here $d - 1 \ge 3$). Hence
+    $\E\beta = 2/(d-1) = \Abb_d$ and
+    $\E\beta^{-1/2} = \frac{d-3}{2}\, B\bigl(\frac12, \frac{d-3}{2}\bigr)
+    = \sqrt\pi\,\Gamma(\frac{d-1}2)/\Gamma(\frac{d-2}2) = C_d$.
+\end{itemize}
+For $d \le 3$ set $V = \R^3$ and $\beta \equiv 1$ below. In every case the covering
+$S_V \subset \bigcup_H S_H$, together with the uniform height on $S_V$, gives
+\begin{equation}\label{eq:A-unified-2}
+  \frac13 + m_0^2 \le \sum_{H \in \AH'} \E \int_{S_H} \Phi \, d\sigma_V. \tag{2}
+\end{equation}
+
+\paragraph{Step 3 (one slab, one section).} Fix $H$ with $a = \cos\psi$, $b = \sin\psi$, offset
+$m$, and $u = av + be$ ($e \perp v$ a unit vector, if $b > 0$). Then $P_V u = av + b P_\Pi e$, so
+$r := |P_V u| = \sqrt{a^2 + \beta b^2} \in [a, 1]$, and $r > 0$ almost surely ($\beta > 0$ a.s.).
+Put $\tilde u = P_V u / r$. Then
+$\ip{y}{u} = r \ip{y}{\tilde u}$ on $V$, $\ip{v}{\tilde u} = a/r$ and
+$1 - a^2/r^2 = \beta b^2/r^2$. By Archimedes in $V$, $\tilde s = \ip{y}{\tilde u}$ is uniform on
+$[-1, 1]$, and
+\begin{equation*}
+  \E[\Phi \mid \tilde s] = \tilde\Gamma(\tilde s)
+    = (\tilde s a/r - m_0)^2 + (1 - \tilde s^2)\, \beta b^2/(2r^2).
+\end{equation*}
+Since $s = r\tilde s$ has density $1/(2r)$ on $(-r, r)$, averaging over $\Pi$ (Tonelli; everything is
+nonnegative) gives
+\begin{equation*}
+  \E \int_{S_H} \Phi \, d\sigma_V = \frac12 \int_{m-\eps}^{m+\eps} \overline G_H(s) \, ds, \qquad
+  \overline G_H(s) = \E\bigl[r^{-1} \tilde\Gamma(s/r)\, \Aone\{|s| < r\}\bigr],
+\end{equation*}
+and $\overline G_H = 0$ for $|s| \ge 1$. For $d \le 3$, $r \equiv 1$ and
+$\overline G_H(s) = G_H(s) \cdot \Aone\{|s| < 1\}$, where
+\begin{equation*}
+  G_H(s) = (sa - m_0)^2 + (1 - s^2)\, b^2/2.
+\end{equation*}
+
+\paragraph{Step 4 (averaging costs only tilt).} For $|s| < 1$ we have
+$\overline G_H(s) \le G_H(s) + e(\psi_H)$, with $e \equiv 0$ for $d \le 3$, and for $d \ge 4$
+\begin{equation*}
+  e(\psi) = M_0(R(\psi) - 1) + 2(1 + |m_0|)(1 - \Abb_d)\, b^2, \qquad R(\psi) = \E[1/r].
+\end{equation*}
+
+\begin{proof}[Proof ($d \ge 4$)]
+On $\{|s| < r\}$ let $\tilde c = sa/r^2$, $T = \tilde\Gamma(s/r)$ and $\omega = a/r \in [0, 1]$, so the integrand
+is $r^{-1}T$.
+\begin{itemize}
+  \item $T \le M_0$: $|\tilde c| = (|s|/r)\omega \le \omega$ and $\beta b^2/r^2 = 1 - \omega^2$, so
+    $T \le (\omega + |m_0|)^2 + (1 - \omega^2)/2$, which is non-decreasing in $\omega$ and equals $M_0$ at $\omega = 1$.
+  \item $T \le G_H(s) + 2(1 + |m_0|)(1 - r^2)$: $(\tilde c - m_0)^2 - (sa - m_0)^2 = (\tilde c - sa)(\tilde c + sa - 2m_0)$
+    with $|\tilde c - sa| = |\tilde c|(1 - r^2) \le 1 - r^2$ and $|\tilde c + sa - 2m_0| \le 2(1 + |m_0|)$; and
+    $(1 - s^2/r^2)\beta b^2/(2r^2) \le (1 - s^2)b^2/2$, as $\beta \le r^2 \le 1$.
+\end{itemize}
+So $r^{-1}T = T + (r^{-1} - 1)T \le Z := G_H(s) + 2(1 + |m_0|)(1 - r^2) + M_0(r^{-1} - 1)$. $Z \ge 0$ for
+$|s| \le 1$, so $\overline G_H(s) \le \E Z = G_H(s) + e(\psi)$, using $\E(1 - r^2) = b^2(1 - \Abb_d)$.
+\end{proof}
+
+\begin{lemma}[Lemma~R, $d \ge 4$]
+$R(\psi) - 1 \le (C_d - 1)\, \kappa$.
+\end{lemma}
+
+\begin{proof}
+Let $a = \cos\psi < 1$ (for $a = 1$ both sides vanish) and $k = (d-3)/2$, so $\beta$ has density $k(1-x)^{k-1}$.
+Substituting $x = (u^2 - a^2)/(1 - a^2)$, i.e.\ $u = r \in (a, 1)$,
+\[
+  R - 1 = \E\Bigl[\frac{1 - r}{r}\Bigr] = \frac{2k}{(1 - a^2)^k}N(a), \qquad N(a) = \int_a^1(1 - u)(1 - u^2)^{k-1}du,
+\]
+so $\varphi(a) := (R - 1)/(1 - a) = 2kN(a)/D(a)$ with $D(a) = (1 - a)(1 - a^2)^k$. At $a = 0$, with $x = u^2$,
+$C_d = 2k\int_0^1(1 - u^2)^{k-1}du$ and $2k\int_0^1u(1 - u^2)^{k-1}du = 1$, so $\varphi(0) = C_d - 1$. On $[0, 1)$,
+$N' = -(1 - a)(1 - a^2)^{k-1}$ and $D' = -(1 - a^2)^{k-1}(1 - a)(1 + (2k + 1)a)$, so
+$N'D - ND' = -(1 - a)(1 - a^2)^{k-1}Q$ with $Q = D - (1 + (2k+1)a)N$. Then $Q' = -(2k + 1)N \le 0$ (the other terms
+cancel) and $Q(a) \to 0$ as $a \to 1$, so $Q \ge 0$, $\varphi' \le 0$ and $\varphi(a) \le \varphi(0) = C_d - 1$.
+\end{proof}
+
+With $b^2 \le 2\kappa$ this gives $e(\psi_H) \le (\Lambda_d(m_0) - A_d)\, \kappa_H$ for all $d$.
+
+\paragraph{Step 5 (one slab).} (For $d = 2$, $S_H$ here is the pull-back slab in $\R^3$.) On
+$[-1, 1]$,
+$|G_H'(s)| = |2a(sa - m_0) - sb^2| \le 2a(a + 1) + b^2 = (1 + a)^2 \le 4$. Since $|m| \le 1$, the
+segment between $m$ and any $s \in [-1, 1]$ stays in $[-1, 1]$, so the Lipschitz bound applies; and
+$G_H(m) + e \ge 0$ covers the part of the slab outside $[-1, 1]$:
+\begin{equation*}
+  \E \int_{S_H} \Phi \, d\sigma_V
+    \le \frac12 \int_{m-\eps}^{m+\eps} \bigl(G_H(m) + e + 4|s - m|\bigr)\, ds
+    = \eps\bigl[G_H(m) + e(\psi_H)\bigr] + 2\eps^2.
+\end{equation*}
+
+\paragraph{Step 6 ($d$-sets).} For a $d$-set $Q$ let $X_Q = (\text{mean height of } Q) - m_0$, and
+let $V_Q$ be the population variance of its heights (mean squared deviation, dividing by $d$).
+With $\delta_p = t_p - m_0$ (so $\sum_p \delta_p = 0$), counting over all $d$-sets gives
+\begin{equation*}
+  \sum_Q X_Q^2 = \binom{n-2}{d-1} \frac{\sum_p \delta_p^2}{d^2}, \qquad
+  \sum_Q V_Q = \Bigl[\binom{n-1}{d-1}\Big/d - \binom{n-2}{d-1}\Big/d^2\Bigr] \sum_p \delta_p^2,
+\end{equation*}
+so
+\begin{equation*}
+  \sum_Q X_Q^2 = \frac{n - d}{(d - 1)n} \sum_Q V_Q.
+\end{equation*}
+For an independent $Q \subset H$, put $c_H = m_H \cos\psi_H$ and
+$Y_Q = c_H - (\text{mean height of } Q)$. Write a point of $H$ as $z = m_H u_H + z'$ with
+$z' \perp u_H$, and let $e'$ be the unit vector in the direction of $v - \cos\psi_H\, u_H$ (any unit
+vector $\perp u_H$ if $\psi_H = 0$). Then $\ip{z}{v} = c_H + b\ip{z'}{e'}$, with $b = \sin\psi_H$.
+The points $p$ of $Q$ lie in $H \cap \ball^d$, so $|z'_p|^2 \le 1 - m_H^2$, and their heights are
+$c_H + b\,\sigma_p$ with $\sigma_p = \ip{z'_p}{e'}$, $\sigma_p^2 \le 1 - m_H^2$. So $Y_Q = -b\,\bar\sigma$
+and $V_Q = b^2 \operatorname{Var}(\sigma)$ (mean and population variance over $p \in Q$), and since a
+mean square is the squared mean plus the variance,
+\begin{equation*}
+  Y_Q^2 + V_Q = b^2 \cdot \tfrac1d \textstyle\sum_{p \in Q} \sigma_p^2 \le w_H^2 := (1 - m_H^2)\, b^2 .
+\end{equation*}
+Since $c_H - m_0 = X_Q + Y_Q$ and, by Cauchy--Schwarz with weights $\frac1d + \frac{d-1}d = 1$,
+$(X + Y)^2 \le d X^2 + \frac{d}{d-1} Y^2$, every independent $Q \subset H$ has
+\begin{equation*}
+  G_H(m_H) = (X_Q + Y_Q)^2 + \tfrac12 w_H^2 \le T_Q := d X_Q^2 + \tfrac{d}{d-1}\bigl(w_H^2 - V_Q\bigr)
+    + \tfrac12 w_H^2 .
+\end{equation*}
+Now sum, in three steps.
+\begin{itemize}
+  \item \emph{From hyperplanes to $d$-sets.} Pick one independent $Q_H \subset H$ for each
+    $H \in \AH'$. Every $T_Q \ge G_{H(Q)}(m_{H(Q)}) \ge 0$, so
+    $\sum_H G_H(m_H) \le \sum_H T_{Q_H} \le \sum_{Q \text{ indep}} T_Q$.
+  \item \emph{The cancellation.} Split
+    $\sum_{Q \text{ indep}} T_Q = \bigl(\frac{d}{d-1} + \frac12\bigr) \sum_{Q \text{ indep}} w_{H(Q)}^2
+    + \Delta$ with $\Delta = d \sum_{Q \text{ indep}} X_Q^2 - \frac{d}{d-1} \sum_{Q \text{ indep}} V_Q$.
+    By the variance identity, $(n - d)/n \le 1$ and $V_Q \ge 0$,
+    \begin{equation*}
+      d \sum_{Q \text{ indep}} X_Q^2 \le d \sum_{\text{all } Q} X_Q^2
+        = \frac{d}{d-1}\cdot\frac{n-d}{n} \sum_{\text{all } Q} V_Q \le \frac{d}{d-1} \sum_{\text{all } Q} V_Q ,
+    \end{equation*}
+    so $\Delta \le \frac{d}{d-1} \sum_{Q \text{ dep}} V_Q \le \frac{d}{d-1}\,\Adep$, since heights lie in
+    $[-1, 1]$ and so $V_Q \le 1$.
+  \item \emph{The tilt budget.} $w_H^2 \le b^2 = (1 - \cos\psi_H)(1 + \cos\psi_H) \le 2\kappa_H$, so
+    $\bigl(\frac{d}{d-1} + \frac12\bigr) w_H^2 \le \frac{3d-1}{d-1}\kappa_H = A_d \kappa_H$; and
+    $\frac{d}{d-1} \le A_d$.
+\end{itemize}
+Hence, by (1b),
+\begin{equation*}
+  \sum_H G_H(m_H) \le A_d \Bigl(\sum_{Q \text{ indep}} \kappa_{H(Q)} + \Adep\Bigr) \le A_d (K - 1/\eps).
+\end{equation*}
+(For $d = 2$ every pair is independent, so $\Delta \le 0$.)
+
+\paragraph{Step 7 (conclusion).} By \eqref{eq:A-unified-2}, Steps 4--6 and (1a), with
+$I = 1/3 + m_0^2$ and $\Lambda = \Lambda_d(m_0)$:
+\begin{equation*}
+  I \le \Lambda(K\eps - 1) + 2K\eps^2
+\end{equation*}
+(the slab errors $2\eps^2$ number $K' \le K$). So $K\eps \ge (1 + I/\Lambda)/(1 + 2\eps/\Lambda) \ge (1 + q_d)/(1 + 2\eps/A_d)$, since
+$I/\Lambda \ge q_d$ and $\Lambda \ge A_d$. For the liminf: $f(x) = x(1 + 2x/A_d)$ is increasing
+and continuous, so $f(\lambda_d(n)) \ge (1 + q_d)/\binom{n}{d}$ although the infimum need not be
+attained. If $L = \liminf n^d \lambda_d(n) = \infty$ there is nothing to prove. Otherwise, along a
+sequence $n_k$ with $n_k^d \lambda_d(n_k) \to L < \infty$ we get $\lambda_d(n_k) \to 0$, so
+\begin{equation*}
+  L = \lim n_k^d \lambda_d(n_k)
+    \ge \lim \frac{(1 + q_d)\, n_k^d}{\binom{n_k}{d}\bigl(1 + 2\lambda_d(n_k)/A_d\bigr)}
+    = d!\,(1 + q_d). \tag*{\qedsymbol}
+\end{equation*}
+
+\paragraph{Constants.} $q_2 = (1/3)/5$ and $q_3 = (1/3)/4$ (the minimum is at $m = 0$), so
+$(1 + 1/15)/(1 + 2\rho/5) = 16/(15 + 6\rho)$ and $(1 + 1/12)/(1 + \rho/2) = 13/(12 + 6\rho)$.
+
+% ======================================================================
+\subsection{\texorpdfstring{A hand proof of $q_d \ge 0.08/\sqrt{d-2}$ for every $d \ge 4$}%
+{A hand proof of q\_d >= 0.08/sqrt(d-2) for every d >= 4}}
+\label{sec:A-qd}
+
+\subsubsection*{Definitions}
+
+For $d \ge 4$: $A_d = (3d-1)/(d-1)$, $\Abb = 2/(d-1)$,
+$C_d = \sqrt{\pi}\, \Gamma((d-1)/2)/\Gamma((d-2)/2)$,
+$\Lambda_d(m) = A_d + (1+m)^2(C_d - 1) + 4(1+m)(1 - \Abb)$ for $m \in [0, 1]$, and
+$q_d = \min_{m \in [0,1]} (1/3 + m^2)/\Lambda_d(m)$. (In Theorem~A, $\Lambda_d$ depends on $|m|$,
+so $[0, 1]$ suffices.)
+
+\begin{proposition}\label{prop:A-qd}
+For every $d \ge 4$, $q_d \ge 0.08/\sqrt{d-2}$. Moreover $q_4 \ge 0.0588$ and $q_5 \ge 0.0496$.
+\end{proposition}
+
+\begin{proof}
+\emph{Preliminaries.} $\Lambda_d(m) \ge A_d > 0$, since $C_d \ge 1$ and $\Abb \le 1$. So for $q, s > 0$,
+\begin{equation}\label{eq:A-qd-crit}
+  s(1/3 + m^2) - q\Lambda_d(m) \ge 0 \text{ for all } m \in [0, 1]
+  \quad\Longrightarrow\quad q_d \ge q/s.
+\end{equation}
+$\Lambda_d$ increases with $C_d$ (its coefficient $(1+m)^2$ is positive), so in
+\eqref{eq:A-qd-crit} $C_d$ may be replaced by an upper bound. With
+$\Lambda_d(m) = a_2 m^2 + a_1 m + a_0$, where $a_2 = C_d - 1$, $a_1 = 2(C_d - 1) + 4(1 - \Abb)$ and
+$a_0 = A_d + (C_d - 1) + 4(1 - \Abb)$, the left side of \eqref{eq:A-qd-crit} is the quadratic
+$Q(m) = Q_2m^2 + Q_1m + Q_0$ with $Q_2 = s - qa_2$, $Q_1 = -qa_1$, $Q_0 = s/3 - qa_0$; it is $\ge 0$ on
+$\R$ when $Q_2 > 0$ and $Q_1^2 - 4Q_2Q_0 < 0$. We use $\pi < 3.1416$ and $A_d = 3 + 2/(d-1)$.
+
+\emph{Small $d$.} From $\Gamma(\frac32) = \sqrt\pi/2$ and $\Gamma(\frac52) = 3\sqrt\pi/4$:
+$C_4 = \pi/2$, $C_5 = 2$, $C_6 = 3\pi/4$, $C_7 = 8/3$. With $C_d$ replaced by the stated bound:
+\begin{center}
+\small
+\begin{tabular}{cccccccc}
+\toprule
+$d$ & bound for $C_d$ & $q$ & $s$ & $Q_2$ & $Q_1$ & $Q_0$ & $Q_1^2 - 4Q_2Q_0$\\
+\midrule
+4 & $1.5708$ & $0.0588$ & $1$ & $0.966437$ & $-0.145526$ & $0.005770$ & $-0.00113$\\
+5 & $2$ & $0.0496$ & $1$ & $0.950400$ & $-0.198400$ & $0.010933$ & $-0.00220$\\
+6 & $2.3562$ & $0.08$ & $2$ & $1.891504$ & $-0.408992$ & $0.094171$ & $-0.545$\\
+7 & $8/3$ & $0.08$ & $2.236$ & $2.102667$ & $-0.480000$ & $0.132000$ & $-0.880$\\
+\bottomrule
+\end{tabular}
+\end{center}
+(Entries are exact rationals rounded to six places.) Since $2.236 \le \sqrt5$, this gives $q_4 \ge 0.0588 \ge 0.08/\sqrt2$, $q_5 \ge 0.0496 \ge 0.08/\sqrt3$ (as
+$2 \cdot 0.0588^2$ and $3 \cdot 0.0496^2$ exceed $0.0064$), $q_6 \ge 0.08/2$ and $q_7 \ge 0.08/\sqrt5$.
+
+\emph{All $d \ge 8$ at once.} Put $x = \sqrt{d-2} \ge \sqrt6$.
+\begin{enumerate}[label=(\alph*)]
+  \item $C_d - 1 \le C_d \le \sqrt{\pi/2}\, x$: with $y = (d-2)/2$, log-convexity of $\Gamma$
+    (H\"older) gives $\Gamma(y + \frac12) \le \Gamma(y)^{1/2}\Gamma(y+1)^{1/2} = \sqrt y\,\Gamma(y)$,
+    so $C_d \le \sqrt{\pi y}$.
+  \item $A_d/x = (3d-1)/((d-1)\sqrt{d-2}) \le 23/(7\sqrt6)$, as $3 + 2/(d-1)$ and $1/\sqrt{d-2}$
+    decrease.
+  \item $(1 - \Abb)/x = (d-3)/((d-1)\sqrt{d-2}) \le 5/(7\sqrt6)$: squared, this is
+    $294(d-3)^2 \le 25(d-1)^2(d-2)$, and with $e = d - 8 \ge 0$ the difference is
+    $25e^3 + 206e^2 + 385e \ge 0$.
+  \item $1/\sqrt6 \le 0.40825$ and $\sqrt{\pi/2} \le 1.2534$ ($0.40825^2 \ge 1/6$,
+    $1.2534^2 > 1.5708$).
+\end{enumerate}
+So $\Lambda_d(m)/x \le \frac{23}{7}(0.40825) + 1.2534(1+m)^2 + \frac{20}{7}(0.40825)(1+m)$,
+and \eqref{eq:A-qd-crit} with $s = x$, $q = 0.08$ follows from $Q(m) \ge 0$ for the quadratic with
+$Q_2 = 1 - 0.08 \cdot 1.2534 = 0.899728$, $Q_1 = -0.08(2 \cdot 1.2534 + \frac{20}{7} \cdot 0.40825)
+= -0.293858\ldots$ and $Q_0 = \frac13 - 0.08(\frac{23}{7} \cdot 0.40825 + 1.2534 +
+\frac{20}{7} \cdot 0.40825) = 0.032436\ldots$, whose discriminant is
+$0.086352\ldots - 0.116733\ldots < 0$.
+\end{proof}
+
+The arithmetic is re-checked in exact rationals in the accompanying repository
+(\nolinkurl{experiments/qd_sharp/check_qd_new.py}). Numerically, $q_d\sqrt{d-2}$ is smallest at
+$d = 4$ ($\approx 0.0832$) and increases for larger $d$ towards about $0.20$.
+
+% ======================================================================
+\subsection{Sharper constants in the plane and in space}
+\label{sec:A-sharp}
+
+The proof of Theorem~A relaxes the position of the points of a $d$-set to $Y_Q^2 + V_Q \le w_H^2$
+(Step~6). For $d = 2$ and $d = 3$ (where $e \equiv 0$) the exact constraint gives larger limit
+constants. (The finite-$n$ inequalities below are stronger than those of Theorem~A only for small $\rho$:
+for $\rho < 113/1650$ when $d = 2$ and $\rho < 7/120$ when $d = 3$.)
+
+\begin{proposition}\label{prop:A-sharp}
+Let $n \ge d$, and let $\rho = \rho(P)$ ($= \infty$ if $P$ has no $d$ affinely independent points, when there is
+nothing to prove). Every $n$-point $P \subset \ball^2$ satisfies $\binom n2\rho\,\bigl(\frac{3161}{3432} + \frac{8\rho}{13}\bigr) \ge 1$,
+and every $n$-point $P \subset \ball^3$ satisfies $\binom n3\rho \ge 70/(63 + 60\rho)$. Hence
+\[
+  \liminf_n n^2\lambda_2(n) \ge \frac{6864}{3161} = 2.17146\ldots,
+  \qquad
+  \liminf_n n^3\lambda_3(n) \ge \frac{20}{3}.
+\]
+\end{proposition}
+
+We use the notation of Section~\ref{sec:A-unified} with $d \in \{2, 3\}$; $c_H = m_H\cos\psi_H$,
+$w_H = \sqrt{1 - m_H^2}\,\sin\psi_H$ and $G_H = G_H(m_H) = (c_H - m_0)^2 + w_H^2/2$.
+
+\paragraph{The framework.} By Step~6, every point of $H \cap \ball^d$ has height in
+$[h_1, h_2]$ with $h_{1,2} = c_H \mp w_H$. Fix $A, B > 0$, $C = \gamma m_0$ and $C_0, \lambda_0 \ge 0$,
+and suppose that for every independent $d$-set $Q$ on a hyperplane $H \in \AH'$
+\begin{equation}\label{eq:A-sharp-star}
+  G_H - B\bigl((d-1)X_Q^2 - V_Q\bigr) - C X_Q - A\kappa_H \le C_0 + \lambda_0 m_0^2,
+\end{equation}
+and that $\tau_Q := -B((d-1)X_Q^2 - V_Q) - CX_Q \le A$ for every dependent $d$-set (for $d = 2$ there is
+none). Summing \eqref{eq:A-sharp-star} over the independent $d$-sets (each $H$ carries one, and
+$G \ge 0$), and using $\sum_{\text{all }Q}((d-1)X_Q^2 - V_Q) \le 0$ and $\sum_{\text{all }Q}X_Q = 0$
+(Step~6) and (1b),
+\[
+  \sum_{H \in \AH'} G_H \le A\Bigl(\sum_{Q\text{ indep}}\kappa_{H(Q)} + \Adep\Bigr) + K(C_0 + \lambda_0m_0^2)
+    \le A(K - 1/\eps) + K(C_0 + \lambda_0m_0^2).
+\]
+With \eqref{eq:A-unified-2} and Steps~3 and~5 ($e \equiv 0$), $I \le \sum_H(\eps G_H + 2\eps^2)$, where
+$I = 1/3 + m_0^2$. Put $\alpha = 1 - 1/(K\eps)$; dividing by $K\eps$ gives
+$I(1 - \alpha) \le A\alpha + C_0 + \lambda_0m_0^2 + 2\eps$, i.e.
+\begin{equation}\label{eq:A-sharp-alpha}
+  \alpha \ge \frac{1/3 - C_0 + (1 - \lambda_0)m_0^2 - 2\eps}{A + 1/3 + m_0^2}.
+\end{equation}
+
+\paragraph{Reduction of \eqref{eq:A-sharp-star}.} Let $x_1, \dots, x_d$ be the heights of the points of
+$Q$ minus $m_0$, and $e_2 = \sum_{i<j}x_ix_j$. Then $(d-1)X^2 - V = \frac2d e_2$, so the left side of
+\eqref{eq:A-sharp-star} is $f - A\kappa_H$ with $f = G_H - \frac{2B}{d}e_2 - \frac{\gamma m_0}{d}\sum_i x_i$.
+Since $f$ is affine in each $x_i \in [h_1 - m_0, h_2 - m_0]$, its maximum is at $j$ points at $h_1$ and
+$d - j$ at $h_2$, $0 \le j \le d$. Expanding in $m_0$, $f = f_0 + m_0L + k_2m_0^2$ with $f_0$, $L$
+not depending on $m_0$; for $\mu > 0$, $m_0L \le \mu m_0^2 + L^2/(4\mu)$, so
+$f \le \Psi + (\mu + k_2)m_0^2$ with $\Psi = f_0 + L^2/(4\mu)$; we take $\lambda_0 \ge \mu + k_2$ (in both cases
+below $\mu + k_2 = \frac79 \ge 0$). In terms of $D = c_H = (h_1 + h_2)/2$
+and $w = (h_2 - h_1)/2$, $\Psi$ is a quadratic form $pD^2 + 2\zeta Dw + qw^2$, and $j \mapsto d - j$ changes the
+sign of $\zeta$. Writing $m_H = \cos\phi$, $(D, w) = (c\cos\phi, s\sin\phi)$ with $c = \cos\psi_H$,
+$s = \sin\psi_H$, so $\Psi = \mathbf w^T M\mathbf w$ with $\mathbf w = (\cos\phi, \sin\phi)$ and
+$M = \bigl[\begin{smallmatrix} pc^2 & \zeta cs\\ \zeta cs & qs^2\end{smallmatrix}\bigr]$. Hence
+\eqref{eq:A-sharp-star} holds if $N = (C_0 + A\kappa)\,\mathrm{Id} - M \succeq 0$, i.e. if
+$N_{11}, N_{22}, \det N \ge 0$, where $\kappa = 1 - c$ and $s^2 = 2\kappa - \kappa^2$.
+
+\paragraph{The plane.} Take $A = \frac{35}{12}$, $B = \frac43$, $\gamma = -\frac23$, $\mu = \frac{16}{9}$,
+so $k_2 = -1$, $\lambda_0 = \frac79$, $C_0 = \frac{27}{352}$.
+\begin{itemize}
+  \item $j = 1$ (one point at each end): $L = \frac23(h_1 + h_2)$ and
+    $\Psi = -\frac{1}{48}(h_1 + h_2)^2 + \frac{11}{24}(h_2 - h_1)^2 \le \frac{11}{6}w^2 \le \frac{11}{6}(1 - c^2)$,
+    and $\frac{11}{6}(1 - c^2) - A\kappa = C_0 - \frac{11}{6}(\kappa - \frac{9}{44})^2 \le C_0$.
+  \item $j = 2$ (both at $h_1$): $L = \frac73h_1 - h_2$ and
+    $\Psi = -\frac{1}{12}D^2 + \frac{17}{12}Dw + \frac{35}{48}w^2$. Then
+    $N_{11} = C_0 + A\kappa + c^2/12 > 0$, $N_{22} = \frac{27}{352} + \frac{35}{24}\kappa + \frac{35}{48}\kappa^2 > 0$,
+    and $1056^2\det N = 627264\kappa^4 + 133584\kappa^3 + 7406938\kappa^2 - 623524\kappa + 13689 > 0$ for
+    $\kappa \ge 0$, since $623524^2 - 4 \cdot 7406938 \cdot 13689 = -16792118552 < 0$.
+  \item $j = 0$: as $j = 2$ with $\zeta \mapsto -\zeta$.
+\end{itemize}
+By \eqref{eq:A-sharp-alpha}, $\alpha \ge (\frac{271}{1056} + \frac29m_0^2 - 2\eps)/(\frac{13}{4} + m_0^2)
+\ge \frac{271}{3432} - \frac{8\eps}{13}$, because $x \mapsto (\frac{271}{1056} + \frac29x)/(\frac{13}{4} + x)$
+is increasing ($\frac29 \cdot \frac{13}{4} > \frac{271}{1056}$). This is
+$\binom n2\eps(\frac{3161}{3432} + \frac{8\eps}{13}) \ge 1$.
+
+\paragraph{Space.} Take $A = 2$, $B = \frac89$, $\gamma = -\frac{13}{9}$, $\mu = 3$, so
+$k_2 = -\frac{20}{9}$, $\mu + k_2 = \frac79$; we take $\lambda_0 = \frac{9}{10} \ge \frac79$, which makes the
+bound on $\alpha$ below independent of $m_0$,
+$C_0 = \frac1{10}$.
+\begin{itemize}
+  \item $j = 3$: $L = 4h_1 - h_2$ and $\Psi = -\frac{1}{36}D^2 + \frac{19}{18}Dw + \frac{29}{36}w^2$.
+    $N_{11} = \frac{23}{180} + \frac{35}{18}\kappa + \frac{\kappa^2}{36}$,
+    $N_{22} = \frac1{10} + \frac7{18}\kappa + \frac{29}{36}\kappa^2$, and
+    $5400\det N = 1625\kappa^4 + 2500\kappa^3 + 12175\kappa^2 - 1690\kappa + 69 > 0$ for $\kappa \ge 0$,
+    since $1690^2 - 4 \cdot 69 \cdot 12175 < 0$.
+  \item $j = 2$: $L = \frac73h_1 + \frac23h_2$ and $\Psi = -\frac{1}{36}D^2 + \frac{19}{54}Dw + \frac{143}{108}w^2$.
+    $N_{11}$ is as before, $N_{22} = \frac1{10} - \frac{35}{54}\kappa + \frac{143}{108}\kappa^2 > 0$
+    (negative discriminant), and
+    \[
+      145800\det N = 9875\kappa^4 + 354700\,\kappa\bigl(\kappa - \tfrac{11}{50}\bigr)^2 + 19953\kappa^2
+        - \tfrac{247937}{25}\kappa + 1863 > 0,
+    \]
+    the last quadratic having discriminant $-31458341531/625 < 0$.
+  \item $j = 0, 1$: as $j = 3, 2$ with $\zeta \mapsto -\zeta$.
+  \item Dependent triples: their heights lie in $[-1, 1]$ and $\tau_Q$ is affine in each, so at the
+    maximum the heights are $v \in \{\pm1\}^3$, where
+    $\tau = -\frac{16}{27}e_2(v) + \frac53m_0s_1(v) - \frac{29}{9}m_0^2$ with $s_1(v) = v_1 + v_2 + v_3$. If
+    $e_2(v) = -1$, $|s_1(v)| = 1$ and $\tau \le \frac{16}{27} + \frac{25}{116}$; if $e_2(v) = 3$, $|s_1(v)| = 3$
+    and $\tau \le -\frac{16}{9} + \frac{225}{116}$. Both are $< 2 = A$.
+\end{itemize}
+By \eqref{eq:A-sharp-alpha}, $\alpha \ge (\frac{7}{30} + \frac{m_0^2}{10} - 2\eps)/(\frac73 + m_0^2)
+= \frac1{10} - 2\eps/(\frac73 + m_0^2) \ge \frac1{10} - \frac{6\eps}{7}$, i.e.
+$\binom n3\eps(\frac9{10} + \frac{6\eps}7) \ge 1$, which is $\binom n3\rho \ge 70/(63 + 60\rho)$.
+
+\paragraph{The liminf.} In both cases $g(x) = x(1 - \beta_0 + \eta x)$ ($\beta_0 = \frac{271}{3432}$,
+$\eta = \frac8{13}$, resp.\ $\beta_0 = \frac1{10}$, $\eta = \frac67$) is increasing, so
+$g(\lambda_d(n)) \ge 1/\binom nd$, and as in Step~7 $\liminf n^d\lambda_d(n) \ge d!/(1 - \beta_0)$, which is
+$6864/3161$ and $20/3$. \qed
+
+\begin{remark}
+The parameters were found by a floating-point search; the proof does not depend on it, and the
+identities above are re-checked symbolically in the accompanying repository
+(\nolinkurl{experiments/planar_hand/}, \nolinkurl{experiments/theoremA_d3_hand/}). The search suggests that
+this method gives at most about $2.1722$ in the plane and $6.687$ in space, and only small gains for
+$d \ge 4$, where the averaging error $e(\psi)$ of Step~4 dominates.
+\end{remark}
+

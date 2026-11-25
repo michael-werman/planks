@@ -1,0 +1,4 @@
+n=5 THETA=100488 units (=19.6265625000 deg) E=83280 K=40 nproc=1 rank=0 d0=10 frontier=566
+pre-phase (counted by rank 0 only): nodes=733 D=60 P=0 J=0 M=24
+DFS: boxes=0..566 step 1 nodes=1086476 D=79044 P=9266 J=315644 M=139567 UNRESOLVED=0 maxdepth=127 cpu=3.3s
+wall 3.396662274s

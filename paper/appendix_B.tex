@@ -1,0 +1,415 @@
+\section{Proofs for the constructions and the additive bases}
+\label{app:B}
+
+% ---------------------------------------------------------------------------
+\subsection{Lemma~2 for flats of every dimension}\label{sec:B-lemma2}
+
+This proves Lemma~2 of the main text, for $j$-flats with any base points $t_i$ that affinely span
+$\R^{j-1}$. Lemma~\ref{D:M2} in Section~\ref{sec:D-flats} is the special case of moment-curve $t$'s.
+
+\paragraph{Definitions.}
+\begin{itemize}
+  \item $1 \le j \le d-1$ and $m = d-j+1$. Write $\R^d = \R^{j-1} \times \R^m$, where $\R^0$ is a
+    point.
+  \item For a finite nonempty set $W \subset \R^m \setminus \{0\}$,
+    $\delta(W) = \max_{y \in \Sph^{m-1}} \min_{w \in W} \angle(y, \pm w) \in [0, \pi/2]$, where
+    $\angle(y, \pm w)$ is the smaller of the angles to $w$ and $-w$, i.e.\ the angle to the line
+    $\R w$. It depends only on the lines $\R w$, so the scaling of each $w_F$ (fixed only up to
+    scale, like $c$) does not matter.
+  \item For a family $\mathcal{L}$ of affine subspaces,
+    $\rho(\mathcal{L}) = \max_{x \in \ball^d} \min_{L \in \mathcal{L}} \dist(x, L)$.
+\end{itemize}
+
+\begin{lemma}\label{lem:B-lemma2-flats}
+Let $t_0, \dots, t_j \in \R^{j-1}$ affinely span $\R^{j-1}$. Then the affine dependencies of the
+$t_i$ form a line, spanned by some $c = (c_0, \dots, c_j) \ne 0$ with $\sum c_i = 0$ and
+$\sum c_i t_i = 0$. Let $a_0, \dots, a_j \in \R^m$ with $w = \sum c_i a_i \ne 0$, and for $s > 0$
+put $q_i = (t_i, s a_i)$. Then:
+\begin{enumerate}[label=(\roman*)]
+  \item the $q_i$ are affinely independent for every $s > 0$;
+  \item as $s \to 0$, their $j$-flat $\Phi_s$ converges to the linear subspace
+    $L_w = (\R^{j-1} \times \{0\}) \oplus \R(0, w)$, in the sense that
+    $\dist(\cdot, \Phi_s) \to \dist(\cdot, L_w)$ uniformly on $\ball^d$;
+  \item for any finite nonempty family of such $(j+1)$-sets, all with the same $s$, with
+    directions $W = \{w_F\}$, the limit as $s \to 0$ of $\rho$ of their flats is
+    $\rho(\{L_w : w \in W\}) = \sin \delta(W)$. For $j = d-1$ ($m = 2$) this is $\sin(G/2)$, with
+    $G$ the largest gap mod $\pi$ of the directions of the $w_F$ (the wrap-around gap included; a
+    single direction gives $G = \pi$).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\emph{The dependency.} Since the $t_i$ affinely span $\R^{j-1}$, the $(j+1) \times j$ matrix with
+rows $(1, t_i)$ has rank $j$. So its left kernel, the space of dependencies, is one-dimensional.
+
+\emph{(i)} An affine dependency $\mu$ of the $q_i$ ($\sum \mu_i = 0$, $\sum \mu_i q_i = 0$) is in
+particular a dependency of the $t_i$, so $\mu = \lambda c$. Its $\R^m$-part is then
+$s \lambda w = 0$, so $\lambda = 0$.
+
+\emph{Direction space.} The direction space $D_s$ of $\Phi_s$ contains
+$\sum_i c_i q_i = (0, s w)$, a combination of the differences $q_i - q_{i_0}$ because
+$\sum c_i = 0$. Hence $D_s$ contains $(0, w)$. Since $c \ne 0$ and $\sum c_i = 0$, $c$ has at least
+two nonzero entries; pick $i_1$ with $c_{i_1} \ne 0$ and any $i_0 \ne i_1$.
+\begin{itemize}
+  \item The vectors $t_i - t_{i_0}$ ($i \ne i_0$) span $\R^{j-1}$, so the space of linear relations
+    among these $j$ vectors is one-dimensional. It contains $(c_i)_{i \ne i_0}$, because
+    $\sum_{i \ne i_0} c_i (t_i - t_{i_0}) = \sum_i c_i t_i - (\sum_i c_i) t_{i_0} = 0$, and that
+    vector is nonzero since $c_{i_1} \ne 0$. A relation among the remaining $j-1$ vectors would be a
+    relation with zero $i_1$-coefficient, hence $0$. So dropping $i = i_1$ leaves a basis of
+    $\R^{j-1}$.
+  \item Hence the $j$ vectors $v_i(s) = q_i - q_{i_0}$ ($i \notin \{i_0, i_1\}$) and $(0, w)$ are
+    independent, so they are a basis of $D_s$ (which has dimension $j$ by (i)).
+  \item As $s \to 0$ they converge to $(t_i - t_{i_0}, 0)$ and $(0, w)$, a basis of the direction
+    space of $L_w$.
+\end{itemize}
+
+\emph{(ii)} The orthogonal projector $\Pi_s = B_s (B_s^{\mathsf T} B_s)^{-1} B_s^{\mathsf T}$ onto
+$D_s$ ($B_s$ the matrix of the basis) depends continuously on the basis, so it converges to the
+projector $\Pi$ onto $\R^{j-1} \times \{0\} \oplus \R(0, w)$. The base point
+$q_{i_0} \to (t_{i_0}, 0) \in L_w$. For $\abs{x} \le 1$,
+$\dist(x, \Phi_s) = \abs{(I - \Pi_s)(x - q_{i_0})}$, and its difference from the limit is at most
+$\norm{\Pi_s - \Pi} \cdot (1 + \abs{q_{i_0}}) + \abs{q_{i_0} - (t_{i_0}, 0)}$ (using
+$\abs{x - q_{i_0}} \le 1 + \abs{q_{i_0}}$, $\norm{I - \Pi} \le 1$ for the orthogonal projector $\Pi$,
+and $\abs{q_{i_0}} \le \abs{t_{i_0}} + s\abs{a_{i_0}}$ bounded as $s \to 0$), so it
+converges uniformly to
+$\abs{(I - \Pi)(x - (t_{i_0}, 0))} = \dist(x, L_w)$, since $L_w$ is linear and contains
+$(t_{i_0}, 0)$.
+
+\emph{(iii)} $\rho$ of a finite family is a max over $x$ of a min of finitely many functions; if
+each function moves by at most $\eta$ uniformly, the max-min moves by at most $\eta$. So it
+converges when they converge uniformly. For linear $L_w$ and
+$x = (x_1, x_2) \in \R^{j-1} \times \R^m$, $\dist(x, L_w) = \abs{x_2} \sin \angle(x_2, \R w)$
+($0$ if $x_2 = 0$). The max over $\abs{x} \le 1$ of $\min_w$ is attained with $x_1 = 0$ and
+$\abs{x_2} = 1$, and equals $\max_y \min_w \sin \angle(y, \pm w) = \sin \delta(W)$, since $\sin$ is
+increasing on $[0, \pi/2]$. For $m = 2$, $\delta(W)$ is half the largest gap between the
+directions mod $\pi$, so the limit is $\sin(G/2)$.
+\end{proof}
+
+% ---------------------------------------------------------------------------
+\subsection{\texorpdfstring{Blow-up: $\sigma_d = \lim p_d(n)/n^d$ exists and equals $\sup$}{Blow-up: sigma\_d = lim p\_d(n)/n\^{}d exists and equals sup}}\label{sec:B-blowup}
+
+This is a complete proof of the ``Blow-up'' part of Theorem~B.
+
+\paragraph{Definitions.}
+\begin{itemize}
+  \item $d \ge 2$. For $n \ge d+1$, $p_d(n)$ is the largest $N$ such that some $n$-subset of
+    $\Z_N$ has every residue as a sum of $d$ distinct elements.
+  \item $\sigma_d = \lim p_d(n)/n^d$, when it exists.
+\end{itemize}
+
+\begin{proposition}\label{prop:B-blowup}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+  \item For $n \ge d+1$, $n \le p_d(n) \le \binom{n}{d}$.
+  \item \emph{Seed lemma.} Let $L_0 = \{l_1, \dots, l_\ell\} \subset \Z_P$ be $\ell$ distinct
+    residues such that every residue of $\Z_P$ is a sum of $d$ distinct elements of $L_0$. Then
+    $\liminf_n p_d(n)/n^d \ge P/\ell^d$.
+  \item Hence $\sigma_d$ exists and $\sigma_d = \sup_{n \ge d+1} p_d(n)/n^d \le 1/d!$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\textbf{(a) Bounds on $p_d(n)$.} For the upper bound: if $S \subset \Z_N$ with $\abs{S} = n$
+works, each of the $N$ residues is the sum of some $d$-subset, so $N \le \binom{n}{d}$.
+
+For the lower bound, take $S = \Z_n = \{0, \dots, n-1\}$. The sums of $d$ distinct elements are
+all the integers from $d(d-1)/2$ to $d(d-1)/2 + d(n-d)$, which is $d(n-d) + 1$ consecutive
+integers. (Starting from $\{0, \dots, d-1\}$, raise the largest element that can be raised by one,
+one step at a time.) Since $d(n-d) + 1 - n = (d-1)(n-d-1) \ge 0$, they cover every residue mod
+$n$. So $p_d(n) \ge n$.
+
+\medskip
+\textbf{(b) Seed lemma.}
+
+\emph{Levels and directions.} For each $r \in \Z_P$ fix a $d$-set $J_r \subset \{1, \dots, \ell\}$
+with $\sum_{j \in J_r} l_j = r$, and let $\mathcal{J} = \{J_r\}$. Fix distinct integers
+$t_1, \dots, t_\ell$ and put $u_j = (1, t_j, \dots, t_j^{d-1}) \in \Z^d$. For
+$J = \{j_1 < \dots < j_d\}$, let $R_J$ be the $d \times d$ matrix with columns
+$u_{j_1}, \dots, u_{j_d}$. It is a Vandermonde matrix with distinct nodes, so
+$D_J = \abs{\det R_J} \ge 1$. Let $Q = \lcm(P, (d-1)!, D_J : J \in \mathcal{J})$.
+
+\emph{Moduli.} For $m \ge 1$ with $m \equiv 1 \pmod{Q}$, put $a_k = m + (k-1)Q$ for
+$k = 1, \dots, d$, and $M = a_1 \cdots a_d$.
+\begin{itemize}
+  \item Each $a_k \equiv 1 \pmod{Q}$, so $\gcd(a_k, Q) = 1$, and hence
+    $\gcd(a_k, P) = \gcd(a_k, D_J) = 1$.
+  \item If a prime $p$ divides $a_i$ and $a_j$ with $i < j$, then $p \mid (j-i)Q$. Since
+    $p \nmid Q$, $p \mid (j-i) \le d-1$, so $p \mid (d-1)! \mid Q$, a contradiction.
+\end{itemize}
+So the $a_k$ are pairwise coprime and $\gcd(M, P) = 1$.
+
+\emph{Generators.} By the Chinese remainder theorem, $\Z_M \cong \prod_k \Z_{a_k}$. Let
+$g_j \in \Z_M$ be the element with $g_j \equiv (u_j)_k \pmod{a_k}$ for every $k$. For
+$J \in \mathcal{J}$ define $\varphi_J : \Z^d \to \Z_M$ by $\varphi_J(z) = \sum_s z_s g_{j_s}$.
+Under the isomorphism, $\varphi_J(z)$ has $k$-th component $(R_J z)_k \bmod a_k$.
+
+\emph{$\varphi_J$ is onto.} $\det R_J$ is coprime to $M$, so $R_J$ is invertible over $\Z_M$.
+Given a target, lift its components to an integer vector $y$ with $y_k$ in the right class mod
+$a_k$, and let $z \in \Z^d$ represent $R_J^{-1} y \bmod M$. Then $R_J z \equiv y \pmod{M}$ in every
+coordinate. So $\ker \varphi_J$ has index $M$.
+
+\emph{The kernel is a lattice $G_J \Z^d$.} Let $E = \operatorname{diag}(0, 1, \dots, d-1)$, so
+$\operatorname{diag}(a) = mI + QE$. Put
+$G_J = R_J^{-1} \operatorname{diag}(a) R_J = mI + Q \cdot R_J^{-1} E R_J$.
+\begin{itemize}
+  \item $R_J^{-1} = \adj(R_J)/\det R_J$ and $D_J \mid Q$, so $G_J$ has integer entries.
+  \item $R_J G_J z = \operatorname{diag}(a) R_J z$, whose $k$-th coordinate is $\equiv 0 \bmod a_k$.
+    So $G_J \Z^d \subset \ker \varphi_J$.
+  \item $\abs{\det G_J} = \prod a_k = M$, the index of $\ker \varphi_J$. So
+    $\ker \varphi_J = G_J \Z^d$.
+\end{itemize}
+
+\emph{A box meets every coset.} Every coset of $G_J \Z^d$ contains an integer point $z = G_J w$
+with $w \in [0,1)^d$ (reduce $w$ mod $1$). Its $k$-th coordinate $\sum_s (G_J)_{ks} w_s$ lies in
+\[
+  \Bigl[\sum_{s : (G_J)_{ks} < 0} (G_J)_{ks},\ \sum_{s : (G_J)_{ks} > 0} (G_J)_{ks}\Bigr],
+\]
+an interval with integer endpoints and integer length $T_{J,k} = \sum_s \abs{(G_J)_{ks}}$. Row $k$
+of $G_J$ is nonzero ($\det G_J = \pm M \ne 0$), and $w_s < 1$, so at least one endpoint is not
+attained: the left one if row $k$ has a negative entry, the right one if it has a positive entry.
+So at most $T_{J,k}$ integers occur, and they are consecutive. Put
+$T = \max_{J \in \mathcal{J}, k} T_{J,k}$.
+\begin{itemize}
+  \item Write $[0, T)^d$ for the integer points $\{0, \dots, T-1\}^d$, and let $b_J \in \Z^d$ have
+    $k$-th coordinate the least integer that occurs above. Then $b_J + [0, T)^d$ meets every coset,
+    so $\varphi_J(b_J + [0,T)^d) = \Z_M$, and hence $\varphi_J([0,T)^d) = \Z_M$.
+  \item With $X_j = \{i \cdot g_j : 0 \le i < T\} \subset \Z_M$, this says
+    $X_{j_1} + \dots + X_{j_d} = \Z_M$ for every $J \in \mathcal{J}$.
+  \item Moreover $T \le m + C$, where
+    $C = Q \cdot \max_{J,k} \sum_s \abs{(R_J^{-1} E R_J)_{ks}}$ does not depend on $m$.
+\end{itemize}
+
+\emph{Lift.} $\gcd(P, M) = 1$, so $\Z_P \times \Z_M \cong \Z_{PM}$. Let
+$S = \{(l_j, x) : 1 \le j \le \ell,\ x \in X_j\}$, so $\abs{S} \le \ell T$. Take
+$(r, h) \in \Z_P \times \Z_M$ and $J = J_r = \{j_1 < \dots < j_d\}$. Write
+$h = x_1 + \dots + x_d$ with $x_s \in X_{j_s}$. Then $(r, h) = \sum_s (l_{j_s}, x_s)$. The $d$
+summands are distinct because their first coordinates $l_{j_s}$ are distinct. So every residue of
+$\Z_{PM}$ is a sum of $d$ distinct elements of $S$. Adding elements keeps this property, so
+$p_d(n) \ge PM \ge P m^d$ whenever $n \ge d+1$ and $\ell(m + C) \le n \le PM$.
+
+\emph{Asymptotics.} For large $n$, take the largest $m \equiv 1 \pmod{Q}$ with
+$\ell(m + C) \le n$. Then $m \ge n/\ell - C - Q$, which is positive for large $n$, and
+$PM \ge P m^d \ge n$ for large $n$ (for small $n$ this can fail). So
+$p_d(n) \ge P(n/\ell - C - Q)^d$, and $\liminf p_d(n)/n^d \ge P/\ell^d$.
+
+\medskip
+\textbf{(c)} For every $n_0 \ge d+1$, a set realising $p_d(n_0)$ is a seed with
+$(\ell, P) = (n_0, p_d(n_0))$ (it exists by (a)). By (b),
+$\liminf p_d(n)/n^d \ge p_d(n_0)/n_0^d$. Taking the sup over $n_0$:
+$\liminf \ge \sup \ge \limsup$. So the limit exists and equals the sup. By (a),
+$p_d(n) \le \binom{n}{d} \le n^d/d!$, so $\sigma_d \le 1/d!$.
+\end{proof}
+
+% ---------------------------------------------------------------------------
+\subsection{\texorpdfstring{Restricted $2$-bases of cyclic groups: $\sigma_2 \ge 7/18$}{Restricted 2-bases of cyclic groups: sigma\_2 >= 7/18}}\label{sec:B-sigma2}
+
+For a finite set $A$ in an abelian group, $A \dotplus A = \{a + b : a, b \in A,\ a \ne b\}$. Corollary~2$'$
+follows from the blow-up (Proposition~\ref{prop:B-blowup}(c)) and one seed: the lemma below gives a
+$12$-subset $L \subset \Z_{56}$ with $L \dotplus L = \Z_{56}$, so $p_2(12) \ge 56$ ($p_2(n)$ being the largest such modulus),
+and $\sigma_2 = \sup_{n \ge 3} p_2(n)/n^2 \ge 56/144 = 7/18$.
+
+\begin{lemma}[The seed]\label{lem:B-seed}
+$L = \{0, 1, 12, 15, 22, 29, 32, 43, 44, 48, 50, 52\} \subset \Z_{56}$ has $L \dotplus L = \Z_{56}$.
+\end{lemma}
+
+\begin{proof}
+The table lists, for each $r \in \Z_{56}$, two distinct elements of $L$ with sum $\equiv r \pmod{56}$;
+each entry is one addition. This set is the example for $k = 12$ in Haanp\"a\"a's paper \cite{Haanpaa}, where
+$n'_{ss}(12) = 56$.
+\begin{center}\scriptsize
+\begin{tabular}{lllllll}
+$0$: $12+44$ & $1$: $0+1$ & $2$: $15+43$ & $3$: $15+44$ & $4$: $12+48$ & $5$: $29+32$ & $6$: $12+50$\\
+$7$: $15+48$ & $8$: $12+52$ & $9$: $15+50$ & $10$: $22+44$ & $11$: $15+52$ & $12$: $0+12$ & $13$: $1+12$\\
+$14$: $22+48$ & $15$: $0+15$ & $16$: $1+15$ & $17$: $29+44$ & $18$: $22+52$ & $19$: $32+43$ & $20$: $32+44$\\
+$21$: $29+48$ & $22$: $0+22$ & $23$: $1+22$ & $24$: $32+48$ & $25$: $29+52$ & $26$: $32+50$ & $27$: $12+15$\\
+$28$: $32+52$ & $29$: $0+29$ & $30$: $1+29$ & $31$: $43+44$ & $32$: $0+32$ & $33$: $1+32$ & $34$: $12+22$\\
+$35$: $43+48$ & $36$: $44+48$ & $37$: $15+22$ & $38$: $44+50$ & $39$: $43+52$ & $40$: $44+52$ & $41$: $12+29$\\
+$42$: $48+50$ & $43$: $0+43$ & $44$: $0+44$ & $45$: $1+44$ & $46$: $50+52$ & $47$: $15+32$ & $48$: $0+48$\\
+$49$: $1+48$ & $50$: $0+50$ & $51$: $1+50$ & $52$: $0+52$ & $53$: $1+52$ & $54$: $22+32$ & $55$: $12+43$
+\end{tabular}
+\end{center}
+
+\end{proof}
+
+\begin{remark}[Why $12$]
+Any seed gives a bound: a $k_0$-subset of $\Z_P$ ($k_0 \ge 3$) whose restricted $2$-sums cover $\Z_P$ gives
+$\sigma_2 \ge P/k_0^2$. Among the exact values in
+Haanp\"a\"a's table \cite{Haanpaa} ($k = 3, \dots, 14$: 3, 6, 9, 13, 17, 24, 30, 36, 42, 56, 61, 72) the largest
+ratio is $56/144 = 7/18$ at $k = 12$; $k = 4$ and $k = 8$ give $3/8 < 7/18$, and $k = 13, 14$ give
+$61/169 \approx 0.361$ and $72/196 \approx 0.367$. Graham and Sloane \cite{GS} give the general bound $(5/18)(k-1)^2$; we found no statement in
+either paper that combines such a value with a blow-up to obtain an asymptotic constant.
+\end{remark}
+
+\begin{remark}[An effective version]
+For $d = 2$ the blow-up can be made explicit: with $Q = \lcm(1, \dots, 11)$, two arithmetic progressions in
+$\Z_m \times \Z_{m+Q}$ lifted by the seed give $p_2(k) \ge \frac{7}{18}(k - 288Q)^2$ for every $k \ge 360Q$. This is
+not needed for Corollary~2$'$; the proof, with exact checks, is in the accompanying repository
+(\texttt{proofs/\allowbreak sigma2\_\allowbreak seven\_\allowbreak eighteenths.md} and \texttt{certificates/\allowbreak sigma2\_\allowbreak seven\_\allowbreak eighteenths/}).
+\end{remark}
+
+% ---------------------------------------------------------------------------
+\subsection{\texorpdfstring{$\lambda_2(3) \le 1/2$: the inscribed equilateral triangle}{lambda\_2(3) <= 1/2: the inscribed equilateral triangle}}\label{sec:B-triangle}
+
+This is an upper bound only; optimality of $1/2$ is open. The main text states that the
+equilateral triangle gives $\lambda_2(3) \le 1/2$; here is a proof.
+
+\paragraph{Definitions.}
+$D$ is the closed unit disc in $\R^2$. For $P \subset D$ with $3$ non-collinear points, $L_P$ is
+the set of the three lines through pairs of points, and
+$\rho(P) = \max_{x \in D} \min_{\ell \in L_P} \dist(x, \ell)$. $\lambda_2(3) = \inf \rho(P)$.
+
+\begin{proposition}\label{prop:B-triangle}
+Let $a_1, a_2, a_3$ be unit vectors at mutual angles $120^\circ$, so $a_1 + a_2 + a_3 = 0$, and let
+$P = \{a_1, a_2, a_3\}$. Then $\rho(P) = 1/2$. Hence $\lambda_2(3) \le 1/2$.
+\end{proposition}
+
+\begin{proof}
+The side through $a_j$ and $a_k$ ($\{j, k, i\} = \{1, 2, 3\}$) is the line
+$\{x : \ip{x}{a_i} = -1/2\}$. Both endpoints satisfy it, since
+$\ip{a_j}{a_i} = \ip{a_k}{a_i} = \cos 120^\circ = -1/2$, and $a_i$ is a unit normal ($a_j \ne a_k$,
+so this is the line through them). So $\dist(x, \mathrm{side}_i) = \abs{\ip{x}{a_i} + 1/2}$.
+
+For $x \in D$, $\sum_i \ip{x}{a_i} = 0$, so some $i$ has $\ip{x}{a_i} \le 0$. Also
+$\ip{x}{a_i} \ge -\abs{x} \ge -1$. Hence $\ip{x}{a_i} + 1/2 \in [-1/2, 1/2]$, and
+$\min_i \dist(x, \mathrm{side}_i) \le 1/2$. So $\rho(P) \le 1/2$.
+
+At $x = 0$ all three distances equal $1/2$, so $\rho(P) = 1/2$.
+\end{proof}
+
+% ---------------------------------------------------------------------------
+\subsection{The examples behind the table of Section~\ref{sec:results}}\label{sec:B-examples}
+
+The upper bounds in the table after Corollary~C use $p_d(n) \ge N$ for the pairs $(n, N)$ listed there,
+via Theorem~B. For $d = 2$ the set is the seed of Lemma~\ref{lem:B-seed}. For $d = 3, 4, 5$ the sets below
+have every residue mod $N$ as a sum of $d$ distinct elements; each table lists one such sum for every
+residue, so each entry is checked by one addition mod $N$.
+
+\emph{$d = 3$, $n = 10$, $N = 95$:} $S = \{7, 10, 26, 40, 64, 65, 75, 83, 85, 90\}$.
+\begin{center}\scriptsize
+\begin{tabular}{lllll}
+$0$: $40+65+85$ & $1$: $26+75+90$ & $2$: $7+26+64$ & $3$: $7+26+65$ & $4$: $26+83+85$\\
+$5$: $7+10+83$ & $6$: $10+26+65$ & $7$: $7+10+85$ & $8$: $40+75+83$ & $9$: $26+83+90$\\
+$10$: $40+75+85$ & $11$: $26+85+90$ & $12$: $7+10+90$ & $13$: $7+26+75$ & $14$: $64+65+75$\\
+$15$: $40+75+90$ & $16$: $7+40+64$ & $17$: $7+40+65$ & $18$: $40+83+85$ & $19$: $10+40+64$\\
+$20$: $10+40+65$ & $21$: $7+26+83$ & $22$: $64+65+83$ & $23$: $7+26+85$ & $24$: $10+26+83$\\
+$25$: $40+85+90$ & $26$: $10+26+85$ & $27$: $7+40+75$ & $28$: $7+26+90$ & $29$: $64+65+90$\\
+$30$: $10+40+75$ & $31$: $10+26+90$ & $32$: $64+75+83$ & $33$: $65+75+83$ & $34$: $64+75+85$\\
+$35$: $7+40+83$ & $36$: $26+40+65$ & $37$: $7+40+85$ & $38$: $10+40+83$ & $39$: $64+75+90$\\
+$40$: $10+40+85$ & $41$: $7+64+65$ & $42$: $7+40+90$ & $43$: $7+10+26$ & $44$: $10+64+65$\\
+$45$: $10+40+90$ & $46$: $26+40+75$ & $47$: $64+83+90$ & $48$: $65+83+90$ & $49$: $64+85+90$\\
+$50$: $65+85+90$ & $51$: $7+64+75$ & $52$: $7+65+75$ & $53$: $75+83+85$ & $54$: $10+64+75$\\
+$55$: $10+65+75$ & $56$: $26+40+85$ & $57$: $7+10+40$ & $58$: $75+83+90$ & $59$: $7+64+83$\\
+$60$: $7+65+83$ & $61$: $7+64+85$ & $62$: $7+65+85$ & $63$: $10+65+83$ & $64$: $10+64+85$\\
+$65$: $10+65+85$ & $66$: $7+64+90$ & $67$: $7+65+90$ & $68$: $83+85+90$ & $69$: $10+64+90$\\
+$70$: $7+75+83$ & $71$: $26+65+75$ & $72$: $7+75+85$ & $73$: $7+26+40$ & $74$: $40+64+65$\\
+$75$: $10+75+85$ & $76$: $10+26+40$ & $77$: $7+75+90$ & $78$: $26+64+83$ & $79$: $26+65+83$\\
+$80$: $7+83+85$ & $81$: $7+10+64$ & $82$: $7+10+65$ & $83$: $10+83+85$ & $84$: $40+64+75$\\
+$85$: $7+83+90$ & $86$: $26+65+90$ & $87$: $7+85+90$ & $88$: $10+83+90$ & $89$: $26+75+83$\\
+$90$: $10+85+90$ & $91$: $26+75+85$ & $92$: $7+10+75$ & $93$: $40+65+83$ & $94$: $40+64+85$
+\end{tabular}
+\end{center}
+
+\emph{$d = 4$, $n = 8$, $N = 66$:} $S = \{0, 7, 19, 23, 46, 47, 48, 57\}$.
+\begin{center}\scriptsize
+\begin{tabular}{lllll}
+$0$: $46+47+48+57$ & $1$: $7+23+46+57$ & $2$: $7+23+47+57$ & $3$: $7+23+48+57$ & $4$: $19+23+46+48$\\
+$5$: $19+23+47+48$ & $6$: $0+7+19+46$ & $7$: $0+7+19+47$ & $8$: $0+7+19+48$ & $9$: $0+46+47+48$\\
+$10$: $0+7+23+46$ & $11$: $0+7+23+47$ & $12$: $0+7+23+48$ & $13$: $19+23+46+57$ & $14$: $19+23+47+57$\\
+$15$: $19+23+48+57$ & $16$: $7+46+47+48$ & $17$: $0+7+19+57$ & $18$: $0+46+47+57$ & $19$: $0+46+48+57$\\
+$20$: $0+47+48+57$ & $21$: $0+7+23+57$ & $22$: $0+19+23+46$ & $23$: $0+19+23+47$ & $24$: $0+19+23+48$\\
+$25$: $7+46+47+57$ & $26$: $7+46+48+57$ & $27$: $7+47+48+57$ & $28$: $19+46+47+48$ & $29$: $7+19+23+46$\\
+$30$: $7+19+23+47$ & $31$: $7+19+23+48$ & $32$: $23+46+47+48$ & $33$: $0+19+23+57$ & $34$: $0+7+46+47$\\
+$35$: $0+7+46+48$ & $36$: $0+7+47+48$ & $37$: $19+46+47+57$ & $38$: $19+46+48+57$ & $39$: $19+47+48+57$\\
+$40$: $7+19+23+57$ & $41$: $23+46+47+57$ & $42$: $23+46+48+57$ & $43$: $23+47+48+57$ & $44$: $0+7+46+57$\\
+$45$: $0+7+47+57$ & $46$: $0+7+48+57$ & $47$: $0+19+46+48$ & $48$: $0+19+47+48$ & $49$: $0+7+19+23$\\
+$50$: $0+23+46+47$ & $51$: $0+23+46+48$ & $52$: $0+23+47+48$ & $53$: $7+19+46+47$ & $54$: $7+19+46+48$\\
+$55$: $7+19+47+48$ & $56$: $0+19+46+57$ & $57$: $0+19+47+57$ & $58$: $0+19+48+57$ & $59$: $7+23+47+48$\\
+$60$: $0+23+46+57$ & $61$: $0+23+47+57$ & $62$: $0+23+48+57$ & $63$: $7+19+46+57$ & $64$: $7+19+47+57$\\
+$65$: $7+19+48+57$ &  &  &  & 
+\end{tabular}
+\end{center}
+
+\emph{$d = 5$, $n = 10$, $N = 210$:} $S = \{6, 64, 67, 69, 74, 133, 153, 173, 197, 205\}$.
+\begin{center}\scriptsize
+\begin{tabular}{lll}
+$0$: $6+69+153+197+205$ & $1$: $6+67+69+74+205$ & $2$: $67+74+133+153+205$\\
+$3$: $6+64+67+133+153$ & $4$: $64+67+133+173+197$ & $5$: $6+64+69+133+153$\\
+$6$: $64+69+133+173+197$ & $7$: $64+67+69+74+153$ & $8$: $6+67+69+133+153$\\
+$9$: $67+69+133+173+197$ & $10$: $6+64+74+133+153$ & $11$: $64+74+133+173+197$\\
+$12$: $64+67+133+173+205$ & $13$: $6+67+74+133+153$ & $14$: $64+69+133+173+205$\\
+$15$: $6+64+173+197+205$ & $16$: $69+74+133+173+197$ & $17$: $67+69+133+173+205$\\
+$18$: $6+67+173+197+205$ & $19$: $64+74+133+173+205$ & $20$: $6+69+173+197+205$\\
+$21$: $133+153+173+197+205$ & $22$: $67+74+133+173+205$ & $23$: $6+64+67+133+173$\\
+$24$: $64+67+153+173+197$ & $25$: $6+64+69+133+173$ & $26$: $64+69+153+173+197$\\
+$27$: $64+67+69+74+173$ & $28$: $6+67+69+133+173$ & $29$: $67+69+153+173+197$\\
+$30$: $6+64+74+133+173$ & $31$: $64+74+153+173+197$ & $32$: $6+133+153+173+197$\\
+$33$: $6+67+74+133+173$ & $34$: $64+69+153+173+205$ & $35$: $6+69+74+133+173$\\
+$36$: $64+67+133+197+205$ & $37$: $67+69+153+173+205$ & $38$: $64+69+133+197+205$\\
+$39$: $64+74+153+173+205$ & $40$: $6+133+153+173+205$ & $41$: $67+69+133+197+205$\\
+$42$: $67+74+153+173+205$ & $43$: $6+64+67+153+173$ & $44$: $69+74+153+173+205$\\
+$45$: $6+64+69+153+173$ & $46$: $67+74+133+197+205$ & $47$: $6+64+67+133+197$\\
+$48$: $6+67+69+153+173$ & $49$: $6+64+69+133+197$ & $50$: $6+64+74+153+173$\\
+$51$: $64+67+69+74+197$ & $52$: $6+67+69+133+197$ & $53$: $6+67+74+153+173$\\
+$54$: $6+64+74+133+197$ & $55$: $6+64+67+133+205$ & $56$: $64+67+153+197+205$\\
+$57$: $6+64+69+133+205$ & $58$: $64+69+153+197+205$ & $59$: $6+69+74+133+197$\\
+$60$: $6+67+69+133+205$ & $61$: $67+69+153+197+205$ & $62$: $6+64+74+133+205$\\
+$63$: $64+74+153+197+205$ & $64$: $6+133+153+197+205$ & $65$: $6+67+74+133+205$\\
+$66$: $64+67+69+133+153$ & $67$: $6+64+67+153+197$ & $68$: $69+74+153+197+205$\\
+$69$: $6+64+69+153+197$ & $70$: $6+64+67+69+74$ & $71$: $64+67+74+133+153$\\
+$72$: $6+67+69+153+197$ & $73$: $64+69+74+133+153$ & $74$: $6+64+74+153+197$\\
+$75$: $6+64+67+153+205$ & $76$: $64+67+173+197+205$ & $77$: $6+64+69+153+205$\\
+$78$: $64+69+173+197+205$ & $79$: $6+69+74+153+197$ & $80$: $6+67+69+153+205$\\
+$81$: $67+69+173+197+205$ & $82$: $6+64+74+153+205$ & $83$: $64+74+173+197+205$\\
+$84$: $6+133+173+197+205$ & $85$: $6+67+74+153+205$ & $86$: $64+67+69+133+173$\\
+$87$: $6+64+67+173+197$ & $88$: $69+74+173+197+205$ & $89$: $6+64+69+173+197$
+\end{tabular}
+\end{center}
+\begin{center}\scriptsize
+\begin{tabular}{lll}
+$90$: $64+133+153+173+197$ & $91$: $64+67+74+133+173$ & $92$: $6+67+69+173+197$\\
+$93$: $64+69+74+133+173$ & $94$: $6+64+74+173+197$ & $95$: $6+64+67+173+205$\\
+$96$: $67+69+74+133+173$ & $97$: $6+64+69+173+205$ & $98$: $64+133+153+173+205$\\
+$99$: $6+69+74+173+197$ & $100$: $6+67+69+173+205$ & $101$: $67+133+153+173+205$\\
+$102$: $6+64+74+173+205$ & $103$: $69+133+153+173+205$ & $104$: $6+153+173+197+205$\\
+$105$: $6+67+74+173+205$ & $106$: $64+67+69+153+173$ & $107$: $6+69+74+173+205$\\
+$108$: $74+133+153+173+205$ & $109$: $6+64+133+153+173$ & $110$: $64+67+69+133+197$\\
+$111$: $64+67+74+153+173$ & $112$: $6+67+133+153+173$ & $113$: $64+69+74+153+173$\\
+$114$: $6+69+133+153+173$ & $115$: $64+67+74+133+197$ & $116$: $67+69+74+153+173$\\
+$117$: $64+69+74+133+197$ & $118$: $64+67+69+133+205$ & $119$: $6+64+67+197+205$\\
+$120$: $67+69+74+133+197$ & $121$: $6+64+69+197+205$ & $122$: $64+133+153+197+205$\\
+$123$: $64+67+74+133+205$ & $124$: $6+67+69+197+205$ & $125$: $64+69+74+133+205$\\
+$126$: $6+64+74+197+205$ & $127$: $69+133+153+197+205$ & $128$: $67+69+74+133+205$\\
+$129$: $6+64+67+69+133$ & $130$: $64+67+69+153+197$ & $131$: $6+69+74+197+205$\\
+$132$: $74+133+153+197+205$ & $133$: $6+64+133+153+197$ & $134$: $6+64+67+74+133$\\
+$135$: $64+67+74+153+197$ & $136$: $6+64+69+74+133$ & $137$: $64+69+74+153+197$\\
+$138$: $6+69+133+153+197$ & $139$: $6+67+69+74+133$ & $140$: $67+69+74+153+197$\\
+$141$: $6+64+133+153+205$ & $142$: $64+133+173+197+205$ & $143$: $6+74+133+153+197$\\
+$144$: $6+67+133+153+205$ & $145$: $64+69+74+153+205$ & $146$: $6+69+133+153+205$\\
+$147$: $69+133+173+197+205$ & $148$: $67+69+74+153+205$ & $149$: $6+64+67+69+153$\\
+$150$: $64+67+69+173+197$ & $151$: $6+74+133+153+205$ & $152$: $74+133+173+197+205$\\
+$153$: $6+64+133+173+197$ & $154$: $6+64+67+74+153$ & $155$: $64+67+74+173+197$\\
+$156$: $6+64+69+74+153$ & $157$: $64+69+74+173+197$ & $158$: $6+69+133+173+197$\\
+$159$: $6+67+69+74+153$ & $160$: $67+69+74+173+197$ & $161$: $6+64+133+173+205$\\
+$162$: $64+153+173+197+205$ & $163$: $6+74+133+173+197$ & $164$: $6+67+133+173+205$\\
+$165$: $64+69+74+173+205$ & $166$: $6+69+133+173+205$ & $167$: $69+153+173+197+205$\\
+$168$: $67+69+74+173+205$ & $169$: $6+64+67+69+173$ & $170$: $64+67+133+153+173$\\
+$171$: $6+74+133+173+205$ & $172$: $64+69+133+153+173$ & $173$: $6+64+153+173+197$\\
+$174$: $6+64+67+74+173$ & $175$: $67+69+133+153+173$ & $176$: $6+64+69+74+173$\\
+$177$: $64+74+133+153+173$ & $178$: $6+69+153+173+197$ & $179$: $6+67+69+74+173$
+\end{tabular}
+\end{center}
+\begin{center}\scriptsize
+\begin{tabular}{lll}
+$180$: $67+74+133+153+173$ & $181$: $6+64+153+173+205$ & $182$: $64+67+69+197+205$\\
+$183$: $6+74+153+173+197$ & $184$: $6+67+153+173+205$ & $185$: $6+64+133+197+205$\\
+$186$: $6+69+153+173+205$ & $187$: $64+67+74+197+205$ & $188$: $6+67+133+197+205$\\
+$189$: $64+69+74+197+205$ & $190$: $6+69+133+197+205$ & $191$: $6+74+153+173+205$\\
+$192$: $67+69+74+197+205$ & $193$: $6+64+67+69+197$ & $194$: $64+67+133+153+197$\\
+$195$: $6+74+133+197+205$ & $196$: $64+69+133+153+197$ & $197$: $64+67+69+74+133$\\
+$198$: $6+64+67+74+197$ & $199$: $67+69+133+153+197$ & $200$: $6+64+69+74+197$\\
+$201$: $6+64+67+69+205$ & $202$: $64+67+133+153+205$ & $203$: $6+67+69+74+197$\\
+$204$: $64+69+133+153+205$ & $205$: $6+64+153+197+205$ & $206$: $6+64+67+74+205$\\
+$207$: $67+69+133+153+205$ & $208$: $6+64+69+74+205$ & $209$: $64+74+133+153+205$
+\end{tabular}
+\end{center}
+

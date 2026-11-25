@@ -1,0 +1,10 @@
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=0 d0=14 frontier=7586
+pre-phase (counted by rank 0 only): nodes=9415 D=717 P=2 J=0 M=196
+DFS: boxes=0..7586 step 4 nodes=11615523 D=1476500 P=72368 J=606623 M=3653219 UNRESOLVED=0 maxdepth=88 cpu=177.2s
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=1 d0=14 frontier=7586
+DFS: boxes=1..7586 step 4 nodes=13202669 D=1208422 P=80423 J=2314883 M=2998555 UNRESOLVED=0 maxdepth=142 cpu=175.0s
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=2 d0=14 frontier=7586
+DFS: boxes=2..7586 step 4 nodes=11297650 D=1473399 P=67709 J=529001 M=3579664 UNRESOLVED=0 maxdepth=87 cpu=176.3s
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=3 d0=14 frontier=7586
+DFS: boxes=3..7586 step 4 nodes=9833788 D=1244769 P=75415 J=399324 M=3198334 UNRESOLVED=0 maxdepth=69 cpu=158.2s
+TOTAL n=6 THETA=64918 units = 12.6792968750 deg : {'nodes': 45959045, 'D': 5403807, 'P': 295917, 'J': 3849831, 'M': 13429968, 'UNRESOLVED': 0} cpu=686.7s wall=183.1s

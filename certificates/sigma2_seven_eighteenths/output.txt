@@ -1,0 +1,26 @@
+(1) seed covers Z_56 with distinct summands: True
+    representations r: (l_s, l_t): 0:(12,44) 1:(0,1) 2:(15,43) 3:(15,44) 4:(12,48) 5:(29,32) 6:(12,50) 7:(15,48) 8:(12,52) 9:(15,50) 10:(22,44) 11:(15,52) 12:(0,12) 13:(1,12) 14:(22,48) 15:(0,15) 16:(1,15) 17:(29,44) 18:(22,52) 19:(32,43) 20:(32,44) 21:(29,48) 22:(0,22) 23:(1,22) 24:(32,48) 25:(29,52) 26:(32,50) 27:(12,15) 28:(32,52) 29:(0,29) 30:(1,29) 31:(43,44) 32:(0,32) 33:(1,32) 34:(12,22) 35:(43,48) 36:(44,48) 37:(15,22) 38:(44,50) 39:(43,52) 40:(44,52) 41:(12,29) 42:(48,50) 43:(0,43) 44:(0,44) 45:(1,44) 46:(50,52) 47:(15,32) 48:(0,48) 49:(1,48) 50:(0,50) 51:(1,50) 52:(0,52) 53:(1,52) 54:(22,32) 55:(12,43)
+(2) Q = lcm(1..11) = 27720 ; 56 | Q: True
+(3) G(s,t): integer, kernel, det = m(m+Q), row sums <= m + 23Q, all 66 pairs: True
+(4a) ell'=4 Q'=6 m=5 M=55 T=47 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=4 Q'=6 m=7 M=91 T=49 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=4 Q'=6 m=11 M=187 T=53 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=4 Q'=6 m=101 M=10807 T=143 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=4 Q'=6 m=203 M=42427 T=245 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=4 Q'=6 m=301 M=92407 T=343 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=4 Q'=6 m=401 M=163207 T=443 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=5 M=85 T=113 (nontrivial: T < M: False): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=7 M=133 T=115 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=11 M=253 T=119 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=101 M=11413 T=209 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=203 M=43645 T=311 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=301 M=94213 T=409 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4a) ell'=5 Q'=12 m=401 M=165613 T=509 (nontrivial: T < M: True): X_s+X_t = Z_M for all pairs: True
+(4b) toy seed [0, 1, 2, 3, 6] covers Z_9: True
+(4b) lift m=5 (nontrivial: T < M: False): N=1845, |S|=1025 <= 1645: S+S (distinct) = Z_N: True
+(4b) lift m=7 (nontrivial: T < M: False): N=2709, |S|=1505 <= 1655: S+S (distinct) = Z_N: True
+(4b) lift m=301 (nontrivial: T < M: True): N=912933, |S|=3125 <= 3125: S+S (distinct) = Z_N: True
+(4b) lift m=401 (nontrivial: T < M: True): N=1577133, |S|=3625 <= 3625: S+S (distinct) = Z_N: True
+(5) real Q: m=166321 M=32273093161 T=803881: all 66 pairs cover Z_M (max circular gap 194037 <= T): True
+(5) real Q: m=1000003 M=1027726083169 T=1637563: all 66 pairs cover Z_M (max circular gap 1332643 <= T): True
+ALL CHECKS PASSED: True   runtime 51.2 s

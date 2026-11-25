@@ -1,0 +1,20 @@
+Certificates (exact integer arithmetic). Directory: scratchpad/t2/certificates. Not in the repo
+(repo HEAD at time of computation: 24e3693; nothing committed). Scripts in scratchpad/t2/.
+
+1. d2_l12_t20.json  -- restricted 2-basis of Z_N, n = 10296, N = 40269320, N/n^2 = 0.37987 > 3/8.
+   Built by: python3 make_cert.py d2_l12 20   (blow-up of the seed {3,4,8,10,12,16,17,28,31,38,45,48} in Z_56;
+   directions per level listed in the file, a = (845, 851), T = 869; build 0.03 s)
+   Verified by: python3 verify_cert.py certificates/d2_l12_t20.json  -> all residues covered, 1.5 s
+   (verifier enumerates ALL pairs of distinct elements of S; uses nothing from the construction).
+
+2. d3_l6b_t8.json   -- restricted 3-basis of Z_N, n = 1596, N = 301206620, N/n^3 = 0.074091 > 9/125.
+   Built by: python3 make_cert.py d3_l6b 8   (blow-up of the seed {1,4,10,17,18,19} in Z_20; a = (241,247,253), T = 277)
+   Verified by: python3 verify_cert.py certificates/d3_l6b_t8.json -> all residues covered, 27 s
+   (all C(1596,3) triples of distinct elements enumerated).
+
+3. seeds.json -- finite seeds, each checked by enumerating all d-subsets (python3 seeds.py, < 0.01 s each):
+   d=2 (n,N)=(12,56)  7/18      d=3 (10,95) 19/200    d=3 (6,20) 5/54
+   d=4 (8,66) 33/2048   d=5 (10,210) 21/10000   d=6 (10,145) 29/200000   (+ (9,103) d=4,5; (9,63) d=3,6; (4,6) d=2)
+   d=5/d=6 sets with 9-10 elements are complements-equivalent (sums of d of l <-> sums of l-d of l).
+
+Also: python3 blowup.py <config> t v  verifies the needed level-subset sums only (smaller instances, t = 0..30).

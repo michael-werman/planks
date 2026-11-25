@@ -1,0 +1,15 @@
+Certificate: exact checks for proofs/sigma2_seven_eighteenths.md (p(k) >= (7/18)(k - 288Q)^2).
+
+Command:    python3 certificates/sigma2_seven_eighteenths/sigma2_check.py   (from the repo root)
+Python:     Python 3.13.18
+Arithmetic: Python ints and fractions.Fraction only (no floating point).
+Parameters: seed L = {0,1,12,15,22,29,32,43,44,48,50,52} in Z_56; Q = lcm(1..11) = 27720;
+            brute-force analogues: 4 indices (Q'=6) and 5 indices (Q'=12), m in {5,7,11,101,203,301,401}
+            (coprime to Q'); lift of the seed {0,1,2,3,6} in Z_9 with Q'=36, m in {5,7,301,401};
+            real parameters (section 5, arc test): Q = 27720, m in {6Q+1 = 166321, 1000003},
+            M up to 1027726083169, all 66 pairs.
+Runtime:    51.2 s (2026-11-24 rerun after the referee fixes; section (5) takes almost all of it)
+Commit:     run on top of 3ecb17c (the script and proof file were uncommitted at run time)
+Script sha256: b2c21711cd367cf3c05b6c5abb8cc0afbd058c143801c01711a5f298dab65d95
+Result:     ALL CHECKS PASSED: True  (full output in output.txt)
+Date:       2026-11-24

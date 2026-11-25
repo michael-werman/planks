@@ -1,0 +1,22 @@
+Re-run after the referee fixes (cert.c choose_split guard, runpar.sh checks), 2026-11-24, same machine type.
+C1: ./runpar.sh 6 64256 -> exit 0; node and prune counts identical to RECORD.txt (27,631,561 nodes, UNRESOLVED 0).
+C2 and C3 re-runs were stopped at the author's request; their original runs are in run_n6_64918.txt and run_n5_100488.txt.
+
+--- output ---
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=0 d0=14 frontier=7538
+pre-phase (counted by rank 0 only): nodes=9369 D=716 P=4 J=0 M=196
+DFS: boxes=0..7538 step 4 nodes=7494463 D=1020531 P=40598 J=274915 M=2412130 UNRESOLVED=0 maxdepth=73 cpu=157.5s
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=1 d0=14 frontier=7538
+DFS: boxes=1..7538 step 4 nodes=6195303 D=836816 P=43515 J=233426 M=1984837 UNRESOLVED=0 maxdepth=78 cpu=127.5s
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=2 d0=14 frontier=7538
+DFS: boxes=2..7538 step 4 nodes=7392396 D=1027795 P=38674 J=251855 M=2378816 UNRESOLVED=0 maxdepth=74 cpu=156.9s
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=3 d0=14 frontier=7538
+DFS: boxes=3..7538 step 4 nodes=6540030 D=872502 P=43913 J=202166 M=2152376 UNRESOLVED=0 maxdepth=64 cpu=137.5s
+TOTAL n=6 THETA=64256 units = 12.5500000000 deg : {'nodes': 27631561, 'D': 3758360, 'P': 166704, 'J': 962362, 'M': 8928355, 'UNRESOLVED': 0} cpu=579.4s wall=162.6s
+
+--- update 2026-11-24 (round 11) ---
+The C2 and C3 re-runs were later done on branch claude/clever-euler-qh8bho with the post-fix code in this
+folder: both reproduced the original node and prune counts exactly (C2 45,959,045 nodes, C3 1,086,476
+nodes, UNRESOLVED 0). Full log: ../RERUN_2026-11-24.txt. Note: sha256.txt lists the hashes of the
+pre-fix cert.c and runpar.sh that made the original runs; the hashes of the committed post-fix files used
+for all re-runs are in sha256_postfix.txt. Paths in RECORD.txt refer to the original scratch layout.

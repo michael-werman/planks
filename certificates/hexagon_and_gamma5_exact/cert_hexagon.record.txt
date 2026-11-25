@@ -1,0 +1,10 @@
+command: cd /tmp/claude-0/-home-user-lines-in-disc/dd8b1843-51a5-5c50-95a9-039c15f05c4a/scratchpad/p2 && python3 cert_hexagon.py
+parameters: none (inputs: hp5_4000.pkl for cert_gamma5)
+wall time: 30.49 s
+date: Tue Nov 24 07:45:34 UTC 2026
+commit: not committed (scratchpad p2/; repo HEAD 24e3693)
+python: Python 3.13.18, sympy 1.14.0
+--- output ---
+offsets / r : [0, 1/2, sqrt(3)/2]
+all exact checks passed; rho = r/2 = sqrt(2)/(4*sqrt(2*sqrt(3) + 7)) = 0.109295940691142047137894629061
+runtime 29.9s

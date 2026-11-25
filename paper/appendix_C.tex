@@ -1,0 +1,308 @@
+\section{Proofs for random points (Theorem E)}\label{app:C}
+
+% Local notation for this appendix.
+\newcommand{\Cone}{\mathbf{1}}
+\newcommand{\Cout}{\mathrm{out}}
+\newcommand{\Cin}{\mathrm{in}}
+\newcommand{\CB}{\mathcal{B}}
+
+% Projection and affine hull.
+\newcommand{\Cpr}{\operatorname{pr}}
+\newcommand{\Caff}{\operatorname{aff}}
+
+Section~\ref{sec:C-all-d} proves Theorem~E in every dimension, both halves by one argument: Poissonization,
+discretization into tiny cells, and Janson's inequality, which bounds the probability that a fixed point is
+uncovered from above (upper half, with a union bound over a net) and, with Harris's inequality, from both
+sides (lower half, with a second moment over test points). Both halves give the same constant, so
+$n^d\rho_\Omega/\log n$ converges in probability.
+
+\paragraph{Cited theorems.} \emph{[H] Harris \cite{Harris}:} for independent $0/1$ variables and decreasing
+events $A_1, \dots, A_k$, $\Pr(A_1 \cap \dots \cap A_k) \ge \prod \Pr(A_i)$ (as quoted in \cite{ZhaoNotes}, Corollary~7.1.6). \emph{[J] Janson \cite{Janson}:} let $R$ be
+a random subset of a finite set, each element included independently, $S_1, \dots, S_k$ sets,
+$A_i = \{S_i \subseteq R\}$, $\mu = \sum_i\Pr(A_i)$ and $\Delta_J = \sum\Pr(A_i \cap A_j)$ over ordered pairs $i \ne j$
+with $S_i \cap S_j \ne \emptyset$; then $\Pr(\text{no }A_i) \le e^{-\mu + \Delta_J}$ (a consequence of \cite{ZhaoNotes},
+Theorem~8.1.2, which has $\Delta_J/2$).
+
+%======================================================================
+\subsection{Every dimension: \texorpdfstring{$\rho_\Omega=\Theta(\log n/n^d)$}{rho\_Omega = Theta(log n/n\textasciicircum d)} with high probability}
+\label{sec:C-all-d}\label{sec:C-upper}\label{sec:C-convex}\label{sec:C-lower}
+
+\paragraph{Definitions.} $d \ge 2$; $\Omega \subset \R^d$ is a convex body, $|\cdot|$ is volume, $\Delta = \operatorname{diam}\Omega$,
+and $B(o, r_0) \subset \Omega$ is a fixed ball. Constants depend only on $d$ and $\Omega$ (through $d$, $\Delta$,
+$|\Omega|$, $r_0$); unindexed $C, c$ may change from line to line. $\kappa_k$ is the volume of the unit ball of $\R^k$. $\Caff(u_1, \dots, u_k)$ is the affine hull. For
+$u = (u_1, \dots, u_d) \in (\R^d)^d$, $V(u) = |(u_2 - u_1) \wedge \dots \wedge (u_d - u_1)| = (d-1)!\vol_{d-1}(\operatorname{conv}u)$, and
+when $V(u) > 0$, $H(u) = \Caff(u_1, \dots, u_d)$ is a hyperplane. $X_1, \dots, X_n$ are independent and uniform in
+$\Omega$ (almost surely every $d$ of them are affinely independent, as affinely dependent $d$-tuples form a
+null set), and $\rho_\Omega = \max_{x \in \Omega}\min_Q\dist(x, H(X_Q))$ over the $d$-subsets $Q$. $U, U_1, U_2, \dots$
+denote independent uniform points of $\Omega$, and $H = H(U_1, \dots, U_d)$.
+
+\begin{proposition}\label{prop:C-all-d}
+The limit $h_\Omega(z) = \lim_{t \to 0}\Pr(\dist(z, H) < t)/t$ exists uniformly in $z \in \Omega$, and $h_\Omega$ is
+continuous and positive on $\Omega$ (Lemma~\ref{lem:C-density}). With $m_\Omega = \min_\Omega h_\Omega$ and
+$c_\Omega = d^2\,d!/m_\Omega$, for every $\xi > 0$
+\[
+  \Pr\bigl((c_\Omega - \xi)\log n/n^d \le \rho_\Omega \le (c_\Omega + \xi)\log n/n^d\bigr) \to 1,
+\]
+that is, $n^d\rho_\Omega/\log n \to c_\Omega$ in probability.
+\end{proposition}
+
+\begin{lemma}[Cones]\label{lem:C-cone}
+Let $G$ be an affine flat of dimension $g \le d - 2$ meeting $\Omega$, $p \in G$, and $m = d - g$. For a direction
+$a \perp G$ and $0 < \alpha \le \pi/2$, the set of $u \in \Omega$ for which the component of $u - p$ orthogonal to
+$G$ makes an angle $< \alpha$ with the line $\R a$ has volume at most $C\alpha^{m-1}$.
+\end{lemma}
+
+\begin{proof}
+That component does not depend on $p \in G$, so take $p \in G \cap \Omega$. Write $u - p = (u', u'')$ along the
+direction space of $G$ and its complement. Then $|u'|, |u''| \le \Delta$, and $u''$ lies in a double cone in $\R^m$ of
+half-angle $\alpha$, intersected with $B(0, \Delta)$, of volume at most $c_m\alpha^{m-1}\Delta^m$; Fubini finishes.
+\end{proof}
+
+\begin{lemma}[Flat tails]\label{lem:C-flat}
+For $1 \le k \le d - 1$, $x \in \R^d$ and $r > 0$, $\Pr(\dist(x, \Caff(U_1, \dots, U_k)) < r) \le Cr^{d-k+1}$.
+\end{lemma}
+
+\begin{proof}
+Induction on $k$; for $k = 1$, $\Pr(|U_1 - x| < r) \le \kappa_dr^d/|\Omega|$. For $k \ge 2$ let
+$G = \Caff(U_1, \dots, U_{k-1})$, $D = \dist(x, G)$ and $\Cpr$ the orthogonal projection onto the complement of the
+direction space of $G$ (dimension $d - k + 2$ almost surely). Then $\dist(x, \Caff(G, U))$ is the distance from
+$\Cpr x$ to the line through $\Cpr G$ and $\Cpr U$, and if it is $< r < D$, the angle between $\Cpr U - \Cpr G$ and
+$\Cpr x - \Cpr G$ is $< \arcsin(r/D) \le \pi r/(2D)$. By Lemma~\ref{lem:C-cone},
+$\Pr(\dist(x, \Caff(G, U_k)) < r \mid G) \le \min(1, C(r/D)^{d-k+1})$, so
+\[
+  \Pr\bigl(\dist(x, \Caff(U_1, \dots, U_k)) < r\bigr) \le \Pr(D < 2r) + Cr^{d-k+1}\E\bigl[D^{-(d-k+1)}\Cone\{D \ge 2r\}\bigr].
+\]
+By induction $\Pr(D < \rho) \le C\rho^{d-k+2}$, so the first term is $\le Cr^{d-k+1}$ (for $r \le \Delta$; larger $r$ are
+trivial), and $\E D^{-(d-k+1)} = \int_0^\infty\Pr(D < y^{-1/(d-k+1)})\,dy < \infty$.
+\end{proof}
+
+\begin{lemma}[Pencils]\label{lem:C-pencil}
+Let $F$ be a $(d-2)$-flat meeting $\Omega$ and $\Phi$ the angle (mod $\pi$) of the hyperplane $\Caff(F, U)$ in the
+pencil of hyperplanes containing $F$. Then $\Pr(\Phi \in I \mid F) \le C|I|$, and for every $z \in \R^d$,
+$\dist(z, \Caff(F, U)) = D_z|\sin(\Phi - \varphi_z)|$, where $D_z = \dist(z, F)$ and $\varphi_z$ is the angle of
+$\Caff(F, z)$.
+\end{lemma}
+
+\begin{proof}
+Let $\Cpr$ be the orthogonal projection onto the $2$-dimensional complement of the direction space of $F$. The
+hyperplanes containing $F$ project to the lines through $\Cpr F$; the $u$ with $\Phi \in I$ project into a double
+sector of angle $|I|$ and radius $\Delta$, and Fubini gives volume $\le \kappa_{d-2}\Delta^{d-2}\cdot|I|\Delta^2$. The
+formula is the distance from $\Cpr z$ to a line through $\Cpr F$.
+\end{proof}
+
+\begin{lemma}[One point]\label{lem:C-one}
+Let $t_0 = \Delta$. For $x \in \R^d$ and $t > 0$, $\Pr(\dist(x, H) < t) \le Ct$. For $x \in \Omega$ and
+$0 < t \le t_0$, $\Pr(\dist(x, H) < t) \ge c_1t$. For $x \in \R^d$ and $0 < \delta \le t$,
+$\Pr(t - \delta \le \dist(x, H) < t + \delta) \le C\delta + Ct^2$.
+\end{lemma}
+
+\begin{proof}
+Condition on $F = \Caff(U_1, \dots, U_{d-1})$ and put $D = D_x$. By Lemma~\ref{lem:C-pencil} the $\Phi$-set has measure
+$\le 2\arcsin\min(1, t/D)$, so $\Pr(\dist(x, H) < t \mid F) \le C\min(1, t/D)$, and $\E D^{-1} < \infty$ by
+Lemma~\ref{lem:C-flat} ($k = d - 1$, exponent $2$). For the lower bound, let $U_1, \dots, U_{d-1}$ lie in
+$B(o, r_0/2)$ (probability $\ge c$), so $D \le \Delta$ and the $\Phi$-set contains an interval of length $\ge 2t/\Delta$;
+the points $v$ whose projection $\Cpr v$ lies in the double sector of that angle at $\Cpr F$ with radius $r_0/4$
+(inside $\Cpr B(o, 3r_0/4)$, as $|\Cpr F - \Cpr o| = \dist(o, F) \le r_0/2$) have fibres in $B(o, r_0)$ of
+$(d-2)$-volume $\ge \kappa_{d-2}(\sqrt7r_0/4)^{d-2}$, so the conditional probability is $\ge ct$. For the shell: on
+$\{D \ge 4t\}$, $(t + \delta)/D \le \frac12$ and $\arcsin' \le 2/\sqrt3$ there, so the $\Phi$-set has measure
+$\le 6\delta/D$; and $\Pr(D < 4t) \le Ct^2$.
+\end{proof}
+
+\begin{lemma}[Density at $0$]\label{lem:C-density}
+$\Pr(\dist(z, H) < t)/t$ converges, as $t \to 0$ and uniformly in $z \in \Omega$, to a continuous function $h_\Omega$ with
+$h_\Omega \ge c_1$ on $\Omega$.
+\end{lemma}
+
+\begin{proof}
+Condition on $F = \Caff(U_1, \dots, U_{d-1})$. In coordinates $u = (u', \varrho, \varphi)$ (along the direction space of $F$,
+and polar in the plane orthogonal to it, about $\Cpr F$), $du = du'\,\varrho\,d\varrho\,d\varphi$, so $\Phi$ has the density
+$f_F(\varphi) = |\Omega|^{-1}\int_{H_\varphi \cap \Omega}\dist(u, F)\,d\sigma(u) \le M = \kappa_{d-1}\Delta^d/|\Omega|$ on $\R/\pi\Z$, where $H_\varphi$
+is the hyperplane through $F$ at angle $\varphi$. Parametrize $H_\varphi$ by $(u', s) \mapsto U_1 + u' + s\,e(\varphi)$, with $u'$ in the
+direction space of $F$ and $e(\varphi)$ the unit normal to $F$ in $H_\varphi$; then $f_F(\varphi) = |\Omega|^{-1}\int|s|\,\Cone_\Omega(U_1 + u' + s\,e(\varphi))\,du'\,ds$
+over $|u'|, |s| \le \Delta$. As $\varphi \to \varphi_1$ the integrand converges at every $(u', s)$ with $U_1 + u' + s\,e(\varphi_1) \notin \partial\Omega$, and
+$H_{\varphi_1} \cap \partial\Omega$ is $\sigma$-null unless $H_{\varphi_1}$ contains a facet of $\Omega$ (a $(d-1)$-dimensional face);
+then $F$ lies in the hyperplane of that facet. There are countably many facets and each hyperplane is
+null, so almost surely $F$ lies in none, and then $f_F$ is continuous (dominated convergence), hence uniformly
+continuous. Now $\Pr(\dist(z, H) < t \mid F) = \int_{I}f_F$ over the arc $I$ of half-width $\alpha = \arcsin\min(1, t/D_z)$
+about $\varphi_z$. On $\{D_z \ge \delta_1\}$ and for $t < \delta_1$, $2\alpha/t \to 2/D_z$ and the mean of $f_F$ over $I$ tends to
+$f_F(\varphi_z)$, both uniformly in $z$, as $z \mapsto (D_z, \varphi_z)$ is continuous there; so
+$t^{-1}\Pr(\dist(z, H) < t \mid F) \to g_F(z) = 2f_F(\varphi_z)/D_z$ uniformly on $\{z : D_z \ge \delta_1\}$. Both sides are
+$\le CM/D_z$, and $\E[D_z^{-1}\Cone\{D_z < \delta_1\}] \le C\delta_1$ uniformly in $z$ ($\Pr(D_z < \rho) \le C\rho^2$, Lemma~\ref{lem:C-flat}).
+So $S_t(F) = \sup_z|t^{-1}\Pr(\dist(z, H) < t \mid F) - g_F(z)|\,\Cone\{D_z \ge \delta_1\}$ (a supremum over a countable dense set
+of $z$, by continuity) tends to $0$ almost surely and is $\le CM/\delta_1$; hence $\E S_t(F) \to 0$, and
+$\sup_z|t^{-1}\Pr(\dist(z, H) < t) - \E g_F(z)| \le \E S_t(F) + 2C\delta_1$. Letting $t \to 0$ and then $\delta_1 \to 0$,
+$t^{-1}\Pr(\dist(z, H) < t) \to h_\Omega(z) = \E g_F(z)$ uniformly. If $z_k \to z$, then $g_F(z_k) \to g_F(z)$ almost surely,
+and the $g_F(z_k)$ are uniformly integrable (they are $\le CM/D_{z_k}$), so $h_\Omega$ is continuous; $h_\Omega \ge c_1$ by
+Lemma~\ref{lem:C-one}.
+\end{proof}
+
+\begin{lemma}[Pairs sharing points]\label{lem:C-share}
+Let $1 \le j \le d - 1$, $S = (U_1, \dots, U_j)$, $A = (U_{j+1}, \dots, U_d)$, $A' = (U'_{j+1}, \dots, U'_d)$, all
+independent, and $z, z' \in \Omega$. For $0 < t \le \frac12$,
+$\Pr(\dist(z, H(S, A)) < t,\ \dist(z', H(S, A')) < t) \le Ct^2(1 + \log(1/t))$.
+\end{lemma}
+
+\begin{proof}
+Given $S$ the two events are independent, with conditional probabilities $p_z(S)$, $p_{z'}(S)$, so the probability is
+$\E[p_zp_{z'}] \le (\E p_z^2)^{1/2}(\E p_{z'}^2)^{1/2}$. Write $A = (A_1, a)$; by Lemma~\ref{lem:C-pencil}, conditioning
+also on $A_1$, $p_z(S) \le \E[\min(1, Ct/D) \mid S]$ with $D = \dist(z, \Caff(S, A_1))$, the distance to a
+$(d-2)$-flat through $d - 1$ random points. By Jensen and Lemma~\ref{lem:C-flat} ($\Pr(D < \rho) \le C\rho^2$),
+$\E p_z^2 \le \E\min(1, Ct/D)^2 \le \Pr(D < Ct) + Ct^2\int_0^{(Ct)^{-2}}\min(1, C/y)\,dy \le Ct^2(1 + \log(1/t))$.
+\end{proof}
+
+\begin{lemma}[Two test points]\label{lem:C-two}
+For $x \ne y$ in $\Omega$ and $t > 0$, $\Pr(\dist(x, H) < t,\ \dist(y, H) < t) \le Ct^2/|x - y|$.
+\end{lemma}
+
+\begin{proof}
+Condition on $F = \Caff(U_1, \dots, U_{d-1})$, with $D_z, \varphi_z$ as in Lemma~\ref{lem:C-pencil}. Both events need
+$|\sin(\Phi - \varphi_z)| < t/D_z$ for $z = x, y$, and the two sets of such $\Phi$ have measures $2\arcsin\min(1, t/D_z) \le \pi t/D_z$, so their intersection has measure
+$\le \pi t/\max(D_x, D_y)$, and if it is nonempty,
+$|\sin(\varphi_x - \varphi_y)| < t/D_x + t/D_y \le 2t/\min(D_x, D_y)$. By Lemma~\ref{lem:C-pencil},
+$\dist(y, \Caff(F, x)) = D_y|\sin(\varphi_x - \varphi_y)|$ and $\dist(x, \Caff(F, y)) = D_x|\sin(\varphi_x - \varphi_y)|$, so
+\begin{gather*}
+  \Pr(\dist(x, H) < t,\ \dist(y, H) < t) \le Ct\,(J_{x,y} + J_{y,x}),\\
+  J_{x,y} = \E\bigl[D_x^{-1}\Cone\{\dist(y, \Caff(x, U_1, \dots, U_{d-1})) < 2t\}\bigr]
+\end{gather*}
+(if $D_y \le D_x$ the first case holds, otherwise the second). We show $J_{x,y} \le Ct/|x - y|$. For $d = 2$,
+$D_x = |U_1 - x|$, and $\dist(y, \Caff(x, U_1)) < 2t$ confines the direction of $U_1 - x$ to a set of measure
+$\le 4\pi t/|x - y|$; in polar coordinates about $x$, $J_{x,y} \le |\Omega|^{-1}\cdot(4\pi t/|x - y|)\cdot\Delta$.
+For $d \ge 3$, condition on $E = \Caff(U_1, \dots, U_{d-2})$ (a $(d-3)$-flat), let $u = U_{d-1}$, and project
+orthogonally onto the $3$-dimensional complement of the direction space of $E$: $E$ goes to a point $e$, and $x, y, u$ to
+$X, Y, w$, where $w$ has density $\le C$ on $B(e, \Delta)$. Then $D_x = \dist(X, \text{line }ew)$ and the event is
+$\dist(Y, \text{plane }eXw) < 2t$. In cylindrical coordinates $(\varrho, \psi, \zeta)$ about the axis $eX$ (with $\varrho, |\zeta| \le \Delta$, as $|w - e| \le \Delta$),
+$D_x = |X - e|\varrho/|w - e|$, and the event confines $\psi$ to a set of measure $\le 4\pi t/D'$, $D' = \dist(Y, \text{line }eX)$. So
+\[
+  \E[\,\cdot \mid E\,] \le C\int\Cone\{\psi\text{ allowed}\}\frac{|w - e|}{|X - e|\varrho}\,\varrho\,d\varrho\,d\psi\,d\zeta
+  \le \frac{Ct}{D'|X - e|} = \frac{Ct\,V(U_1, \dots, U_{d-2})}{V(x, y, U_1, \dots, U_{d-2})},
+\]
+where $V$ of $k$ points is the norm of the wedge of $k - 1$ differences ($V$ of one point is $1$): by base times height,
+$V(U_1, \dots, U_{d-2}, x, y) = V(U_1, \dots, U_{d-2})\dist(x, E)\dist(y, \Caff(E, x))$, and $\dist(x, E) = |X - e|$,
+$\dist(y, \Caff(E, x)) = D'$, as both flats contain the direction space of $E$. Finally $V(U_1, \dots, U_{d-2}) \le \Delta^{d-3}$ and
+$V(x, y, U_1, \dots, U_{d-2}) = |x - y|\prod_{i=1}^{d-2}\dist(U_i, \Caff(x, y, U_1, \dots, U_{i-1}))$, a product of distances
+of uniform points to flats of dimension $\le d - 2$; as $\E[\dist(U, L)^{-1}] \le C$ for every flat $L$ of dimension
+$\le d - 2$ (its $r$-neighbourhood meets $\Omega$ in volume $\le Cr^2$), conditioning in turn gives $J_{x,y} \le Ct/|x - y|$.
+\end{proof}
+
+\begin{lemma}[Perturbation]\label{lem:C-pert}
+(a) If $u, u' \in \Omega^d$, $|u_i - u'_i| \le \eta$, $V(u) \ge 2\ell$ and $\eta \le c_2\ell$, then $V(u') \ge \ell$ and
+$|\dist(x, H(u)) - \dist(x, H(u'))| \le C_2\eta/\ell$ for every $x \in \Omega$. (b) $\Pr(V(U_1, \dots, U_d) < \ell) \le C\ell^\gamma$
+with $\gamma = 2^{1-d}$.
+\end{lemma}
+
+\begin{proof}
+(a) $\dist(x, H(u)) = f(u)/V(u)$ with $f(u) = |\det(u_2 - u_1, \dots, u_d - u_1, x - u_1)|$. By multilinearity
+$|f(u) - f(u')| \le C\eta$ and $|V(u) - V(u')| \le C\eta \le \ell$, and $f(u) \le V(u)\Delta$, so
+$|f/V - f'/V'| \le |f - f'|/V' + f|V - V'|/(VV') \le C\eta/\ell$. (b) With $V_k$ the analogue for $k$ points ($V_1 = 1$),
+$V_k = V_{k-1}\dist(u_k, \Caff(u_1, \dots, u_{k-1}))$, so $\Pr(V_k < \ell) \le \Pr(V_{k-1} < \ell^{1/2}) + C\ell^{1/2}$ (the
+$\ell^{1/2}$-neighbourhood of a flat of dimension $\le d - 2$ meets $\Omega$ in volume $\le C\ell^{1/2}$, $\ell \le 1$); induct.
+\end{proof}
+
+\paragraph{Poissonization and cells.} Fix $\theta_0 \in (0, 1)$, and let $\lambda = (1 - \theta_0)n/|\Omega|$ for the upper half
+and $\lambda = (1 + \theta_0)n/|\Omega|$ for the lower half. $Y_1, Y_2, \dots$ are independent and uniform in $\Omega$,
+$N \sim \mathrm{Poisson}(\lambda|\Omega|)$ is independent of them, and $\Pi = (Y_1, \dots, Y_N)$. Put $\eta = n^{-A}$ with
+$A \ge 4(d + 2)/\gamma$, $\ell = \eta^{1/2}$ and $\delta = C_2\eta^{1/2}$ (so $\eta \le c_2\ell$ for large $n$). The cells are the
+nonempty sets $Q_k = \Omega \cap \prod_i[k_ia, (k_i + 1)a)$, $a = \eta/\sqrt d$, of diameter $\le \eta$ and volume $a_k \le \eta^d$;
+$N_k$ counts the points of $\Pi$ in $Q_k$, $I_k = \Cone\{N_k \ge 1\}$ and $p_k = \Pr(I_k = 1)$. Given $N$, the $Y_i$ ($i \le N$) are
+independent and uniform, so (multinomial counts mixed over $N$) the $N_k$ are independent $\mathrm{Poisson}(\lambda a_k)$, so $\lambda a_k(1 - \lambda a_k/2) \le p_k = 1 - e^{-\lambda a_k} \le \lambda a_k$, and the event $\mathrm{Two}$ that some cell
+holds two points has $\Pr(\mathrm{Two}) \le \sum_k(\lambda a_k)^2/2 \le \lambda^2\eta^d|\Omega|$.
+For $z \in \Omega$ and $\eps > 0$, a set $\{k_1, \dots, k_d\}$ of $d$ distinct cells is in $\CB_\Cout(z)$ if some
+$u \in Q_{k_1} \times \dots \times Q_{k_d}$ has $V(u) > 0$ and $\dist(z, H(u)) < \eps$, and in $\CB_\Cin(z)$ if every $u \in Q_{k_1} \times \dots \times Q_{k_d}$ has $V(u) > 0$ and $\dist(z, H(u)) < \eps$.
+Let $\mu_z(t) = (\lambda^d/d!)|\{u \in \Omega^d : V(u) > 0,\ \dist(z, H(u)) < t\}|$, the mean number of $d$-subsets of $\Pi$
+with hyperplane within $t$ of $z$, and let $E_z$ be the event that no $d$ points of $\Pi$ span a hyperplane at
+distance $< \eps$ from $z$.
+
+\begin{lemma}[Sandwich]\label{lem:C-sand}
+(i) $\{\prod_iI_{k_i} = 0\ \forall\{k_i\} \in \CB_\Cout(z)\} \setminus \mathrm{Two} \subseteq E_z \subseteq \{\prod_iI_{k_i} = 0\ \forall\{k_i\} \in \CB_\Cin(z)\}$, up to a
+null event. (ii) Uniformly in $z$, $\lambda^d\sum_{\CB_\Cout(z)}\prod_ia_{k_i} \le \mu_z(\eps + \delta) + o(1)$ and
+$\lambda^d\sum_{\CB_\Cin(z)}\prod_ia_{k_i} \ge \mu_z(\eps - \delta) - o(1)$. (iii) $\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}\prod_ia_{k_i} \le
+(\lambda^d/d!)|\Omega|^d\Pr(\dist(x, H) < \eps,\ \dist(y, H) < \eps)$.
+\end{lemma}
+
+\begin{proof}
+(i) Off $\mathrm{Two}$, $d$ points of $\Pi$ spanning a hyperplane within $\eps$ of $z$ lie in $d$ distinct occupied cells forming
+a set in $\CB_\Cout(z)$; and if the cells of a set in $\CB_\Cin(z)$ are all occupied, one point from each spans a hyperplane
+within $\eps$ of $z$. (ii) For a family $\CB$ of sets of cells,
+\[
+  \lambda^d\sum_\CB\prod a = (\lambda^d/d!)\,|\{u : \text{the cells of the }u_i\text{ are distinct and form a set in }\CB\}|.
+\]
+If $V(u) \ge 2\ell$, the cells of $u$ are distinct (two points in one cell give $V(u) \le C\eta < 2\ell$), and by
+Lemma~\ref{lem:C-pert}(a) every $u'$ in the same cells has $V(u') > 0$ and $|\dist(z, H(u')) - \dist(z, H(u))| \le \delta$. So
+the $\CB_\Cout$-set lies in $\{\dist < \eps + \delta\} \cup \{V < 2\ell\}$ and the $\CB_\Cin$-set contains
+$\{\dist < \eps - \delta\} \setminus \{V < 2\ell\}$, and $(\lambda^d/d!)|\{V < 2\ell\}| \le Cn^d\eta^{\gamma/2} = o(1)$ by
+Lemma~\ref{lem:C-pert}(b). (iii) Every $u$ in the cells of a set in both families is within $\eps$ of $x$ and $y$.
+\end{proof}
+
+\begin{lemma}[Janson]\label{lem:C-janson}
+For $z, z' \in \Omega$ (possibly equal), $0 < \eps \le \frac12$ and $\CB = \CB_\Cin(z) \cup \CB_\Cin(z')$,
+$\Pr(E_z \cap E_{z'}) \le \exp(-\mu_\CB + \Delta_J)$ with $\mu_\CB = \sum_\CB\prod_ip_{k_i}$ and
+$\Delta_J \le C\sum_{j=1}^{d-1}\lambda^{2d-j}\eps^2(1 + \log(1/\eps))$.
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{lem:C-sand}(i) and [J], with $S_i$ the sets in $\CB$. Ordered pairs of distinct sets in $\CB$ that meet share
+$j \in \{1, \dots, d - 1\}$ cells and contribute at most $\lambda^{2d-j}\prod a$ over their $2d - j$ cells. As in
+Lemma~\ref{lem:C-sand}(iii), every choice of one point per cell gives $d$-tuples $(S, A)$, $(S, A')$ with hyperplanes
+within $\eps$ of $z_1$ and $z_2$ ($z_1, z_2 \in \{z, z'\}$), and distinct (pair, ordering of cells) give disjoint product
+regions of $\Omega^{2d-j}$. So these pairs contribute at most $\lambda^{2d-j}|\Omega|^{2d-j}/(j!((d-j)!)^2)$ times the bound of
+Lemma~\ref{lem:C-share}, summed over the four choices of $(z_1, z_2)$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:C-all-d}, upper half]
+Fix $c_+ > c_\Omega$, and $\theta_0, \eta_1 > 0$ with $(1 - \theta_0)^d(m_\Omega - \eta_1)c_+/d! \ge d^2 + 2\eta_1$. Let $\eps = c_+\log n/n^d$ and
+$\lambda = (1 - \theta_0)n/|\Omega|$. By Lemma~\ref{lem:C-density}, for large $n$ and all $z \in \Omega$,
+$\Pr(\dist(z, H) < \eps - \delta) \ge (m_\Omega - \eta_1)(\eps - \delta)$, so by Lemma~\ref{lem:C-sand}(ii)
+\[
+  \mu_{\CB_\Cin(z)} \ge (1 - \lambda\eta^d)^d\bigl(\mu_z(\eps - \delta) - o(1)\bigr) \ge \frac{(1 - \theta_0)^dn^d}{d!}(m_\Omega - \eta_1)(\eps - \delta) - o(1)
+  \ge (d^2 + \eta_1)\log n.
+\]
+By Lemma~\ref{lem:C-janson} with $z = z'$, $\Delta_J \le Cn^{2d-1}\eps^2\log n = O((\log n)^3/n)$, so
+$\Pr(E_z) \le n^{-d^2 - \eta_1 + o(1)}$, uniformly in $z$. Let $\Gamma$ be the nearest-point projections onto $\Omega$ of the points
+of a cubic grid of spacing $\eps/(\sqrt d\log n)$ within $\eps/\log n$ of $\Omega$; as this projection is $1$-Lipschitz and fixes
+$\Omega$, $\Gamma$ is an $(\eps/\log n)$-net of $\Omega$, and $|\Gamma| \le C'(\log n/\eps)^d \le C''n^{d^2}$. So
+$\Pr(E_z\text{ for some }z \in \Gamma) \to 0$, and off this event every point of $\Omega$ is within $\eps(1 + 1/\log n)$ of a
+hyperplane spanned by $d$ points of $\Pi$. By Chebyshev $\Pr(N > n) \to 0$, and on $\{N \le n\}$, $\Pi$ is an initial segment
+of $(X_i) = (Y_i)_{i \le n}$; so $\Pr(\rho_\Omega \le (c_+ + o(1))\log n/n^d) \to 1$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:C-all-d}, lower half]
+Fix $0 < c_0 < c_\Omega$, and $\theta_0, \eta_1 > 0$ with $C_4c_0 \le d^2 - 2\eta_1$ for $C_4 = (1 + \theta_0)^d(m_\Omega + \eta_1)/d!$. Let
+$z_0 \in \Omega$ with $h_\Omega(z_0) = m_\Omega$. By Lemma~\ref{lem:C-density} there are $r \in (0, \Delta]$ and $t_1 > 0$ with
+$\Pr(\dist(z, H) < t) \le (m_\Omega + \eta_1)t$ for $z \in \Omega \cap B(z_0, r)$ and $0 < t \le t_1$; and $\Omega \cap B(z_0, r)$ contains a ball
+$B(z_1, r_1)$ (with $\tau = r/(2\Delta + 2r_0)$, take $z_1 = z_0 + \tau(o - z_0)$, $r_1 = \tau r_0$; it lies in the convex hull of $z_0$ and
+$B(o, r_0)$). Let $\eps = c_0\log n/n^d$, $\lambda = (1 + \theta_0)n/|\Omega|$, $s = (\log n)^3/n^d$ and $T = s\Z^d \cap B(z_1, r_1)$, so
+$|T| \ge c_4s^{-d} = c_4n^{d^2}(\log n)^{-3d}$ and distinct test points are at distance $\ge s$.
+\emph{Mean:} for $z \in T$, $\mu_z(\eps + \delta) \le (\lambda^d/d!)|\Omega|^d(m_\Omega + \eta_1)(\eps + \delta) \le C_4c_0\log n\,(1 + o(1))$, uniformly in $z$.
+\emph{One point:} the events $\{\prod_iI_{k_i} = 0\}$ are decreasing, so by [H], Lemma~\ref{lem:C-sand} and
+$\log(1 - w) \ge -w(1 + w)$ ($w \le \frac12$),
+$\Pr(E_z) \ge \exp(-(1 + \lambda^d\eta^{d^2})(\mu_z(\eps + \delta) + o(1))) - \Pr(\mathrm{Two}) \ge (1 - o(1))e^{-\mu_z(\eps + \delta)}$, since
+$\Pr(\mathrm{Two}) \le Cn^2\eta^d = o(n^{-C_4c_0-1})$.
+\emph{Shell:} by Lemma~\ref{lem:C-one}, $\mu_z(\eps + \delta) - \mu_z(\eps - \delta) \le Cn^d(\delta + \eps^2) = o(1)$.
+\emph{Two points:} for distinct $x, y \in T$, Lemmas~\ref{lem:C-sand}(iii) and \ref{lem:C-two} give
+$\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}\prod a \le Cn^d\eps^2/s = O(1/\log n)$. In Lemma~\ref{lem:C-janson},
+by inclusion--exclusion over $\CB_\Cin(x) \cup \CB_\Cin(y)$, $p_k \ge \lambda a_k(1 - \lambda\eta^d)$, Lemma~\ref{lem:C-sand}(ii) and
+$\mu_z(\eps) = O(\log n)$,
+$\mu_\CB \ge (1 - \lambda\eta^d)^d\bigl(\mu_x(\eps - \delta) + \mu_y(\eps - \delta) - o(1)\bigr) \ge \mu_x(\eps - \delta) + \mu_y(\eps - \delta) - o(1)$,
+and $\Delta_J = o(1)$; with the shell bound, $\Pr(E_x \cap E_y) \le (1 + o(1))\Pr(E_x)\Pr(E_y)$, uniformly in $x \ne y \in T$
+(the constants in Lemmas~\ref{lem:C-one}--\ref{lem:C-two} and the $o(1)$ of Lemma~\ref{lem:C-sand} do not depend on the points).
+\emph{Second moment:} for $Z = \sum_{z \in T}\Cone_{E_z}$, $\E Z \ge c_4n^{d^2}(\log n)^{-3d}(1 - o(1))n^{-C_4c_0(1 + o(1))} \to \infty$ as
+$C_4c_0 \le d^2 - 2\eta_1$, and $\E Z^2 \le \E Z + (1 + o(1))(\E Z)^2$, so $\Pr(Z = 0) \to 0$.
+\emph{De-Poissonization:} $\Pr(N < n) \to 0$, and on $\{N \ge n\}$, $(X_i)$ is an initial segment of $\Pi$, so $E_z$ implies
+that no hyperplane spanned by $d$ of the $X_i$ is within $\eps$ of $z$, i.e.\ $\rho_\Omega \ge \eps = c_0\log n/n^d$.
+\end{proof}
+
+\begin{remark}[The plane]\label{rem:C-plane}
+For $d = 2$, $F$ is the point $U_1$ and $f_{U_1}(\varphi) = (a^2 + b^2)/(2|\Omega|)$, where $a, b$ are the distances from $U_1$ to
+$\partial\Omega$ along the line in direction $\varphi$. In polar coordinates about $z$, with $A(\theta)$ and $A(\theta + \pi)$ the distances
+from $z$ to $\partial\Omega$ in directions $\theta$ and $\theta + \pi$, and $L_z(\theta) = A(\theta) + A(\theta + \pi)$ the chord through $z$,
+\[
+  h_\Omega(z) = \frac1{|\Omega|^2}\int_0^{2\pi}\!\!\int_0^{A(\theta)}\bigl((A(\theta) - r)^2 + (A(\theta + \pi) + r)^2\bigr)\,dr\,d\theta
+  = \frac{2}{3|\Omega|^2}\int_0^\pi L_z(\theta)^3\,d\theta,
+\]
+pairing $\theta$ with $\theta + \pi$. So $c_\Omega = 12|\Omega|^2/\min_{z \in \Omega}\int_0^\pi L_z(\theta)^3\,d\theta$. For the unit disc,
+$L_z(\theta) = 2(1 - |z|^2\sin^2\theta)^{1/2}$ is smallest for $|z| = 1$, where $\int_0^\pi L^3 = 8\int_0^\pi|\cos\theta|^3\,d\theta = 32/3$;
+so $n^2\rho/\log n \to 9\pi^2/8 \approx 11.10$ in probability. (Floating point: Monte Carlo estimates of
+$\Pr(\dist(z, H) < t)/t$ at $t = 0.002$ from $4\cdot10^7$ pairs, standard error about $0.3\%$, agree with $h_\Omega$ at
+$|z| = 0, 0.5, 0.9, 1$ within about two standard errors, and the medians of $n^2\rho/\log n$ for $8 \le n \le 40$ are about
+$10$ to $12$.)
+\end{remark}

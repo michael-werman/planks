@@ -1,0 +1,1 @@
+{"file": "certificates/d3_l6b_t8.json", "n": 1596, "N": 301206620, "d": 3, "all_residues_covered": true, "missing": 0, "density": 0.07409106741672178, "verify_runtime_s": 27.1}
