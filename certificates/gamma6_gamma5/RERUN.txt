@@ -1,6 +1,16 @@
-Re-run after the referee fixes (cert.c choose_split guard, runpar.sh checks), 2026-11-24, same machine type.
-C1: ./runpar.sh 6 64256 -> exit 0; node and prune counts identical to RECORD.txt (27,631,561 nodes, UNRESOLVED 0).
-C2 and C3 re-runs were stopped at the author's request; their original runs are in run_n6_64918.txt and run_n5_100488.txt.
+Reruns of the certificates with the final code (cert.c and runpar.sh as committed here; sha256 in
+sha256_postfix.txt). The original runs in RECORD.txt used earlier versions (sha256.txt); the later changes
+(a guard against an out-of-range index in choose_split, and exit-status checks in runpar.sh) do not alter
+any pruning decision, and every node and prune count below agrees with RECORD.txt.
+
+1. 2026-11-24: C1 (gamma_6 >= 12.55 deg), ./runpar.sh 6 64256: exit 0, 27,631,561 nodes, UNRESOLVED 0.
+   Output below.
+2. 2026-11-24: table built and fully checked, C1, C2, C3, upper bounds, hexagon and gamma_5 brackets, seeds and
+   both blown-up bases, in order: every run exits 0 and reproduces the original counts.
+   Full log: RERUN_full_log_2026-11-24.txt.
+3. 2026-11-25: table rebuilt (same sha256) and fully checked; C3 (gamma_5 >= 19.6265 deg) and C2
+   (gamma_6 >= 12.6792 deg) rerun: 1,086,476 and 45,959,045 nodes, UNRESOLVED 0, prune counts identical.
+   Full log: RERUN_final_code_2026-11-25.txt.
 
 --- output ---
 n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=0 d0=14 frontier=7538
@@ -13,10 +23,3 @@ DFS: boxes=2..7538 step 4 nodes=7392396 D=1027795 P=38674 J=251855 M=2378816 UNR
 n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=3 d0=14 frontier=7538
 DFS: boxes=3..7538 step 4 nodes=6540030 D=872502 P=43913 J=202166 M=2152376 UNRESOLVED=0 maxdepth=64 cpu=137.5s
 TOTAL n=6 THETA=64256 units = 12.5500000000 deg : {'nodes': 27631561, 'D': 3758360, 'P': 166704, 'J': 962362, 'M': 8928355, 'UNRESOLVED': 0} cpu=579.4s wall=162.6s
-
---- update 2026-11-24 (round 11) ---
-The C2 and C3 re-runs were later done on branch claude/clever-euler-qh8bho with the post-fix code in this
-folder: both reproduced the original node and prune counts exactly (C2 45,959,045 nodes, C3 1,086,476
-nodes, UNRESOLVED 0). Full log: ../RERUN_2026-11-24.txt. Note: sha256.txt lists the hashes of the
-pre-fix cert.c and runpar.sh that made the original runs; the hashes of the committed post-fix files used
-for all re-runs are in sha256_postfix.txt. Paths in RECORD.txt refer to the original scratch layout.

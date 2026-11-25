@@ -1,31 +1,68 @@
-\section{Proofs for random points (Theorem E)}\label{app:C}
+\documentclass[11pt]{article}
+\input{macros}
 
-% Local notation for this appendix.
-\newcommand{\Cone}{\mathbf{1}}
-\newcommand{\Cout}{\mathrm{out}}
-\newcommand{\Cin}{\mathrm{in}}
-\newcommand{\CB}{\mathcal{B}}
+\title{Random spanned hyperplanes and the covering radius of a convex body}
+\author{Michael Werman}
+\date{}
 
-% Projection and affine hull.
-\newcommand{\Cpr}{\operatorname{pr}}
-\newcommand{\Caff}{\operatorname{aff}}
+\begin{document}
+\maketitle
 
-Section~\ref{sec:C-all-d} proves Theorem~E in every dimension, both halves by one argument: Poissonization,
-discretization into tiny cells, and Janson's inequality, which bounds the probability that a fixed point is
-uncovered from above (upper half, with a union bound over a net) and, with Harris's inequality, from both
-sides (lower half, with a second moment over test points). Both halves give the same constant, so
-$n^d\rho_\Omega/\log n$ converges in probability.
+\begin{abstract}
+Let $\Omega\subset\R^d$ ($d\ge2$) be a convex body, let $X_1,\dots,X_n$ be independent uniform points of $\Omega$, and let
+$\rho_\Omega$ be the covering radius of $\Omega$ by the hyperplanes spanned by $d$ of the points, that is, the largest distance
+from a point of $\Omega$ to the nearest such hyperplane. We prove that $n^d\rho_\Omega/\log n\to c_\Omega=d^2\,d!/\min_\Omega h_\Omega$
+in probability, where $h_\Omega(z)=\lim_{t\to0}\Pr(\dist(z,H)<t)/t$ for the hyperplane $H$ through $d$ independent uniform
+points of $\Omega$. In the plane $c_\Omega=12|\Omega|^2/\min_{z\in\Omega}\int_0^\pi L_z(\theta)^3\,d\theta$, where $L_z(\theta)$ is the
+length of the chord through $z$ in direction $\theta$, and for the unit disc $c_\Omega=9\pi^2/8$. So random points lose a
+logarithmic factor against the best placements, whose covering radius is of order $n^{-d}$. The proof Poissonizes,
+discretizes $\Omega$ into tiny cells, bounds the probability that a point is uncovered by the Harris and Janson
+inequalities, and finishes the lower bound with a second moment over test points.
+\end{abstract}
 
-\paragraph{Cited theorems.} \emph{[H] Harris \cite{Harris}:} for independent $0/1$ variables and decreasing
-events $A_1, \dots, A_k$, $\Pr(A_1 \cap \dots \cap A_k) \ge \prod \Pr(A_i)$ (as quoted in \cite{ZhaoNotes}, Corollary~7.1.6). \emph{[J] Janson \cite{Janson}:} let $R$ be
-a random subset of a finite set, each element included independently, $S_1, \dots, S_k$ sets,
-$A_i = \{S_i \subseteq R\}$, $\mu = \sum_i\Pr(A_i)$ and $\Delta_J = \sum\Pr(A_i \cap A_j)$ over ordered pairs $i \ne j$
-with $S_i \cap S_j \ne \emptyset$; then $\Pr(\text{no }A_i) \le e^{-\mu + \Delta_J}$ (a consequence of \cite{ZhaoNotes},
-Theorem~8.1.2, which has $\Delta_J/2$).
+\section{Introduction}\label{sec:intro}
 
-%======================================================================
-\subsection{Every dimension: \texorpdfstring{$\rho_\Omega=\Theta(\log n/n^d)$}{rho\_Omega = Theta(log n/n\textasciicircum d)} with high probability}
-\label{sec:C-all-d}\label{sec:C-upper}\label{sec:C-convex}\label{sec:C-lower}
+Take $n$ points in a convex body $\Omega\subset\R^d$ and the hyperplanes spanned by $d$ of them. How far from all
+these hyperplanes can a point of $\Omega$ be? When the points are placed well, the answer is of order $n^{-d}$: for
+the unit ball, Bang's solution of Tarski's plank problem \cite{Bang} shows that the slabs of half-width $\eps$
+around $k$ hyperplanes cannot cover the ball unless $\eps\ge1/k$, so the covering radius is at least
+$1/\binom nd$, and clusters of points built from additive bases of cyclic groups give $O(n^{-d})$
+\cite{Companion}. Here we ask the same question for random points.
+
+Let $X_1,\dots,X_n$ be independent and uniform in $\Omega$, and let $\rho_\Omega$ be the largest distance from a point of
+$\Omega$ to the nearest hyperplane spanned by $d$ of the $X_i$. Our main result, Theorem~\ref{thm:main}, says that
+$n^d\rho_\Omega/\log n$ converges in probability to an explicit constant $c_\Omega$. It is $d^2\,d!$ divided by the
+smallest value over $\Omega$ of $h_\Omega(z)$, the density at $0$ of the distance from $z$ to a random spanned
+hyperplane. In the plane $h_\Omega$ is a chord-power integral, and for the unit disc the limit is
+$9\pi^2/8\approx11.10$ (Corollary~\ref{cor:plane}). So random points lose exactly a logarithmic factor against the
+best placements, and the constant is set by the points of $\Omega$ that random hyperplanes reach least often; in
+the disc these are the boundary points.
+
+The theorem is a coverage threshold, in the spirit of Janson's results on random coverings
+\cite{Janson86}: there, $n$ independent random small sets cover a fixed body, and the number needed has a
+logarithmic correction with an explicit constant. The difference here is that the covering sets, the slabs around
+spanned hyperplanes, are not independent: there are $\binom nd$ of them, built from only $n$ random points, and two of
+them are dependent whenever their $d$-sets share a point. We are not aware of earlier results on the covering
+radius of hyperplanes spanned by random points. For independent random lines in the plane (a Poisson line process), the
+largest inradius of the cells, which is the covering radius of the arrangement, was studied by Chenavier and Hemsley
+\cite{CH}.
+
+The proof uses only elementary geometry and two correlation inequalities. After Poissonization and a
+discretization of $\Omega$ into tiny cells, the event that a point $z$ is uncovered becomes an event on
+independent occupancy indicators. Harris's inequality \cite{Harris} and Janson's inequality \cite{Janson} then
+estimate its probability by $e^{-\mu_z}$, where $\mu_z$ is the mean number of spanned hyperplanes near $z$; see
+\cite[Sections~6.2 and~8.1]{AS} for both inequalities. The upper bound follows by a union bound over a net, and the
+lower bound by a second moment over test points near a minimiser of $h_\Omega$. The geometric input is a set of
+estimates for hyperplanes spanned by random points: the density $h_\Omega$ (Lemma~\ref{lem:density}), and the
+bound $O(t^2/|x-y|)$ for the probability that a random spanned hyperplane passes within $t$ of two points $x$ and
+$y$ (Lemma~\ref{lem:two}).
+
+Section~\ref{sec:main} states the results and outlines the proof. Section~\ref{sec:geom} proves the geometric lemmas,
+Section~\ref{sec:poisson} sets up the Poissonization, and Sections~\ref{sec:upper} and~\ref{sec:lower} prove the two
+halves of Theorem~\ref{thm:main}. Section~\ref{sec:plane} treats the plane, and Section~\ref{sec:remarks} collects
+remarks and open questions.
+
+\section{Main result}\label{sec:main}
 
 \paragraph{Definitions.} $d \ge 2$; $\Omega \subset \R^d$ is a convex body, $|\cdot|$ is volume, $\Delta = \operatorname{diam}\Omega$,
 and $B(o, r_0) \subset \Omega$ is a fixed ball. Constants depend only on $d$ and $\Omega$ (through $d$, $\Delta$,
@@ -36,17 +73,58 @@ $\Omega$ (almost surely every $d$ of them are affinely independent, as affinely 
 null set), and $\rho_\Omega = \max_{x \in \Omega}\min_Q\dist(x, H(X_Q))$ over the $d$-subsets $Q$. $U, U_1, U_2, \dots$
 denote independent uniform points of $\Omega$, and $H = H(U_1, \dots, U_d)$.
 
-\begin{proposition}\label{prop:C-all-d}
+Our main result is the following.
+
+\begin{theorem}\label{thm:main}
 The limit $h_\Omega(z) = \lim_{t \to 0}\Pr(\dist(z, H) < t)/t$ exists uniformly in $z \in \Omega$, and $h_\Omega$ is
-continuous and positive on $\Omega$ (Lemma~\ref{lem:C-density}). With $m_\Omega = \min_\Omega h_\Omega$ and
+continuous and positive on $\Omega$ (Lemma~\ref{lem:density}). With $m_\Omega = \min_\Omega h_\Omega$ and
 $c_\Omega = d^2\,d!/m_\Omega$, for every $\xi > 0$
 \[
   \Pr\bigl((c_\Omega - \xi)\log n/n^d \le \rho_\Omega \le (c_\Omega + \xi)\log n/n^d\bigr) \to 1,
 \]
 that is, $n^d\rho_\Omega/\log n \to c_\Omega$ in probability.
-\end{proposition}
+\end{theorem}
 
-\begin{lemma}[Cones]\label{lem:C-cone}
+For $d=2$ the limit constant has a closed form in terms of the chords of $\Omega$.
+
+\begin{corollary}\label{cor:plane}
+Let $d=2$. Then $c_\Omega=12|\Omega|^2/\min_{z\in\Omega}\int_0^\pi L_z(\theta)^3\,d\theta$, where $L_z(\theta)$ is the length of the
+chord through $z$ in direction $\theta$. For the unit disc, $n^2\rho_\Omega/\log n\to9\pi^2/8\approx11.10$ in probability.
+\end{corollary}
+
+Corollary~\ref{cor:plane} is proved in Section~\ref{sec:plane}.
+
+\paragraph{Outline of the proof.}
+Both halves of Theorem~\ref{thm:main} are proved by one argument: Poissonization, discretization into tiny cells, and
+Janson's inequality, which bounds the probability that a fixed point is uncovered from above (upper half, with a
+union bound over a net) and, with Harris's inequality, from both sides (lower half, with a second moment over test
+points). Both halves give the same constant, so $n^d\rho_\Omega/\log n$ converges in probability.
+
+In more detail, Poissonize with mean $(1\mp\theta_0)n$ and discretize $\Omega$ into tiny cells (Section~\ref{sec:poisson}):
+then ``$x$ is uncovered'' becomes ``no $d$-set of cells from a fixed family is fully occupied'', an event on independent
+occupancy indicators, and the mean number $\mu_x$ of spanned hyperplanes within $\eps$ of $x$ is of order $n^d\eps$. The
+geometric input (Section~\ref{sec:geom}) is that the hyperplane through $d$ uniform points of $\Omega$ passes within $t$ of
+a given point $z$ with probability $h_\Omega(z)t+o(t)$, uniformly in $z$: given the first $d-1$ points, the last must make
+the hyperplane's angle in the pencil through their $(d-2)$-flat fall in an interval of length about $t$ divided by the
+distance to that flat.
+\begin{itemize}
+\item \textbf{Upper bound} (Section~\ref{sec:upper}). Janson's inequality \cite{Janson} gives
+$\Pr(x\text{ uncovered})\le e^{-\mu_x+\Delta_J}$, where $\Delta_J=O((\log n)^3/n)$ because two $d$-sets sharing cells rarely
+both pass near $x$. For $\eps=c_+\log n/n^d$ with $c_+>c_\Omega$, $\mu_x>(d^2+\eta_1)\log n$ for every $x$, and a union bound
+over a net of about $n^{d^2}$ points finishes the proof.
+\item \textbf{Lower bound} (Section~\ref{sec:lower}). Harris's inequality \cite{Harris} gives
+$\Pr(x\text{ uncovered})\ge(1-o(1))e^{-\mu_x}$. A hyperplane passes within $t$ of two points at distance $r$ with
+probability $O(t^2/r)$, so Janson makes test points at distance $\ge(\log n)^3/n^d$ almost independent, and a second
+moment over about $n^{d^2}$ test points placed near a minimiser of $h_\Omega$ finds an uncovered one when
+$\mu_x<(d^2-\eta_1)\log n$, i.e.\ for $\eps=c_0\log n/n^d$ with any $c_0<c_\Omega$.
+\end{itemize}
+
+\section{Geometric lemmas}\label{sec:geom}
+
+This section collects the geometric estimates on hyperplanes and flats spanned by uniform points of $\Omega$; the
+notation and the conventions on constants are those of Section~\ref{sec:main}.
+
+\begin{lemma}[Cones]\label{lem:cone}
 Let $G$ be an affine flat of dimension $g \le d - 2$ meeting $\Omega$, $p \in G$, and $m = d - g$. For a direction
 $a \perp G$ and $0 < \alpha \le \pi/2$, the set of $u \in \Omega$ for which the component of $u - p$ orthogonal to
 $G$ makes an angle $< \alpha$ with the line $\R a$ has volume at most $C\alpha^{m-1}$.
@@ -58,7 +136,7 @@ direction space of $G$ and its complement. Then $|u'|, |u''| \le \Delta$, and $u
 half-angle $\alpha$, intersected with $B(0, \Delta)$, of volume at most $c_m\alpha^{m-1}\Delta^m$; Fubini finishes.
 \end{proof}
 
-\begin{lemma}[Flat tails]\label{lem:C-flat}
+\begin{lemma}[Flat tails]\label{lem:flat}
 For $1 \le k \le d - 1$, $x \in \R^d$ and $r > 0$, $\Pr(\dist(x, \Caff(U_1, \dots, U_k)) < r) \le Cr^{d-k+1}$.
 \end{lemma}
 
@@ -67,7 +145,7 @@ Induction on $k$; for $k = 1$, $\Pr(|U_1 - x| < r) \le \kappa_dr^d/|\Omega|$. Fo
 $G = \Caff(U_1, \dots, U_{k-1})$, $D = \dist(x, G)$ and $\Cpr$ the orthogonal projection onto the complement of the
 direction space of $G$ (dimension $d - k + 2$ almost surely). Then $\dist(x, \Caff(G, U))$ is the distance from
 $\Cpr x$ to the line through $\Cpr G$ and $\Cpr U$, and if it is $< r < D$, the angle between $\Cpr U - \Cpr G$ and
-$\Cpr x - \Cpr G$ is $< \arcsin(r/D) \le \pi r/(2D)$. By Lemma~\ref{lem:C-cone},
+$\Cpr x - \Cpr G$ is $< \arcsin(r/D) \le \pi r/(2D)$. By Lemma~\ref{lem:cone},
 $\Pr(\dist(x, \Caff(G, U_k)) < r \mid G) \le \min(1, C(r/D)^{d-k+1})$, so
 \[
   \Pr\bigl(\dist(x, \Caff(U_1, \dots, U_k)) < r\bigr) \le \Pr(D < 2r) + Cr^{d-k+1}\E\bigl[D^{-(d-k+1)}\Cone\{D \ge 2r\}\bigr].
@@ -76,7 +154,7 @@ By induction $\Pr(D < \rho) \le C\rho^{d-k+2}$, so the first term is $\le Cr^{d-
 trivial), and $\E D^{-(d-k+1)} = \int_0^\infty\Pr(D < y^{-1/(d-k+1)})\,dy < \infty$.
 \end{proof}
 
-\begin{lemma}[Pencils]\label{lem:C-pencil}
+\begin{lemma}[Pencils]\label{lem:pencil}
 Let $F$ be a $(d-2)$-flat meeting $\Omega$ and $\Phi$ the angle (mod $\pi$) of the hyperplane $\Caff(F, U)$ in the
 pencil of hyperplanes containing $F$. Then $\Pr(\Phi \in I \mid F) \le C|I|$, and for every $z \in \R^d$,
 $\dist(z, \Caff(F, U)) = D_z|\sin(\Phi - \varphi_z)|$, where $D_z = \dist(z, F)$ and $\varphi_z$ is the angle of
@@ -90,16 +168,16 @@ sector of angle $|I|$ and radius $\Delta$, and Fubini gives volume $\le \kappa_{
 formula is the distance from $\Cpr z$ to a line through $\Cpr F$.
 \end{proof}
 
-\begin{lemma}[One point]\label{lem:C-one}
+\begin{lemma}[One point]\label{lem:one}
 Let $t_0 = \Delta$. For $x \in \R^d$ and $t > 0$, $\Pr(\dist(x, H) < t) \le Ct$. For $x \in \Omega$ and
 $0 < t \le t_0$, $\Pr(\dist(x, H) < t) \ge c_1t$. For $x \in \R^d$ and $0 < \delta \le t$,
 $\Pr(t - \delta \le \dist(x, H) < t + \delta) \le C\delta + Ct^2$.
 \end{lemma}
 
 \begin{proof}
-Condition on $F = \Caff(U_1, \dots, U_{d-1})$ and put $D = D_x$. By Lemma~\ref{lem:C-pencil} the $\Phi$-set has measure
+Condition on $F = \Caff(U_1, \dots, U_{d-1})$ and put $D = D_x$. By Lemma~\ref{lem:pencil} the $\Phi$-set has measure
 $\le 2\arcsin\min(1, t/D)$, so $\Pr(\dist(x, H) < t \mid F) \le C\min(1, t/D)$, and $\E D^{-1} < \infty$ by
-Lemma~\ref{lem:C-flat} ($k = d - 1$, exponent $2$). For the lower bound, let $U_1, \dots, U_{d-1}$ lie in
+Lemma~\ref{lem:flat} ($k = d - 1$, exponent $2$). For the lower bound, let $U_1, \dots, U_{d-1}$ lie in
 $B(o, r_0/2)$ (probability $\ge c$), so $D \le \Delta$ and the $\Phi$-set contains an interval of length $\ge 2t/\Delta$;
 the points $v$ whose projection $\Cpr v$ lies in the double sector of that angle at $\Cpr F$ with radius $r_0/4$
 (inside $\Cpr B(o, 3r_0/4)$, as $|\Cpr F - \Cpr o| = \dist(o, F) \le r_0/2$) have fibres in $B(o, r_0)$ of
@@ -108,7 +186,7 @@ $\{D \ge 4t\}$, $(t + \delta)/D \le \frac12$ and $\arcsin' \le 2/\sqrt3$ there, 
 $\le 6\delta/D$; and $\Pr(D < 4t) \le Ct^2$.
 \end{proof}
 
-\begin{lemma}[Density at $0$]\label{lem:C-density}
+\begin{lemma}[Density at $0$]\label{lem:density}
 $\Pr(\dist(z, H) < t)/t$ converges, as $t \to 0$ and uniformly in $z \in \Omega$, to a continuous function $h_\Omega$ with
 $h_\Omega \ge c_1$ on $\Omega$.
 \end{lemma}
@@ -127,16 +205,16 @@ continuous. Now $\Pr(\dist(z, H) < t \mid F) = \int_{I}f_F$ over the arc $I$ of 
 about $\varphi_z$. On $\{D_z \ge \delta_1\}$ and for $t < \delta_1$, $2\alpha/t \to 2/D_z$ and the mean of $f_F$ over $I$ tends to
 $f_F(\varphi_z)$, both uniformly in $z$, as $z \mapsto (D_z, \varphi_z)$ is continuous there; so
 $t^{-1}\Pr(\dist(z, H) < t \mid F) \to g_F(z) = 2f_F(\varphi_z)/D_z$ uniformly on $\{z : D_z \ge \delta_1\}$. Both sides are
-$\le CM/D_z$, and $\E[D_z^{-1}\Cone\{D_z < \delta_1\}] \le C\delta_1$ uniformly in $z$ ($\Pr(D_z < \rho) \le C\rho^2$, Lemma~\ref{lem:C-flat}).
+$\le CM/D_z$, and $\E[D_z^{-1}\Cone\{D_z < \delta_1\}] \le C\delta_1$ uniformly in $z$ ($\Pr(D_z < \rho) \le C\rho^2$, Lemma~\ref{lem:flat}).
 So $S_t(F) = \sup_z|t^{-1}\Pr(\dist(z, H) < t \mid F) - g_F(z)|\,\Cone\{D_z \ge \delta_1\}$ (a supremum over a countable dense set
 of $z$, by continuity) tends to $0$ almost surely and is $\le CM/\delta_1$; hence $\E S_t(F) \to 0$, and
 $\sup_z|t^{-1}\Pr(\dist(z, H) < t) - \E g_F(z)| \le \E S_t(F) + 2C\delta_1$. Letting $t \to 0$ and then $\delta_1 \to 0$,
 $t^{-1}\Pr(\dist(z, H) < t) \to h_\Omega(z) = \E g_F(z)$ uniformly. If $z_k \to z$, then $g_F(z_k) \to g_F(z)$ almost surely,
 and the $g_F(z_k)$ are uniformly integrable (they are $\le CM/D_{z_k}$), so $h_\Omega$ is continuous; $h_\Omega \ge c_1$ by
-Lemma~\ref{lem:C-one}.
+Lemma~\ref{lem:one}.
 \end{proof}
 
-\begin{lemma}[Pairs sharing points]\label{lem:C-share}
+\begin{lemma}[Pairs sharing points]\label{lem:share}
 Let $1 \le j \le d - 1$, $S = (U_1, \dots, U_j)$, $A = (U_{j+1}, \dots, U_d)$, $A' = (U'_{j+1}, \dots, U'_d)$, all
 independent, and $z, z' \in \Omega$. For $0 < t \le \frac12$,
 $\Pr(\dist(z, H(S, A)) < t,\ \dist(z', H(S, A')) < t) \le Ct^2(1 + \log(1/t))$.
@@ -144,21 +222,21 @@ $\Pr(\dist(z, H(S, A)) < t,\ \dist(z', H(S, A')) < t) \le Ct^2(1 + \log(1/t))$.
 
 \begin{proof}
 Given $S$ the two events are independent, with conditional probabilities $p_z(S)$, $p_{z'}(S)$, so the probability is
-$\E[p_zp_{z'}] \le (\E p_z^2)^{1/2}(\E p_{z'}^2)^{1/2}$. Write $A = (A_1, a)$; by Lemma~\ref{lem:C-pencil}, conditioning
+$\E[p_zp_{z'}] \le (\E p_z^2)^{1/2}(\E p_{z'}^2)^{1/2}$. Write $A = (A_1, a)$; by Lemma~\ref{lem:pencil}, conditioning
 also on $A_1$, $p_z(S) \le \E[\min(1, Ct/D) \mid S]$ with $D = \dist(z, \Caff(S, A_1))$, the distance to a
-$(d-2)$-flat through $d - 1$ random points. By Jensen and Lemma~\ref{lem:C-flat} ($\Pr(D < \rho) \le C\rho^2$),
+$(d-2)$-flat through $d - 1$ random points. By Jensen and Lemma~\ref{lem:flat} ($\Pr(D < \rho) \le C\rho^2$),
 $\E p_z^2 \le \E\min(1, Ct/D)^2 \le \Pr(D < Ct) + Ct^2\int_0^{(Ct)^{-2}}\min(1, C/y)\,dy \le Ct^2(1 + \log(1/t))$.
 \end{proof}
 
-\begin{lemma}[Two test points]\label{lem:C-two}
+\begin{lemma}[Two test points]\label{lem:two}
 For $x \ne y$ in $\Omega$ and $t > 0$, $\Pr(\dist(x, H) < t,\ \dist(y, H) < t) \le Ct^2/|x - y|$.
 \end{lemma}
 
 \begin{proof}
-Condition on $F = \Caff(U_1, \dots, U_{d-1})$, with $D_z, \varphi_z$ as in Lemma~\ref{lem:C-pencil}. Both events need
+Condition on $F = \Caff(U_1, \dots, U_{d-1})$, with $D_z, \varphi_z$ as in Lemma~\ref{lem:pencil}. Both events need
 $|\sin(\Phi - \varphi_z)| < t/D_z$ for $z = x, y$, and the two sets of such $\Phi$ have measures $2\arcsin\min(1, t/D_z) \le \pi t/D_z$, so their intersection has measure
 $\le \pi t/\max(D_x, D_y)$, and if it is nonempty,
-$|\sin(\varphi_x - \varphi_y)| < t/D_x + t/D_y \le 2t/\min(D_x, D_y)$. By Lemma~\ref{lem:C-pencil},
+$|\sin(\varphi_x - \varphi_y)| < t/D_x + t/D_y \le 2t/\min(D_x, D_y)$. By Lemma~\ref{lem:pencil},
 $\dist(y, \Caff(F, x)) = D_y|\sin(\varphi_x - \varphi_y)|$ and $\dist(x, \Caff(F, y)) = D_x|\sin(\varphi_x - \varphi_y)|$, so
 \begin{gather*}
   \Pr(\dist(x, H) < t,\ \dist(y, H) < t) \le Ct\,(J_{x,y} + J_{y,x}),\\
@@ -184,7 +262,7 @@ of uniform points to flats of dimension $\le d - 2$; as $\E[\dist(U, L)^{-1}] \l
 $\le d - 2$ (its $r$-neighbourhood meets $\Omega$ in volume $\le Cr^2$), conditioning in turn gives $J_{x,y} \le Ct/|x - y|$.
 \end{proof}
 
-\begin{lemma}[Perturbation]\label{lem:C-pert}
+\begin{lemma}[Perturbation]\label{lem:pert}
 (a) If $u, u' \in \Omega^d$, $|u_i - u'_i| \le \eta$, $V(u) \ge 2\ell$ and $\eta \le c_2\ell$, then $V(u') \ge \ell$ and
 $|\dist(x, H(u)) - \dist(x, H(u'))| \le C_2\eta/\ell$ for every $x \in \Omega$. (b) $\Pr(V(U_1, \dots, U_d) < \ell) \le C\ell^\gamma$
 with $\gamma = 2^{1-d}$.
@@ -197,6 +275,18 @@ $|f/V - f'/V'| \le |f - f'|/V' + f|V - V'|/(VV') \le C\eta/\ell$. (b) With $V_k$
 $V_k = V_{k-1}\dist(u_k, \Caff(u_1, \dots, u_{k-1}))$, so $\Pr(V_k < \ell) \le \Pr(V_{k-1} < \ell^{1/2}) + C\ell^{1/2}$ (the
 $\ell^{1/2}$-neighbourhood of a flat of dimension $\le d - 2$ meets $\Omega$ in volume $\le C\ell^{1/2}$, $\ell \le 1$); induct.
 \end{proof}
+
+\section{Poissonization, cells and the correlation inequalities}\label{sec:poisson}
+
+We use two correlation inequalities for independent $0/1$ variables, and transfer the problem to such variables by
+Poissonization and a discretization of $\Omega$ into tiny cells.
+
+\paragraph{Cited theorems.} \emph{[H] Harris \cite{Harris}:} for independent $0/1$ variables and decreasing
+events $A_1, \dots, A_k$, $\Pr(A_1 \cap \dots \cap A_k) \ge \prod \Pr(A_i)$ (as quoted in \cite{ZhaoNotes}, Corollary~7.1.6). \emph{[J] Janson \cite{Janson}:} let $R$ be
+a random subset of a finite set, each element included independently, $S_1, \dots, S_k$ sets,
+$A_i = \{S_i \subseteq R\}$, $\mu = \sum_i\Pr(A_i)$ and $\Delta_J = \sum\Pr(A_i \cap A_j)$ over ordered pairs $i \ne j$
+with $S_i \cap S_j \ne \emptyset$; then $\Pr(\text{no }A_i) \le e^{-\mu + \Delta_J}$ (a consequence of \cite{ZhaoNotes},
+Theorem~8.1.2, which has $\Delta_J/2$).
 
 \paragraph{Poissonization and cells.} Fix $\theta_0 \in (0, 1)$, and let $\lambda = (1 - \theta_0)n/|\Omega|$ for the upper half
 and $\lambda = (1 + \theta_0)n/|\Omega|$ for the lower half. $Y_1, Y_2, \dots$ are independent and uniform in $\Omega$,
@@ -212,7 +302,7 @@ Let $\mu_z(t) = (\lambda^d/d!)|\{u \in \Omega^d : V(u) > 0,\ \dist(z, H(u)) < t\
 with hyperplane within $t$ of $z$, and let $E_z$ be the event that no $d$ points of $\Pi$ span a hyperplane at
 distance $< \eps$ from $z$.
 
-\begin{lemma}[Sandwich]\label{lem:C-sand}
+\begin{lemma}[Sandwich]\label{lem:sand}
 (i) $\{\prod_iI_{k_i} = 0\ \forall\{k_i\} \in \CB_\Cout(z)\} \setminus \mathrm{Two} \subseteq E_z \subseteq \{\prod_iI_{k_i} = 0\ \forall\{k_i\} \in \CB_\Cin(z)\}$, up to a
 null event. (ii) Uniformly in $z$, $\lambda^d\sum_{\CB_\Cout(z)}\prod_ia_{k_i} \le \mu_z(\eps + \delta) + o(1)$ and
 $\lambda^d\sum_{\CB_\Cin(z)}\prod_ia_{k_i} \ge \mu_z(\eps - \delta) - o(1)$. (iii) $\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}\prod_ia_{k_i} \le
@@ -227,36 +317,38 @@ within $\eps$ of $z$. (ii) For a family $\CB$ of sets of cells,
   \lambda^d\sum_\CB\prod a = (\lambda^d/d!)\,|\{u : \text{the cells of the }u_i\text{ are distinct and form a set in }\CB\}|.
 \]
 If $V(u) \ge 2\ell$, the cells of $u$ are distinct (two points in one cell give $V(u) \le C\eta < 2\ell$), and by
-Lemma~\ref{lem:C-pert}(a) every $u'$ in the same cells has $V(u') > 0$ and $|\dist(z, H(u')) - \dist(z, H(u))| \le \delta$. So
+Lemma~\ref{lem:pert}(a) every $u'$ in the same cells has $V(u') > 0$ and $|\dist(z, H(u')) - \dist(z, H(u))| \le \delta$. So
 the $\CB_\Cout$-set lies in $\{\dist < \eps + \delta\} \cup \{V < 2\ell\}$ and the $\CB_\Cin$-set contains
 $\{\dist < \eps - \delta\} \setminus \{V < 2\ell\}$, and $(\lambda^d/d!)|\{V < 2\ell\}| \le Cn^d\eta^{\gamma/2} = o(1)$ by
-Lemma~\ref{lem:C-pert}(b). (iii) Every $u$ in the cells of a set in both families is within $\eps$ of $x$ and $y$.
+Lemma~\ref{lem:pert}(b). (iii) Every $u$ in the cells of a set in both families is within $\eps$ of $x$ and $y$.
 \end{proof}
 
-\begin{lemma}[Janson]\label{lem:C-janson}
+\begin{lemma}[Janson]\label{lem:janson}
 For $z, z' \in \Omega$ (possibly equal), $0 < \eps \le \frac12$ and $\CB = \CB_\Cin(z) \cup \CB_\Cin(z')$,
 $\Pr(E_z \cap E_{z'}) \le \exp(-\mu_\CB + \Delta_J)$ with $\mu_\CB = \sum_\CB\prod_ip_{k_i}$ and
 $\Delta_J \le C\sum_{j=1}^{d-1}\lambda^{2d-j}\eps^2(1 + \log(1/\eps))$.
 \end{lemma}
 
 \begin{proof}
-Lemma~\ref{lem:C-sand}(i) and [J], with $S_i$ the sets in $\CB$. Ordered pairs of distinct sets in $\CB$ that meet share
+Lemma~\ref{lem:sand}(i) and [J], with $S_i$ the sets in $\CB$. Ordered pairs of distinct sets in $\CB$ that meet share
 $j \in \{1, \dots, d - 1\}$ cells and contribute at most $\lambda^{2d-j}\prod a$ over their $2d - j$ cells. As in
-Lemma~\ref{lem:C-sand}(iii), every choice of one point per cell gives $d$-tuples $(S, A)$, $(S, A')$ with hyperplanes
+Lemma~\ref{lem:sand}(iii), every choice of one point per cell gives $d$-tuples $(S, A)$, $(S, A')$ with hyperplanes
 within $\eps$ of $z_1$ and $z_2$ ($z_1, z_2 \in \{z, z'\}$), and distinct (pair, ordering of cells) give disjoint product
 regions of $\Omega^{2d-j}$. So these pairs contribute at most $\lambda^{2d-j}|\Omega|^{2d-j}/(j!((d-j)!)^2)$ times the bound of
-Lemma~\ref{lem:C-share}, summed over the four choices of $(z_1, z_2)$.
+Lemma~\ref{lem:share}, summed over the four choices of $(z_1, z_2)$.
 \end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:C-all-d}, upper half]
+\section{Proof of the upper bound}\label{sec:upper}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}, upper half]
 Fix $c_+ > c_\Omega$, and $\theta_0, \eta_1 > 0$ with $(1 - \theta_0)^d(m_\Omega - \eta_1)c_+/d! \ge d^2 + 2\eta_1$. Let $\eps = c_+\log n/n^d$ and
-$\lambda = (1 - \theta_0)n/|\Omega|$. By Lemma~\ref{lem:C-density}, for large $n$ and all $z \in \Omega$,
-$\Pr(\dist(z, H) < \eps - \delta) \ge (m_\Omega - \eta_1)(\eps - \delta)$, so by Lemma~\ref{lem:C-sand}(ii)
+$\lambda = (1 - \theta_0)n/|\Omega|$. By Lemma~\ref{lem:density}, for large $n$ and all $z \in \Omega$,
+$\Pr(\dist(z, H) < \eps - \delta) \ge (m_\Omega - \eta_1)(\eps - \delta)$, so by Lemma~\ref{lem:sand}(ii)
 \[
   \mu_{\CB_\Cin(z)} \ge (1 - \lambda\eta^d)^d\bigl(\mu_z(\eps - \delta) - o(1)\bigr) \ge \frac{(1 - \theta_0)^dn^d}{d!}(m_\Omega - \eta_1)(\eps - \delta) - o(1)
   \ge (d^2 + \eta_1)\log n.
 \]
-By Lemma~\ref{lem:C-janson} with $z = z'$, $\Delta_J \le Cn^{2d-1}\eps^2\log n = O((\log n)^3/n)$, so
+By Lemma~\ref{lem:janson} with $z = z'$, $\Delta_J \le Cn^{2d-1}\eps^2\log n = O((\log n)^3/n)$, so
 $\Pr(E_z) \le n^{-d^2 - \eta_1 + o(1)}$, uniformly in $z$. Let $\Gamma$ be the nearest-point projections onto $\Omega$ of the points
 of a cubic grid of spacing $\eps/(\sqrt d\log n)$ within $\eps/\log n$ of $\Omega$; as this projection is $1$-Lipschitz and fixes
 $\Omega$, $\Gamma$ is an $(\eps/\log n)$-net of $\Omega$, and $|\Gamma| \le C'(\log n/\eps)^d \le C''n^{d^2}$. So
@@ -265,33 +357,38 @@ hyperplane spanned by $d$ points of $\Pi$. By Chebyshev $\Pr(N > n) \to 0$, and 
 of $(X_i) = (Y_i)_{i \le n}$; so $\Pr(\rho_\Omega \le (c_+ + o(1))\log n/n^d) \to 1$.
 \end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:C-all-d}, lower half]
+\section{Proof of the lower bound}\label{sec:lower}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}, lower half]
 Fix $0 < c_0 < c_\Omega$, and $\theta_0, \eta_1 > 0$ with $C_4c_0 \le d^2 - 2\eta_1$ for $C_4 = (1 + \theta_0)^d(m_\Omega + \eta_1)/d!$. Let
-$z_0 \in \Omega$ with $h_\Omega(z_0) = m_\Omega$. By Lemma~\ref{lem:C-density} there are $r \in (0, \Delta]$ and $t_1 > 0$ with
+$z_0 \in \Omega$ with $h_\Omega(z_0) = m_\Omega$. By Lemma~\ref{lem:density} there are $r \in (0, \Delta]$ and $t_1 > 0$ with
 $\Pr(\dist(z, H) < t) \le (m_\Omega + \eta_1)t$ for $z \in \Omega \cap B(z_0, r)$ and $0 < t \le t_1$; and $\Omega \cap B(z_0, r)$ contains a ball
 $B(z_1, r_1)$ (with $\tau = r/(2\Delta + 2r_0)$, take $z_1 = z_0 + \tau(o - z_0)$, $r_1 = \tau r_0$; it lies in the convex hull of $z_0$ and
 $B(o, r_0)$). Let $\eps = c_0\log n/n^d$, $\lambda = (1 + \theta_0)n/|\Omega|$, $s = (\log n)^3/n^d$ and $T = s\Z^d \cap B(z_1, r_1)$, so
 $|T| \ge c_4s^{-d} = c_4n^{d^2}(\log n)^{-3d}$ and distinct test points are at distance $\ge s$.
 \emph{Mean:} for $z \in T$, $\mu_z(\eps + \delta) \le (\lambda^d/d!)|\Omega|^d(m_\Omega + \eta_1)(\eps + \delta) \le C_4c_0\log n\,(1 + o(1))$, uniformly in $z$.
-\emph{One point:} the events $\{\prod_iI_{k_i} = 0\}$ are decreasing, so by [H], Lemma~\ref{lem:C-sand} and
+\emph{One point:} the events $\{\prod_iI_{k_i} = 0\}$ are decreasing, so by [H], Lemma~\ref{lem:sand} and
 $\log(1 - w) \ge -w(1 + w)$ ($w \le \frac12$),
 $\Pr(E_z) \ge \exp(-(1 + \lambda^d\eta^{d^2})(\mu_z(\eps + \delta) + o(1))) - \Pr(\mathrm{Two}) \ge (1 - o(1))e^{-\mu_z(\eps + \delta)}$, since
 $\Pr(\mathrm{Two}) \le Cn^2\eta^d = o(n^{-C_4c_0-1})$.
-\emph{Shell:} by Lemma~\ref{lem:C-one}, $\mu_z(\eps + \delta) - \mu_z(\eps - \delta) \le Cn^d(\delta + \eps^2) = o(1)$.
-\emph{Two points:} for distinct $x, y \in T$, Lemmas~\ref{lem:C-sand}(iii) and \ref{lem:C-two} give
-$\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}\prod a \le Cn^d\eps^2/s = O(1/\log n)$. In Lemma~\ref{lem:C-janson},
-by inclusion--exclusion over $\CB_\Cin(x) \cup \CB_\Cin(y)$, $p_k \ge \lambda a_k(1 - \lambda\eta^d)$, Lemma~\ref{lem:C-sand}(ii) and
+\emph{Shell:} by Lemma~\ref{lem:one}, $\mu_z(\eps + \delta) - \mu_z(\eps - \delta) \le Cn^d(\delta + \eps^2) = o(1)$.
+\emph{Two points:} for distinct $x, y \in T$, Lemmas~\ref{lem:sand}(iii) and \ref{lem:two} give
+$\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}\prod a \le Cn^d\eps^2/s = O(1/\log n)$. In Lemma~\ref{lem:janson},
+by inclusion--exclusion over $\CB_\Cin(x) \cup \CB_\Cin(y)$, $p_k \ge \lambda a_k(1 - \lambda\eta^d)$, Lemma~\ref{lem:sand}(ii) and
 $\mu_z(\eps) = O(\log n)$,
 $\mu_\CB \ge (1 - \lambda\eta^d)^d\bigl(\mu_x(\eps - \delta) + \mu_y(\eps - \delta) - o(1)\bigr) \ge \mu_x(\eps - \delta) + \mu_y(\eps - \delta) - o(1)$,
 and $\Delta_J = o(1)$; with the shell bound, $\Pr(E_x \cap E_y) \le (1 + o(1))\Pr(E_x)\Pr(E_y)$, uniformly in $x \ne y \in T$
-(the constants in Lemmas~\ref{lem:C-one}--\ref{lem:C-two} and the $o(1)$ of Lemma~\ref{lem:C-sand} do not depend on the points).
+(the constants in Lemmas~\ref{lem:one}--\ref{lem:two} and the $o(1)$ of Lemma~\ref{lem:sand} do not depend on the points).
 \emph{Second moment:} for $Z = \sum_{z \in T}\Cone_{E_z}$, $\E Z \ge c_4n^{d^2}(\log n)^{-3d}(1 - o(1))n^{-C_4c_0(1 + o(1))} \to \infty$ as
 $C_4c_0 \le d^2 - 2\eta_1$, and $\E Z^2 \le \E Z + (1 + o(1))(\E Z)^2$, so $\Pr(Z = 0) \to 0$.
 \emph{De-Poissonization:} $\Pr(N < n) \to 0$, and on $\{N \ge n\}$, $(X_i)$ is an initial segment of $\Pi$, so $E_z$ implies
 that no hyperplane spanned by $d$ of the $X_i$ is within $\eps$ of $z$, i.e.\ $\rho_\Omega \ge \eps = c_0\log n/n^d$.
 \end{proof}
 
-\begin{remark}[The plane]\label{rem:C-plane}
+\section{The plane}\label{sec:plane}
+
+\begin{proof}[Proof of Corollary~\ref{cor:plane}]
+We use the notation of the proof of Lemma~\ref{lem:density}.
 For $d = 2$, $F$ is the point $U_1$ and $f_{U_1}(\varphi) = (a^2 + b^2)/(2|\Omega|)$, where $a, b$ are the distances from $U_1$ to
 $\partial\Omega$ along the line in direction $\varphi$. In polar coordinates about $z$, with $A(\theta)$ and $A(\theta + \pi)$ the distances
 from $z$ to $\partial\Omega$ in directions $\theta$ and $\theta + \pi$, and $L_z(\theta) = A(\theta) + A(\theta + \pi)$ the chord through $z$,
@@ -301,8 +398,46 @@ from $z$ to $\partial\Omega$ in directions $\theta$ and $\theta + \pi$, and $L_z
 \]
 pairing $\theta$ with $\theta + \pi$. So $c_\Omega = 12|\Omega|^2/\min_{z \in \Omega}\int_0^\pi L_z(\theta)^3\,d\theta$. For the unit disc,
 $L_z(\theta) = 2(1 - |z|^2\sin^2\theta)^{1/2}$ is smallest for $|z| = 1$, where $\int_0^\pi L^3 = 8\int_0^\pi|\cos\theta|^3\,d\theta = 32/3$;
-so $n^2\rho/\log n \to 9\pi^2/8 \approx 11.10$ in probability. (Floating point: Monte Carlo estimates of
+so $n^2\rho_\Omega/\log n \to 9\pi^2/8 \approx 11.10$ in probability.
+\end{proof}
+
+\paragraph{A floating-point check.}
+(Floating point: Monte Carlo estimates of
 $\Pr(\dist(z, H) < t)/t$ at $t = 0.002$ from $4\cdot10^7$ pairs, standard error about $0.3\%$, agree with $h_\Omega$ at
-$|z| = 0, 0.5, 0.9, 1$ within about two standard errors, and the medians of $n^2\rho/\log n$ for $8 \le n \le 40$ are about
+$|z| = 0, 0.5, 0.9, 1$ within about two standard errors, and the medians of $n^2\rho_\Omega/\log n$ for $8 \le n \le 40$ are about
 $10$ to $12$.)
-\end{remark}
+
+\section{Remarks and open questions}\label{sec:remarks}
+
+\paragraph{Experiments in the disc.} In floating-point experiments in the disc (medians over $n=8,\dots,40$),
+$n^2\rho_\Omega/\log n$ is about $10$ to $12$, against the limit $9\pi^2/8\approx11.10$ of Corollary~\ref{cor:plane}, which is
+set by the boundary of the disc, where $h_\Omega$ is smallest (Section~\ref{sec:plane}).
+
+\paragraph{The ball in higher dimensions.} What is $c_\Omega$ when $\Omega$ is the unit ball of $\R^d$, $d\ge3$? By
+Theorem~\ref{thm:main} this amounts to finding $m_\Omega=\min_\Omega h_\Omega$; in the disc the minimum is attained on the
+boundary. Is the same true for the ball?
+
+\paragraph{Rate of convergence.} Theorem~\ref{thm:main} gives convergence in probability of $n^d\rho_\Omega/\log n$ to
+$c_\Omega$ without a rate. How fast is this convergence, and how large are the fluctuations of $\rho_\Omega$ around
+$c_\Omega\log n/n^d$?
+
+\paragraph{Flats.} For $1\le j\le d-1$, one may cover $\Omega$ instead by neighbourhoods of the $j$-flats spanned by $j+1$
+of the random points ($j=d-1$ is the case treated here). What is the order of the covering radius in that problem, and
+is there a limit constant analogous to $c_\Omega$?
+
+\begin{thebibliography}{9}
+\bibitem{AS} N.~Alon and J.~H. Spencer, The Probabilistic Method, 4th ed., Wiley, Hoboken, NJ, 2016.
+\bibitem{Bang} T.~Bang, A solution of the ``plank problem'', Proc. Amer. Math. Soc. 2 (1951), 990--993.
+\bibitem{CH} N.~Chenavier and R.~Hemsley, Extremes for the inradius in the Poisson line tessellation, Adv. Appl.
+Probab. 48 (2016), 544--573.
+\bibitem{Harris} T.~E. Harris, A lower bound for the critical probability in a certain percolation
+process, Proc. Cambridge Philos. Soc. 56 (1960), 13--20.
+\bibitem{Janson} S.~Janson, Poisson approximation for large deviations, Random Structures Algorithms 1
+(1990), 221--229.
+\bibitem{Janson86} S.~Janson, Random coverings in several dimensions, Acta Math. 156 (1986), 83--118.
+\bibitem{Companion} M.~Werman, Planks through points: covering a ball by slabs around spanned hyperplanes, preprint.
+\bibitem{ZhaoNotes} Y.~Zhao, Probabilistic Methods in Combinatorics, lecture notes, MIT 18.226 (version of June 18,
+2024), \url{https://yufeizhao.com/pm/probmethod_notes.pdf}.
+\end{thebibliography}
+
+\end{document}

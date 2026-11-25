@@ -1,14 +1,18 @@
 # Planks through points — companion repository
 
-Companion to the paper *Planks through points: covering a ball by slabs around spanned hyperplanes*.
+Companion repository to two papers:
+
+- *Planks through points: covering a ball by slabs around spanned hyperplanes* (`paper1/`);
+- *Random spanned hyperplanes and the covering radius of a convex body* (`paper2/`).
 
 ## Contents
 
-- `paper/` — LaTeX sources (pdfLaTeX, main document `main.tex`) and figures.
-- `certificates/gamma6_gamma5/` — the only computer-assisted results of the paper: the certified bounds on
-  γ₅ and γ₆ (Table 1). Exact integer branch-and-bound for the lower bounds (`cert.c`), interval arithmetic for
+- `paper1/`, `paper2/` — LaTeX sources (pdfLaTeX, main document `main.tex`); `figures_src/make_figures.py` draws the
+  figures of `paper1/`.
+- `certificates/gamma6_gamma5/` — the only computer-assisted results (Paper I, Appendix A): the certified bounds on
+  γ₅ and γ₆ (Paper I, Table 2). Exact integer branch-and-bound for the lower bounds (`cert.c`), interval arithmetic for
   the upper bounds (`upper.py`). `RECORD.txt` gives the commands, parameters, runtimes, machine and outputs;
-  `RERUN.txt` a rerun of the γ₆ ≥ 12.55° run after the final code fixes (identical node counts); `sha256.txt` the file hashes. The integer angle table
+  `RERUN.txt` and its two logs the reruns of all three lower bounds with the final code (identical counts); `sha256.txt` the file hashes. The integer angle table
   (`table_921600.bin`, about 15 MB) is not stored: regenerate it with `python3 mktable.py 921600` and verify it
   with `checktable.py` as described in `RECORD.txt`.
 - Independent exact re-checks (Python integers / fractions / sympy; not needed for the proofs, which are by hand):

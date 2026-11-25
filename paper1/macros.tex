@@ -1,4 +1,4 @@
-% Shared preamble for paper/main.tex and the appendix fragments.
+% Shared preamble for main.tex and the appendix files.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -11,17 +11,13 @@
 
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{theorem}[lemma]{Theorem}
-% Named results of the main text (Theorem A, Lemma 1, ...): unnumbered, with fixed names.
+% Named main results (Theorem A, Corollary 1', ...): unnumbered, with fixed names.
 \newtheorem*{thmA}{Theorem A (strict plank bound)}
 \newtheorem*{thmB}{Theorem B (constructions)}
 \newtheorem*{corC}{Corollary C}
 \newtheorem*{thmD}{Theorem D (small $n$)}
-\newtheorem*{thmE}{Theorem E (random points)}
-\newtheorem*{lemOne}{Lemma 1 (Bang's sign argument with a norm)}
-\newtheorem*{corOne}{Corollary 1$'$ (Bang is never attained)}
-\newtheorem*{lemTwo}{Lemma 2 (flat clusters)}
-\newtheorem*{corTwo}{Corollary 2$'$ (restricted additive $2$-bases)}
-\newtheorem*{propThree}{Proposition 3}
+\newtheorem*{corOne}{Corollary 1 (Bang is never attained)}
+\newtheorem*{corTwo}{Corollary 2 (restricted additive $2$-bases)}
 \newtheorem{proposition}[lemma]{Proposition}
 \newtheorem{corollary}[lemma]{Corollary}
 \newtheorem{claim}[lemma]{Claim}
@@ -30,6 +26,7 @@
 \theoremstyle{remark}
 \newtheorem{remark}[lemma]{Remark}
 
+\numberwithin{equation}{section}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -49,4 +46,3 @@
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\adj}{adj}
-\newcommand{\todoref}{\textbf{[TODO verify ref]}}

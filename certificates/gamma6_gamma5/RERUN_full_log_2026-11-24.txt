@@ -1,0 +1,91 @@
+Rerun of the certificates, 2026-11-24, with the final code. Commands: those listed in each folder's record,
+run in order (table built and fully checked, C1, C2, C3, U, hexagon, gamma5 bracket, seeds, both blown-up bases).
+Machine: 4 cores. Result: every run exits 0; C1, C2 and C3 reproduce the original node and prune counts exactly
+(27,631,561 / 45,959,045 / 1,086,476 nodes, UNRESOLVED 0); seeds.json is identical; both blow-ups cover all
+residues.
+
+--- full log ---
+rerun start Tue Nov 24 21:12:08 UTC 2026; repo HEAD 233c1d9; gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0; Python 3.13.18
+built cert
+N 921600 entries 921601 time 3.2s
+mktable ok 4s
+3ab699041057d95472d018b7193bd321476dae2477dee3bb572b452110b7d98c  table_921600.bin
+3ab699041057d95472d018b7193bd321476dae2477dee3bb572b452110b7d98c  table_921600.bin
+be9b007784339cbdafd727db5463408ff9773305725385ad1b37bf47b9f33936  mktable.py
+part 1/4: all entries OK, max error bound 1.514e-19 rad, 8s
+part 0/4: all entries OK, max error bound 1.515e-19 rad, 8s
+part 2/4: all entries OK, max error bound 1.504e-19 rad, 8s
+part 3/4: all entries OK, max error bound 1.514e-19 rad, 8s
+checktable done
+== C1
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=0 d0=14 frontier=7538
+pre-phase (counted by rank 0 only): nodes=9369 D=716 P=4 J=0 M=196
+DFS: boxes=0..7538 step 4 nodes=7494463 D=1020531 P=40598 J=274915 M=2412130 UNRESOLVED=0 maxdepth=73 cpu=80.2s
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=1 d0=14 frontier=7538
+DFS: boxes=1..7538 step 4 nodes=6195303 D=836816 P=43515 J=233426 M=1984837 UNRESOLVED=0 maxdepth=78 cpu=66.2s
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=2 d0=14 frontier=7538
+DFS: boxes=2..7538 step 4 nodes=7392396 D=1027795 P=38674 J=251855 M=2378816 UNRESOLVED=0 maxdepth=74 cpu=78.5s
+n=6 THETA=64256 units (=12.5500000000 deg) E=42240 K=40 nproc=4 rank=3 d0=14 frontier=7538
+DFS: boxes=3..7538 step 4 nodes=6540030 D=872502 P=43913 J=202166 M=2152376 UNRESOLVED=0 maxdepth=64 cpu=71.6s
+TOTAL n=6 THETA=64256 units = 12.5500000000 deg : {'nodes': 27631561, 'D': 3758360, 'P': 166704, 'J': 962362, 'M': 8928355, 'UNRESOLVED': 0} cpu=296.5s wall=82.8s
+C1 exit=0
+== C2
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=0 d0=14 frontier=7586
+pre-phase (counted by rank 0 only): nodes=9415 D=717 P=2 J=0 M=196
+DFS: boxes=0..7586 step 4 nodes=11615523 D=1476500 P=72368 J=606623 M=3653219 UNRESOLVED=0 maxdepth=88 cpu=120.4s
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=1 d0=14 frontier=7586
+DFS: boxes=1..7586 step 4 nodes=13202669 D=1208422 P=80423 J=2314883 M=2998555 UNRESOLVED=0 maxdepth=142 cpu=118.6s
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=2 d0=14 frontier=7586
+DFS: boxes=2..7586 step 4 nodes=11297650 D=1473399 P=67709 J=529001 M=3579664 UNRESOLVED=0 maxdepth=87 cpu=116.3s
+n=6 THETA=64918 units (=12.6792968750 deg) E=52170 K=40 nproc=4 rank=3 d0=14 frontier=7586
+DFS: boxes=3..7586 step 4 nodes=9833788 D=1244769 P=75415 J=399324 M=3198334 UNRESOLVED=0 maxdepth=69 cpu=104.5s
+TOTAL n=6 THETA=64918 units = 12.6792968750 deg : {'nodes': 45959045, 'D': 5403807, 'P': 295917, 'J': 3849831, 'M': 13429968, 'UNRESOLVED': 0} cpu=459.8s wall=121.6s
+C2 exit=0
+== C3
+n=5 THETA=100488 units (=19.6265625000 deg) E=83280 K=40 nproc=1 rank=0 d0=10 frontier=566
+pre-phase (counted by rank 0 only): nodes=733 D=60 P=0 J=0 M=24
+DFS: boxes=0..566 step 1 nodes=1086476 D=79044 P=9266 J=315644 M=139567 UNRESOLVED=0 maxdepth=127 cpu=2.8s
+C3 exit=0 wall=2s
+== U
+gamma_5_optimum : max gap <= [19.62698568931044807344403903512610569644860522826645761483091716, 19.62698568931044807344403903512610569644860522826645761483091716] deg (upper end of interval)
+   gaps (deg, sorted): [9.236605, 15.417015, 17.95748, 19.626986, 19.626986, 19.626986, 19.626986, 19.626986, 19.626986, 19.626986]
+gamma_6_optimum : max gap <= [12.67996029497659363003758845184236021880565393119469019908884537, 12.67996029497659363003758845184236021880565393119469019908884537] deg (upper end of interval)
+   gaps (deg, sorted): [8.26031, 9.231468, 11.377143, 12.203007, 12.334653, 12.473776, 12.67996, 12.67996, 12.67996, 12.67996, 12.67996, 12.67996, 12.67996, 12.67996, 12.67996]
+runtime 0.00s
+U exit=0
+== hexagon
+offsets / r : [0, 1/2, sqrt(3)/2]
+all exact checks passed; rho = r/2 = sqrt(2)/(4*sqrt(2*sqrt(3) + 7)) = 0.109295940691142047137894629061
+runtime 16.5s
+hexagon exit=0 wall=16s
+== gamma5 exact
+max tan(gap) of rational configuration: 0.3566147803657071
+t0 = 356614780365707105039543813666675854097071024996350790369293/1000000000000000000000000000000000000000000000000000000000000
+certified: gamma_5 <= arctan(t0); lambda_2(5) <= S_up = 852207763241370189819881772417059984214280366335500365385339519641337/5000000000000000000000000000000000000000000000000000000000000000000000 ~ 0.17044155264827404
+p_S has a root in [S_lo, S_hi] = 340883105296548075927952708966823993685712146534200146154135790523429/2000000000000000000000000000000000000000000000000000000000000000000000 + [0, 1e-70]; sign values 4.720150513552064e-69 -1.029567601686038e-67
+S_up - S_hi = 8.6665528e-63
+runtime 0.02s
+gamma5 exit=0
+== seeds
+2 56 12 True 7/18 0.388889
+2 6 4 True 3/8 0.375
+3 20 6 True 5/54 0.092593
+3 95 10 True 19/200 0.095
+3 63 9 True 7/81 0.08642
+4 66 8 True 33/2048 0.016113
+4 103 9 True 103/6561 0.015699
+5 103 9 True 103/59049 0.001744
+6 63 9 True 7/59049 0.000119
+5 210 10 True 21/10000 0.0021
+4 145 10 True 29/2000 0.0145
+6 145 10 True 29/200000 0.000145
+seeds exit=0
+seeds.json identical to committed: True
+== d2
+{"file": "d2_l12_t20.json", "n": 10296, "N": 40269320, "d": 2, "all_residues_covered": true, "missing": 0, "density": 0.3798719518416488, "verify_runtime_s": 0.5}
+d2 exit=0
+== d3
+{"file": "d3_l6b_t8.json", "n": 1596, "N": 301206620, "d": 3, "all_residues_covered": true, "missing": 0, "density": 0.07409106741672178, "verify_runtime_s": 16.1}
+d3 exit=0 wall=16s
+rerun end Tue Nov 24 21:16:21 UTC 2026
+exit=0

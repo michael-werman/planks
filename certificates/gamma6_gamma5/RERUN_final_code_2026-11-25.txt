@@ -1,0 +1,23 @@
+rerun start Wed Nov 25 17:20:50 UTC 2026; gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0; Python 3.13.18
+ff456ca04e79a4b5295afedff44e3b37f9da862446932aaad86f0ff550d223e0  cert.c
+5867edb3dd395217a9fb404f17e2db4e0a6671eda12503e1d74cc8213b2eef33  runpar.sh
+be9b007784339cbdafd727db5463408ff9773305725385ad1b37bf47b9f33936  mktable.py
+0fe2a0e96be155bd39894148ca14fd9ff385a13c5e8a32c04f1a66b04fb6fee1  checktable.py
+built
+N 921600 entries 921601 time 5.5s
+mktable 6 s
+3ab699041057d95472d018b7193bd321476dae2477dee3bb572b452110b7d98c  table_921600.bin
+part 0/4: all entries OK, max error bound 1.515e-19 rad, 18s
+part 1/4: all entries OK, max error bound 1.514e-19 rad, 16s
+part 2/4: all entries OK, max error bound 1.504e-19 rad, 17s
+part 3/4: all entries OK, max error bound 1.514e-19 rad, 16s
+checktable 18 s
+== C3
+n=5 THETA=100488 units (=19.6265625000 deg) E=83280 K=40 nproc=1 rank=0 d0=10 frontier=566
+pre-phase (counted by rank 0 only): nodes=733 D=60 P=0 J=0 M=24
+DFS: boxes=0..566 step 1 nodes=1086476 D=79044 P=9266 J=315644 M=139567 UNRESOLVED=0 maxdepth=127 cpu=4.2s
+C3 wall 5 s
+== C2
+DFS: boxes=3..7586 step 4 nodes=9833788 D=1244769 P=75415 J=399324 M=3198334 UNRESOLVED=0 maxdepth=69 cpu=182.2s
+TOTAL n=6 THETA=64918 units = 12.6792968750 deg : {'nodes': 45959045, 'D': 5403807, 'P': 295917, 'J': 3849831, 'M': 13429968, 'UNRESOLVED': 0} cpu=819.1s wall=230.9s
+rerun end Wed Nov 25 17:25:10 UTC 2026

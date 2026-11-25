@@ -1,0 +1,29 @@
+% Preamble for Paper II (trimmed from the shared macros.tex of the source).
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+% One numbering scheme: Theorem 1, Corollary 2; lemmas numbered within sections (Lemma 3.1, ...).
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}[section]
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\vol}{vol}
+
+% Notation of the proofs (formerly local to the source appendix).
+\newcommand{\Cone}{\mathbf{1}}
+\newcommand{\Cout}{\mathrm{out}}
+\newcommand{\Cin}{\mathrm{in}}
+\newcommand{\CB}{\mathcal{B}}
+% Projection and affine hull.
+\newcommand{\Cpr}{\operatorname{pr}}
+\newcommand{\Caff}{\operatorname{aff}}
