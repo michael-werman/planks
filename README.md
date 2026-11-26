@@ -19,18 +19,18 @@ Companion repository to two papers:
   - `certificates/hexagon_and_gamma5_exact/` — the hexagon value of Theorem D (ρ² exact in Q(√3)), and γ₅.
   - `certificates/blowup_bases/` — the seeds and two blown-up instances of the restricted additive bases.
   - `certificates/sigma2_seven_eighteenths/` and `proofs/sigma2_seven_eighteenths.md` — the seed behind
-    σ₂ ≥ 7/18 (Appendix B.3).
-  - `experiments/planar_hand/`, `experiments/theoremA_d3_hand/`, `experiments/qd_sharp/check_qd_new.py` — the
-    algebra of Appendix A (constants 6864/3161, 20/3, q_d ≥ 0.08/√(d−2), L₄, L₅).
-- `experiments/flats_middle_dims.py` — floating-point exploration for Appendix D.3 (not part of any proof).
+    σ₂ ≥ 7/18 (Paper I, Section 4.4).
+  - `experiments/qd_sharp/check_qd_new.py` — the arithmetic of the constants for d ≥ 4 in Paper I
+    (q_d ≥ 0.08/√(d−2), L₄, L₅).
+- `experiments/ball_constant/ball_constant.py` — exact (sympy) values of the limit constant of Paper II for the unit
+  ball, d = 2..6 (Corollary 3).
+- `experiments/flats_middle_dims.py` — floating-point exploration for Paper I, Section 6.3 (not part of any proof).
 
 ## Rerunning the exact checks
 
 ```
 cd certificates/sigma2_seven_eighteenths && python3 sigma2_check.py      # about 80 s
 cd experiments/qd_sharp && python3 check_qd_new.py
-cd experiments/planar_hand && python3 verify_identities.py
-cd experiments/theoremA_d3_hand && python3 verify_identities.py
 cd certificates/hexagon_and_gamma5_exact && python3 cert_hexagon.py       # about 25 s
 ```
 

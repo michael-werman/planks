@@ -22,7 +22,7 @@ hyperplanes spanned by $d$ of the points cover the ball, and let $\lambda_d(n)$ 
 plank theorem gives $\binom nd\lambda_d(n)\ge1$, with equality for freely placed hyperplanes. We show that spanned
 hyperplanes never attain this bound and lose a constant factor in every dimension:
 $\liminf n^d\lambda_d(n)\ge d!\,(1+q_d)$ with an explicit $q_d\ge0.08/\sqrt{d-2}$, and
-$\liminf n^2\lambda_2(n)\ge6864/3161\approx2.1715$ in the plane. Conversely, clusters whose hyperplane directions
+$\liminf n^2\lambda_2(n)\ge32/15$ in the plane. Conversely, clusters whose hyperplane directions
 are sums of angles from restricted additive bases of cyclic groups give $\lambda_d(n)=\Theta(n^{-d})$, with
 $\limsup n^2\lambda_2(n)\le9\pi/7$. As a by-product, $n$-element sets whose sums of two distinct elements cover a
 cyclic group of order $(7/18-o(1))n^2$ exist, improving the published constants $5/18$ and $1/3$. We also treat
@@ -50,8 +50,7 @@ efficient as free ones. They cannot be parallel, since every point of $P$ lies o
 pass through a common $(d-2)$-flat at the centre either, unless the points cluster there.
 
 \paragraph{Results.} Theorem~A shows that spanned hyperplanes lose a constant factor in every dimension:
-$\liminf n^d\lambda_d(n)\ge d!\,(1+q_d)$ with $q_2=1/15$, $q_3=1/12$ and $q_d\ge0.08/\sqrt{d-2}$, and sharper
-constants $6864/3161\approx2.1715$ in the plane and $20/3$ in space (Section~\ref{sec:A-sharp}); and
+$\liminf n^d\lambda_d(n)\ge d!\,(1+q_d)$ with $q_2=1/15$, $q_3=1/12$ and $q_d\ge0.08/\sqrt{d-2}$; and
 Corollary~1 shows that Bang's bound is never attained for $n>d$. The proof integrates the quadratic test function
 $(t-m_0)^2$ of the height against a measure whose height is uniform, built from $2$-dimensional great spheres
 of random $3$-dimensional sections, and plays the mass that steep slabs carry against the tilt that Bang's sign
@@ -67,8 +66,9 @@ The same blow-up gives Corollary~2: $p_2(n)\ge(7/18-o(1))n^2$. To our knowledge 
 this largest-modulus problem were $5/18$, for sums of two distinct elements (Graham and Sloane \cite{GS}), and
 $1/3$, for sums of at most two elements (Jia and Shen \cite{JS}; see also \cite[Section~B.1]{Bajnok}).
 
-For small $n$ in the plane, Theorem~D shows that the centred square ($n=4$) and the regular hexagon ($n=6$) beat
-every cluster shrinking to the centre. For $n=6$ this rests on a computer-assisted lower bound for $\gamma_6$, the
+For small $n$ in the plane, Theorem~D shows by hand that the centred square ($n=4$) beats every cluster shrinking
+to the centre. The same holds for the regular hexagon ($n=6$), but this rests on a computer-assisted lower bound for
+$\gamma_6$, the
 smallest possible largest gap between the directions of the lines spanned by six points; Appendix~\ref{app:cert}
 describes the exact branch-and-bound behind it. This is the only computer-assisted step in the paper.
 
@@ -122,10 +122,7 @@ $\binom n3\rho\ge 13/(12+6\rho)$ in space; for $d\ge4$, $q_d\ge0.08/\sqrt{d-2}$,
 $C_d$ for $4\le d\le7$, and for $d\ge8$ one quadratic in $m$ with negative discriminant, using
 $C_d\le\sqrt{\pi(d-2)/2}$ (Section~\ref{sec:A-qd}). So
 $\liminf n^d\lambda_d(n)\ge L_d:=d!\,(1+q_d)$, with $L_2=32/15$, $L_3=13/2$, $L_4\ge25.41$ and
-$L_5\ge125.95$. For $d=2,3$ the exact position of the points on their hyperplanes gives larger limit constants:
-$\binom n3\rho\ge70/(63+60\rho)$, so $\liminf n^3\lambda_3(n)\ge20/3$, and
-$\liminf n^2\lambda_2(n)\ge6864/3161>2.1714$. Complete proofs are in Section~\ref{sec:lower}; the sharper
-constants are in Section~\ref{sec:A-sharp}.
+$L_5\ge125.95$. Complete proofs are in Section~\ref{sec:lower}.
 
 \begin{corOne}
 $\lambda_d(n)>1/\binom nd$ for every $d\ge2$ and $n>d$.
@@ -147,9 +144,9 @@ $\sigma_d=\lim p_d(n)/n^d$ exists and equals $\sup_{n>d}p_d(n)/n^d\le 1/d!$.
 \begin{corC}
 $\lambda_d(n)=\Theta(n^{-d})$, since $\sigma_d=\sup p_d(n)/n^d\ge p_d(d+1)/(d+1)^d\ge(d+1)^{1-d}>0$ by
 Theorem~B ($p_d(n)\ge n$); the examples in the table below yield stronger constants for $d\le5$. More
-precisely, with $\ell_2=6864/3161$, $\ell_3=20/3$ and $\ell_d=L_d$ for $d\ge4$,
+precisely,
 \[
-\ell_d\;\le\;\liminf_{n\to\infty}n^d\lambda_d(n)\;\le\;\limsup_{n\to\infty}n^d\lambda_d(n)\;\le\;
+L_d\;\le\;\liminf_{n\to\infty}n^d\lambda_d(n)\;\le\;\limsup_{n\to\infty}n^d\lambda_d(n)\;\le\;
 \frac{\pi}{2\sigma_d}.
 \]
 \end{corC}
@@ -163,7 +160,7 @@ bounds come from the additive bases of Appendix~\ref{sec:B-examples}.}\label{tab
 \toprule
 $d$ & 2 & 3 & 4 & 5\\
 \midrule
-proved lower bound for $\liminf n^d\lambda_d(n)$ & $2.1714$ & $20/3$ & $25.41$ & $125.95$\\
+proved lower bound for $\liminf n^d\lambda_d(n)$ & $32/15$ & $13/2$ & $25.41$ & $125.95$\\
 upper bound $\pi n^d/(2N)\ge\pi/(2\sigma_d)$ & $9\pi/7\approx4.04$ & $100\pi/19\approx16.5$ &
 $1024\pi/33\approx97.5$ & $5000\pi/21\approx748$\\
 from the example $(n,N)$ & $(12,56)$ & $(10,95)$ & $(8,66)$ & $(10,210)$\\
@@ -185,10 +182,12 @@ with $G$ its largest gap, so the best clusters give $\sin(\gamma_n/2)$.
 
 \begin{thmD}
 In the plane, the centred square gives $\lambda_2(4)\le 1/\sqrt{10+4\sqrt2}\approx0.25272$, and the
-regular hexagon gives $\lambda_2(6)\le1/\sqrt{56+16\sqrt3}\approx0.10930$. Both beat every cluster
-shrinking to the centre: such clusters have a strictly larger $\liminf\rho$ (Figure~\ref{fig:square}; for $n=6$ this
-uses the computer-assisted bound on $\gamma_6$ of Table~\ref{tab:gamma}).
+regular hexagon gives $\lambda_2(6)\le1/\sqrt{56+16\sqrt3}\approx0.10930$ (Figure~\ref{fig:square}). The square beats
+every cluster of four points shrinking to the centre: such clusters have $\liminf\rho\ge\sin(\pi/12)$.
 \end{thmD}
+
+With a computer-assisted lower bound on $\gamma_6$ (Appendix~\ref{app:cert}), the hexagon also beats every
+cluster of six points shrinking to the centre (Proposition~\ref{prop:hexagon}).
 
 \begin{figure}[t]
 \centering
@@ -562,125 +561,6 @@ The arithmetic is re-checked in exact rationals in the accompanying repository
 (\nolinkurl{experiments/qd_sharp/check_qd_new.py}). Numerically, $q_d\sqrt{d-2}$ is smallest at
 $d = 4$ ($\approx 0.0832$) and increases for larger $d$ towards about $0.20$.
 
-% ======================================================================
-\subsection{Sharper constants in the plane and in space}
-\label{sec:A-sharp}
-
-The proof of Theorem~A relaxes the position of the points of a $d$-set to $Y_Q^2 + V_Q \le w_H^2$
-(Step~5). For $d = 2$ and $d = 3$ (where $e \equiv 0$) the exact constraint gives larger limit
-constants. (The finite-$n$ inequalities below are stronger than those of Theorem~A only for small $\rho$:
-for $\rho < 113/1650$ when $d = 2$ and $\rho < 7/120$ when $d = 3$.)
-
-\begin{proposition}\label{prop:A-sharp}
-Let $n \ge d$, and let $\rho = \rho(P)$ ($= \infty$ if $P$ has no $d$ affinely independent points, when there is
-nothing to prove). Every $n$-point $P \subset \ball^2$ satisfies $\binom n2\rho\,\bigl(\frac{3161}{3432} + \frac{8\rho}{13}\bigr) \ge 1$,
-and every $n$-point $P \subset \ball^3$ satisfies $\binom n3\rho \ge 70/(63 + 60\rho)$. Hence
-\[
-  \liminf_n n^2\lambda_2(n) \ge \frac{6864}{3161} = 2.17146\ldots,
-  \qquad
-  \liminf_n n^3\lambda_3(n) \ge \frac{20}{3}.
-\]
-\end{proposition}
-
-We use the notation of Section~\ref{sec:A-unified} with $d \in \{2, 3\}$, and write
-$G_H = G_H(m_H) = (c_H - m_0)^2 + w_H^2/2$.
-
-\paragraph{The framework.} By Step~5, every point of $H \cap \ball^d$ has height in
-$[h_1, h_2]$ with $h_{1,2} = c_H \mp w_H$. Fix $A, B > 0$, $C = \gamma m_0$ and $C_0, \lambda_0 \ge 0$,
-and suppose that for every independent $d$-set $Q$ on a hyperplane $H \in \AH_P$
-\begin{equation}\label{eq:A-sharp-star}
-  G_H - B\bigl((d-1)X_Q^2 - V_Q\bigr) - C X_Q - A\kappa_H \le C_0 + \lambda_0 m_0^2,
-\end{equation}
-and that $\tau_Q := -B((d-1)X_Q^2 - V_Q) - CX_Q \le A$ for every dependent $d$-set (for $d = 2$ there is
-none). Summing \eqref{eq:A-sharp-star} over the independent $d$-sets (each $H$ carries one, and
-$G \ge 0$), and using $\sum_{\text{all }Q}((d-1)X_Q^2 - V_Q) \le 0$ and $\sum_{\text{all }Q}X_Q = 0$
-(Step~5) and \eqref{eq:tilt},
-\[
-  \sum_{H \in \AH_P} G_H \le A\Bigl(\sum_{Q\text{ indep}}\kappa_{H(Q)} + \Adep\Bigr) + K(C_0 + \lambda_0m_0^2)
-    \le A(K - 1/\eps) + K(C_0 + \lambda_0m_0^2).
-\]
-With \eqref{eq:A-unified-2} and Steps~2 and~4 ($e \equiv 0$), $I \le \sum_H(\eps G_H + 2\eps^2)$, where
-$I = 1/3 + m_0^2$. Put $\alpha = 1 - 1/(K\eps)$; dividing by $K\eps$ gives
-$I(1 - \alpha) \le A\alpha + C_0 + \lambda_0m_0^2 + 2\eps$, i.e.
-\begin{equation}\label{eq:A-sharp-alpha}
-  \alpha \ge \frac{1/3 - C_0 + (1 - \lambda_0)m_0^2 - 2\eps}{A + 1/3 + m_0^2}.
-\end{equation}
-
-\paragraph{Reduction of \eqref{eq:A-sharp-star}.} Let $x_1, \dots, x_d$ be the heights of the points of
-$Q$ minus $m_0$, and $e_2 = \sum_{i<j}x_ix_j$. Then $(d-1)X^2 - V = \frac2d e_2$, so the left side of
-\eqref{eq:A-sharp-star} is $f - A\kappa_H$ with $f = G_H - \frac{2B}{d}e_2 - \frac{\gamma m_0}{d}\sum_i x_i$.
-Since $f$ is affine in each $x_i \in [h_1 - m_0, h_2 - m_0]$, its maximum is at $j$ points at $h_1$ and
-$d - j$ at $h_2$, $0 \le j \le d$. Expanding in $m_0$, $f = f_0 + m_0L + k_2m_0^2$ with $f_0$, $L$
-not depending on $m_0$; for $\mu > 0$, $m_0L \le \mu m_0^2 + L^2/(4\mu)$, so
-$f \le \Psi + (\mu + k_2)m_0^2$ with $\Psi = f_0 + L^2/(4\mu)$; we take $\lambda_0 \ge \mu + k_2$ (in both cases
-below $\mu + k_2 = \frac79 \ge 0$). In terms of $D = c_H = (h_1 + h_2)/2$
-and $w = (h_2 - h_1)/2$, $\Psi$ is a quadratic form $pD^2 + 2\zeta Dw + qw^2$, and $j \mapsto d - j$ changes the
-sign of $\zeta$. Writing $m_H = \cos\phi$, $(D, w) = (c\cos\phi, s\sin\phi)$ with $c = \cos\psi_H$,
-$s = \sin\psi_H$, so $\Psi = \mathbf w^T M\mathbf w$ with $\mathbf w = (\cos\phi, \sin\phi)$ and
-$M = \bigl[\begin{smallmatrix} pc^2 & \zeta cs\\ \zeta cs & qs^2\end{smallmatrix}\bigr]$. Hence
-\eqref{eq:A-sharp-star} holds if $N = (C_0 + A\kappa)\,\mathrm{Id} - M \succeq 0$, i.e. if
-$N_{11}, N_{22}, \det N \ge 0$, where $\kappa = 1 - c$ and $s^2 = 2\kappa - \kappa^2$.
-
-\paragraph{The plane.} Take $A = \frac{35}{12}$, $B = \frac43$, $\gamma = -\frac23$, $\mu = \frac{16}{9}$,
-so $k_2 = -1$, $\lambda_0 = \frac79$, $C_0 = \frac{27}{352}$.
-\begin{itemize}
-  \item $j = 1$ (one point at each end): $L = \frac23(h_1 + h_2)$ and
-    $\Psi = -\frac{1}{48}(h_1 + h_2)^2 + \frac{11}{24}(h_2 - h_1)^2 \le \frac{11}{6}w^2 \le \frac{11}{6}(1 - c^2)$,
-    and $\frac{11}{6}(1 - c^2) - A\kappa = C_0 - \frac{11}{6}(\kappa - \frac{9}{44})^2 \le C_0$.
-  \item $j = 2$ (both at $h_1$): $L = \frac73h_1 - h_2$ and
-    $\Psi = -\frac{1}{12}D^2 + \frac{17}{12}Dw + \frac{35}{48}w^2$. Then
-    $N_{11} = C_0 + A\kappa + c^2/12 > 0$, $N_{22} = \frac{27}{352} + \frac{35}{24}\kappa + \frac{35}{48}\kappa^2 > 0$,
-    and $1056^2\det N = 627264\kappa^4 + 133584\kappa^3 + 7406938\kappa^2 - 623524\kappa + 13689 > 0$ for
-    $\kappa \ge 0$, since $623524^2 - 4 \cdot 7406938 \cdot 13689 = -16792118552 < 0$.
-  \item $j = 0$: as $j = 2$ with $\zeta \mapsto -\zeta$.
-\end{itemize}
-By \eqref{eq:A-sharp-alpha}, $\alpha \ge (\frac{271}{1056} + \frac29m_0^2 - 2\eps)/(\frac{13}{4} + m_0^2)
-\ge \frac{271}{3432} - \frac{8\eps}{13}$, because $x \mapsto (\frac{271}{1056} + \frac29x)/(\frac{13}{4} + x)$
-is increasing ($\frac29 \cdot \frac{13}{4} > \frac{271}{1056}$). This is
-$\binom n2\eps(\frac{3161}{3432} + \frac{8\eps}{13}) \ge 1$.
-
-\paragraph{Space.} Take $A = 2$, $B = \frac89$, $\gamma = -\frac{13}{9}$, $\mu = 3$, so
-$k_2 = -\frac{20}{9}$, $\mu + k_2 = \frac79$; we take $\lambda_0 = \frac{9}{10} \ge \frac79$, which makes the
-bound on $\alpha$ below independent of $m_0$,
-$C_0 = \frac1{10}$.
-\begin{itemize}
-  \item $j = 3$: $L = 4h_1 - h_2$ and $\Psi = -\frac{1}{36}D^2 + \frac{19}{18}Dw + \frac{29}{36}w^2$.
-    $N_{11} = \frac{23}{180} + \frac{35}{18}\kappa + \frac{\kappa^2}{36}$,
-    $N_{22} = \frac1{10} + \frac7{18}\kappa + \frac{29}{36}\kappa^2$, and
-    $5400\det N = 1625\kappa^4 + 2500\kappa^3 + 12175\kappa^2 - 1690\kappa + 69 > 0$ for $\kappa \ge 0$,
-    since $1690^2 - 4 \cdot 69 \cdot 12175 < 0$.
-  \item $j = 2$: $L = \frac73h_1 + \frac23h_2$ and $\Psi = -\frac{1}{36}D^2 + \frac{19}{54}Dw + \frac{143}{108}w^2$.
-    $N_{11}$ is as before, $N_{22} = \frac1{10} - \frac{35}{54}\kappa + \frac{143}{108}\kappa^2 > 0$
-    (negative discriminant), and
-    \[
-      145800\det N = 9875\kappa^4 + 354700\,\kappa\bigl(\kappa - \tfrac{11}{50}\bigr)^2 + 19953\kappa^2
-        - \tfrac{247937}{25}\kappa + 1863 > 0,
-    \]
-    the last quadratic having discriminant $-31458341531/625 < 0$.
-  \item $j = 0, 1$: as $j = 3, 2$ with $\zeta \mapsto -\zeta$.
-  \item Dependent triples: their heights lie in $[-1, 1]$ and $\tau_Q$ is affine in each, so at the
-    maximum the heights are $v \in \{\pm1\}^3$, where
-    $\tau = -\frac{16}{27}e_2(v) + \frac53m_0s_1(v) - \frac{29}{9}m_0^2$ with $s_1(v) = v_1 + v_2 + v_3$. If
-    $e_2(v) = -1$, $|s_1(v)| = 1$ and $\tau \le \frac{16}{27} + \frac{25}{116}$; if $e_2(v) = 3$, $|s_1(v)| = 3$
-    and $\tau \le -\frac{16}{9} + \frac{225}{116}$. Both are $< 2 = A$.
-\end{itemize}
-By \eqref{eq:A-sharp-alpha}, $\alpha \ge (\frac{7}{30} + \frac{m_0^2}{10} - 2\eps)/(\frac73 + m_0^2)
-= \frac1{10} - 2\eps/(\frac73 + m_0^2) \ge \frac1{10} - \frac{6\eps}{7}$, i.e.
-$\binom n3\eps(\frac9{10} + \frac{6\eps}7) \ge 1$, which is $\binom n3\rho \ge 70/(63 + 60\rho)$.
-
-\paragraph{The liminf.} In both cases $g(x) = x(1 - \beta_0 + \eta x)$ ($\beta_0 = \frac{271}{3432}$,
-$\eta = \frac8{13}$, resp.\ $\beta_0 = \frac1{10}$, $\eta = \frac67$) is increasing, so
-$g(\lambda_d(n)) \ge 1/\binom nd$, and as in Step~6 $\liminf n^d\lambda_d(n) \ge d!/(1 - \beta_0)$, which is
-$6864/3161$ and $20/3$. \qed
-
-\begin{remark}
-The parameters were found by a floating-point search; the proof does not depend on it, and the
-identities above are re-checked symbolically in the accompanying repository
-(\nolinkurl{experiments/planar_hand/}, \nolinkurl{experiments/theoremA_d3_hand/}). The search suggests that
-this method gives at most about $2.1722$ in the plane and $6.687$ in space, and only small gains for
-$d \ge 4$, where the averaging error $e(\psi)$ of Step~3 dominates.
-\end{remark}
-
 \section{Constructions}\label{sec:upper}
 
 \subsection{Flat clusters}\label{sec:B-lemma2}
@@ -1029,9 +909,19 @@ $\pm r/2$. The dihedral group of order 12 permutes them, so take $0\le\arg z\le3
 $>r/2$ from $y=0$ and from the side $y=r\sqrt3/2$ forces $y>(1+\sqrt3)r/2$; in this sector
 $x/2-(\sqrt3/2)y\ge0$, so distance $>r/2$ from the short diagonal $x/2-(\sqrt3/2)y=r/2$ forces
 $x>2r+\sqrt3y>(7+\sqrt3)r/2$. Then $|z|^2>r^2(14+4\sqrt3)=1$. Hence $\rho\le r/2$, with equality at
-$(0,1)$. Here Proposition~\ref{prop:clusters} gives only $\sin(\pi/30)$ for clusters, hence the certificate below.
-\paragraph{Certified $\gamma_6$.} A cluster ties the hexagon only if $\gamma_6\le12.5495^\circ$.
-Table~\ref{tab:gamma} lists the certified bounds (Appendix~\ref{app:cert}). A box branch-and-bound in exact integer arithmetic
+$(0,1)$. Here Proposition~\ref{prop:clusters} gives only $\sin(\pi/30)$ for clusters, which is too weak.
+
+\begin{proposition}[computer-assisted]\label{prop:hexagon}
+$\gamma_6\ge12.6792^\circ$. Hence every cluster of six points shrinking to the centre has
+$\liminf\rho\ge\sin(6.3396^\circ)>0.11042$, more than the hexagon's $\rho\approx0.10930$.
+\end{proposition}
+
+\begin{proof}
+The bound on $\gamma_6$ is the certificate of Appendix~\ref{app:cert}; the rest is the cluster bound of
+Section~\ref{sec:results}. A cluster ties the hexagon only if $\gamma_6\le12.5495^\circ$.
+\end{proof}
+
+\paragraph{Certified bounds.} Table~\ref{tab:gamma} lists the certified bounds (Appendix~\ref{app:cert}). A box branch-and-bound in exact integer arithmetic
 gives the lower bounds, and explicit configurations evaluated in interval arithmetic give the upper
 bounds. The search prunes using the fact that $\binom n2$ directions with all gaps below $\theta$
 leave only $\binom n2\theta-\pi$ of slack.
@@ -1040,8 +930,8 @@ $\pi$, equally spaced (the chord through vertices $s$ and $t$ has direction $\pi
 pairs $(0,c)$ and $(1,m-1)$ give every residue $c$ of $s+t$), and all its lines pass within $r$ of the
 centre; so $\rho\ge\sin(\pi/(2m))-r$, by the argument for clusters in Section~\ref{sec:results}. For $r\le1/m$ this gives
 $m^2\rho\ge m(m\sin(\pi/(2m))-1)\to\infty$: small regular polygons waste most of their $\binom m2$
-lines on repeated directions. We have no bound for larger radii; for $m=4$ and $m=6$, Theorem~D shows that
-suitably sized regular polygons beat every shrinking cluster.
+lines on repeated directions. We have no bound for larger radii; for $m=4$ (Theorem~D) and $m=6$
+(Proposition~\ref{prop:hexagon}), suitably sized regular polygons beat every shrinking cluster.
 
 \begin{table}[ht]
 \centering
@@ -1086,7 +976,7 @@ $n^2\sin(\gamma_n/2)$ & 4.261 & 3.975 & 4.051 & 4.044 & 4.045 & 4.185 & 4.095 & 
 \includegraphics[width=0.8\textwidth]{figures/fig3_constants.png}
 \caption{Best known $n^2\rho$ for $n=3,\dots,12$ (triangle, square and hexagon exact; the other values
 are the best clusters found, floating point) against the asymptotic constants: Bang's $2$, the lower
-constant $6864/3161\approx2.1715$ of Section~\ref{sec:A-sharp}, the cluster bound $\pi$ of Proposition~\ref{prop:clusters}, and the upper constant
+constant $32/15$ of Theorem~A, the cluster bound $\pi$ of Proposition~\ref{prop:clusters}, and the upper constant
 $9\pi/7$ of Theorem~B.}\label{fig:constants}
 \end{figure}
 
@@ -1460,7 +1350,7 @@ The order of every covering radius in this paper extends; the sharp results do n
 \toprule
 Result & Unit ball & Convex body $\Omega$\\
 \midrule
-Order of $\lambda_d(n)$ & $\ell_d\le\liminf n^d\lambda_d(n)$ (Corollary~C), $\limsup\le\pi/(2\sigma_d)$ &
+Order of $\lambda_d(n)$ & $L_d\le\liminf n^d\lambda_d(n)$ (Corollary~C), $\limsup\le\pi/(2\sigma_d)$ &
 $d!\,w(\Omega)/2\le\liminf n^d\lambda_d(n;\Omega)$, $\limsup\le\pi R(\Omega)/(2\sigma_d)$\\
 Points anywhere, $n=d+1$ & $\mu_d(d+1)=1/(d+1)$ & $\mu_d(d+1;\Omega)=w(\Omega)/(2(d+1))$\\
 Strict gain over Bang (Theorem~A, Corollary~1) & yes & open\\
@@ -1591,7 +1481,7 @@ convex body admits such a strict gain.
 
 \begin{enumerate}
 \item Does $\lim n^2\lambda_2(n)$ exist, and what is it? The liminf and limsup lie in
-$[2.1714,\,9\pi/7\approx4.04]$; floating-point searches for $n\le12$ suggest about $4$.
+$[32/15,\,9\pi/7\approx4.04]$; floating-point searches for $n\le12$ suggest about $4$.
 \item Are shrinking clusters optimal for odd $n$, and asymptotically? For $n=5$, can any finite
 configuration beat $\sin(\gamma_5/2)$?
 \item Determine $\sigma_d$. Known: $7/18\le\sigma_2\le1/2$ and $19/200\le\sigma_3\le1/6$; the upper
@@ -1616,14 +1506,14 @@ through a common $(d-2)$-flat is wasteful; points placed anywhere do reach the w
 
 The only computer-assisted results are the bounds of Table~\ref{tab:gamma}: exact integer
 branch-and-bound for the lower bounds and interval arithmetic for the upper bounds. The comparison of
-the hexagon with shrinking clusters in Theorem~D rests on them (Appendix~\ref{app:cert}). The repository
+the hexagon with shrinking clusters (Proposition~\ref{prop:hexagon}) rests on them (Appendix~\ref{app:cert}). The repository
 accompanying this paper, \url{https://github.com/michael-werman/planks}, holds their code, input data,
 command, runtime and output (folder \texttt{certificates/\allowbreak gamma6\_\allowbreak gamma5}).
 Everything else is proved by hand; the finite examples are given with one representation of every
 residue (Lemma~\ref{lem:B-seed} and Appendix~\ref{sec:B-examples}). The repository also holds
 independent exact re-checks: the hexagon value ($\rho^2$ exact in $\Q(\sqrt3)$), the seeds and two
-blown-up instances of the additive bases, the seed behind $\sigma_2\ge7/18$, and the algebra of
-Section~\ref{sec:lower}.
+blown-up instances of the additive bases, the seed behind $\sigma_2\ge7/18$, and the arithmetic of
+Section~\ref{sec:A-qd}.
 
 \begin{thebibliography}{99}
 \bibitem{Ball} K.~Ball, The plank problem for symmetric bodies, Invent. Math. 104 (1991), 535--543.

@@ -94,7 +94,7 @@ for n in ns:
     if n in kind: ax.annotate(kind[n], (n, best[n]), xytext=(n - 0.2, best[n] + (-0.17 if n == 6 else 0.08)), fontsize=8)
 refs = [(9*pi/7, "9π/7 ≈ 4.04  upper constant (Thm B)", "#54a24b"),
         (pi, "π  central clusters, lower (Prop. 3)", "#b279a2"),
-        (6864/3161, "6864/3161 ≈ 2.1715  lower constant (App. A.4)", STRIP),
+        (32/15, "32/15 ≈ 2.133  lower constant (Thm A)", STRIP),
         (2.0, "2  Bang's plank bound", "#888888")]
 for y, lab, c in refs:
     ax.hlines(y, 2.7, 12.25, color=c, lw=1, ls="--"); ax.text(12.4, y, lab, va="center", fontsize=8, color=c)
