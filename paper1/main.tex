@@ -25,8 +25,8 @@ $\liminf n^2\lambda_2(n)\ge32/15$ in the plane. Conversely, clusters whose hyper
 are sums of angles from restricted additive bases of cyclic groups give $\lambda_d(n)=\Theta(n^{-d})$, with
 $\limsup n^2\lambda_2(n)\le9\pi/7$. As a by-product, $n$-element sets whose sums of two distinct elements cover a
 cyclic group of order $(7/18-o(1))n^2$ exist, improving the published constants $5/18$ and $1/3$. We also treat
-small $n$ in the plane, with one computer-assisted step, and variants for great hyperspheres, points anywhere,
-flats and convex bodies.
+small $n$ in the plane and variants for great hyperspheres, points anywhere, flats and convex bodies. All proofs are
+by hand.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -66,10 +66,10 @@ this largest-modulus problem were $5/18$, for sums of two distinct elements (Gra
 $1/3$, for sums of at most two elements (Jia and Shen \cite{JS}; see also \cite[Section~B.1]{Bajnok}).
 
 For small $n$ in the plane, Theorem~D shows by hand that the centred square ($n=4$) beats every cluster shrinking
-to the centre. The same holds for the regular hexagon ($n=6$), but the proof rests on a computer-assisted lower bound for
-$\gamma_6$, the smallest possible largest gap between the directions of the lines spanned by six points;
-Appendix~\ref{app:cert} describes the exact branch-and-bound computation behind it. This is the only
-computer-assisted step in the paper.
+to the centre. A certified computation (Remark~\ref{rem:hexagon}) indicates the same for the regular hexagon ($n=6$): it
+bounds $\gamma_6$, the smallest possible largest gap between the directions of the lines spanned by six points, by an
+exact branch-and-bound computation (Appendix~\ref{app:cert}). No result of the paper depends on it; we have no hand
+proof.
 
 Section~\ref{sec:ext} treats variants: great hyperspheres through points of the sphere, points placed anywhere in
 $\R^d$, the flats spanned by $j+1$ points, and general convex bodies. In a companion paper \cite{Companion} we treat
@@ -184,8 +184,8 @@ regular hexagon gives $\lambda_2(6)\le1/\sqrt{56+16\sqrt3}\approx0.10930$ (Figur
 every cluster of four points shrinking to the centre: such clusters have $\liminf\rho\ge\sin(\pi/12)$.
 \end{thmD}
 
-With a computer-assisted lower bound on $\gamma_6$ (Appendix~\ref{app:cert}), the hexagon also beats every
-cluster of six points shrinking to the centre (Proposition~\ref{prop:hexagon}).
+A certified computation of $\gamma_6$ (Remark~\ref{rem:hexagon} and Appendix~\ref{app:cert}) shows that the hexagon also beats
+every cluster of six points shrinking to the centre; this is not used elsewhere.
 
 \begin{figure}[t]
 \centering
@@ -909,15 +909,13 @@ $x/2-(\sqrt3/2)y\ge0$, so distance $>r/2$ from the short diagonal $x/2-(\sqrt3/2
 $x>2r+\sqrt3y>(7+\sqrt3)r/2$. Then $|z|^2>r^2(14+4\sqrt3)=1$. Hence $\rho\le r/2$, with equality at
 $(0,1)$. Here Proposition~\ref{prop:clusters} gives only $\sin(\pi/30)$ for clusters, which is too weak.
 
-\begin{proposition}[computer-assisted]\label{prop:hexagon}
-$\gamma_6\ge12.6792^\circ$. Hence every cluster of six points shrinking to the centre has
-$\liminf\rho\ge\sin(6.3396^\circ)>0.11042$, more than the hexagon's $\rho\approx0.10930$.
-\end{proposition}
-
-\begin{proof}
-The bound on $\gamma_6$ is the certificate of Appendix~\ref{app:cert}; the rest is the cluster bound of
-Section~\ref{sec:results}. A cluster ties the hexagon only if $\gamma_6\le12.5495^\circ$.
-\end{proof}
+\begin{remark}[A certified computation]\label{rem:hexagon}
+The exact branch-and-bound computation of Appendix~\ref{app:cert} gives $\gamma_6\ge12.6792^\circ$. With the cluster bound of
+Section~\ref{sec:results}, every cluster of six points shrinking to the centre then has
+$\liminf\rho\ge\sin(6.3396^\circ)>0.11042$, more than the hexagon's $\rho\approx0.10930$; a cluster ties the hexagon only if
+$\gamma_6\le12.5495^\circ$. We do not have a proof by hand (the trivial bound is $\gamma_6\ge12^\circ$), and no result of
+the paper depends on this computation.
+\end{remark}
 
 \paragraph{Certified bounds.} Table~\ref{tab:gamma} lists the certified bounds (Appendix~\ref{app:cert}). A box branch-and-bound in exact integer arithmetic
 gives the lower bounds, and explicit configurations evaluated in interval arithmetic give the upper
@@ -928,8 +926,8 @@ $\pi$, equally spaced (the chord through vertices $s$ and $t$ has direction $\pi
 pairs $(0,c)$ and $(1,m-1)$ give every residue $c$ of $s+t$), and all its lines pass within $r$ of the
 centre; so $\rho\ge\sin(\pi/(2m))-r$, by the argument for clusters in Section~\ref{sec:results}. For $r\le1/m$ this gives
 $m^2\rho\ge m(m\sin(\pi/(2m))-1)\to\infty$: small regular polygons waste most of their $\binom m2$
-lines on repeated directions. We have no bound for larger radii; for $m=4$ (Theorem~D) and $m=6$
-(Proposition~\ref{prop:hexagon}), suitably sized regular polygons beat every shrinking cluster.
+lines on repeated directions. We have no bound for larger radii; for $m=4$ (Theorem~D) and, by the
+computation of Remark~\ref{rem:hexagon}, for $m=6$, suitably sized regular polygons beat every shrinking cluster.
 
 \begin{table}[ht]
 \centering
@@ -1336,6 +1334,9 @@ lower constant $d!$ to $d!(1+q_d)$; we do not know whether every convex body adm
 $[32/15,\,9\pi/7\approx4.04]$; floating-point searches for $n\le12$ suggest about $4$.
 \item Are shrinking clusters optimal for odd $n$, and asymptotically? For $n=5$, can any finite
 configuration beat $\sin(\gamma_5/2)$?
+\item Prove by hand that $\gamma_6>12.5495^\circ$, which would make Remark~\ref{rem:hexagon} a theorem: the regular hexagon
+beats every cluster of six points. The trivial bound is $12^\circ$, and if two of the $15$ directions coincide then
+$\gamma_6\ge180^\circ/14$.
 \item Determine $\sigma_d$. Known: $7/18\le\sigma_2\le1/2$ and $19/200\le\sigma_3\le1/6$; the upper
 bounds are only the count $p_d(n)\le\binom nd$ (for $d=2$, Haanp\"a\"a's table gives $p_2(n)<\binom n2$ for $5\le n\le14$,
 but no constant below $1/2$ is known).
@@ -1356,9 +1357,10 @@ for thin bodies.
 
 \section*{Computations}
 
-The only computer-assisted results are the bounds of Table~\ref{tab:gamma}: exact integer
-branch-and-bound for the lower bounds and interval arithmetic for the upper bounds. The comparison of
-the hexagon with shrinking clusters (Proposition~\ref{prop:hexagon}) rests on them (Appendix~\ref{app:cert}). The repository
+No result of the paper depends on a computer. The bounds of Table~\ref{tab:gamma} are certified computations,
+reported as such: exact integer branch-and-bound for the lower bounds and interval arithmetic for the upper bounds.
+The comparison of the hexagon with shrinking clusters (Remark~\ref{rem:hexagon}) rests on them
+(Appendix~\ref{app:cert}). The repository
 accompanying this paper, \url{https://github.com/michael-werman/planks}, holds the code, input data,
 commands, runtimes and outputs (folder \texttt{certificates/\allowbreak gamma6\_\allowbreak gamma5}).
 Everything else is proved by hand; the finite examples are given with one representation of every
