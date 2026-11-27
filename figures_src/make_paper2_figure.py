@@ -33,15 +33,20 @@ th=np.linspace(0,2*np.pi,400)
 fig,ax=plt.subplots(1,2,figsize=(9.5,3.9))
 for a in ax:
     a.plot(A*np.cos(th),B*np.sin(th),color="black",lw=1.2); a.set_aspect("equal"); a.axis("off")
-for s in segs: ax[0].plot([s[0][0],s[1][0]],[s[0][1],s[1][1]],color="#4a6fa5",lw=0.8)
+W=(A+0.75,B+0.75)                  # window: whole lines, dashed outside the ellipse
+for (i,j),s in zip(itertools.combinations(range(len(X)),2),segs):
+    u=X[j]-X[i]; u/=np.linalg.norm(u)
+    ax[0].plot([X[i][0]-5*u[0],X[i][0]+5*u[0]],[X[i][1]-5*u[1],X[i][1]+5*u[1]],color="#4a6fa5",lw=0.5,ls=(0,(3,2)),alpha=0.7)
+    ax[0].plot([s[0][0],s[1][0]],[s[0][1],s[1][1]],color="#4a6fa5",lw=0.8)
+ax[0].set_xlim(-W[0],W[0]); ax[0].set_ylim(-W[1],W[1])
 ax[0].plot(X[:,0],X[:,1],"o",color="black",ms=3.5)
 ax[0].add_patch(plt.Circle(z,rho,color="#e07b39",alpha=0.35)); ax[0].plot(*z,"o",color="#e07b39",ms=3.5)
-ax[0].set_title(r"spanned lines and the largest empty disk ($\rho$)",fontsize=9)
+ax[0].set_title(r"spanned lines (whole lines) and the largest disk avoiding them",fontsize=9)
 z2=np.array([0.55,-0.35])
 for t in np.linspace(0,np.pi,12,endpoint=False):
     s=chord(z2,np.array([np.cos(t),np.sin(t)]))
     ax[1].plot([s[0][0],s[1][0]],[s[0][1],s[1][1]],color="#4a6fa5",lw=0.8)
 ax[1].plot(*z2,"o",color="#e07b39",ms=4); ax[1].annotate(r"$z$",z2+np.array([0.05,0.06]),fontsize=10)
 ax[1].set_title(r"chords through $z$: $h_\Omega(z)\propto\int_0^\pi L_z(\theta)^3\,d\theta$",fontsize=9)
-plt.tight_layout(rect=(0,0,1,0.93)); plt.savefig("../paper2/figures/fig_lines.png",dpi=200)
+plt.tight_layout(rect=(0,0,1,0.93)); import sys; plt.savefig(sys.argv[1] if len(sys.argv)>1 else "../paper2/figures/fig_lines.png",dpi=200)
 print("rho (grid, floating point) =",rho)
