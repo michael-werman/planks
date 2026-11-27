@@ -12,7 +12,7 @@
 \begin{abstract}
 Let $\Omega\subset\R^d$ ($d\ge2$) be a convex body, let $X_1,\dots,X_n$ be independent uniform points in $\Omega$, and let
 $\rho_\Omega$ be the covering radius of $\Omega$ by the hyperplanes spanned by $d$ of the points, that is, the largest distance
-from a point of $\Omega$ to the nearest such hyperplane. We prove that $n^d\rho_\Omega/\log n\to c_\Omega=d^2\,d!/\min_\Omega h_\Omega$
+from a point of $\Omega$ to the nearest such hyperplane. We prove that $n^d\rho_\Omega/\log n\to c_\Omega=d^2\cdot d!/\min_\Omega h_\Omega$
 in probability, where $h_\Omega(z)=\lim_{t\to0}\Pr(\dist(z,H)<t)/t$ for the hyperplane $H$ through $d$ independent uniform
 points in $\Omega$. In the plane, $c_\Omega=12|\Omega|^2/\min_{z\in\Omega}\int_0^\pi L_z(\theta)^3\,d\theta$, where $L_z(\theta)$ is the
 length of the chord through $z$ in direction $\theta$; for the unit disk, $c_\Omega=9\pi^2/8$. For the unit ball of $\R^d$ the constant has a closed form ($54$ for $d=3$). Thus random points lose a
@@ -37,7 +37,7 @@ $1/\binom nd$. On the other hand, clusters of points built from additive bases o
 
 Let $X_1,\dots,X_n$ be independent and uniform in $\Omega$, and let $\rho_\Omega$ be the largest distance from a point of
 $\Omega$ to the nearest hyperplane spanned by $d$ of the $X_i$. Our main result, Theorem~\ref{thm:main}, says that
-$n^d\rho_\Omega/\log n$ converges in probability to an explicit constant $c_\Omega$. This constant is $d^2\,d!$ divided by the
+$n^d\rho_\Omega/\log n$ converges in probability to an explicit constant $c_\Omega$. This constant is $d^2\cdot d!$ divided by the
 minimum over $\Omega$ of $h_\Omega(z)$, the density at $0$ of the distance from $z$ to a random spanned
 hyperplane. In the plane, $h_\Omega$ is a chord-power integral, and for the unit disk the limit is
 $9\pi^2/8\approx11.10$ (Corollary~\ref{cor:plane}). For the unit ball of $\R^d$ the limit has a closed form, for instance
@@ -85,7 +85,7 @@ Our main result is the following.
 \begin{theorem}\label{thm:main}
 The limit $h_\Omega(z) = \lim_{t \to 0}\Pr(\dist(z, H) < t)/t$ exists uniformly in $z \in \Omega$, and $h_\Omega$ is
 continuous and positive on $\Omega$ (Lemma~\ref{lem:density}). With $m_\Omega = \min_\Omega h_\Omega$ and
-$c_\Omega = d^2\,d!/m_\Omega$, for every $\xi > 0$,
+$c_\Omega = d^2\cdot d!/m_\Omega$, for every $\xi > 0$,
 \[
   \Pr\bigl((c_\Omega - \xi)\log n/n^d \le \rho_\Omega \le (c_\Omega + \xi)\log n/n^d\bigr) \to 1,
 \]
@@ -217,8 +217,8 @@ is the hyperplane through $F$ at angle $\varphi$. Parametrize $H_\varphi$ by $(u
 direction space of $F$ and $e(\varphi)$ the unit normal to $F$ in $H_\varphi$; then $f_F(\varphi) = |\Omega|^{-1}\int|s|\,\Cone_\Omega(U_1 + u' + s\,e(\varphi))\,du'\,ds$
 over $|u'|, |s| \le \Delta$. As $\varphi \to \varphi_1$, the integrand converges at every $(u', s)$ with $U_1 + u' + s\,e(\varphi_1) \notin \partial\Omega$, and
 $H_{\varphi_1} \cap \partial\Omega$ is $\sigma$-null unless $H_{\varphi_1}$ contains a facet of $\Omega$ (a $(d-1)$-dimensional face),
-in which case $F$ lies in the hyperplane of that facet. There are countably many facets and each hyperplane is
-null, so almost surely $F$ lies in none of them. Then $f_F$ is continuous (by dominated convergence), hence uniformly
+in which case $F$ lies in the hyperplane of that facet. There are countably many facets (their relative interiors are disjoint and each has positive
+$(d-1)$-volume) and each hyperplane is null, so almost surely $F$ lies in none of them. Then $f_F$ is continuous (by dominated convergence), hence uniformly
 continuous. Now $\Pr(\dist(z, H) < t \mid F) = \int_{I}f_F$ over the arc $I$ of half-width $\alpha = \arcsin\min(1, t/D_z)$
 about $\varphi_z$. On $\{D_z \ge \delta_1\}$ and for $t < \delta_1$, we have $2\alpha/t \to 2/D_z$ and the mean of $f_F$ over $I$ tends to
 $f_F(\varphi_z)$, both uniformly in $z$, since $z \mapsto (D_z, \varphi_z)$ is continuous there. Hence
@@ -288,7 +288,7 @@ with $\gamma = 2^{1-d}$.
 \end{lemma}
 
 \begin{proof}
-(a) $\dist(x, H(u)) = f(u)/V(u)$ with $f(u) = |\det(u_2 - u_1, \dots, u_d - u_1, x - u_1)|$. By multilinearity,
+(a) $\dist(x, H(u)) = f(u)/V(u)$ with $f(u) = |\det(u_2 - u_1, \dots, u_d - u_1, x - u_1)|$. By multilinearity and the triangle inequality,
 $|f(u) - f(u')| \le C\eta$ and $|V(u) - V(u')| \le C\eta \le \ell$, and $f(u) \le V(u)\Delta$, so
 $|f/V - f'/V'| \le |f - f'|/V' + f|V - V'|/(VV') \le C\eta/\ell$. (b) With $V_k$ the analogue for $k$ points ($V_1 = 1$),
 $V_k = V_{k-1}\dist(u_k, \Caff(u_1, \dots, u_{k-1}))$, so $\Pr(V_k < \ell) \le \Pr(V_{k-1} < \ell^{1/2}) + C\ell^{1/2}$ (the
@@ -443,7 +443,7 @@ By rotation invariance of $d\nu$, this depends only on $\varrho=|z|$. For $z\ne0
 $s=\ip{z/|z|}\nu$, which is non-increasing in $\varrho$, and strictly decreasing where $s\ne0$. Hence $h_\Omega$ decreases in
 $|z|$ and its minimum is at $|z|=1$. For $\nu$ uniform on $\Sph^{d-1}$, $s$ has density $(1-s^2)^{(d-3)/2}/J(\frac{d-3}2)$ on
 $(-1,1)$ (for $d=2$ this is the arcsine law, $J(-\frac12)=\pi$). So $m_\Omega=2J(k+\frac{d-3}2)/(J(\frac{d-3}2)J(k))$, and
-$c_{\ball^d}=d^2\,d!/m_\Omega$ is the stated value, as $k+\frac{d-3}2=\frac{d^2+d-4}2$. For $d=2$ it agrees with
+$c_{\ball^d}=d^2\cdot d!/m_\Omega$ is the stated value, as $k+\frac{d-3}2=\frac{d^2+d-4}2$. For $d=2$ it agrees with
 Corollary~\ref{cor:plane}. The values follow from $J(a)=\sqrt\pi\,\Gamma(a+1)/\Gamma(a+\frac32)$; for instance $c_{\ball^3}=27J(0)=54$,
 and $c_{\ball^4}=2111870475\pi^2/67108864$.
 \end{proof}
@@ -457,7 +457,13 @@ in the accompanying repository \cite{Repo}.
 \section{Remarks and open questions}\label{sec:remarks}
 
 \paragraph{Where is $h_\Omega$ smallest?} For the unit ball, the minimum of $h_\Omega$ is attained on the boundary
-(Corollary~\ref{cor:ball}). Is this true for every convex body? If so, the constant $c_\Omega$ would be determined by points of
+(Corollary~\ref{cor:ball}). The same holds for every centrally symmetric planar convex body $\Omega$, centred at $0$. Fix a
+direction $\theta$ and let $\ell(p)$ be the length of the chord of $\Omega$ in direction $\theta$ at signed offset $p$ from $0$, for $p$ in the interval of offsets of lines meeting $\Omega$.
+By convexity, the chord at offset $\lambda p+(1-\lambda)p'$ contains the Minkowski combination of the chords at $p$ and
+$p'$, so $\ell$ is concave; by symmetry it is even, so it is nonincreasing in $|p|$ (for $0\le p<q$, write $p$ as a convex combination of $q$ and $-q$). As $z$ moves outwards along a ray from
+$0$, the offset of the chord through $z$ in direction $\theta$ grows in absolute value, so $L_z(\theta)$ does not increase,
+and neither does $h_\Omega(z)=\frac2{3|\Omega|^2}\int_0^\pi L_z(\theta)^3\,d\theta$. Every point of $\Omega$ lies on a ray from $0$ to a
+point of $\partial\Omega$, so $m_\Omega=\min_{\partial\Omega}h_\Omega$. Is this true for every convex body? If so, the constant $c_\Omega$ would be determined by points of
 $\partial\Omega$, which random hyperplanes reach least often.
 
 \paragraph{Rate of convergence.} Theorem~\ref{thm:main} gives convergence in probability of $n^d\rho_\Omega/\log n$ to
