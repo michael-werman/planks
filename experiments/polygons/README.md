@@ -12,4 +12,6 @@ Floating-point and high-precision checks for Paper II (not part of any proof).
 - `h_triangle_refine.py` (2026-11-27, floating point, ~11 s): golden-section search along the two candidate edges of the
   triangle (0,0),(1,0),(0.05,0.3) with K θ-nodes. K=2·10^5 and 10^6: bottom-edge minimum h ≈ 3.134735 at (0.3329, 0),
   c ≈ 2.55205; a second local minimum on the edge from (1,0) to (0.05,0.3), h ≈ 3.13618 at (0.364, 0.201), larger by
-  ≈ 0.046%. With K=2000 the order of the two flips, so the location (not the value of c) is resolution-sensitive.
+  ≈ 0.046%. With K=2000 the order of the two flips: for z on the slanted edge θ ↦ L_z(θ) jumps at the edge
+  direction, so the midpoint rule converges only like 1/K there. An independent check with the θ-integral split at the
+  vertex directions (deep check, 2026-11-27) gives c ≈ 2.5520 at (0.3329,0) and c ≈ 2.5509 at (0.3640,0.2008).
