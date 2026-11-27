@@ -79,7 +79,7 @@ and Janson \cite{Janson} inequalities give both. Poissonization and discretizati
 coverage problems \cite{Janson86,Penrose}. Here the dependence between slabs is handled by Janson's inequality (upper
 bound) and Harris's inequality with a second moment (lower bound); the new ingredients are the shared-point bound of
 Lemma~\ref{lem:share}, which makes the pair term in Janson's inequality $O((\log n)^3/n)$, and the two-point bound of
-Lemma~\ref{lem:ig}(b), which makes distinct test points nearly independent (Proposition~\ref{prop:lower}, Step~4). For
+Lemma~\ref{lem:ig}(b), which makes distinct test points nearly independent (Proposition~\ref{prop:lower}, Step~3). For
 $d=2$, the event that a sample point lies close to a line spanned by two others also governs the smallest triangle
 among random points \cite{JLV,GJ}. Random samples of size $O(\epsilon^{-1}\log(1/\epsilon))$ are $\epsilon$-nets \cite{HW},
 which is the analogous logarithmic factor for range spaces. The line through two random points of a convex body was studied by Kingman
@@ -165,11 +165,11 @@ the edges, $m_\square=\frac{\sqrt5}3+\frac{11}{12}\log\phi\approx1.1865$, and $c
 vertices $h_\square=\frac23(\sqrt2+\log(1+\sqrt2))\approx1.5304$.
 \end{corollary}
 
-\paragraph{Outline.} After Poissonization and discretization into tiny cells (Section~\ref{sec:poisson}), the event that
-$x$ is uncovered is sandwiched between events on independent occupancy indicators. Janson's inequality bounds its
-probability by $e^{-\mu_x+\mathcal D}$, where $\mu_x$ is about the mean number of spanned hyperplanes within $\eps$ of $x$ and the pair term $\mathcal D$
-is dominated by pairs of $d$-sets sharing one point and is $O((\log n)^3/n)$ uniformly in $x$; a union bound over a net gives the upper bound (Section~\ref{sec:upper}). Harris's inequality gives
-$\Pr(x\text{ uncovered})\ge(1-o(1))e^{-\mu_x}$. A random spanned hyperplane passes within $\eps$ of both of two points at
+\paragraph{Outline.} After Poissonization, Harris's and Janson's inequalities, applied to the occupancy indicators of cells
+whose size tends to $0$ for fixed $n$, give $e^{-\mu_x}\le\Pr(x\text{ uncovered})\le e^{-\mu_x+\mathcal D}$ (Section~\ref{sec:poisson}),
+where $\mu_x$ is the mean number of spanned hyperplanes within $\eps$ of $x$ and the pair term $\mathcal D$ is dominated by
+pairs of $d$-sets sharing one point and is $O((\log n)^3/n)$. A union bound over a net gives the upper bound
+(Section~\ref{sec:upper}). A random spanned hyperplane passes within $\eps$ of both of two points at
 distance $r$ with probability $O(\eps^2/r)$, so test points at mutual distance at least $(\log n)^4/n^d$ share only
 $O((\log n)^{-2})$ nearby hyperplanes in expectation, and a second-moment argument gives the lower bound
 (Section~\ref{sec:lower}). The error probabilities are $O(n^{-c})$ for the upper bound and $O((\log n)^{-2})$ for the lower bound, both
@@ -179,10 +179,10 @@ $\alpha,\xi\to0$. No rate of convergence is obtained.
 
 \section{Geometric lemmas}\label{sec:geom}
 
-For points $u_1,\dots,u_k$ let $V(u_1,\dots,u_k)=(\det M)^{1/2}$ with $M=\bigl(\ip{u_i-u_1}{u_j-u_1}\bigr)_{i,j=2}^k$ ($V=1$ for
-$k=1$), the Euclidean norm of $(u_2-u_1)\wedge\dots\wedge(u_k-u_1)$, which is $(k-1)!$ times the $(k-1)$-volume of their convex hull. It is
-invariant under permutations of $u_1,\dots,u_k$ (the volume of the hull is), $u_1,\dots,u_k$ are affinely independent iff $V>0$, and by base times height
-$V(u_1,\dots,u_k)=V(u_1,\dots,u_{k-1})\dist(u_k,\Caff(u_1,\dots,u_{k-1}))$.
+Let $\mathcal G\subset(\R^d)^d$ be the set of affinely independent $d$-tuples. It is open, its complement is Lebesgue-null
+(a zero set of a nonzero polynomial), and on $\mathcal G$ the normalized cross product $\mathbf n(u)$ of $u_2-u_1,\dots,u_d-u_1$ and
+$\ip{u_1}{\mathbf n(u)}$ are continuous; so $u\mapsto\dist(z,H(u))=|\ip{z-u_1}{\mathbf n(u)}|$ is continuous on $\mathcal G$ for each $z$, and
+$\mathcal G$ and $H(u)$ are invariant under permutations of $u_1,\dots,u_d$.
 
 \begin{lemma}[Flat tails]\label{lem:flat}
 For $1 \le k \le d - 1$, $x \in \R^d$ and $r > 0$, $\Pr(\dist(x, \Caff(U_1, \dots, U_k)) \le r) \le Cr^{d-k+1}$.
@@ -244,23 +244,22 @@ on $\nu^\perp$, so no factor $\frac12$ arises although each hyperplane appears a
   \int_{(\R^d)^d}f\,dx=b_d\int_{\Sph^{d-1}}\int_\R\int_{H(\nu,p)^d}f\,\vol_{d-1}(\operatorname{conv}\{x_i\})\,d\sigma^d(x)\,dp\,d\nu,\qquad
   b_d=\frac{b_{d,d-1}(d-1)!}{|\Sph^{d-1}|}.
 \]
-Take $f=\Cone_{\Omega^d}$, and then $f(x)=\Cone_{\Omega^d}(x)\Cone\{V(x)>0,\ H(x)\in\mathcal A\}$, for which $\int f\,dx=|\Omega|^d\Pr(H\in\mathcal A)$
-as $\{V=0\}$ is Lebesgue-null; $f$ is Borel because on $\{V>0\}$ the
-normalized cross product $\mathbf n(x)$ of $x_2-x_1,\dots,x_d-x_1$ and $\ip{x_1}{\mathbf n(x)}$ are continuous; on $H(\nu,p)^d$ every $x$ of
+Take $f=\Cone_{\Omega^d}$, and then $f(x)=\Cone_{\Omega^d}(x)\Cone\{x\in\mathcal G,\ H(x)\in\mathcal A\}$, for which $\int f\,dx=|\Omega|^d\Pr(H\in\mathcal A)$
+as $(\R^d)^d\setminus\mathcal G$ is null; $f$ is Borel as $\mathbf n$ and $\ip{x_1}{\mathbf n(x)}$ are continuous on $\mathcal G$; on $H(\nu,p)^d$ every $x$ of
 positive weight has $H(x)=H(\nu,p)$. These give $|\Omega|^d=b_dZ_\Omega$ and \eqref{eq:BP}. (The value of $b_d$ is never taken from
 \cite{SW}: it cancels in \eqref{eq:BP}, and where it is needed it is determined by $|\Omega|^d=b_dZ_\Omega$.)
 \end{proof}
 
 \begin{lemma}[Spanned hyperplanes]\label{lem:ig}
-(a) For $z\in\R^d$ and $t,\delta>0$, $\Pr(\dist(z,H)<t)\le Ct$ and $\Pr(t-\delta\le\dist(z,H)<t+\delta)\le C\delta$.
+(a) For $z\in\R^d$ and $t>0$, $\Pr(\dist(z,H)<t)\le Ct$ and $\Pr(\dist(z,H)=t)=0$.
 (b) For $x\ne y$ and $t>0$, $\Pr(\dist(x,H)<t,\ \dist(y,H)<t)\le Ct^2/|x-y|$.
 (c) As $t\to0$, $t^{-1}\Pr(\dist(z,H)<t)\to h_\Omega(z)=\frac2{Z_\Omega}\int_{\Sph^{d-1}}G_\nu(\ip z\nu)\,d\nu$ uniformly in
 $z\in\R^d$; $h_\Omega$ is continuous, and $h_\Omega\ge c_1>0$ on $\Omega$.
 \end{lemma}
 
 \begin{proof}
-(a) By Lemma~\ref{lem:rep}, $1/Z_\Omega=b_d/|\Omega|^d$ depends only on $d$ and $|\Omega|$. In \eqref{eq:BP}, $G_\nu\le\Psi_{\max}$ and the sets $\{|p-\ip z\nu|<t\}$ and $\{t-\delta\le|p-\ip z\nu|<t+\delta\}$ have
-$p$-measure $2t$ and at most $4\delta$.
+(a) By Lemma~\ref{lem:rep}, $1/Z_\Omega=b_d/|\Omega|^d$ depends only on $d$ and $|\Omega|$. In \eqref{eq:BP}, $G_\nu\le\Psi_{\max}$ and the sets $\{|p-\ip z\nu|<t\}$ and $\{|p-\ip z\nu|=t\}$ have
+$p$-measure $2t$ and $0$.
 
 (b) Both events force $|\ip{x-y}\nu|<2t$ and put $p$ in an interval of length $2t$. For a unit vector $e$ and $s>0$, the
 band $\{\nu:|\ip e\nu|<s\}$ has measure at most $Cs$ (for $s<1$ it is $|\Sph^{d-2}|\int_{-s}^s(1-u^2)^{(d-3)/2}du$, at most
@@ -321,25 +320,6 @@ If $T_0\le C_0$ the last term is $1\le C_0K_0^2t^2$; otherwise it is $C_0K_0^2t^
 $\le Ct^2(1+\log(1/t))$.
 \end{proof}
 
-\begin{lemma}[Perturbation]\label{lem:pert}
-(a) Let $c_2=1/(2(d-1)\Delta^{d-2})$ and $C_2=(4d-2)\Delta^{d-1}$. If $u, u' \in \Omega^d$, $|u_i - u'_i| \le \eta$, $\ell>0$,
-$V(u) \ge 2\ell$ and $\eta \le c_2\ell$, then $V(u') \ge \ell$ and $|\dist(x, H(u)) - \dist(x, H(u'))| \le C_2\eta/\ell$ for
-$x \in \Omega$. (b) $\Pr(V(U_1, \dots, U_d) < \ell) \le C\ell^\gamma$ with $\gamma = 2^{2-d}$.
-\end{lemma}
-
-\begin{proof}
-(a) By base times height for $u_1,\dots,u_d,x$, $\dist(x, H(u)) = N_x(u)/V(u)$ with $N_x(u)=V(u_1,\dots,u_d,x)\le V(u)\Delta$. Replacing
-the vectors $u_i-u_1$, $x-u_1$ by $u'_i-u'_1$, $x-u'_1$ one at a time, all intermediate vectors have norm $\le\Delta$ (as $u,u'\in\Omega^d$, $x\in\Omega$) and each
-changes by $\le2\eta$ ($x-u_1$ by $\le\eta$), so multilinearity and Hadamard's inequality $|a_1\wedge\dots\wedge a_m|\le\prod|a_i|$ give
-$|N_x(u) - N_x(u')| \le(2d-1)\Delta^{d-1}\eta\le 2d\Delta^{d-1}\eta$ and $|V(u) - V(u')| \le 2(d-1)\Delta^{d-2}\eta\le\ell$, so $V(u')\ge\ell$.
-Then, as $N_x\le V\Delta$, $|N_x/V - N_x'/V'| \le |N_x - N_x'|/V' + N_x|V - V'|/(VV') \le(2d+2(d-1))\Delta^{d-1}\eta/\ell=C_2\eta/\ell$.
-(b) For $\ell>1$ take $C\ge1$. For $\ell\le1$ and $2\le k\le d$, base times height and the independence of $U_k$ from
-$U_1,\dots,U_{k-1}$ give $\Pr(V(U_1,\dots,U_k) < \ell) \le \Pr(V(U_1,\dots,U_{k-1}) < \ell^{1/2}) + C\ell$, since the $r$-neighbourhood of a
-flat of dimension $\le d-2$ through $U_1$ meets $\Omega$ in volume $\le Cr^2$ for $r\le1$. As $V(U_1)=1$, induction gives
-$C\ell^{2^{2-k}}$. (The exponent is not sharp; Sections~\ref{sec:poisson}--\ref{sec:lower} only need some $\gamma\in(0,1]$, with $\beta$
-defined from it.)
-\end{proof}
-
 \section{Poissonization and the correlation inequalities}\label{sec:poisson}
 
 \begin{thmH}[{\cite{Harris}; see \cite[Section~6.3]{AS}}]
@@ -355,68 +335,76 @@ $S_i \cap S_j \ne \emptyset$. Then $\Pr(\text{no }A_i) \le e^{-\bar\mu + \mathca
 form, so the convention of ordered or unordered pairs does not matter.)
 \end{thmJ}
 
-\paragraph{Set-up.} In Sections~\ref{sec:poisson}--\ref{sec:lower}, $\vartheta\in(0,1)$ and $\eps=\eps_n\in(0,\frac12]$ are given,
-and $o(1)$ tends to $0$ as $n\to\infty$, uniformly over the points to which the statement applies. Let
-$\lambda = (1 \mp \vartheta)n/|\Omega|$ ($-$ for the upper bound, $+$ for the lower bound); in this section $C$ does
-not depend on $\vartheta$, $\eps$, $n$ or the points, since $\lambda|\Omega|\le2n$. Let $N \sim \mathrm{Poisson}(\lambda|\Omega|)$
-be independent of the $X_i$ (on a product extension of the probability space; this does not change the law of
-$\rho_\Omega^{(n)}$), and $\Pi = \{X_1, \dots, X_N\}$, a Poisson process of intensity $\lambda$ on $\Omega$. Put $\eta = n^{-\beta}$
-with $\beta = 4(d + 2)/\gamma$, $\ell = \eta^{1/2}$ and $\delta = C_2\eta^{1/2}$. For large $n$, $\eta^{1/2}\le\min(c_2,\Delta^{2-d}/2)$,
-so $\eta\le c_2\ell$ and $\eta\Delta^{d-2}<2\ell$; and since $\beta\gamma/2=2d+4$, $\beta/2\ge2d+4$ and
-$\beta d\ge4d(d+2)\ge d^2+4$,
-\begin{equation}\label{eq:params}
-  n^d\eta^{\gamma/2}= n^{-d-4},\qquad n^d\delta\le C_2n^{-d-4}\le n^{-1},\qquad n^2\eta^d\le n^{-d^2-2}.
-\end{equation}
-($\beta$ is not optimized.) The \emph{cells} are the nonempty sets $Q_k = \Omega \cap ((\eta/\sqrt d)(k+[0,1)^d))$, $k\in\Z^d$; they
-partition $\Omega$ and have diameter $\le\eta$ and volume $v_k \le \eta^d$. The numbers $N_k$ of points of $\Pi$ in $Q_k$ are
-independent $\mathrm{Poisson}(\lambda v_k)$, so $I_k = \Cone\{N_k \ge 1\}$ has $p_k = \Pr(I_k = 1)=1-e^{-\lambda v_k}\in[\lambda v_k(1 - \lambda\eta^d),\lambda v_k]$
-(as $x\ge1-e^{-x}\ge x-x^2/2$ and $\lambda v_k\le\lambda\eta^d$), and
-the event $\mathrm{Two}$ that some cell holds at least two points of $\Pi$ has $\Pr(\mathrm{Two}) \le \lambda^2\eta^d|\Omega|$.
-
-A \emph{cell set} is a set $S$ of $d$ distinct cell indices; $v(S)=\prod_{k\in S}v_k$, and $Q_S$ is the set of
-$u\in\Omega^d$ with exactly one coordinate in each $Q_k$, $k\in S$; so $|Q_S|=d!\,v(S)$, and the $Q_S$ are pairwise disjoint. For $z\in\Omega$, $S\in\CB_\Cout(z)$ if
-some, and $S\in\CB_\Cin(z)$ if every, $u\in Q_S$ has $V(u)>0$ and $\dist(z,H(u))<\eps$. For a family $\CB$ of cell sets,
-$F_\CB$ is the event that no $S\in\CB$ is fully occupied (i.e.\ has $I_k=1$ for all $k\in S$), $\bar\mu(\CB)=\sum_{S\in\CB}\prod_{k\in S}p_k$, and $\mathcal U(\CB)=\bigcup_{S\in\CB}Q_S$, so that
-$\lambda^d\sum_{S\in\CB}v(S)=(\lambda^d/d!)|\mathcal U(\CB)|$. Let $E_z$ be the event that no $d$ points of $\Pi$ span a hyperplane
-$H'$ with $\dist(z,H')<\eps$; by Lemma~\ref{lem:sand}(a), the two families sandwich $E_z$ up to the event $\mathrm{Two}$. Let
+\paragraph{Set-up.} In Sections~\ref{sec:poisson}--\ref{sec:lower}, $\vartheta\in(0,1)$ and $\eps=\eps_n\in(0,\frac12]$ are given.
+Let $\lambda = (1 \mp \vartheta)n/|\Omega|$ ($-$ for the upper bound, $+$ for the lower bound), let
+$N \sim \mathrm{Poisson}(\lambda|\Omega|)$ be independent of the $X_i$ (on a product extension of the probability space; this
+does not change the law of $\rho_\Omega^{(n)}$), and $\Pi = \{X_1, \dots, X_N\}$, a Poisson process of intensity $\lambda$ on
+$\Omega$. For $z\in\R^d$ let $E_z$ be the event that no $d$ points of $\Pi$ span a hyperplane $H'$ with $\dist(z,H')<\eps$
+($z$ is uncovered). For $z,z'\in\R^d$ let
 \[
-  \mu_z(t) = \frac{\lambda^d}{d!}\,|\{u \in \Omega^d : V(u) > 0,\ \dist(z, H(u)) < t\}| = \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(z,H)<t)\le Cn^dt.
+  \mu_z = \frac{\lambda^d}{d!}\,\bigl|\{u \in \Omega^d\cap\mathcal G :\dist(z, H(u)) < \eps\}\bigr| = \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(z,H)<\eps),
 \]
+and let $\mu_{z,z'}$ be defined in the same way with the condition $\min(\dist(z,H(u)),\dist(z',H(u)))<\eps$; thus
+\[
+  \mu_z+\mu_{z'}-\mu_{z,z'}=\frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(z,H)<\eps,\ \dist(z',H)<\eps).
+\]
+($\mu_z$ is the mean number of $d$-subsets of $\Pi$ spanning a hyperplane within $\eps$ of $z$.)
 
-\begin{lemma}[Sandwich]\label{lem:sand}
-Let $z,x,y\in\Omega$. (a) $F_{\CB_\Cout(z)} \setminus \mathrm{Two} \subseteq E_z \subseteq F_{\CB_\Cin(z)}$. (b) For large $n$,
-$\lambda^d\sum_{S\in\CB_\Cout(z)}v(S) \le \mu_z(\eps + \delta) + Cn^d\eta^{\gamma/2}$ and
-$\lambda^d\sum_{S\in\CB_\Cin(z)}v(S) \ge \mu_z(\eps - \delta) - Cn^d\eta^{\gamma/2}$.
-(c) $\lambda^d\sum_{S\in\CB_\Cin(x) \cap \CB_\Cin(y)}v(S) \le \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(x, H) < \eps,\ \dist(y, H) < \eps)$.
+\begin{lemma}[One and two points]\label{lem:poisson}
+For $z,z'\in\R^d$, (a) $\Pr(E_z)\ge e^{-\mu_z}$, and (b) $\Pr(E_z\cap E_{z'})\le\exp(-\mu_{z,z'}+\mathcal D)$ with
+$\mathcal D=C\sum_{j=1}^{d-1}\lambda^{2d-j}\eps^2\log(1/\eps)$, where $C$ depends only on $d$, $\Delta$, $|\Omega|$ and $r_0$.
 \end{lemma}
 
-\begin{proof}
-(a) Off $\mathrm{Two}$, $d$ points spanning a hyperplane within $\eps$ of $z$ lie in distinct cells, which form a set in
-$\CB_\Cout(z)$; if a set in $\CB_\Cin(z)$ is fully occupied, any choice of one point per cell spans such a
-hyperplane. (b) Since $\lambda^d\sum_{S\in\CB}v(S)=(\lambda^d/d!)|\mathcal U(\CB)|$ and
-$(\lambda^d/d!)|\{V<2\ell\}|\le Cn^d\eta^{\gamma/2}$ by Lemma~\ref{lem:pert}(b), it suffices to show, for $V(u)\ge2\ell$: if
-$u\in\mathcal U(\CB_\Cout(z))$ then $\dist(z,H(u))<\eps+\delta$, and if $\dist(z,H(u))<\eps-\delta$ then $u\in\mathcal U(\CB_\Cin(z))$. Two
-coordinates of $u$ in one cell would give $V(u)\le\eta\Delta^{d-2}<2\ell$, so the cells of $u$ are distinct; and every $u'$ with
-$u'_i$ in the cell of $u_i$ has $V(u')>0$ and $|\dist(z,H(u'))-\dist(z,H(u))|\le\delta$ by Lemma~\ref{lem:pert}(a). Applied to the
-witness $u'\in Q_S$ for $S\in\CB_\Cout(z)$, with its coordinates permuted so that the $i$-th lies in the cell of $u_i$ (this
-changes neither $V$ nor $H$), and to all such $u'$, this gives the two claims. (c)
-$\mathcal U(\CB_\Cin(x)\cap\CB_\Cin(y))\subseteq\{\dist(x,H(u))<\eps,\ \dist(y,H(u))<\eps\}$.
-\end{proof}
-
-\begin{lemma}[Uncovered pairs]\label{lem:janson}
-For $z, z' \in \Omega$ and $\CB = \CB_\Cin(z) \cup \CB_\Cin(z')$, $\Pr(E_z \cap E_{z'}) \le \exp(-\bar\mu(\CB) + \mathcal D)$, where $\mathcal D$ is
-the quantity of Janson's inequality for the events $A_S=\{S\subseteq R\}$, $S\in\CB$, $R=\{k:I_k=1\}$, and
-$\mathcal D \le C\sum_{j=1}^{d-1}\lambda^{2d-j}\eps^2\log(1/\eps)$.
-\end{lemma}
+The proof discretizes $\Omega$ into cells of diameter $\eta$ and lets $\eta\to0$ with $n$ fixed; both sides of (a) and (b)
+are independent of $\eta$.
 
 \begin{proof}
-$E_z\cap E_{z'}\subseteq F_\CB$ by Lemma~\ref{lem:sand}(a); apply Janson's inequality. An ordered pair $(S,S')$ counted in $\mathcal D$ has
-$|S\cap S'|=j\in[1,d-1]$ ($j=d$ is impossible) and $\Pr(A_S\cap A_{S'})\le\lambda^{2d-j}\prod_{k\in S\cup S'}v_k$. Fix
-$y_1,y_2\in\{z,z'\}$ and the pairs with $S\in\CB_\Cin(y_1)$, $S'\in\CB_\Cin(y_2)$ (a pair may be counted for several choices,
-which only increases the bound; below, $s$, $a$, $a'$ are deterministic values of the three tuples of Lemma~\ref{lem:share}). A pair with orderings of $S\cap S'$, $S\setminus S'$, $S'\setminus S$ gives a product of cells
-in $\Omega^{2d-j}$ of volume $\prod_{S\cup S'}v_k$; these products are disjoint (a point determines its cells), there are
-$j!((d-j)!)^2$ orderings per pair, and all lie in $\{(s,a,a'):\dist(y_1,H_{s,a})<\eps,\ \dist(y_2,H_{s,a'})<\eps\}$. Hence the sum of
-$\prod_{S\cup S'}v_k$ over these pairs is at most $|\Omega|^{2d-j}$ times the probability in Lemma~\ref{lem:share}, which is at most
+Let $0<\eta\le1$. The \emph{cells} are the nonempty sets $Q_k = \Omega \cap ((\eta/\sqrt d)(k+[0,1)^d))$, $k\in\Z^d$; they
+partition $\Omega$ and have diameter $\le\eta$ and volume $v_k \le \eta^d$. The numbers $N_k$ of points of $\Pi$ in $Q_k$ are
+independent $\mathrm{Poisson}(\lambda v_k)$, so $I_k = \Cone\{N_k \ge 1\}$ has $p_k = \Pr(I_k = 1)=1-e^{-\lambda v_k}\in[\lambda v_k(1 - \lambda\eta^d),\lambda v_k]$,
+and the event $\mathrm{Two}$ that some cell holds at least two points of $\Pi$ has $\Pr(\mathrm{Two}) \le \lambda^2\eta^d|\Omega|$. A
+\emph{cell set} is a set $S$ of $d$ cell indices; it is \emph{occupied} if $I_k=1$ for all $k\in S$. Let $v(S)=\prod_{k\in S}v_k$
+and let $Q_S$ be the set of $u\in\Omega^d$ with exactly one coordinate in each $Q_k$, $k\in S$; so $|Q_S|=d!\,v(S)$, and the $Q_S$
+are pairwise disjoint. For $y\in\R^d$, $S\in\CB_\Cout(y)$ if some, and $S\in\CB_\Cin(y)$ if every, $u\in Q_S$ lies in $\mathcal G$
+and has $\dist(y,H(u))<\eps$. For a family $\CB$ of cell sets let $\mathcal U(\CB)=\bigcup_{S\in\CB}Q_S$, so
+$\lambda^d\sum_{S\in\CB}v(S)=(\lambda^d/d!)|\mathcal U(\CB)|$.
+
+\emph{Limits as $\eta\to0$.} Let $u\in\Omega^d\cap\mathcal G$. Its coordinates are distinct, so for small $\eta$ they lie in distinct
+cells, forming a set $S$ with $u\in Q_S$; every $u'\in Q_S$ is, after a permutation of its coordinates (which changes neither
+$\mathcal G$ nor $H$), within $\eta$ of $u$ in each coordinate. As $\mathcal G$ is open and $\dist(y,H(\cdot))$ is continuous on
+$\mathcal G$, for small $\eta$ every such $u'$ lies in $\mathcal G$ and $\dist(y,H(u'))-\eps$ has the sign of $\dist(y,H(u))-\eps$ if
+the latter is nonzero. So $\Cone_{\mathcal U(\CB_\Cin(y))}(u)\to1$ (hence also $\Cone_{\mathcal U(\CB_\Cout(y))}(u)\to1$, as $\CB_\Cin(y)\subseteq\CB_\Cout(y)$) if
+$\dist(y,H(u))<\eps$, and
+$\Cone_{\mathcal U(\CB_\Cout(y))}(u)\to0$ (hence also $\Cone_{\mathcal U(\CB_\Cin(y))}(u)\to0$) if $\dist(y,H(u))>\eps$. The remaining
+$u$, in $\Omega^d\setminus\mathcal G$ or with $\dist(y,H(u))=\eps$, form a null set (the opening of Section~\ref{sec:geom} and Lemma~\ref{lem:ig}(a)). By dominated
+convergence,
+\begin{equation}\label{eq:limits}
+  \frac{\lambda^d}{d!}|\mathcal U(\CB_\Cout(z))|\to\mu_z,\qquad
+  \frac{\lambda^d}{d!}|\mathcal U(\CB_\Cin(z)\cup\CB_\Cin(z'))|\to\mu_{z,z'}.
+\end{equation}
+
+(a) Off $\mathrm{Two}$, $d$ points of $\Pi$ spanning a hyperplane within $\eps$ of $z$ lie in distinct cells, which form a set in
+$\CB_\Cout(z)$. So $E_z$ contains the event that no set in $\CB_\Cout(z)$ is occupied, minus $\mathrm{Two}$. The events that a
+given set $S$ is not occupied are decreasing, with probability $1-q_S$, $q_S=\prod_{k\in S}p_k\le\lambda^dv(S)\le(\lambda\eta^d)^d$.
+For $\eta$ so small that $(\lambda\eta^d)^d\le\frac12$, Harris's inequality and $\log(1-q)\ge-q(1+q)$ for $0\le q\le\frac12$ give
+\[
+  \Pr(E_z)\ge\prod_{S\in\CB_\Cout(z)}(1-q_S)-\Pr(\mathrm{Two})\ge\exp\Bigl(-\bigl(1+(\lambda\eta^d)^d\bigr)\frac{\lambda^d}{d!}|\mathcal U(\CB_\Cout(z))|\Bigr)-\lambda^2\eta^d|\Omega|,
+\]
+and $\eta\to0$ gives (a) by \eqref{eq:limits}.
+
+(b) If a set in $\CB_\Cin(z)$ is occupied, any choice of one point of $\Pi$ per cell spans a hyperplane within $\eps$ of
+$z$. So, with $\CB=\CB_\Cin(z)\cup\CB_\Cin(z')$, $E_z\cap E_{z'}$ is contained in the event that no set in $\CB$ is occupied.
+Janson's inequality with $R=\{k:I_k=1\}$ and the events $A_S=\{S\subseteq R\}$, $S\in\CB$, bounds its probability by
+$\exp(-\bar\mu+\mathcal D_\eta)$, where, for $\lambda\eta^d\le1$, $\bar\mu=\sum_{S\in\CB}q_S\ge(1-\lambda\eta^d)^d(\lambda^d/d!)|\mathcal U(\CB)|\to\mu_{z,z'}$ by
+\eqref{eq:limits}, and $\mathcal D_\eta$ is the pair term. It remains to show $\mathcal D_\eta\le\mathcal D$ for every $\eta$. An
+ordered pair $(S,S')$ counted in $\mathcal D_\eta$ has $|S\cap S'|=j\in[1,d-1]$ ($j=d$ is impossible) and
+$\Pr(A_S\cap A_{S'})\le\lambda^{2d-j}\prod_{k\in S\cup S'}v_k$. Fix $y_1,y_2\in\{z,z'\}$ and the pairs with $S\in\CB_\Cin(y_1)$,
+$S'\in\CB_\Cin(y_2)$ (a pair may be counted for several choices, which only increases the bound; below, $s$, $a$, $a'$ are
+deterministic values of the three tuples of Lemma~\ref{lem:share}). A pair with orderings of $S\cap S'$, $S\setminus S'$,
+$S'\setminus S$ gives a product of cells in $\Omega^{2d-j}$ of volume $\prod_{S\cup S'}v_k$; these products are disjoint (a
+point determines its cells), there are $j!((d-j)!)^2$ orderings per pair, and all lie in
+$\{(s,a,a'):\dist(y_1,H_{s,a})<\eps,\ \dist(y_2,H_{s,a'})<\eps\}$. Hence the sum of $\prod_{S\cup S'}v_k$ over these pairs is at
+most $|\Omega|^{2d-j}$ times the probability in Lemma~\ref{lem:share}, which is at most
 $C\eps^2(1+\log(1/\eps))\le3C\eps^2\log(1/\eps)$ for $\eps\le\frac12$; sum over $j$ and the four $(y_1,y_2)$.
 \end{proof}
 
@@ -428,19 +416,12 @@ For every $\xi>0$ there are $C,c>0$ with $\Pr(\rho_\Omega^{(n)}>(c_\Omega+\xi)\l
 
 \begin{proof}
 Let $c_+=c_\Omega+\xi/2$. Since $m_\Omega c_+/d!=d^2+m_\Omega\xi/(2\,d!)>d^2$, we can fix $\vartheta\in(0,1)$ and $\zeta\in(0,m_\Omega)$ with
-$(1 - \vartheta)^d(m_\Omega - \zeta)c_+/d! \ge d^2 + 2\zeta$. Let $\eps = c_+\log n/n^d$ ($\le\frac12$ for large $n$) and $\lambda=(1-\vartheta)n/|\Omega|$; it
+$(1 - \vartheta)^d(m_\Omega - \zeta)c_+/d! \ge d^2 + \zeta$. Let $\eps = c_+\log n/n^d$ ($\le\frac12$ for large $n$) and $\lambda=(1-\vartheta)n/|\Omega|$; it
 suffices to take $n$ large (then enlarge $C$).
 
 \emph{One point.} By Lemma~\ref{lem:ig}(c) there is $t_0>0$ with $\Pr(\dist(z, H) < t) \ge (m_\Omega - \zeta)t$ for $z \in \Omega$ and
-$t\le t_0$, and $0<\eps-\delta\le t_0$ for large $n$ as $n^d\delta\to0$. By $p_k\ge\lambda v_k(1-\lambda\eta^d)$ and
-Lemma~\ref{lem:sand}(b),
-\[
-  \bar\mu(\CB_\Cin(z)) \ge (1 - \lambda\eta^d)^d\bigl(\mu_z(\eps - \delta) - Cn^d\eta^{\gamma/2}\bigr)
-  \ge \frac{(1 - \vartheta)^dn^d}{d!}(m_\Omega - \zeta)\eps - o(1) \ge (d^2 + \zeta)\log n.
-\]
-Here, as $\mu_z(\eps-\delta)\le Cn^d\eps=C\log n$, the loss from $(1-\lambda\eta^d)^d\ge1-d\lambda\eta^d$ is at most $C\lambda\eta^d\log n$, replacing $\eps-\delta$ by $\eps$ costs
-$Cn^d\delta\le Cn^{-1}$, and $Cn^d\eta^{\gamma/2}=Cn^{-d-4}$ by \eqref{eq:params}; the margin $\zeta\log n$ absorbs these. By Lemma~\ref{lem:janson} with
-$z=z'$, and as $\lambda\ge1$ (so the $j=1$ term dominates) and $\log(1/\eps)\le d\log n$ for large $n$, $\mathcal D \le Cn^{2d-1}\eps^2\log n\le C(\log n)^3/n\le1$, so $\Pr(E_z) \le e\,n^{-d^2 - \zeta}$.
+$t\le t_0$. For large $n$, $\eps\le t_0$, so $\mu_z\ge(1-\vartheta)^dn^d(m_\Omega-\zeta)\eps/d!\ge(d^2+\zeta)\log n$. By
+Lemma~\ref{lem:poisson}(b) with $z=z'$ (so $\mu_{z,z'}=\mu_z$), and as $\lambda\ge1$ (so the $j=1$ term dominates) and $\log(1/\eps)\le d\log n$ for large $n$, $\mathcal D \le Cn^{2d-1}\eps^2\log n\le C(\log n)^3/n\le1$, so $\Pr(E_z) \le e\,n^{-d^2 - \zeta}$ for $z\in\Omega$.
 
 \emph{Net.} Let $g_0=\eps/(\sqrt d\log n)$, and let $\mathcal M$ be the set of nearest-point projections onto $\Omega$ of the
 points of $g_0\Z^d$ within $\eps/\log n$ of $\Omega$. Every $x\in\Omega$ is within $\eps/(2\log n)$ of a grid point $g$, which is kept, and the projection
@@ -465,66 +446,41 @@ Let $c_-=c_\Omega-\xi$. Since $m_\Omega c_-/d!=d^2-m_\Omega\xi/d!<d^2$, we can f
 $K_-c_- \le d^2 - 2\zeta$, where $K_- = (1 + \vartheta)^d(m_\Omega + \zeta)/d!$. Let $\eps = c_-\log n/n^d$ ($\le\frac12$ for large $n$) and
 $\lambda=(1+\vartheta)n/|\Omega|$; it suffices to take $n$ large. The test points are spaced $s_n=(\log n)^4/n^d$ apart.
 
-\emph{Step 1 (test points).} Let $h_\Omega(z_0) = m_\Omega$. By Lemma~\ref{lem:ig}(c) there are $r\in(0,\Delta]$ and $t_1>0$ with
+\emph{Step 1 (test points).} Let $z_0\in\Omega$ with $h_\Omega(z_0)=m_\Omega$. By Lemma~\ref{lem:ig}(c) there are $r\in(0,\Delta]$ and $t_1>0$ with
 $\Pr(\dist(z, H) < t) \le (m_\Omega + \zeta)t$ for $z \in \Omega \cap B(z_0, r)$ and $t \le t_1$. Let $\tau = r/(2\Delta + 2r_0)$,
 $z_1=(1-\tau)z_0+\tau o$ and $r_1=\tau r_0$; then $B(z_1,r_1)=(1-\tau)z_0+\tau B(o,r_0)\subseteq\Omega$ by convexity, and for $|w-o|\le r_0$,
 $|(1-\tau)z_0+\tau w-z_0|\le\tau(r_0+\Delta)=r/2$, so $B(z_1,r_1)\subseteq B(z_0,r)$. Let
 $T = s_n\Z^d \cap B(z_1, r_1)$; distinct points of $T$ are $\ge s_n$ apart, and once $s_n\sqrt d\le r_1/2$ the cubes
-$g+[0,s_n)^d$, $g\in T$, cover $B(z_1,r_1/2)$, so $|T| \ge \kappa_d(r_1/2)^ds_n^{-d}$. For large $n$, $\eps+\delta\le t_1$ and, for
-$z\in T$, $\mu_z(\eps + \delta) \le K_-n^d(\eps+\delta)\le K_-c_-\log n + 1$.
+$g+[0,s_n)^d$, $g\in T$, cover $B(z_1,r_1/2)$, so $|T| \ge \kappa_d(r_1/2)^ds_n^{-d}$. For large $n$, $\eps\le t_1$ and, for
+$z\in T$, $\mu_z\le K_-n^d\eps=K_-c_-\log n$.
 
-\emph{Step 2 (one test point).} The events that a set $S\in\CB_\Cout(z)$ is not fully occupied are decreasing, and
-$q_S=\prod_{k\in S}p_k\le(\lambda\eta^d)^d\le\frac12$. By Lemma~\ref{lem:sand}(a),(b), Harris's inequality, $\log(1-q)\ge-q(1+q)$ for $0\le q\le\frac12$ and
-$p_k\le\lambda v_k$,
+\emph{Step 2 (one test point).} By Lemma~\ref{lem:poisson}(a) and Step~1, $\Pr(E_z)\ge e^{-\mu_z}\ge n^{-K_-c_-}$ for $z\in T$.
+
+\emph{Step 3 (pairs).} Let $x\ne y$ in $T$. Since $|x-y|\ge s_n$, Lemma~\ref{lem:ig}(b) gives
+$\mu_x+\mu_y-\mu_{x,y}\le Cn^d\eps^2/s_n=C(\log n)^{-2}$. As in Proposition~\ref{prop:upper}, $\mathcal D\le C(\log n)^3/n$. As $(\log n)^3/n\le(\log n)^{-2}$ for large $n$,
+Lemma~\ref{lem:poisson}(b) and~(a) give, with $C$ independent of $x,y\in T$,
 \[
-  \Pr(E_z)\ge\prod_{S\in\CB_\Cout(z)}(1-q_S)-\Pr(\mathrm{Two})\ge e^{-(1+(\lambda\eta^d)^d)(\mu_z(\eps+\delta)+Cn^d\eta^{\gamma/2})}-\Pr(\mathrm{Two})
-  \ge(1-Cn^{-2})e^{-\mu_z(\eps+\delta)}.
-\]
-Indeed the exponent exceeds $\mu_z(\eps+\delta)$ by at most $(\lambda\eta^d)^dC\log n+2Cn^{-d-4}$, and by Step~1 and
-$K_-c_-\le d^2-2\zeta$, $\Pr(\mathrm{Two})e^{\mu_z(\eps+\delta)}\le Cn^2\eta^d\cdot e\,n^{d^2}\le Cn^{-2}$ by \eqref{eq:params}; so
-$\Pr(E_z)\ge e^{-\mu_z(\eps+\delta)}(e^{-Cn^{-2}}-Cn^{-2})\ge(1-Cn^{-2})e^{-\mu_z(\eps+\delta)}$.
-
-\emph{Step 3 (shell).} By Lemma~\ref{lem:ig}(a), $\mu_z(\eps + \delta) - \mu_z(\eps - \delta) \le Cn^d\delta \le Cn^{-1}$ by \eqref{eq:params}.
-
-\emph{Step 4 (pairs).} Let $x\ne y$ in $T$ and $\CB=\CB_\Cin(x) \cup \CB_\Cin(y)$. Since $|x-y|\ge s_n$, Lemmas~\ref{lem:sand}(c)
-and~\ref{lem:ig}(b) give $\lambda^d\sum_{S\in\CB_\Cin(x) \cap \CB_\Cin(y)}v(S) \le Cn^d\eps^2/s_n = C(\log n)^{-2}$. Applying
-$p_k \ge \lambda v_k(1 - \lambda\eta^d)$ to every set in $\CB$, then inclusion--exclusion, Lemma~\ref{lem:sand}(b) (whose terms
-$Cn^d\eta^{\gamma/2}=Cn^{-d-4}$ are absorbed below), $(1-\lambda\eta^d)^d\ge1-d\lambda\eta^d$ (with
-$\lambda^d\sum_{\CB_\Cin(x)}v(S)\le\mu_x(\eps)$ and $d\lambda\eta^d\mu_x(\eps+\delta)\le Cn^{-1}$, as $x\in T$, Step~1) and Step~3,
-\begin{align*}
-  \bar\mu(\CB) &\ge (1-\lambda\eta^d)^d\lambda^d\Bigl(\sum_{\CB_\Cin(x)}+\sum_{\CB_\Cin(y)}-\sum_{\CB_\Cin(x)\cap\CB_\Cin(y)}\Bigr)v(S)\\
-  &\ge\mu_x(\eps+\delta)+\mu_y(\eps+\delta)-C(\log n)^{-2}-Cn^{-1}.
-\end{align*}
-With $\mathcal D\le C(\log n)^3/n$ (Lemma~\ref{lem:janson}, as $\lambda\ge1$ and $\log(1/\eps)\le d\log n$, as in Proposition~\ref{prop:upper}), Lemma~\ref{lem:janson} and Step~2 for $x$ and $y$ give, with $C$ independent of $x,y\in T$,
-\[
-  \Pr(E_x \cap E_y) \le e^{C(\log n)^{-2}}e^{-\mu_x(\eps+\delta)-\mu_y(\eps+\delta)}\le\bigl(1+C(\log n)^{-2}\bigr)\Pr(E_x)\Pr(E_y).
+  \Pr(E_x \cap E_y) \le e^{C(\log n)^{-2}}e^{-\mu_x-\mu_y}\le\bigl(1+C(\log n)^{-2}\bigr)\Pr(E_x)\Pr(E_y).
 \]
 
-\emph{Step 5 (second moment).} Let $Y = \sum_{z \in T}\Cone_{E_z}$. By Steps~1--2,
-$\E Y \ge cs_n^{-d}e^{-1}n^{-K_-c_-}\ge cn^{2\zeta}(\log n)^{-4d}\ge n^{\zeta}$. By Step~4,
-$\operatorname{Var}Y\le\sum_z\Pr(E_z)+\sum_{x\ne y}(\Pr(E_x\cap E_y)-\Pr(E_x)\Pr(E_y))\le\E Y+C(\log n)^{-2}(\E Y)^2$, so by Chebyshev's
-inequality $\Pr(Y = 0) \le 1/\E Y + C(\log n)^{-2}$.
+\emph{Step 4 (second moment).} Let $Y = \sum_{z \in T}\Cone_{E_z}$. By Steps 1 and~2,
+$\E Y \ge cs_n^{-d}n^{-K_-c_-}\ge cn^{2\zeta}(\log n)^{-4d}$, so $\E Y\ge n^{\zeta}$ for large $n$. By
+Step~3,
+\[
+  \operatorname{Var}Y\le\sum_z\Pr(E_z)+\sum_{x\ne y}\bigl(\Pr(E_x\cap E_y)-\Pr(E_x)\Pr(E_y)\bigr)\le\E Y+C(\log n)^{-2}(\E Y)^2,
+\]
+so by Chebyshev's inequality $\Pr(Y = 0) \le 1/\E Y + C(\log n)^{-2}$.
 
-\emph{Step 6.} On $\{N\ge n\}\cap\{Y>0\}$ some $z\in T$ is at distance $\ge\eps$ from every hyperplane spanned by points of
+\emph{Step 5.} On $\{N\ge n\}\cap\{Y>0\}$ some $z\in T$ is at distance $\ge\eps$ from every hyperplane spanned by points of
 $\Pi\supseteq\{X_1,\dots,X_n\}$, so $\rho_\Omega^{(n)}\ge\eps$; and $\Pr(N < n) \le (1+\vartheta)(\vartheta^2n)^{-1}$.
 
-\emph{Summary of the error terms.} All are uniform in $z\in T$ and $x\ne y$ in $T$:
-\begin{itemize}
-\item two points in one cell: $\Pr(\mathrm{Two})e^{\mu_z(\eps+\delta)}\le Cn^{-2}$ (Step~2, by \eqref{eq:params});
-\item near-degenerate tuples $\{V<2\ell\}$: $Cn^d\eta^{\gamma/2}=Cn^{-d-4}$ (Lemma~\ref{lem:sand}(b));
-\item occupancy probabilities: $p_k\ge\lambda v_k(1-\lambda\eta^d)$ costs at most $C\lambda\eta^d\log n\le Cn^{-1}$ (Step~4 and
-Proposition~\ref{prop:upper}), and $\log(1-q_S)\ge-q_S(1+q_S)$ costs at most $C(\lambda\eta^d)^d\log n$ (Step~2); the factor
-$(1-Cn^{-2})^{-2}$ from Step~2 enters Step~4;
-\item replacing $\Pr(\dist(z,H)<t)$ by $h_\Omega(z)t$: absorbed by the margin $\zeta$ through Lemma~\ref{lem:ig}(c) (Step~1 and
-Proposition~\ref{prop:upper}); this is the one error that is not explicit, and the reason no rate is obtained;
-\item the shell $\eps\pm\delta$: $Cn^d\delta\le Cn^{-1}$ (Step~3);
-\item Janson's pair term: $\mathcal D\le C(\log n)^3/n$ (Lemma~\ref{lem:janson}, as in the proof of Proposition~\ref{prop:upper});
-\item hyperplanes near two test points: $C(\log n)^{-2}$ (Step~4), the only error that is not polynomially small;
-\item the second moment: $1/\E Y\le n^{-\zeta}$ (Step~5); de-Poissonization: $(1+\vartheta)(\vartheta^2n)^{-1}$ (Step~6).
-\end{itemize}
+\emph{The error terms.} Besides de-Poissonization and $1/\E Y\le n^{-\zeta}$, they are Janson's pair term
+$\mathcal D\le C(\log n)^3/n$ and the overlap $C(\log n)^{-2}$ of Step~3, the only one that is not polynomially small. The
+replacement of $\Pr(\dist(z,H)<t)$ by $h_\Omega(z)t$ is absorbed by the margin $\zeta$ (Lemma~\ref{lem:ig}(c)); it is not
+quantitative, which is why no rate is obtained.
 \end{proof}
 
-By Lemma~\ref{lem:ig}(b), a spacing $(\log n)^a/n^d$ of the test points gives the term $C(\log n)^{2-a}$ in Step~4 and in the
+By Lemma~\ref{lem:ig}(b), a spacing $(\log n)^a/n^d$ of the test points gives the term $C(\log n)^{2-a}$ in Step~3 and in the
 bound of Proposition~\ref{prop:lower}. Its proof needs only $a>2$; the proof of Theorem~\ref{thm:main} needs
 $\sum_kk^{2-a}<\infty$, i.e.\ $a>3$. We took $a=4$.
 
@@ -642,7 +598,7 @@ know which convex body minimizes $c_\Omega/w(\Omega)$.
 \paragraph{Non-uniform points.} For points with a probability density $f$ that is continuous on $\Omega$ and bounded away from $0$,
 let $h_f(z)=\lim_{t\to0}t^{-1}\Pr_f(\dist(z,H)<t)$, where $H$ is spanned by $d$ independent points with density $f$. Applying the
 identity in the proof of Lemma~\ref{lem:rep} to the function
-$\prod_if(x_i)\Cone_{\Omega^d}(x)\Cone\{V(x)>0,\ H(x)\in\mathcal A\}$, together with
+$\prod_if(x_i)\Cone_{\Omega^d}(x)\Cone\{x\in\mathcal G,\ H(x)\in\mathcal A\}$, together with
 the proof of Lemma~\ref{lem:ig}(c) (which only uses that the weight is bounded and continuous on $\Omega$), gives
 $h_f(z)=2b_d\int_{\Sph^{d-1}}G^f_\nu(\ip z\nu)\,d\nu$, where $G^f_\nu$ is defined like $G_\nu$ with the weight $\prod_if(x_i)$. Does
 Theorem~\ref{thm:main} hold with $c_f=d^2\cdot d!/\min_\Omega h_f$? We expect so: the rest of the proof uses the uniform
