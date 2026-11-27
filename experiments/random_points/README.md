@@ -1,4 +1,4 @@
-Floating-point experiments for Paper II (not part of any proof).
+Floating-point experiments for Paper II, "The covering radius of hyperplanes spanned by random points in a convex body" (not part of any proof).
 
 - `density_disc.py`: Monte Carlo estimate of P(dist(z, line U1U2) < t)/t in the unit disc at t = 0.002 from 4·10^7 pairs,
   at |z| = 0, 0.5, 0.9, 1, against h(z) = (2/(3π²))∫_0^π L_z(θ)³ dθ. Output (2026-11-25):

@@ -1,0 +1,7 @@
+Floating-point and high-precision checks for Paper II (not part of any proof).
+
+- `h_polygon.py`: h(z) = (2/(3|K|^2)) ∫_0^π L_z(θ)^3 dθ for the unit square and the equilateral triangle of side 1, minimized
+  over a 41x41 grid (floating point). Output (2026-11-27): square min h ≈ 1.18647 at the edge midpoint (0, 0.5), c ≈ 6.7427;
+  triangle min h ≈ 1.73119 at the edge midpoint (0.5, 0), c ≈ 4.6211.
+- `square_exact.py`: mpmath (30 digits) quadrature check of Corollary 2.6 (unit square): A(1/2) = √5/4 + (11/16) log φ,
+  m = √5/3 + (11/12) log φ ≈ 1.186467, c = 96/(4√5 + 11 log φ) ≈ 6.742709, h along an edge, and A'(a) = 3 g(1/a).
