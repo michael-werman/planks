@@ -1318,164 +1318,59 @@ $k\bigl(1-\sqrt{1-\rho^2}\bigr)\ge1$, that is $k\rho^2\ge1+\sqrt{1-\rho^2}\to2$,
 in general. This is the analogue for lines of the cost $\pi$ against $2$ of Proposition~\ref{prop:clusters}.
 \end{remark}
 
-\subsection{Every convex body: \texorpdfstring{$\lambda_d(n;\Omega)=\Theta(n^{-d})$}{lambda\_d(n;Omega) = Theta(n\textasciicircum -d)} and \texorpdfstring{$\mu_d(d+1;\Omega)=w(\Omega)/(2(d+1))$}{mu\_d(d+1;Omega) = w(Omega)/(2(d+1))}}
-\label{sec:D-convex}\label{sec:convex}
+\subsection{Every convex body}\label{sec:D-convex}\label{sec:convex}
 
-This generalizes the order $\lambda_d(n)=\Theta(n^{-d})$ (Corollary~C) and the points-anywhere results
-from the unit ball to every convex body. It uses only Bang's plank theorem, Theorem~B's construction with
-Lemma~\ref{lem:B-lemma2-flats}, and the construction of Section~\ref{sec:D-anywhere}. Theorem~A's strict gain over Bang is not
-generalized (its measure is specific to the ball).
-
-\begin{definition}\leavevmode
-\begin{itemize}
-  \item A convex body $\Omega\subset\R^d$ ($d\ge2$) is a compact convex set with nonempty interior.
-  \item $w(\Omega)$ is its minimal width: the least distance between two parallel supporting hyperplanes. It
-    is attained, since the width in direction $u$ is continuous on the compact sphere $\Sph^{d-1}$.
-  \item $R(\Omega)=\min_{c\in\R^d}\max_{x\in \Omega}\abs{x-c}$ is its circumradius.
-  \item For a finite $P\subset\R^d$, $H_P$ is the set of hyperplanes through $d$ affinely independent
-    points of $P$, and $\rho_\Omega(P)=\max_{x\in \Omega}\min_{H\in H_P}\dist(x,H)$ ($=\infty$ if $H_P=\emptyset$).
-    The max is attained ($\Omega$ is compact).
-  \item $\lambda_d(n;\Omega)=\inf\{\rho_\Omega(P):P\subset \Omega,\ |P|=n\}$ and
-    $\mu_d(n;\Omega)=\inf\{\rho_\Omega(P):P\subset\R^d,\ |P|=n\}$. For $\Omega=\ball^d$ these are $\lambda_d(n)$ and
-    $\mu_d(n)$.
-  \item $p_d(n)$, $\sigma_d$ and $N_d(n)$ are as in Theorem~B and Section~\ref{sec:D-anywhere}.
-\end{itemize}
-\end{definition}
-
-The order of every covering radius in this paper extends; the sharp results do not.
-
-\begin{center}
-\small
-\begin{tabular}{p{3.4cm}p{5.2cm}p{5.6cm}}
-\toprule
-Result & Unit ball & Convex body $\Omega$\\
-\midrule
-Order of $\lambda_d(n)$ & $L_d\le\liminf n^d\lambda_d(n)$ (Corollary~C), $\limsup\le\pi/(2\sigma_d)$ &
-$d!\,w(\Omega)/2\le\liminf n^d\lambda_d(n;\Omega)$, $\limsup\le\pi R(\Omega)/(2\sigma_d)$\\
-Points anywhere, $n=d+1$ & $\mu_d(d+1)=1/(d+1)$ & $\mu_d(d+1;\Omega)=w(\Omega)/(2(d+1))$\\
-Strict gain over Bang (Theorem~A, Corollary~1) & yes & open\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\paragraph{Bang's plank theorem} (Verreault's survey \cite{Verreault},
-Theorem~2.2, quoted from the arXiv v2 HTML): ``Let $C\subset\R^d$ be a convex body covered by $n$ planks
-$P_j$, $j=1,\dots,n$. Then $w(P_1)+\dots+w(P_n)\ge w(C)$.'' There a (closed) plank is ``the closed set
-of points between two parallel hyperplanes'', its width is the distance between them, and $w(C)$ is the
-minimal width. The survey attributes the theorem to Bang (1950; simplified 1951).
+Let $\Omega\subset\R^d$ be a convex body (compact, convex, with nonempty interior), with minimal width $w(\Omega)$ and
+diameter $\operatorname{diam}\Omega$ (the minimal width is attained, as the width in a direction is continuous on the
+sphere). For finite $P\subset\R^d$ put $\rho_\Omega(P)=\max_{x\in\Omega}\min_{H\in\mathcal H_P}\dist(x,H)$ ($=\infty$ if
+$\mathcal H_P=\emptyset$); it is invariant under isometries applied to both $P$ and $\Omega$. Let
+$\lambda_d(n;\Omega)$ and $\mu_d(n;\Omega)$ be its infima over $n$-point sets $P\subset\Omega$ and $P\subset\R^d$. We use Bang's
+plank theorem \cite{Bang} (see \cite[Theorem~2.2]{Verreault}): if closed planks cover a convex body, their widths sum
+to at least its minimal width.
 
 \begin{proposition}\label{D:convex}
 Let $\Omega\subset\R^d$ be a convex body, $d\ge2$.
 \begin{enumerate}[label=(\roman*)]
-  \item For $n\ge d$: $\mu_d(n;\Omega)\ge w(\Omega)/(2\binom nd)$, and so $\lambda_d(n;\Omega)\ge w(\Omega)/(2\binom nd)$.
-  \item For $n\ge d+1$: $\lambda_d(n;\Omega)\le R(\Omega)\sin(\pi/(2p_d(n)))$.
+  \item For $n\ge d$: $\lambda_d(n;\Omega)\ge\mu_d(n;\Omega)\ge w(\Omega)/(2\binom nd)$.
+  \item For $n\ge d+1$: $\lambda_d(n;\Omega)\le\operatorname{diam}\Omega\cdot\sin(\pi/(2p_d(n)))$.
   \item For $n\ge d$: $\mu_d(n;\Omega)\le w(\Omega)/(2N_d(n))$. Hence $\mu_d(d+1;\Omega)=w(\Omega)/(2(d+1))$ and
     $d!\,w(\Omega)/2\le\liminf n^d\mu_d(n;\Omega)\le\limsup n^d\mu_d(n;\Omega)\le d^d\,w(\Omega)/2$.
-  \item $\lambda_d(n;\Omega)=\Theta(n^{-d})$:
-    $d!\,w(\Omega)/2\le\liminf n^d\lambda_d(n;\Omega)\le\limsup n^d\lambda_d(n;\Omega)\le\pi R(\Omega)/(2\sigma_d)$.
+  \item $d!\,w(\Omega)/2\le\liminf n^d\lambda_d(n;\Omega)\le\limsup n^d\lambda_d(n;\Omega)\le\pi\operatorname{diam}\Omega/(2\sigma_d)$.
 \end{enumerate}
 \end{proposition}
 
-For $\Omega=\ball^d$ ($w=2$, $R=1$) these are the bounds $1/\binom nd\le\lambda_d(n)\le\sin(\pi/2p_d(n))$,
-$\mu_d(d+1)=1/(d+1)$, and so on.
-
 \begin{proof}
-\textbf{(i)} Let $P\subset\R^d$ with $|P|=n$ and $\rho=\rho_\Omega(P)<\infty$. Then $\rho>0$, since finitely
-many hyperplanes cannot cover $\Omega$, which has nonempty interior. Since the max defining $\rho$ is attained,
-every $x\in \Omega$ is within $\rho$ of some $H\in H_P$, so the closed planks $\{x:\dist(x,H)\le\rho\}$,
-$H\in H_P$, of width $2\rho$ cover $\Omega$. There are at most $\binom nd$ of them. By Bang's plank theorem,
-$\binom nd\cdot2\rho\ge w(\Omega)$. Taking the infimum over $P$ gives the bound for $\mu_d(n;\Omega)$, and
-$\lambda_d(n;\Omega)\ge\mu_d(n;\Omega)$ since the infimum is over a smaller set.
+(i) If $\rho=\rho_\Omega(P)<\infty$, the closed planks of width $2\rho$ around the at most $\binom nd$ hyperplanes of
+$\mathcal H_P$ cover $\Omega$ (the maximum defining $\rho$ is attained), so $2\rho\binom nd\ge w(\Omega)$ by Bang's theorem.
 
-\textbf{(ii)} \emph{The circumcentre.} $c\mapsto f(c)=\max_{x\in \Omega}\abs{x-c}$ is $1$-Lipschitz and tends
-to $\infty$, so its minimum $R(\Omega)$ is attained at some $c^*$. Then $c^*\in \Omega$: otherwise let $y$ be the
-nearest point of $\Omega$ to $c^*$; for every $x\in \Omega$, $\ip{x-y}{c^*-y}\le0$, so
-$\abs{x-c^*}^2=\abs{x-y}^2+\abs{y-c^*}^2-2\ip{x-y}{c^*-y}>\abs{x-y}^2$, and $f(y)<f(c^*)$, a
-contradiction. Since $\Omega$ is the closure of its interior and $f$ is continuous,
-$\inf_{c\in\operatorname{int}\Omega}f(c)=R(\Omega)$. So it suffices to show
-$\lambda_d(n;\Omega)\le f(z)\sin(\pi/(2N))$ for every $z\in\operatorname{int}\Omega$, where $N=p_d(n)$.
+(ii) Let $N=p_d(n)$, and let $q_j(r)$ ($0<r\le1$) be the points of the proof of Theorem~B; for a $d$-subset $F$
+let $H_F(r)$ be their hyperplane and $L_F=L_{w_F}$ its limit subspace (Lemma~\ref{lem:B-lemma2-flats}). The first $d-2$
+coordinates of $q_j(r)$ lie in the unit ball and the last two, $r/(i-\tau_j)$, have modulus at most $r\le1$, so
+$|q_j(r)|<\sqrt2$. Fix $z$ and $\varepsilon>0$ with $B(z,\varepsilon)\subset\Omega$, and put $\zeta=\varepsilon/\sqrt2$ and
+$P_r=\{z+\zeta q_j(r)\}\subset\Omega$. The map $x\mapsto z+\zeta x$ is an affine bijection, so every $d$ points of $P_r$ are
+affinely independent (in particular they are distinct), and $\mathcal H_{P_r}=\{z+\zeta H_F(r)\}$. Now
+$\dist(x,z+\zeta H_F(r))=\zeta\dist((x-z)/\zeta,H_F(r))$. The proof of Lemma~\ref{lem:B-lemma2-flats} gives uniform
+convergence on every bounded set (for $|y|\le\mathcal R$ the error bound there becomes
+$\norm{\Pi_s-\Pi}(\mathcal R+|q_{i_0}|)+|q_{i_0}-(t_{i_0},0)|$); with $\mathcal R=\operatorname{diam}\Omega/\zeta$, and as $L_F$ is linear, the
+distance tends to $\zeta\dist((x-z)/\zeta,L_F)=\dist(x-z,L_F)$ uniformly in $x\in\Omega$. By the proof of Theorem~B,
+$\max_{|y|\le1}\min_F\dist(y,L_F)=\sin(\pi/(2N))$, so by homogeneity $\min_F\dist(y,L_F)\le|y|\sin(\pi/(2N))$ for all
+$y$. As a max over $\Omega$ of a min of finitely many functions moves by at most their largest uniform change,
+$\rho_\Omega(P_r)\to\max_{x\in\Omega}\min_F\dist(x-z,L_F)\le\operatorname{diam}\Omega\cdot\sin(\pi/(2N))$.
 
-\emph{The construction.} Fix $z\in\operatorname{int}\Omega$ and $\eta>0$ with $B(z,\eta)\subset \Omega$. Take
-$S\subset\Z_N$, $|S|=n$, as in Theorem~B, and, as in its proof, $\theta_j$, $\tau_j=-\cot\theta_j$ and
-\[
-  q_j(r)=\bigl(\kappa\cdot(\tau_j,\dots,\tau_j^{d-2}),\ r/(i-\tau_j)\bigr)\in\R^{d-2}\times\mathbb C=\R^d
-  \qquad(j=1,\dots,n;\ 0<r\le1),
-\]
-with the $n$ values $\tau_j$ distinct. These $n$ points are distinct (their last components
-$r/(i-\tau_j)$ are distinct). For every $d$-subset $F$, the $d$ points
-$t_j=\kappa(\tau_j,\dots,\tau_j^{d-2})$, $j\in F$, affinely span $\R^{d-2}$ (Vandermonde), with dependency
-$c_j=1/\prod_{k\in F,k\ne j}(\tau_j-\tau_k)$, and $w_F=\sum_{j\in F}c_j/(i-\tau_j)\ne0$. So
-Lemma~\ref{lem:B-lemma2-flats} (with $j=d-1$, $m=2$, $a_j=1/(i-\tau_j)$, $s=r$) applies: the
-points $q_j(r)$, $j\in F$, are affinely independent, and their hyperplane $H_F(r)$ satisfies
-$\dist(\cdot,H_F(r))\to\dist(\cdot,L_F)$ as $r\to0$, where $L_F=(\R^{d-2}\times\{0\})\oplus\R(0,w_F)$.
+(iii) After an isometry, $\Omega\subset\{0\le x_d\le w(\Omega)\}$. Use the construction of Section~\ref{sec:D-anywhere} with
+$\alpha=w(\Omega)/N_d(n)$ and $\beta=-\alpha c-\alpha/2$ (in its notation). Its limit hyperplanes include
+$\{x_d=\alpha(c+j)+\beta\}=\{x_d=(j-\frac12)w(\Omega)/N_d(n)\}$, $j=1,\dots,N_d(n)$, whose closed $w(\Omega)/(2N_d(n))$-slabs
+tile $\{0\le x_d\le w(\Omega)\}\supset\Omega$. For $|x|\le\mathcal R=\max_{y\in\Omega}|y|$ and hyperplanes with unit normals
+$\nu,\nu'$ and offsets $o,o'$, $|\dist(x,H)-\dist(x,H')|\le\mathcal R|\nu-\nu'|+|o-o'|$, so the distance functions
+converge uniformly on $\Omega$ and $\rho_\Omega(P(X))$ tends to at most $w(\Omega)/(2N_d(n))$. The rest follows from (i),
+$N_d(d+1)\ge d+1$, $N_d(dq)\ge q^d$ and monotonicity in $n$, as in Section~\ref{sec:D-anywhere}.
 
-The convergence is uniform on every ball $B(0,\mathcal R)$, not only on $\ball^d$: in the proof of
-Lemma~\ref{lem:B-lemma2-flats}(ii), for $\abs y\le\mathcal R$,
-$\abs{(I-\Pi_s)(y-q)-(I-\Pi)(y-q_0)}\le\norm{\Pi_s-\Pi}(\mathcal R+\abs q)+\abs{q-q_0}$, with
-$q=q_{i_0}$, $q_0=(t_{i_0},0)$, using $\norm{I-\Pi}\le1$.
-
-By the proof of Theorem~B, the directions of the $w_F$ mod $\pi$, over all $d$-subsets $F$, are $N$
-equally spaced ones, so their largest gap mod $\pi$ is $G=\pi/N$.
-
-\emph{Placing it in $\Omega$.} Let $M_0=\sup_{j,\,0<r\le1}\abs{q_j(r)}<\infty$ and $\zeta=\eta/M_0$. The
-points $P_j(r)=z+\zeta q_j(r)$ lie in $B(z,\eta)\subset \Omega$, are distinct, and every $d$ of them are
-affinely independent, with hyperplane $z+\zeta H_F(r)$. For $x\in \Omega$,
-$\dist(x,z+\zeta H_F(r))=\zeta\dist((x-z)/\zeta,H_F(r))$, and $(x-z)/\zeta$ ranges over a bounded set
-as $x$ ranges over $\Omega$. So, uniformly in $x\in \Omega$,
-$\dist(x,z+\zeta H_F(r))\to\zeta\dist((x-z)/\zeta,L_F)=\dist(x-z,L_F)$, since $L_F$ is a linear
-subspace.
-
-\emph{The limit.} A max over $x\in \Omega$ of a min of finitely many functions moves by at most $\eta'$ when
-each function moves by at most $\eta'$ uniformly. So
-$\rho_\Omega(\{P_j(r)\})\to\max_{x\in \Omega}\min_F\dist(x-z,L_F)$. For $y=x-z$ write
-$y=(y_1,y_2)\in\R^{d-2}\times\R^2$. Then $\dist(y,L_F)=\abs{y_2}\sin\angle(y_2,\R w_F)$ ($0$ if
-$y_2=0$). Every direction in $\R^2$ is within $G/2=\pi/(2N)\le\pi/2$ of some line $\R w_F$, and $\sin$
-increases on $[0,\pi/2]$, so $\min_F\dist(y,L_F)\le\abs{y_2}\sin(\pi/(2N))\le\abs{x-z}\sin(\pi/(2N))$.
-Hence $\lambda_d(n;\Omega)\le\lim_{r\to0}\rho_\Omega(\{P_j(r)\})\le f(z)\sin(\pi/(2N))$.
-
-\textbf{(iii)} Choose a unit vector $e$ with width $w(\Omega)$ in direction $e$, and $h_0$ with
-$\Omega\subset\{h_0\le\ip xe\le h_0+w(\Omega)\}$. After a rotation and translation, which change neither $\rho_\Omega$
-nor the widths, $e=e_d$ and $h_0=0$. Let $N=N_d(n)$ and $S=\{u_1,\dots,u_n\}$ be distinct positive
-integers whose $d$-distinct sums contain $c_0+1,\dots,c_0+N$. Apply the construction of
-Section~\ref{sec:D-anywhere} (upper bound (i)) with $\alpha=w(\Omega)/N$ and $\beta=-\alpha c_0-\alpha/2$ in
-place of $\alpha=2/N$ and $\beta=-1-\alpha c_0-\alpha/2$:
-\begin{itemize}
-  \item the points $p_i(X)=(Xt_i,\dots,Xt_i^{d-1},\alpha u_i+\beta)$, $t_i=1/u_i$, have every $d$-subset
-    affinely independent;
-  \item the hyperplane $H_F(X)$ of a $d$-subset $F$ converges in unit normal and offset, as $X\to\infty$,
-    to the horizontal hyperplane $\{x_d=\alpha\sum_{i\in F}u_i+\beta\}$. (The proof there works for any
-    $\alpha,\beta$: the hyperplane is the graph of $g_F(z)=b_0+\sum_k(b_k/X)z_k$ with
-    $b_0=\alpha\sum_{i\in F}u_i+\beta$, and the $b_k$ do not depend on $X$.)
-\end{itemize}
-The limit list contains the hyperplanes $\{x_d=(j-\frac12)w(\Omega)/N\}$, $j=1,\dots,N$, whose closed
-$w(\Omega)/(2N)$-slabs cover $\{0\le x_d\le w(\Omega)\}\supset \Omega$. For $x\in \Omega$, with
-$\mathcal R=\max_{x\in \Omega}\abs x$,
-\[
-  \abs{\dist(x,H)-\dist(x,H')}\le\mathcal R\abs{n-n'}+\abs{o-o'}
-\]
-for hyperplanes with unit normals $n,n'$ and offsets $o,o'$, and a max-min moves by at most the largest such
-change. So $\rho_\Omega(P(X))$ tends to the covering radius of the limit list over $\Omega$, which is at most
-$w(\Omega)/(2N)$. Hence $\mu_d(n;\Omega)\le w(\Omega)/(2N_d(n))$.
-
-For $n=d+1$, $N_d(d+1)\ge d+1$ (Section~\ref{sec:D-anywhere}), and (i) gives the matching lower bound
-$w(\Omega)/(2\binom{d+1}d)=w(\Omega)/(2(d+1))$. For the limits: $N_d(dq)\ge q^d$ (Section~\ref{sec:D-anywhere},
-for $q\ge2$; trivially for $q=1$), and $\mu_d(n;\Omega)$ is non-increasing in $n$ (adding a point keeps every
-hyperplane), so for $dq\le n<d(q+1)$, $n^d\mu_d(n;\Omega)\le(d(q+1))^dw(\Omega)/(2q^d)\to d^dw(\Omega)/2$; and
-$n^dw(\Omega)/(2\binom nd)\to d!\,w(\Omega)/2$.
-
-\textbf{(iv)} The lower bound is (i) with $n^d/\binom nd\to d!$. For the upper bound, $\sin x\le x$
-gives $n^d\lambda_d(n;\Omega)\le R(\Omega)\pi n^d/(2p_d(n))$, and $p_d(n)/n^d\to\sigma_d>0$ (Theorem~B and
-Corollary~C), so $\limsup n^d\lambda_d(n;\Omega)\le\pi R(\Omega)/(2\sigma_d)$.
+(iv) Combine (i) and (ii) with $n^d/\binom nd\to d!$, $\sin x\le x$ and $p_d(n)/n^d\to\sigma_d$.
 \end{proof}
 
-\begin{remark}
-The two constants in (iv) depend on $\Omega$ through $w(\Omega)$ and $R(\Omega)$ separately, and their ratio
-$(\pi/(d!\,\sigma_d))R(\Omega)/w(\Omega)$ is not bounded over convex bodies: a $1\times\eps$ rectangle has
-$w=\eps$ and $R\approx\frac12$. For such thin bodies the construction in (ii), a pencil through a common
-$(d-2)$-flat, is far from the lower bound; points anywhere (iii) do achieve the width scale $w(\Omega)$. For
-$\Omega=\ball^d$ Theorem~A improves the lower constant $d!$ to $d!(1+q_d)$; we do not know whether every
-convex body admits such a strict gain.
-\end{remark}
+For thin bodies the bounds in (iv) are far apart, since $\operatorname{diam}\Omega/w(\Omega)$ is unbounded; the pencils of (ii)
+are wasteful there, while points placed anywhere (iii) reach the width scale. For $\Omega=\ball^d$ Theorem~A improves the
+lower constant $d!$ to $d!(1+q_d)$; we do not know whether every convex body admits such a strict gain.
 
 \section{Open problems}\label{sec:open}
 
@@ -1498,7 +1393,7 @@ proof, a slab of half-width $\eps$ through the centre with normal perpendicular 
 $\Phi$-mass about $C_d(m_0^2+\frac12)\eps$, where $C_d\approx\sqrt{\pi d/2}$, against
 $(m_0^2+\frac12)\eps$ in the flat case. A different measure or test function would be needed.
 \item For a convex body $\Omega$, how does $n^d\lambda_d(n;\Omega)$ depend on the shape of $\Omega$? The bounds
-$d!\,w(\Omega)/2$ and $\pi R(\Omega)/(2\sigma_d)$ are far apart for thin bodies, where a pencil of hyperplanes
+$d!\,w(\Omega)/2$ and $\pi\operatorname{diam}\Omega/(2\sigma_d)$ are far apart for thin bodies, where a pencil of hyperplanes
 through a common $(d-2)$-flat is wasteful; points placed anywhere do reach the width scale $w(\Omega)$.
 \end{enumerate}
 
