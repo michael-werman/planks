@@ -12,12 +12,15 @@
 \begin{abstract}
 Let $X_1,X_2,\dots$ be independent uniform points in a convex body $\Omega\subset\R^d$, and let $\rho_\Omega^{(n)}$ be the largest
 distance from a point of $\Omega$ to the nearest hyperplane spanned by $d$ of $X_1,\dots,X_n$. For the hyperplane $H$
-through $d$ independent uniform points of $\Omega$, let $h_\Omega(z)$ be the limit of $t^{-1}\Pr(\dist(z,H)<t)$ as $t\to0$. We
-prove that $n^d\rho_\Omega^{(n)}/\log n$ converges almost surely to $c_\Omega=d^2\cdot d!/\min_\Omega h_\Omega$. By the affine
-Blaschke--Petkantschin formula, $h_\Omega(z)$ is an integral over the hyperplane sections of $\Omega$ through $z$, which we
-evaluate for balls ($c_\Omega=9\pi^2/8$ for the disk, $54$ for the ball in $\R^3$) and for the square; for centrally symmetric
-planar bodies the minimum of $h_\Omega$ is attained on the boundary. By Bang's plank theorem no placement of $n$ points
-does better than order $n^{-d}$, and this order is attained, so random points lose exactly a factor of order $\log n$.
+through $d$ independent uniform points of $\Omega$, we show that $h_\Omega(z)=\lim_{t\to0}t^{-1}\Pr(\dist(z,H)<t)$ exists
+uniformly in $z$ and is continuous and positive on $\Omega$, and we prove that $n^d\rho_\Omega^{(n)}/\log n$ converges almost
+surely to $c_\Omega=d^2\cdot d!/\min_\Omega h_\Omega$. The proof uses Poissonization and discretization into small cells, the Harris and
+Janson inequalities, and estimates for pairs of hyperplanes sharing sample points, which control the dependence between
+the spanned hyperplanes. By the
+affine Blaschke--Petkantschin formula, $h_\Omega(z)$ is an integral over the hyperplane sections of $\Omega$ through $z$; we evaluate $c_\Omega$ for
+balls in every dimension and for the square, and show that for centrally symmetric planar bodies the minimum of $h_\Omega$
+is attained on the boundary. Together with Bang's plank theorem and deterministic placements attaining the order $n^{-d}$, the
+result shows that random points lose exactly a factor of order $\log n$.
 \end{abstract}
 
 \noindent\textbf{Keywords:} random hyperplanes, covering radius, coverage threshold, plank problem, geometric
@@ -106,7 +109,17 @@ $\eps=c_\Omega\log n/n^d$. This is the Poisson clumping heuristic \cite{Aldous}.
 points, the covering intensity is halved near $\partial\Omega$ on the scale of the radius, and for $d\ge3$ this changes the
 first-order constant \cite{Penrose}. Here $h_\Omega$ is continuous on $\R^d$, so $\{h_\Omega\le m_\Omega+\delta\}$ has positive volume
 for every $\delta>0$, and there is no boundary correction at first order, even when $m_\Omega$ is attained only on
-$\partial\Omega$.
+$\partial\Omega$: the lower-bound proof places its test points in a ball inside $\Omega$ near a minimizer, where $h_\Omega$ is
+within any given $\zeta>0$ of $m_\Omega$ (Proposition~\ref{prop:lower}, Step~1). Figure~\ref{fig:lines} illustrates the
+definitions in the plane.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_lines.png}
+\caption{Left: seven random points in an ellipse, the lines they span, and the largest open disk centred in the body
+that meets none of them; its radius is $\rho_\Omega^{(7)}$. Right: the chords through a point $z$; by Corollary~\ref{cor:plane},
+$h_\Omega(z)$ is proportional to $\int_0^\pi L_z(\theta)^3\,d\theta$. (Computed in floating point; illustration only.)}\label{fig:lines}
+\end{figure}
 
 \begin{corollary}\label{cor:plane}
 Let $d=2$, and let $L_z(\theta)$ be the length of $\Omega\cap(z+\R(\cos\theta,\sin\theta))$. Then
@@ -264,7 +277,8 @@ $z, z' \in \R^d$ and $0 < t \le \frac12$, $\Pr(\dist(z, H(S, A)) < t,\ \dist(z',
 
 \begin{proof}
 Given $S$ the two events are independent, so by Cauchy--Schwarz it suffices to show $\E q_z(S)^2\le Ct^2(1+\log(1/t))$,
-where $q_z(S)$ is the conditional probability of the first. Write $A=(A_1,U_d)$, let $F=\Caff(S,A_1)$, a $(d-2)$-flat
+where $q_z(S)$ is the conditional probability of the first. We condition on all points of $H(S,A)$ but the last one,
+namely the $j$ shared points and the $d-1-j$ others; so the argument, and the bound, do not depend on $j$. Write $A=(A_1,U_d)$, let $F=\Caff(S,A_1)$, a $(d-2)$-flat
 through $d-1$ uniform points, and $D=\dist(z,F)$. Let $\Cpr$ be the orthogonal projection onto the $2$-dimensional
 orthogonal complement of the direction space of $F$, so $\Cpr F$ is a point. Since $H(S,A)\supset F$,
 $\dist(z,H(S,A))=D|\sin(\Phi-\varphi)|$, where (for $D>0$) $\Phi$ and $\varphi$ are the angles of $\Cpr U_d-\Cpr F$ and $\Cpr z-\Cpr F$. Given
@@ -295,7 +309,8 @@ $|N_x/V - N_x'/V'| \le |N_x - N_x'|/V' + N_x|V - V'|/(VV') \le C_2\eta/\ell$.
 (b) For $\ell>1$ take $C\ge1$. For $\ell\le1$ and $2\le k\le d$, base times height and the independence of $U_k$ from
 $U_1,\dots,U_{k-1}$ give $\Pr(V(U_1,\dots,U_k) < \ell) \le \Pr(V(U_1,\dots,U_{k-1}) < \ell^{1/2}) + C\ell$, since the $r$-neighbourhood of a
 flat of dimension $\le d-2$ through $U_1$ meets $\Omega$ in volume $\le Cr^2$ for $r\le1$. As $V(U_1)=1$, induction gives
-$C\ell^{2^{2-k}}$.
+$C\ell^{2^{2-k}}$. (The exponent is not sharp; Sections~\ref{sec:poisson}--\ref{sec:lower} only need some $\gamma\in(0,1]$, with $\beta$
+defined from it.)
 \end{proof}
 
 \section{Poissonization and the correlation inequalities}\label{sec:poisson}
@@ -332,7 +347,10 @@ A \emph{cell set} is a set $S$ of $d$ distinct cell indices; $v(S)=\prod_{k\in S
 $u\in\Omega^d$ with exactly one coordinate in each $Q_k$, $k\in S$ ($V$ and $H$ are symmetric). For $z\in\Omega$, $S\in\CB_\Cout(z)$ if
 some, and $S\in\CB_\Cin(z)$ if every, $u\in\prod_{k\in S}Q_k$ has $V(u)>0$ and $\dist(z,H(u))<\eps$. For a family $\CB$ of cell sets,
 $F_\CB$ is the event that no $S\in\CB$ is fully occupied (i.e.\ has $I_k=1$ for all $k\in S$), $\bar\mu(\CB)=\sum_{S\in\CB}\prod_{k\in S}p_k$, and $\mathcal U(\CB)$ is the set of
-$u\in\Omega^d$ whose coordinates lie in distinct cells forming a set in $\CB$. Let $E_z$ be the event that no $d$ points of $\Pi$
+$u\in\Omega^d$ whose coordinates lie in distinct cells forming a set in $\CB$. The two families sandwich, up to the event
+$\mathrm{Two}$, the event $E_z$ below that $z$ is uncovered (Lemma~\ref{lem:sand}(a)): if the cells of a set in $\CB_\Cin(z)$ are all occupied, then any choice of one
+point per cell spans a hyperplane within $\eps$ of $z$, so $z$ is covered; and if $z$ is covered by points in distinct
+cells, those cells form a set in $\CB_\Cout(z)$. Let $E_z$ be the event that no $d$ points of $\Pi$
 span a hyperplane $H'$ with $\dist(z,H')<\eps$, and
 \[
   \mu_z(t) = \frac{\lambda^d}{d!}\,|\{u \in \Omega^d : V(u) > 0,\ \dist(z, H(u)) < t\}| = \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(z,H)<t)\le Cn^dt.
@@ -461,6 +479,18 @@ inequality $\Pr(Y = 0) \le 1/\E Y + C(\log n)^{-2}$.
 
 \emph{Step 6.} On $\{N\ge n\}\cap\{Y>0\}$ some $z\in T$ is at distance $\ge\eps$ from every hyperplane spanned by points of
 $\Pi\supseteq\{X_1,\dots,X_n\}$, so $\rho_\Omega^{(n)}\ge\eps$; and $\Pr(N < n) \le (1+\vartheta)(\vartheta^2n)^{-1}$.
+
+\emph{Summary of the error terms.} All are uniform in $z\in T$ and $x\ne y$ in $T$:
+\begin{itemize}
+\item two points in one cell: $\Pr(\mathrm{Two})e^{\mu_z(\eps+\delta)}\le Cn^{-2}$ (Step~2, by \eqref{eq:params});
+\item near-degenerate tuples $\{V<2\ell\}$: $Cn^d\eta^{\gamma/2}=Cn^{-d-4}$ (Lemma~\ref{lem:sand}(b));
+\item occupancy probabilities: $p_k\ge\lambda v_k(1-\lambda\eta^d)$ costs at most $C\lambda\eta^d\log n$ (Step~4), and
+$\log(1-q_S)\ge-q_S(1+q_S)$ costs at most $C(\lambda\eta^d)^d\log n$ (Step~2);
+\item the shell $\eps\pm\delta$: $Cn^d\delta\le Cn^{-1}$ (Step~3);
+\item Janson's pair term: $\mathcal D\le C(\log n)^3/n$ (Lemma~\ref{lem:janson}, as in the proof of Proposition~\ref{prop:upper});
+\item hyperplanes near two test points: $C(\log n)^{-2}$ (Step~4), the only error that is not polynomially small;
+\item the second moment: $1/\E Y\le n^{-\zeta}$ (Step~5); de-Poissonization: $(1+\vartheta)(\vartheta^2n)^{-1}$ (Step~6).
+\end{itemize}
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
@@ -564,7 +594,7 @@ midpoint, near $(0.335,0)$, with $c_\Omega\approx2.55$.
 scaling. It is $9\pi^2/16\approx5.55$ for the disk and $96/(4\sqrt5+11\log\phi)\approx6.74$ for the square, and $\approx5.34$ for the
 equilateral triangle (floating point). Which convex body minimizes it is open.
 
-\paragraph{Non-uniform points.} For points with a density $f$ that is continuous on $\Omega$ and bounded away from $0$, the
+\paragraph{Non-uniform points.} For points with a probability density $f$ that is continuous on $\Omega$ and bounded away from $0$, the
 identity in the proof of Lemma~\ref{lem:rep}, applied to $\prod_if(x_i)\Cone_{\Omega^d}(x)\Cone\{V(x)>0,\ H(x)\in\mathcal A\}$, together with
 the proof of Lemma~\ref{lem:ig}(c) (which only uses that the weight is bounded and continuous on $\Omega$), gives
 $h_f(z)=2b_d\int_{\Sph^{d-1}}G^f_\nu(\ip z\nu)\,d\nu$, where $G^f_\nu$ is defined like $G_\nu$ with the weight $\prod_if(x_i)$. Does
