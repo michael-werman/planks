@@ -1,0 +1,289 @@
+\documentclass[11pt]{article}
+\input{macros}
+\title{Working note: technical lemmas for spanned $j$-flats}
+\date{}
+\begin{document}
+\maketitle
+
+\noindent\emph{Status: draft for refereeing; not part of the paper yet.}
+
+\paragraph{Setting.} $d\ge2$, $1\le j\le d-1$, and $a=d-j\ge1$ (the codimension). $\Omega\subset\R^d$ is a convex body with
+$\Delta=\operatorname{diam}\Omega$; $f$ is a probability density that vanishes outside $\Omega$, is continuous on $\Omega$, and satisfies
+$f\le f_+$, and $f\ge f_->0$ on a ball $B(o,r_0)\subseteq\Omega$ (used only in Lemma~\ref{F6}). $U_1,U_2,\dots$ and $U'_1,U'_2,\dots$ are independent with density $f$. For affinely independent
+$u=(u_1,\dots,u_{j+1})$ let $F(u)=\Caff(u_1,\dots,u_{j+1})$, a $j$-flat. Constants $C,C_0,K_0$ depend only on $d$, $j$, $\Delta$ and
+$f_+$. We use the case $k=j$ of Lemma~3.1 of the paper (its proof uses only the bound $f\le f_+$):
+\begin{equation}\label{eq:flat}
+  \Pr\bigl(\dist(z,\Caff(U_1,\dots,U_j))<s\bigr)\le C_0s^{a+1}\qquad(z\in\R^d,\ s>0),
+\end{equation}
+which for $j=1$ is $\Pr(|z-U_1|<s)\le f_+\kappa_ds^d$.
+
+\section*{Lemma F1 (one more point)}
+
+\begin{lemma}\label{F1}
+There is $K_0\ge1$, depending only on $d,j,\Delta,f_+$, such that for every $(j-1)$-flat $E$ meeting $\Omega$ (a point of
+$\Omega$ if $j=1$), every $z\in\R^d$ with $D=\dist(z,E)>0$, $U$ with density $f$, and all $\eps>0$,
+$\Pr(\dist(z,\Caff(E,U))<\eps)\le K_0(\eps/D)^a$.
+\end{lemma}
+
+\begin{proof}
+If $\eps\ge D$ the bound holds as $K_0\ge1$. Let $\eps<D$. Let $W$ be the orthogonal complement of the direction space of
+$E$, so $\dim W=a+1$, and let $P$ be the orthogonal projection onto $W$; $PE=\{e_0\}$ is a point and $|Pz-e_0|=D$. If $PU\ne e_0$,
+$\Caff(E,U)$ projects onto the line through $e_0$ and $PU$, and $\dist(z,\Caff(E,U))$ is the distance from $Pz$ to that line,
+i.e.\ $D\sin\varphi$ with $\varphi$ the angle between that line and $Pz-e_0$. So $\dist<\eps$ forces
+$\varphi<\chi:=\arcsin(\eps/D)\le\pi\eps/(2D)$. Fix $e\in E\cap\Omega$. Then $|P(U-e)|\le\Delta$, the vector $P(U-e)=PU-e_0$ lies in the
+double cone in $W$ of half-angle $\chi$ about the line through $0$ and $Pz-e_0$, and the component of $U-e$ in the direction
+space of $E$ lies in a $(j-1)$-ball of radius $\Delta$. The truncated double cone has volume
+$2\frac{\Delta^{a+1}}{a+1}|\Sph^{a-1}|\int_0^\chi\sin^{a-1}\theta\,d\theta\le\frac{2|\Sph^{a-1}|\Delta^{a+1}}{a(a+1)}\chi^a$ (for $a=1$,
+$|\Sph^0|=2$). As the density of $U$ is at most $f_+$,
+$\Pr(\dist<\eps)\le f_+\kappa_{j-1}\Delta^{j-1}\frac{2|\Sph^{a-1}|\Delta^{a+1}}{a(a+1)}(\pi/2)^a(\eps/D)^a$.
+\end{proof}
+
+\section*{Lemma F2 (pairs sharing points, with a cutoff)}
+
+For a $(j+1)$-tuple $u$, $z\in\R^d$ and $y>0$, let $G_{z,y}(u)$ be the event that each of the $j+1$ sub-tuples of $j$
+entries of $u$ spans a $(j-1)$-flat at distance $\ge y$ from $z$. (Then every sub-tuple of $1\le i\le j$ entries spans a flat at
+distance $\ge y$ from $z$, as that flat lies in the flat of a $j$-sub-tuple.)
+
+\begin{lemma}\label{F2}
+Let $1\le i\le j$, $S=(U_1,\dots,U_i)$, $A=(U_{i+1},\dots,U_{j+1})$, $A'=(U'_{i+1},\dots,U'_{j+1})$, and $z,z'\in\R^d$. Let
+\[
+  P=\Pr\bigl(\dist(z,F(S,A))<\eps,\ G_{z,y}(S,A),\ \dist(z',F(S,A'))<\eps,\ G_{z',y}(S,A')\bigr).
+\]
+(a) If $a\ge2$ and $0<\eps\le y$, then $P\le C\eps^{2a}y^{1-a}$.
+(b) If $a=1$ and $0<\eps\le\frac12$, then $P\le C\eps^2(1+\log(1/\eps))$, even without the events $G$.
+\end{lemma}
+
+\begin{proof}
+(b) is Lemma~3.4 of the paper (dropping the events $G$ only increases $P$). Let $a\ge2$. Given $S$, the two events
+involving $A$ and $A'$ are independent and have conditional probabilities $q_z(S)$ and $q_{z'}(S)$, where
+$q_z(S)=\Pr(\dist(z,F(S,A))<\eps,\ G_{z,y}(S,A)\mid S)$. By Cauchy--Schwarz, $P=\E[q_z(S)q_{z'}(S)]\le(\E q_z(S)^2)^{1/2}(\E q_{z'}(S)^2)^{1/2}$,
+so it suffices to bound $\E q_z(S)^2$. Write $A=(A_1,U_{j+1})$ ($A_1$ is empty if $i=j$), let $E=\Caff(S,A_1)$, the flat of a
+$j$-sub-tuple, and $D=\dist(z,E)$. On $G_{z,y}(S,A)$ we have $D\ge y>0$, so by Lemma~\ref{F1} applied given $(S,A_1)$,
+\[
+  q_z(S)\le\E\bigl[K_0(\eps/D)^a\Cone\{D\ge y\}\mid S\bigr],\qquad\text{hence}\qquad
+  \E q_z(S)^2\le K_0^2\eps^{2a}\,\E\bigl[D^{-2a}\Cone\{D\ge y\}\bigr]
+\]
+by conditional Jensen. $D$ is the distance from $z$ to the affine hull of $j$ independent points with density $f$, so by
+\eqref{eq:flat}, as $1-\frac{a+1}{2a}=\frac{a-1}{2a}>0$,
+\[
+  \E\bigl[D^{-2a}\Cone\{D\ge y\}\bigr]\le\int_0^{y^{-2a}}\Pr\bigl(D<u^{-1/(2a)}\bigr)\,du\le C_0\int_0^{y^{-2a}}u^{-\frac{a+1}{2a}}\,du
+  =\frac{2a}{a-1}C_0\,y^{1-a}.
+\]
+So $P\le\frac{2a}{a-1}K_0^2C_0\,\eps^{2a}y^{1-a}$.
+\end{proof}
+
+\section*{Lemma F3 (the cost of the cutoff)}
+
+\begin{lemma}\label{F3}
+For $z\in\R^d$ and $0<\eps\le y$,
+$\Pr\bigl(\dist(z,F(U_1,\dots,U_{j+1}))<\eps,\ \text{not }G_{z,y}(U_1,\dots,U_{j+1})\bigr)\le C\eps^ay$.
+\end{lemma}
+
+\begin{proof}
+If $G_{z,y}$ fails, some $j$-sub-tuple spans a flat within distance $<y$ of $z$. By exchangeability it suffices to take the
+sub-tuple $(U_1,\dots,U_j)$ and multiply by $j+1$. Let $E=\Caff(U_1,\dots,U_j)$ and $D=\dist(z,E)$; then
+$F=\Caff(E,U_{j+1})$, and by Lemma~\ref{F1} given $U_1,\dots,U_j$, and \eqref{eq:flat},
+\[
+  \Pr(\dist(z,F)<\eps,\ D<y)\le\Pr(D<\eps)+K_0\eps^a\E\bigl[D^{-a}\Cone\{\eps\le D<y\}\bigr]\le C_0\eps^{a+1}+K_0\eps^a(1+a)C_0y,
+\]
+since $\E[D^{-a}\Cone\{\eps\le D<y\}]\le\int_0^{y^{-a}}\Pr(D<y)\,du+\int_{y^{-a}}^{\infty}\Pr(D<u^{-1/a})\,du\le C_0y+aC_0y$. As $\eps\le y$, the
+bound is $\le(1+K_0(1+a))C_0\eps^ay$; multiply by $j+1$.
+\end{proof}
+
+\paragraph{How F2 and F3 are used (sketch, not part of the check).} With $\mu\asymp n^{j+1}\eps^a\asymp\log n$ at the critical
+$\eps$, Janson's inequality is applied only to the $(j+1)$-sets whose tuples satisfy $G_{z,y}$; this is a sub-family, so
+$\Pr(z\text{ uncovered})$ is still bounded above. Pairs sharing $i$ points number $O(n^{2j+2-i})$, and by F2 the pair term is
+$O(n^{2j+1}\eps^{2a}y^{1-a})$ (the worst case $i=1$) for $a\ge2$. With $y=K\eps$, $K=n^{j/a}$, this is
+$O(n^{-1/a}(\log n)^{C})$, and by F3 the mean loses a fraction $O(y)=O((\log n/n)^{1/a})$. For $a=1$ (hyperplanes) no cutoff
+is needed.
+
+\section*{Lemma F4 (continuity of the section functional)}
+
+Let $G(d,j)$ be the Grassmannian of $j$-dimensional linear subspaces with its rotation-invariant probability measure
+$\nu_j$. For $L\in G(d,j)$ let $\pi_L$ be the orthogonal projection onto $L^\perp$, and for $t\in L^\perp$ let
+\[
+  G_L(t)=\int_{L^{j+1}}\prod_{i=1}^{j+1}f(\ell_i+t)\,w(\ell)\,d\ell ,
+\]
+with $d\ell$ Lebesgue measure on $L^{j+1}$ and $w\ge0$ a continuous weight that is invariant under translation and bounded on
+bounded sets (in the application $w=\vol_j(\operatorname{conv}\{\ell_i\})^{a}$, the weight in the affine Blaschke--Petkantschin formula
+\cite[Theorem~7.2.7]{SW} with $q=j$).
+
+\begin{lemma}\label{F4}
+For $\nu_j$-almost every $L$, $G_L$ is continuous on $L^\perp$ and vanishes outside the compact set $\pi_L(\Omega)$.
+\end{lemma}
+
+\begin{proof}
+Fix $L$ and $t_0\in L^\perp$. All $\ell$ with $f(\ell_i+t)\ne0$ for some $|t-t_0|\le1$ lie in a fixed bounded set, so the
+integrands are dominated by an integrable function.
+
+\emph{(i) $t_0\notin\pi_L(\Omega)$.} As $\pi_L(\Omega)$ is closed, $G_L=0$ near $t_0$.
+
+\emph{(ii) $t_0$ in the relative interior of $\pi_L(\Omega)$ in $L^\perp$.} $\pi_L(\operatorname{int}\Omega)$ is convex and open in $L^\perp$
+and dense in $\pi_L(\Omega)$; an open convex set $V$ dense in a convex set $C$ satisfies
+$V\subseteq\operatorname{int}C\subseteq\operatorname{int}\overline V=V$, so $V$ is the interior of $\pi_L(\Omega)$ in $L^\perp$. Hence there is
+$w_0\in(L+t_0)\cap\operatorname{int}\Omega$. Every
+point $x\ne w_0$ of the relative interior of $K=\Omega\cap(L+t_0)$ in $L+t_0$ lies on the open segment from $w_0$ to
+$x+\eps'(x-w_0)\in\Omega$, so it lies in $\operatorname{int}\Omega$. For $\ell$ with $\ell+t_0\in\operatorname{int}\Omega$, $\ell+t\in\Omega$ for $t$ near
+$t_0$ and $f(\ell+t)\to f(\ell+t_0)$ by continuity of $f$ on $\Omega$; for $\ell+t_0\notin\Omega$, $f(\ell+t)=0$ near $t_0$ as
+$\Omega$ is closed. The remaining $\ell$, with $\ell+t_0$ in the relative boundary of $K$, form a null set in $L$, as $K$ is
+convex with nonempty relative interior (it contains a ball of $L+t_0$ about $w_0$). By dominated convergence $G_L$ is
+continuous at $t_0$.
+
+\emph{(iii) $t_0$ in the relative boundary of $\pi_L(\Omega)$.} Then $K=\Omega\cap(L+t_0)\subseteq\partial\Omega$, since a point of
+$K\cap\operatorname{int}\Omega$ would put $t_0$ in $\pi_L(\operatorname{int}\Omega)$. As $\Omega$ is closed,
+$\limsup_{t\to t_0}\Cone_\Omega(\ell+t)\le\Cone_\Omega(\ell+t_0)$, so by dominated convergence
+$\limsup_{t\to t_0}G_L(t)\le f_+^{j+1}\int_{L^{j+1}}\prod_i\Cone_K(\ell_i+t_0)\,w(\ell)\,d\ell$, and also $G_L(t_0)$ is at most this. If
+$K$ has $j$-dimensional measure $0$, both vanish and $G_L$ is continuous at $t_0$.
+
+\emph{(iv) The exceptional $L$.} So $G_L$ can fail to be continuous only if, for some $t_0$, $K=\Omega\cap(L+t_0)\subseteq\partial\Omega$
+has positive $j$-dimensional measure. Then $K$ is a convex set of dimension $j$ in $L+t_0$, so it contains a $j$-ball of
+$L+t_0$, and hence, for every unit vector $v\in L$, a segment of $\partial\Omega$ with direction $v$. Let $\mathcal S\subseteq\Sph^{d-1}$ be
+the set of unit vectors $\pm v$ for which $\partial\Omega$ contains a segment with direction $v$. By \cite[Theorem~1]{ELR} (for
+$d\ge3$; for $d=2$ the maximal boundary segments of a planar convex body are countable), $\mathcal S$ has $\sigma$-finite
+$(d-2)$-dimensional Hausdorff measure, so it has surface measure $0$ and is contained in a Borel set $\mathcal S'\subseteq\Sph^{d-1}$
+of surface measure $0$. Let $\sigma_L$ be the uniform probability measure on the unit sphere of $L$ and $\bar\sigma$ that on
+$\Sph^{d-1}$. The probability measure $\int\sigma_L\,\nu_j(dL)$ on $\Sph^{d-1}$ is rotation invariant ($\nu_j$ is, and $\sigma_{gL}=g_*\sigma_L$),
+so it equals $\bar\sigma$ ($L\mapsto\sigma_L$ is weakly continuous, so $L\mapsto\sigma_L(B)$ is Borel for Borel $B$). Hence $\int\sigma_L(\mathcal S')\,\nu_j(dL)=\bar\sigma(\mathcal S')=0$, so $\sigma_L(\mathcal S')=0$ for $\nu_j$-a.e.\ $L$. For an
+exceptional $L$, the whole unit sphere of $L$ lies in $\mathcal S\subseteq\mathcal S'$, so $\sigma_L(\mathcal S')=1$. Thus the exceptional
+$L$ lie in the Borel $\nu_j$-null set $\{L:\sigma_L(\mathcal S')=1\}$.
+\end{proof}
+
+\noindent For $j=d-1$ this recovers the countable-facets argument of Lemma~3.3(c) of the paper.
+
+\section*{Lemma F0 (representation)}
+
+We identify $L\in G(d,j)$ with the orthogonal projection $P_L$ onto $L$; $\nu_j$ is the rotation-invariant probability measure.
+For a $j$-subset $I\subseteq\{1,\dots,d\}$ let $\Sigma_I$ be the set of $L$ for which $I$ is the lexicographically first $j$-subset
+maximizing the Gram determinant of $\{P_Le_i:i\in I\}$. The $\Sigma_I$ are Borel and partition $G(d,j)$; on $\Sigma_I$ the vectors
+$P_Le_i$, $i\in I$, form a basis of $L$ (the $P_Le_i$, $1\le i\le d$, span $L$, so the maximum is positive), and Gram--Schmidt
+gives an orthonormal frame $R_L:\R^j\to L$ depending continuously on $L\in\Sigma_I$. The same construction for $L^\perp$
+gives frames $R^\perp_L:\R^a\to L^\perp$. A set $\mathcal A$ of $j$-flats is \emph{measurable} if
+$\{(L,t):L\in G(d,j),\ t\in L^\perp,\ L+t\in\mathcal A\}$ is Borel. Let $\mathcal G_j\subseteq(\R^d)^{j+1}$ be the open set of affinely
+independent tuples; its complement is null, and on $\mathcal G_j$ the direction $L(u)$ of $F(u)$ (through $P_{L(u)}$) and
+$\pi_{L(u)}u_1$ are continuous, so $u\mapsto\dist(z,F(u))=|\pi_{L(u)}(z-u_1)|$ is continuous on $\mathcal G_j$.
+
+\begin{lemma}\label{F0}
+$(L,t)\mapsto G_L(t)$ is Borel on $\{t\in L^\perp\}$, $G_L\le G_{\max}:=f_+^{j+1}(\kappa_j\Delta^j)^{j+1+a}$, and with $b=b_{dj}(j!)^a>0$
+depending only on $d,j$, for measurable $\mathcal A$,
+\begin{equation}\label{eq:BPj}
+  \Pr(F\in\mathcal A)=b\int_{G(d,j)}\int_{L^\perp}\Cone\{L+t\in\mathcal A\}\,G_L(t)\,dt\,\nu_j(dL),
+\end{equation}
+where $F=F(U_1,\dots,U_{j+1})$ and $G_L$ is as in Lemma~\ref{F4} with $w=\vol_j(\operatorname{conv}\{\ell_i\})^a$.
+\end{lemma}
+
+\begin{proof}
+On $\Sigma_I$, $G_L(t)=\int_{(\R^j)^{j+1}}\prod_if(R_Lw_i+t)\vol_j(\operatorname{conv}\{w_i\})^a\,dw$, which is Borel in $(L,t)$ by Tonelli. The
+integrand of $G_L(t)$ vanishes unless every $\ell_i$ lies in $K=\{\ell\in L:\ell+t\in\Omega\}$, a convex set of diameter $\le\Delta$, so
+$\vol_jK\le\kappa_j\Delta^j$ and $\vol_j(\operatorname{conv}\{\ell_i\})\le\vol_jK$; this gives the bound. The affine Blaschke--Petkantschin
+formula \cite[Theorem~7.2.7]{SW} with $q=j$ states, for measurable $\varphi\ge0$ on $(\R^d)^{j+1}$,
+$\int\varphi\,dx=b_{dj}(j!)^a\int_{G(d,j)}\int_{L^\perp}\int_{(L+t)^{j+1}}\varphi\,\vol_j(\operatorname{conv}\{x_i\})^a\,dx\,dt\,\nu_j(dL)$. Take
+$\varphi(x)=\prod_if(x_i)\Cone\{x\in\mathcal G_j,\ F(x)\in\mathcal A\}$, which is Borel by the continuity above, and whose integral is
+$\Pr(F\in\mathcal A)$. On $(L+t)^{j+1}$ every tuple of positive weight spans $L+t$, and $x_i=\ell_i+t$ gives \eqref{eq:BPj}.
+\end{proof}
+
+\section*{Lemma F5 (two points)}
+
+\begin{lemma}\label{F5}
+For $z\ne z'$ in $\R^d$ and $\eps>0$, $\Pr(\dist(z,F)<\eps,\ \dist(z',F)<\eps)\le C\eps^{2a}|z-z'|^{-a}$.
+\end{lemma}
+
+\begin{proof}
+$\dist(z,L+t)=|t-\pi_Lz|$. Both events force $|\pi_L(z-z')|<2\eps$ and put $t$ in a ball of $L^\perp$ of radius $\eps$, of
+measure $\kappa_a\eps^a$. By \eqref{eq:BPj}, the probability is at most $bG_{\max}\kappa_a\eps^a\,\nu_j\{L:|\pi_Le|<2\eps/r\}$, where
+$r=|z-z'|$ and $e=(z-z')/r$. For $\nu_j$-uniform $L$, $|\pi_Le|^2$ has the law of the sum of $a$ squared coordinates of a
+uniform unit vector of $\R^d$, the Beta$(\frac a2,\frac j2)$ law, whose distribution function is at most $Cx^{a/2}$; so
+$\nu_j\{L:|\pi_Le|<s\}\le Cs^a$, and the bound follows.
+\end{proof}
+
+\section*{Lemma F6 (the analogue of Lemma~3.3)}
+
+Let $h^{(j)}_f(z)=b\kappa_a\int_{G(d,j)}G_L(\pi_Lz)\,\nu_j(dL)$.
+
+\begin{lemma}\label{F6}
+(a) For $z\in\R^d$ and $s>0$, $\Pr(\dist(z,F)<s)\le bG_{\max}\kappa_as^a$ and $\Pr(\dist(z,F)=s)=0$.
+(b) Lemma~\ref{F5}.
+(c) As $s\to0$, $s^{-a}\Pr(\dist(z,F)<s)\to h^{(j)}_f(z)$ uniformly in $z\in\R^d$; $h^{(j)}_f$ is continuous and positive on $\R^d$,
+and $h^{(j)}_f\ge c_1>0$ on $\Omega$, with $c_1$ depending only on $d,j,\Delta,r_0,f_-$ and $b$.
+\end{lemma}
+
+\begin{proof}
+(a) $\dist(z,L+t)=|t-\pi_Lz|$, and in \eqref{eq:BPj} the sets $\{t\in L^\perp:|t-\pi_Lz|<s\}$ and $\{|t-\pi_Lz|=s\}$ have measure $\kappa_as^a$
+and $0$.
+
+(c) Let $\mathcal N$ be the null set of Lemma~\ref{F4}. For $L\notin\mathcal N$, $G_L$ is continuous and vanishes outside the compact set
+$\pi_L(\Omega)$, hence uniformly continuous; let $\omega_L(s)=\sup\{|G_L(p)-G_L(q)|:p,q\in L^\perp,\ |p-q|\le s\}$, a supremum over
+$p,q\in R^\perp_L(\mathbb Q^a)$ by continuity, so measurable in $L$; and let $\omega_L=G_{\max}$ on $\mathcal N$. Since
+$|s^{-a}\int_{|p-q|<s}(G_L(p)-G_L(q))\,dp|\le\kappa_a\omega_L(s)$ for every $q\in L^\perp$, \eqref{eq:BPj} gives
+$\sup_z|s^{-a}\Pr(\dist(z,F)<s)-h^{(j)}_f(z)|\le b\kappa_a\int\omega_L(s)\,\nu_j(dL)\to0$ by dominated convergence. For $L\notin\mathcal N$,
+$z\mapsto G_L(\pi_Lz)$ is continuous, so $h^{(j)}_f$ is continuous by bounded convergence. For positivity, let $z\in\R^d$,
+$R=\max(\Delta,|z-o|)$ (note $2r_0\le\Delta$), and $e$ a unit vector with $z-o\in\R_+e$. If $|\pi_Le|\le s_0:=r_0/(2R)$, then
+$\dist(o,L+\pi_Lz)=|\pi_L(z-o)|\le r_0/2$, so $(L+\pi_Lz)\cap B(o,r_0)$ contains a $j$-ball of radius $\sqrt3r_0/2$, on which
+$f\ge f_-$, and by scaling $G_L(\pi_Lz)\ge f_-^{j+1}(\sqrt3r_0/2)^{j(d+1)}\Psi_{j,a}$, where $\Psi_{j,a}>0$ is the integral of
+$\vol_j(\operatorname{conv})^a$ over $(j+1)$-tuples in a unit $j$-ball. For $\nu_j$-uniform $L$, $|\pi_Le|^2$ has the Beta$(\frac a2,\frac j2)$
+law, whose density is at least $c\,x^{a/2-1}$ on $[0,\frac1{16}]$; so $\nu_j\{|\pi_Le|\le s\}\ge c's^a$ for $s\le\frac14$, and $s_0\le\frac14$. Hence
+$h^{(j)}_f(z)\ge b\kappa_af_-^{j+1}(\sqrt3r_0/2)^{j(d+1)}\Psi_{j,a}c's_0^a>0$, and for $z\in\Omega$ ($R=\Delta$) this is a constant $c_1$.
+\end{proof}
+
+\section*{Lemma F7 (Poissonization with a restricted family)}
+
+As in Section~4 of the paper, let $\lambda>0$, let $\Pi$ be a Poisson process with intensity measure $\lambda f(x)\,dx$, let $E_z$
+be the event that no $j+1$ points of $\Pi$ span a $j$-flat $F'$ with $\dist(z,F')<\eps$, let
+$\mu_z=\frac{\lambda^{j+1}}{(j+1)!}\Pr(\dist(z,F)<\eps)$, and $P_f(\mathcal E)=\int_{\mathcal E}\prod_if(u_i)\,du$. For each $z\in\R^d$ let
+$\mathcal T_z\subseteq(\R^d)^{j+1}$ be open, invariant under permutations of the coordinates, and contained in
+$\{u\in\mathcal G_j:\dist(z,F(u))<\eps\}$.
+
+\begin{lemma}\label{F7}
+For $z,z'\in\R^d$: (a) $\Pr(E_z)\ge e^{-\mu_z}$; (b)
+$\Pr(E_z\cap E_{z'})\le\exp\bigl(-\frac{\lambda^{j+1}}{(j+1)!}P_f(\mathcal T_z\cup\mathcal T_{z'})+\mathcal D\bigr)$, where
+\[
+  \mathcal D=\sum_{i=1}^{j}\lambda^{2(j+1)-i}\sum_{y_1,y_2\in\{z,z'\}}\Pr\bigl((S,A)\in\mathcal T_{y_1},\ (S,A')\in\mathcal T_{y_2}\bigr)
+\]
+with $S,A,A'$ as in Lemma~\ref{F2} (for this $i$).
+\end{lemma}
+
+\begin{proof}
+Use the cells $Q_k$, masses $w_k$, indicators $I_k$, the event $\mathrm{Two}$, the sets $Q_S$ for cell sets $S$ of $j+1$
+cells, and $\mathcal U(\CB)=\bigcup_{S\in\CB}Q_S$, exactly as in the proof of Lemma~4.1 of the paper, with $d$ replaced by $j+1$ as the
+size of the tuples (the cells stay in $\R^d$).
+
+(a) is the proof of Lemma~4.1(a) with the property ``$u\in\mathcal G_j$ and $\dist(z,F(u))<\eps$'' in place of ``$u\in\mathcal G$ and
+$\dist(z,H(u))<\eps$''; it uses only the continuity of $u\mapsto\dist(z,F(u))$ on $\mathcal G_j$, the null set
+$\{\dist(z,F)=\eps\}$ (Lemma~\ref{F6}(a)), Harris's inequality and $\Pr(\mathrm{Two})\le\lambda^2f_+\eta^d$.
+
+(b) For $y\in\{z,z'\}$ let $\CB_y=\{S:Q_S\subseteq\mathcal T_y\}$ and $\CB=\CB_z\cup\CB_{z'}$. If a set in $\CB_y$ is occupied, any choice of
+one point of $\Pi$ per cell is a tuple in $\mathcal T_y$, which spans a flat within $\eps$ of $y$; so $E_z\cap E_{z'}$ is contained in
+the event that no set in $\CB$ is occupied, and Janson's inequality bounds its probability by $\exp(-\bar\mu+\mathcal D_\eta)$, with
+$\bar\mu\ge(1-\lambda f_+\eta^d)^{j+1}\frac{\lambda^{j+1}}{(j+1)!}P_f(\mathcal U(\CB))$ for $\lambda f_+\eta^d\le1$. Let $u\in\mathcal T_y$. Its coordinates are
+distinct, so for small $\eta$ they lie in distinct cells, forming a set $S$ with $u\in Q_S$, and every $u'\in Q_S$ is, after a
+permutation, within $\eta$ of $u$ in each coordinate; as $\mathcal T_y$ is open and permutation invariant, $Q_S\subseteq\mathcal T_y$ for
+small $\eta$. So $\liminf_{\eta\to0}\Cone_{\mathcal U(\CB)}\ge\Cone_{\mathcal T_z\cup\mathcal T_{z'}}$ pointwise, and by Fatou
+$\liminf_{\eta\to0}P_f(\mathcal U(\CB))\ge P_f(\mathcal T_z\cup\mathcal T_{z'})$. An ordered pair $(S,S')$ counted in $\mathcal D_\eta$ has
+$|S\cap S'|=i\in[1,j]$ and $\Pr(A_S\cap A_{S'})\le\lambda^{2(j+1)-i}\prod_{k\in S\cup S'}w_k$. Fix $i$, $y_1,y_2$ and the pairs with $S\in\CB_{y_1}$,
+$S'\in\CB_{y_2}$. Ordering $S\cap S'$, $S\setminus S'$, $S'\setminus S$ gives products of cells in $\Omega^{2(j+1)-i}$, which are disjoint (a
+point determines its cell), have $P_f$-measure $\prod_{S\cup S'}w_k$, and lie in $\{(s,a,a'):(s,a)\in\mathcal T_{y_1},(s,a')\in\mathcal T_{y_2}\}$
+since $Q_S\subseteq\mathcal T_{y_1}$ and $Q_{S'}\subseteq\mathcal T_{y_2}$. Summing, $\mathcal D_\eta\le\mathcal D$ for every $\eta$; let $\eta\to0$.
+\end{proof}
+
+\section*{Assembly (sketch of the theorem for $j$-flats)}
+
+For a nonempty compact $\Lambda$ that is the closure of its interior let
+$\rho^{(n)}_{\Lambda,j}=\max_{x\in\Lambda}\min_{\mathcal I}\dist(x,F(X_{\mathcal I}))$ over $(j+1)$-subsets $\mathcal I$, and $m=\min_\Lambda h^{(j)}_f$. The target is
+\[
+  n^{j+1}\bigl(\rho^{(n)}_{\Lambda,j}\bigr)^a/\log n\ \to\ c_j(\Lambda)=\frac{(j+1)!\,d(j+1)}{a\,m}\quad\text{almost surely},
+\]
+which is $d^2\cdot d!/m$ for $j=d-1$. With $\mathcal T_z=\{u\in\mathcal G_j:\dist(z,F(u))<\eps,$ every $j$-sub-tuple of $u$ spans a flat
+at distance $>y$ from $z\}$ and $y=n^{j/a}\eps$ (for $a=1$ the cutoff may be dropped), the changes to Propositions~5.1 and~6.1 are:
+$\eps^a=c_\pm\log n/n^{j+1}$; the margin conditions read $(1-\vartheta)^{j+1}(m-\zeta)c_+/(j+1)!\ge d(j+1)/a+\zeta$ and
+$(1+\vartheta)^{j+1}(m+\zeta)c_-/(j+1)!\le d(j+1)/a-2\zeta$; the net has $n^{d(j+1)/a+o(1)}$ points; by Lemma~\ref{F3} (with $\le y$, the
+same proof) the restriction costs $\frac{\lambda^{j+1}}{(j+1)!}\Pr(\dist<\eps,\text{ not }G)\le Cn^{j+1}\eps^ay=O(n^{-1/a}(\log n)^{1+1/a})$; by
+Lemma~\ref{F2} (Lemma~3.4 if $a=1$) $\mathcal D=O(n^{2j+1}\eps^{2a}y^{1-a})=O(n^{-1/a}(\log n)^{1+1/a})$; the test points are spaced
+$s_n=\eps(\log n)^c$ with $ca>2$, so by Lemma~\ref{F5} the overlap is $\frac{\lambda^{j+1}}{(j+1)!}P_f(\mathcal T_x\cap\mathcal T_y)\le C(\log n)^{1-ca}$,
+summable along geometric sequences. Lemma~\ref{F7} then gives $\Pr(E_z)\ge e^{-\mu_z}$ and
+$\Pr(E_x\cap E_y)\le(1+C(\log n)^{1-ca})\Pr(E_x)\Pr(E_y)$, and the rest of the proof is unchanged.
+
+\begin{thebibliography}{9}
+\bibitem{ELR} G.~Ewald, D.~G. Larman and C.~A. Rogers, The directions of the line segments and of the $r$-dimensional balls on
+the boundary of a convex body in Euclidean space, Mathematika 17 (1970), no.~1, 1--20.
+\bibitem{SW} R.~Schneider and W.~Weil, Stochastic and Integral Geometry, Springer, Berlin, 2008.
+\end{thebibliography}
+\end{document}
