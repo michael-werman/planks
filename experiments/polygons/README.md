@@ -5,3 +5,6 @@ Floating-point and high-precision checks for Paper II (not part of any proof).
   triangle min h ≈ 1.73119 at the edge midpoint (0.5, 0), c ≈ 4.6211.
 - `square_exact.py`: mpmath (30 digits) quadrature check of Corollary 2.6 (unit square): A(1/2) = √5/4 + (11/16) log φ,
   m = √5/3 + (11/12) log φ ≈ 1.186467, c = 96/(4√5 + 11 log φ) ≈ 6.742709, h along an edge, and A'(a) = 3 g(1/a).
+- `h_triangle_scan.py`: floating-point scan (boundary step 1/200 per edge, 40x40 interior grid) of h for two triangles
+  (2026-11-27): equilateral of side 1: min h ≈ 1.73119 at an edge midpoint, c ≈ 4.6211, interior grid min ≈ 2.387;
+  vertices (0,0),(1,0),(0.05,0.3): min h ≈ 3.13481 on the long edge at x ≈ 0.335 (not its midpoint), interior grid min ≈ 4.80.

@@ -20,12 +20,13 @@ def h(P,z,K=4000):
     return 2/(3*area**2)*np.mean([chord(P,z,t)**3 for t in th])*np.pi
 shapes={'square':np.array([[0,0],[1,0],[1,1],[0,1.]]),
         'triangle':np.array([[0,0],[1,0],[0.5,np.sqrt(3)/2]])}
-for name,P in shapes.items():
-    best=(9,None); xs=np.linspace(0,1,41)
-    for x in xs:
-        for y in np.linspace(0,1,41):
-            z=np.array([x,y])
-            if all((np.array([P[(i+1)%len(P)][1]-P[i][1],P[i][0]-P[(i+1)%len(P)][0]])@(z-P[i]))<=1e-12 for i in range(len(P))):
-                v=h(P,z,800); best=min(best,(v,tuple(z)))
-    v=h(P,np.array(best[1]),20000)
-    print(name,'min h ~',round(v,5),'at',best[1],' c=8/min h ~',round(8/v,4),' centroid h ~',round(h(P,P.mean(0),4000),4))
+if __name__=="__main__":
+  for name,P in shapes.items():
+      best=(9,None); xs=np.linspace(0,1,41)
+      for x in xs:
+          for y in np.linspace(0,1,41):
+              z=np.array([x,y])
+              if all((np.array([P[(i+1)%len(P)][1]-P[i][1],P[i][0]-P[(i+1)%len(P)][0]])@(z-P[i]))<=1e-12 for i in range(len(P))):
+                  v=h(P,z,800); best=min(best,(v,tuple(z)))
+      v=h(P,np.array(best[1]),20000)
+      print(name,'min h ~',round(v,5),'at',best[1],' c=8/min h ~',round(8/v,4),' centroid h ~',round(h(P,P.mean(0),4000),4))

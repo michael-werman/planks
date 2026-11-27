@@ -10,14 +10,16 @@
 \maketitle
 
 \begin{abstract}
-Let $\rho_\Omega$ be the largest distance from a point of a convex body $\Omega\subset\R^d$ to the nearest hyperplane
-spanned by $d$ of $n$ independent uniform points in $\Omega$. We prove that $n^d\rho_\Omega/\log n\to c_\Omega=d^2\cdot
-d!/\min_\Omega h_\Omega$ almost surely, where $h_\Omega(z)$ is the density at $0$ of the distance from $z$ to the hyperplane
-through $d$ independent uniform points of $\Omega$. By the affine Blaschke--Petkantschin formula, $h_\Omega$ is an
-integral of a functional of the hyperplane sections of $\Omega$. We compute $c_\Omega$ for balls ($9\pi^2/8$ for the disk,
-$54$ in $\R^3$) and for the square, and show that for centrally symmetric planar bodies the minimum of $h_\Omega$ is
-attained on the boundary. Since well-placed points have covering radius of order $n^{-d}$, random points lose a factor
-of order $\log n$.
+Let $X_1,X_2,\dots$ be independent uniform points in a convex body $\Omega\subset\R^d$, and let $\rho_\Omega^{(n)}$ be the
+largest distance from a point of $\Omega$ to the nearest hyperplane spanned by $d$ of $X_1,\dots,X_n$. We prove that
+$n^d\rho_\Omega^{(n)}/\log n$ converges almost surely to $c_\Omega=d^2\cdot d!/\min_\Omega h_\Omega$, where
+$h_\Omega(z)=\lim_{t\to0}t^{-1}\Pr(\dist(z,H)<t)$ for the hyperplane $H$ through $d$ independent uniform points of
+$\Omega$.
+By the affine Blaschke--Petkantschin formula, $h_\Omega(z)$ is an explicit integral over the hyperplane sections of $\Omega$
+through $z$. We compute $c_\Omega$ for balls ($9\pi^2/8$ for the disk, $54$ for the ball in $\R^3$) and for the square, and
+show that for centrally symmetric planar bodies the minimum of $h_\Omega$ is attained on the boundary. By Bang's plank
+theorem, no placement of $n$ points does better than order $n^{-d}$, so random points lose at most a factor of order
+$\log n$.
 \end{abstract}
 
 \noindent\textbf{Keywords:} random hyperplanes, covering radius, coverage threshold, plank problem, geometric
@@ -29,67 +31,78 @@ probability, Blaschke--Petkantschin formula, Janson's inequality.
 
 Take $n$ points in a convex body $\Omega\subset\R^d$. How far from all hyperplanes spanned by $d$ of them can a point of
 $\Omega$ be? By Bang's plank theorem \cite{Bang}, slabs whose widths sum to less than the minimal width $w(\Omega)$ cannot
-cover $\Omega$, so for every placement the answer is at least $w(\Omega)/(2\binom nd)$. Well-placed points attain the order
-$n^{-d}$, for the ball \cite[Corollary~C]{Companion} and for every convex body \cite[Proposition~6.10]{Companion}. Here
-the points are random.
+cover $\Omega$, so for every placement (counting only the $d$-subsets that span a hyperplane) the answer is at least
+$w(\Omega)/(2\binom nd)$. Well-placed points attain the order $n^{-d}$ \cite[Proposition~6.10]{Companion}. Here the points
+are random.
 
-For $n$ independent uniform points in $\Omega$, we show that $n^d\rho_\Omega/\log n$ converges almost surely to
-$c_\Omega=d^2\cdot d!/\min_\Omega h_\Omega$, where $h_\Omega(z)$ is the density at $0$ of the distance from $z$ to the
-hyperplane $H$ through $d$ independent uniform points of $\Omega$ (Theorem~\ref{thm:main}). So random points lose a factor
-of order $\log n$ against the best placements. By the affine Blaschke--Petkantschin formula, $h_\Omega(z)$ is an
-integral over directions of a functional of the sections of $\Omega$ through $z$ (Lemma~\ref{lem:ig}). In the plane,
-$h_\Omega(z)$ is a cubic moment of the lengths of the chords through $z$; for the unit ball of $\R^d$, $c_\Omega$ is a ratio
-of Gamma functions; for the unit square the minimum of $h_\Omega$ on the boundary is attained exactly at the midpoints of the edges; and for centrally symmetric
-planar bodies the minimum of $h_\Omega$ is attained on the boundary (Section~\ref{sec:plane}).
+For the first $n$ points of an i.i.d.\ uniform sequence in $\Omega$, we show that $n^d\rho_\Omega^{(n)}/\log n$ converges
+almost surely to $c_\Omega=d^2\cdot d!/\min_\Omega h_\Omega$, where $h_\Omega(z)$ is the limit of $t^{-1}$ times the probability
+that the hyperplane $H$ through $d$ independent uniform points of $\Omega$ passes within $t$ of $z$ (Theorem~\ref{thm:main}).
+With Bang's bound this gives, almost surely, $\rho_\Omega^{(n)}\le(1+o(1))\frac{2c_\Omega}{d!\,w(\Omega)}\log n$ times the covering
+radius of any placement of $n$ points, for instance $\frac{9\pi^2}{16}\log n\approx5.55\log n$ for the disk; by
+\cite{Companion} the factor $\log n$ cannot be removed. By the affine Blaschke--Petkantschin formula
+\cite[Theorem~7.2.7]{SW}, $h_\Omega(z)$ is an integral over directions of a functional of the sections of $\Omega$ through
+$z$ (Lemma~\ref{lem:ig}). In the plane, $h_\Omega(z)$ is a cubic moment of the lengths of the chords through $z$. For
+centrally symmetric planar bodies the minimum of $h_\Omega$ is attained on the boundary; for the unit square it is attained
+exactly at the midpoints of the edges; and for the unit ball of $\R^d$, $c_\Omega$ is a ratio of Gamma functions
+(Section~\ref{sec:plane}).
 
 \paragraph{Related work.} Theorem~\ref{thm:main} is a coverage threshold. Janson \cite{Janson86} found the threshold and
-its Gumbel fluctuations for coverage by independent small random sets; see also \cite{Hall,Penrose,PH} for coverage by
-balls around random points and \cite{BCL} for random caps on the sphere. For independent (Poisson) lines and hyperplanes,
-the closest results are extreme-value limits for inradii of tessellations \cite{CH,Chenavier,CN}. Here the $\binom nd$
-covering slabs come from only $n$ points and are dependent when their $d$-sets share a point. At first order the answer
-is the same as for $\binom nd$ independent hyperplanes with the law of $H$: the content of Theorem~\ref{thm:main} is that
-this dependence does not change the constant. For fixed $z$, the number of spanned hyperplanes near $z$ is a
-$U$-statistic, and Poisson approximation for such counts is well developed \cite{ST,DST,STbook,Otto}; but these bounds are
-additive, while we need the probability that $z$ is uncovered, of order $n^{-d^2}$, to within a factor $1+o(1)$. The
-Harris and Janson inequalities give this. The line through two random points of a convex body was studied by Kingman
-\cite{Kingman}, and spanned flats in general by Miles \cite{Miles}; see \cite{Santalo,SW}. We are not aware of earlier
-results on the covering radius of spanned hyperplanes.
+its Gumbel fluctuations for coverage by independent small random sets, which shrink to points; see also
+\cite{Hall,Penrose,PH} for coverage by balls around random points and \cite{BCL} for random caps on the sphere. Our
+covering sets are slabs of width $2\eps$ that cross all of $\Omega$, so these results do not apply. The covering radius
+$\rho_\Omega^{(n)}$ is the largest radius of a ball centred in $\Omega$ inside a cell of the arrangement of spanned
+hyperplanes; for Poisson line and hyperplane tessellations, extreme-value limits for inradii are known
+\cite{Chenavier,CH}, and \cite{CN} treats STIT tessellations. Heuristically, at first order the answer is the same as for
+$\binom nd$ independent copies of $H$; but the $\binom nd$ slabs come from only $n$ points and are dependent when their
+$d$-sets share a point, and Theorem~\ref{thm:main} shows that this dependence does not change the constant. For fixed $z$,
+the number of spanned hyperplanes near $z$ is a $U$-statistic, and Poisson approximation for such counts is well
+developed \cite{ST,DST,STbook,Otto}; but these bounds are additive, with errors far larger than the probability, of order
+$n^{-d^2}$, that $z$ is uncovered. We need this probability up to a factor $n^{o(1)}$, and the joint probability for two
+test points up to a factor $1+o(1)$; the Harris \cite{Harris} and Janson \cite{Janson} inequalities give both. The line
+through two random points of a convex body was studied by Kingman \cite{Kingman}, and random simplices with the
+associated integral-geometric formulae by Miles \cite{Miles}; see \cite{Santalo,SW}. Apart from the deterministic results
+of \cite{Companion}, we are not aware of earlier results on the covering radius of spanned hyperplanes.
 
 \section{Results}\label{sec:main}
 
-\paragraph{Notation.} Throughout, $d \ge 2$, $\Omega \subset \R^d$ is a convex body, $|\cdot|$ is volume, Euclidean norm or
-cardinality, $\Delta = \operatorname{diam}\Omega$, and $B(o, r_0) \subset \Omega$ is a fixed ball. We write $\kappa_k$ for the volume
-of the unit ball of $\R^k$ ($\kappa_0=1$), $\Sph^{d-1}$ for the unit sphere with surface measure $d\nu$, $\Caff$ for affine hull,
-and $H(u)=\Caff(u_1,\dots,u_d)$ for affinely independent $u=(u_1,\dots,u_d)$. Let $X_1,X_2,\dots$ be independent and uniform
-in $\Omega$; almost surely every $d$ of them are affinely independent. For $n\ge d$,
+\paragraph{Notation.} Throughout, $d \ge 2$, $\Omega \subset \R^d$ is a convex body, $\log$ is the natural logarithm, $|\cdot|$ is
+volume, Euclidean norm or cardinality, $\Delta = \operatorname{diam}\Omega$, and $B(o, r_0) \subset \Omega$ is a fixed ball with centre $o$
+and radius $r_0>0$. We write $\kappa_k$ for the volume of the unit ball of $\R^k$ ($\kappa_0=1$), $\Caff$ for affine hull,
+and $H(u)=\Caff(u_1,\dots,u_d)$ for affinely independent $u=(u_1,\dots,u_d)$. Let $X_1,X_2,\dots$ be independent and uniform in
+$\Omega$; almost surely every $d$ of them are affinely independent. For $n\ge d$,
 \[
   \rho_\Omega^{(n)} = \max_{x \in \Omega}\min_{\mathcal I}\dist(x, H(X_{\mathcal I})),
 \]
 over the $d$-subsets $\mathcal I$ of $\{1,\dots,n\}$, where $X_{\mathcal I}=(X_i)_{i\in\mathcal I}$ and $\dist$ is the distance to the
-whole hyperplane. Finally, $U, U_1, U_2, \dots$ are independent uniform points in $\Omega$, and $H = H(U_1, \dots, U_d)$. In
+whole hyperplane. Finally, $U_1, U_2, \dots$ are independent uniform points in $\Omega$, and $H = H(U_1, \dots, U_d)$. In
 Section~\ref{sec:geom}, constants $C,c$ (changing from line to line) and $c_1,C_0,\dots$ depend only on $d$, $\Delta$, $|\Omega|$
-and $r_0$; later they may depend on $\Omega$ and the fixed parameters.
+and $r_0$; in Sections~\ref{sec:upper} and~\ref{sec:lower} they may also depend on $\Omega$ and on the parameters fixed at
+the start of each proof, but never on $n$ or on the points $z,x,y$.
 
-By Lemma~\ref{lem:ig}, $h_\Omega(z) = \lim_{t \to 0}t^{-1}\Pr(\dist(z, H) < t)$ exists uniformly in $z\in\Omega$, and $h_\Omega$
-is continuous and positive. Let $m_\Omega=\min_\Omega h_\Omega$.
+By Lemma~\ref{lem:ig}, $h_\Omega(z) = \lim_{t \to 0}t^{-1}\Pr(\dist(z, H) < t)$ exists uniformly in $z\in\R^d$, $h_\Omega$ is
+continuous, and $h_\Omega>0$ on $\Omega$. Let $m_\Omega=\min_\Omega h_\Omega$. Since $h_{g\Omega}(gz)=h_\Omega(z)$ for every isometry $g$
+and $h_{s\Omega}(sz)=s^{-1}h_\Omega(z)$ for $s>0$, $c_\Omega$ below is invariant under isometries and $c_{s\Omega}=s\,c_\Omega$.
 
 \begin{theorem}\label{thm:main}
 Let $c_\Omega = d^2\cdot d!/m_\Omega$. Then $n^d\rho_\Omega^{(n)}/\log n \to c_\Omega$ almost surely, and hence in probability.
 \end{theorem}
 
-Heuristically, $x$ is uncovered at level $\eps$ with probability about $e^{-\mu_x}$, with
-$\mu_x\approx\binom nd h_\Omega(x)\eps$; at resolution $\eps\approx\log n/n^d$ there are about $\eps^{-d}=n^{d^2+o(1)}$ roughly
-independent points, and $\min_x\mu_x=d^2\log n$ gives $\eps=c_\Omega\log n/n^d$. Since $h_\Omega$ is continuous up to
-$\partial\Omega$, there is no boundary correction of the kind found for coverage by balls \cite{Penrose}.
+Heuristically, $x$ is uncovered at level $\eps$ with probability about $e^{-\mu_x(\eps)}$, where
+$\mu_x(\eps)\approx\binom nd h_\Omega(x)\eps$ is the mean number of spanned hyperplanes within $\eps$ of $x$; there are
+$n^{d^2+o(1)}$ roughly independent points to cover, and $\min_x\mu_x(\eps)=d^2\log n$ gives $\eps=c_\Omega\log n/n^d$. This is the
+Poisson clumping heuristic \cite{Aldous}. For coverage by balls the covering intensity drops near $\partial\Omega$ on the
+scale of the radius, which gives a boundary correction \cite{Penrose}; here $h_\Omega$ is continuous up to $\partial\Omega$, so
+there is no such correction at first order, even when $m_\Omega$ is attained on $\partial\Omega$.
 
 \begin{corollary}\label{cor:plane}
-Let $d=2$, and let $L_z(\theta)$ be the length of the chord of $\Omega$ through $z$ in direction $(\cos\theta,\sin\theta)$. Then
-$h_\Omega(z)=\frac{2}{3|\Omega|^2}\int_0^\pi L_z(\theta)^3\,d\theta$, so $c_\Omega=8/m_\Omega=12|\Omega|^2/\min_z\int_0^\pi L_z(\theta)^3\,d\theta$.
+Let $d=2$, and let $L_z(\theta)$ be the length of $\Omega\cap(z+\R(\cos\theta,\sin\theta))$. Then
+$h_\Omega(z)=\frac{2}{3|\Omega|^2}\int_0^\pi L_z(\theta)^3\,d\theta$, so $c_\Omega=8/m_\Omega=12|\Omega|^2/\min_{z\in\Omega}\int_0^\pi L_z(\theta)^3\,d\theta$.
 \end{corollary}
 
 \begin{corollary}\label{cor:ball}
 Let $\Omega=\ball^d$ be the unit ball and $J(a)=\int_{-1}^1(1-u^2)^a\,du=\sqrt\pi\,\Gamma(a+1)/\Gamma(a+\frac32)$. Then
-$h_\Omega(z)$ is a strictly decreasing function of $|z|$, so its minimizers are the points with $|z|=1$, and
+$h_\Omega(z)$ is a strictly decreasing function of $|z|\in[0,1]$, so its minimizers are the points with $|z|=1$, and
 \[
   c_{\ball^d}=\frac{d^2\cdot d!}{2}\cdot\frac{J\bigl(\frac{d-3}2\bigr)\,J\bigl(\frac{d^2-1}2\bigr)}{J\bigl(\frac{d^2+d-4}2\bigr)}.
 \]
@@ -104,81 +117,89 @@ lie on $\partial\Omega$.
 \end{proposition}
 
 \begin{corollary}\label{cor:square}
-For $Q=[0,1]^2$ and $\phi=(1+\sqrt5)/2$, the minimum of $h_Q$ on $\partial Q$ is attained exactly at the midpoints of the
-edges, $m_Q=\frac{\sqrt5}3+\frac{11}{12}\log\phi\approx1.1865$, and $c_Q=96/(4\sqrt5+11\log\phi)\approx6.743$. At the vertices
-$h_Q=\frac23(\sqrt2+\log(1+\sqrt2))\approx1.5304$.
+For $\square=[0,1]^2$ and $\phi=(1+\sqrt5)/2$, the minimum of $h_\square$ over $\square$ is attained exactly at the midpoints of
+the edges, $m_\square=\frac{\sqrt5}3+\frac{11}{12}\log\phi\approx1.1865$, and $c_\square=96/(4\sqrt5+11\log\phi)\approx6.743$. At the
+vertices $h_\square=\frac23(\sqrt2+\log(1+\sqrt2))\approx1.5304$.
 \end{corollary}
 
 \paragraph{Outline.} After Poissonization and discretization into tiny cells (Section~\ref{sec:poisson}), the event that
 $x$ is uncovered is sandwiched between events on independent occupancy indicators. Janson's inequality bounds its
-probability by $e^{-\mu_x+\Delta_J}$, where the pairs of $d$-sets sharing one point dominate and $\Delta_J=O((\log n)^3/n)$;
-a union bound over a net gives the upper bound (Section~\ref{sec:upper}). Harris's inequality gives
-$\Pr(x\text{ uncovered})\ge(1-o(1))e^{-\mu_x}$; since a random spanned hyperplane passes within $t$ of two points at
-distance $r$ with probability $O(t^2/r)$, test points at mutual distance $(\log n)^4/n^d$ are almost independent, and a
-second-moment argument gives the lower bound (Section~\ref{sec:lower}). The error probabilities are summable along
-geometric sequences, which gives almost sure convergence.
+probability by $e^{-\mu_x(\eps)+\mathcal D}$, where the pairs of $d$-sets sharing one point dominate and $\mathcal D=O((\log n)^3/n)$
+uniformly in $x$; a union bound over a net gives the upper bound (Section~\ref{sec:upper}). Harris's inequality gives
+$\Pr(x\text{ uncovered})\ge(1-o(1))e^{-\mu_x(\eps)}$. A random spanned hyperplane passes within $\eps$ of both of two points at
+distance $r$ with probability $O(\eps^2/r)$, so test points at mutual distance $(\log n)^4/n^d$ share only
+$O((\log n)^{-2})$ nearby hyperplanes in expectation, and a second-moment argument gives the lower bound
+(Section~\ref{sec:lower}). Since $\rho_\Omega^{(n)}$ is nonincreasing in $n$, the summability of the error probabilities along
+geometric sequences gives almost sure convergence.
 
 \section{Geometric lemmas}\label{sec:geom}
 
-For points $u_1,\dots,u_k$ let $V(u_1,\dots,u_k)=|(u_2-u_1)\wedge\dots\wedge(u_k-u_1)|$ ($=1$ for $k=1$), which is
-$(k-1)!$ times the $(k-1)$-volume of their convex hull. It is symmetric, and by base times height
-$V(u_1,\dots,u_k)=V(u_1,\dots,u_{k-1})\dist(u_k,\Caff(u_1,\dots,u_{k-1}))$; $H(u)$ is a hyperplane iff $V(u)>0$.
+For points $u_1,\dots,u_k$ let $V(u_1,\dots,u_k)=\det\bigl(\ip{u_i-u_1}{u_j-u_1}\bigr)_{i,j=2}^k{}^{1/2}$ ($=1$ for $k=1$), the
+Euclidean norm of $(u_2-u_1)\wedge\dots\wedge(u_k-u_1)$, which is $(k-1)!$ times the $(k-1)$-volume of their convex hull. It is
+symmetric, $u_1,\dots,u_k$ are affinely independent iff $V>0$, and by base times height
+$V(u_1,\dots,u_k)=V(u_1,\dots,u_{k-1})\dist(u_k,\Caff(u_1,\dots,u_{k-1}))$.
 
 \begin{lemma}[Flat tails]\label{lem:flat}
 For $1 \le k \le d - 1$, $x \in \R^d$ and $r > 0$, $\Pr(\dist(x, \Caff(U_1, \dots, U_k)) < r) \le Cr^{d-k+1}$.
 \end{lemma}
 
 \begin{proof}
-Induction on $k$; for $k = 1$ the bound is $\kappa_dr^d/|\Omega|$. Let $k \ge 2$, $a=d-k+1$ and $r\le\Delta$ (for $r>\Delta$
-take $C\ge\Delta^{-a}$). Let $G = \Caff(U_1, \dots, U_{k-1})$ and $D = \dist(x, G)$; almost surely $\dim G=k-2$ and $U_k\notin G$.
-Let $\Cpr$ be the orthogonal projection onto the orthogonal complement $W$ of the direction space of $G$; $\dim W=a+1$
-and $\Cpr G$ is a point. Then $\dist(x, \Caff(G, U_k))$ is the distance from $\Cpr x$ to the line through $\Cpr G$ and
-$\Cpr U_k$. If $D>r$ and this distance is $<r$, the angle between $\Cpr U_k-\Cpr G$ and the line through $\Cpr G$ and
-$\Cpr x$ is less than $\alpha=\min(\arcsin(r/D),\pi/2)\le\pi r/(2D)$. Given $G$, such $U_k$ lie in the set of $u\in\Omega$
-whose component in $W$, relative to $\Cpr G$, lies in a double cone of half-angle $\alpha$ and radius $\Delta$ in $W$, of
-volume $\le C\alpha^a$, and whose other component lies in a $(k-2)$-ball of radius $\Delta$ (as $G$ meets $\Omega$ at $U_1$).
-By Fubini, $\Pr(\dist(x, \Caff(G, U_k)) < r \mid U_1,\dots,U_{k-1}) \le C(r/D)^a$ on $\{D>r\}$, so
+Induction on $k$; for $k = 1$ the bound is $\kappa_dr^d/|\Omega|$. Let $k \ge 2$ and $a=d-k+1\ge2$; we may take $r\le\Delta$ (for
+$r>\Delta$ use $C\ge\Delta^{-a}$). Let $G = \Caff(U_1, \dots, U_{k-1})$ and $\varrho = \dist(x, G)$; almost surely $\dim G=k-2$ and
+$U_k\notin G$. Let $\Cpr$ be the orthogonal projection onto the orthogonal complement $W$ of the direction space of $G$;
+$\dim W=a+1$ and $\Cpr G$ is a point. Then $\dist(x, \Caff(G, U_k))$ is the distance from $\Cpr x$ to the line through
+$\Cpr G$ and $\Cpr U_k$. If $\varrho>r$ and this distance is $<r$, the angle between $\Cpr U_k-\Cpr G$ and the line through
+$\Cpr G$ and $\Cpr x$ is less than $\alpha=\arcsin(r/\varrho)\le\pi r/(2\varrho)$. Given $G$, such $U_k$ lie in the set of $u\in\Omega$
+whose component in $W$, relative to $\Cpr G$, lies in a double cone of half-angle $\alpha$ and radius $\Delta$ (of volume
+$\le C\alpha^a$, since a cap of angular radius $\alpha$ in the unit sphere of $W$ has measure $\le C\alpha^a$), and whose other
+component lies in a $(k-2)$-ball of radius $\Delta$ (as $G$ meets $\Omega$ at $U_1$). By Fubini,
+$\Pr(\dist(x, \Caff(G, U_k)) < r \mid U_1,\dots,U_{k-1}) \le C(r/\varrho)^a$ on $\{\varrho>r\}$, so
 \[
-  \Pr\bigl(\dist(x, \Caff(U_1, \dots, U_k)) < r\bigr) \le \Pr(D <2r) + Cr^{a}\,\E D^{-a}.
+  \Pr\bigl(\dist(x, \Caff(U_1, \dots, U_k)) < r\bigr) \le \Pr(\varrho \le r) + Cr^{a}\,\E \varrho^{-a}.
 \]
-By induction $\Pr(D < y) \le Cy^{a+1}$, so $\Pr(D<2r)\le Cr^a$ and $\E D^{-a} = \int_0^\infty\Pr(D < y^{-1/a})\,dy \le
-1+C\int_1^\infty y^{-1-1/a}dy\le C$.
+By induction $\Pr(\varrho < y) \le Cy^{a+1}$, so $\Pr(\varrho\le r)\le Cr^{a+1}\le C\Delta r^a$ as $r\le\Delta$, and
+$\E \varrho^{-a} = \int_0^\infty\Pr(\varrho < y^{-1/a})\,dy \le 1+C\int_1^\infty y^{-1-1/a}dy\le C$.
 \end{proof}
 
 \paragraph{The integral-geometric representation.} For a compact convex set $K$ in a hyperplane let
 \[
   \Psi(K)=\int_{K^d}\vol_{d-1}(\operatorname{conv}\{x_1,\dots,x_d\})\,d\sigma(x_1)\cdots d\sigma(x_d),
 \]
-with $\sigma$ the $(d-1)$-dimensional Hausdorff measure. $\Psi$ is invariant under isometries, monotone, homogeneous of
-degree $d^2-1$, and $\Psi(K)\le\sigma(K)^{d+1}\le\Psi_{\max}=(\kappa_{d-1}\Delta^{d-1})^{d+1}$ for $K\subset\Omega$. For $\nu\in\Sph^{d-1}$
-and $p\in\R$ let $H(\nu,p)=\{x:\ip x\nu=p\}$, so $\dist(z,H(\nu,p))=|p-\ip z\nu|$; let $G_\nu(p)=\Psi(\Omega\cap H(\nu,p))$ and
-$Z_\Omega=\int_{\Sph^{d-1}}\int_\R G_\nu(p)\,dp\,d\nu$. A set $\mathcal A$ of hyperplanes is measurable if
-$\{(\nu,p):H(\nu,p)\in\mathcal A\}$ is Borel.
+with $\sigma$ the $(d-1)$-dimensional Hausdorff measure, and $\Psi(\emptyset)=0$; so $\Psi(K)=0$ if $\sigma(K)=0$. $\Psi$ is invariant
+under isometries, monotone, homogeneous of degree $d^2-1$, and $\Psi(K)\le\sigma(K)^{d+1}\le\Psi_{\max}=(\kappa_{d-1}\Delta^{d-1})^{d+1}$ for
+$K\subset\Omega$; let $\Psi_{d-1}>0$ be $\Psi$ of a unit $(d-1)$-ball. Let $\Sph^{d-1}$ be the unit sphere and $d\nu$ the surface
+measure in the variable $\nu\in\Sph^{d-1}$. For $\nu\in\Sph^{d-1}$ and $p\in\R$ let $H(\nu,p)=\{x:\ip x\nu=p\}$, so
+$\dist(z,H(\nu,p))=|p-\ip z\nu|$; let $G_\nu(p)=\Psi(\Omega\cap H(\nu,p))$ and $Z_\Omega=\int_{\Sph^{d-1}}\int_\R G_\nu(p)\,dp\,d\nu$. A set
+$\mathcal A$ of hyperplanes is measurable if $\{(\nu,p):H(\nu,p)\in\mathcal A\}$ is Borel.
 
 \begin{lemma}[Representation]\label{lem:rep}
-$(\nu,p)\mapsto G_\nu(p)$ is Borel, $|\Omega|^d=\varkappa_dZ_\Omega$ with $\varkappa_d>0$ depending only on $d$, and for measurable
-$\mathcal A$,
+$(\nu,p)\mapsto G_\nu(p)$ is Borel, $|\Omega|^d=b_dZ_\Omega$ with $b_d>0$ depending only on $d$, and for measurable $\mathcal A$,
 \begin{equation}\label{eq:BP}
   \Pr(H\in\mathcal A)=\frac1{Z_\Omega}\int_{\Sph^{d-1}}\int_\R\Cone\{H(\nu,p)\in\mathcal A\}\,G_\nu(p)\,dp\,d\nu .
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-On each of the Borel sets $S_i=\{\nu: i$ is the least index maximizing $|\nu_i|\}$, Gram--Schmidt applied to $\nu$ and
-the standard basis vectors $e_j$, $j\ne i$, gives a continuous orthonormal frame $R_\nu:\R^{d-1}\to\nu^\perp$, and
+On each of the Borel sets $\Sigma_i=\{\nu: i$ is the least index maximizing $|\nu_i|\}$, Gram--Schmidt applied to $\nu$ and the
+standard basis vectors $e_j$, $j\ne i$, gives a continuous orthonormal frame $R_\nu:\R^{d-1}\to\nu^\perp$, and
 $G_\nu(p)=\int_{(\R^{d-1})^d}\prod_i\Cone_\Omega(R_\nu w_i+p\nu)\vol_{d-1}(\operatorname{conv}\{w_i\})\,dw$; by Tonelli, $G$ is Borel. The affine
-Blaschke--Petkantschin formula \cite[Theorem~7.2.7]{SW} with $q=d-1$ reads
-$\int_{(\R^d)^d}f\,d\lambda^d=b_{d,d-1}(d-1)!\int_{A(d,d-1)}\int_{E^d}f\,\Delta_{d-1}\,d\lambda_E^d\,\mu_{d-1}(dE)$, where $\Delta_{d-1}$ is the
-$(d-1)$-volume of the simplex and, as in the last step of its proof,
-$\int g\,d\mu_{d-1}=\int_{G(d,d-1)}\int_{L^\perp}g(L+t)\,dt\,\nu_{d-1}(dL)$ with $\nu_{d-1}$ the invariant probability measure. As
-$\nu_{d-1}$ is the image of $d\nu/|\Sph^{d-1}|$ under $\nu\mapsto\nu^\perp$, for measurable $f\ge0$,
+Blaschke--Petkantschin formula \cite[Theorem~7.2.7]{SW} with $q=d-1$ states, for measurable $f\ge0$ on $(\R^d)^d$,
 \[
-  \int_{(\R^d)^d}f\,dx=\varkappa_d\int_{\Sph^{d-1}}\int_\R\int_{H(\nu,p)^d}f\,\vol_{d-1}(\operatorname{conv}\{x_i\})\,d\sigma^d(x)\,dp\,d\nu,\qquad
-  \varkappa_d=\frac{b_{d,d-1}(d-1)!}{|\Sph^{d-1}|}.
+  \int_{(\R^d)^d}f\,dx=b_{d,d-1}(d-1)!\int\int_{F^d}f\,\vol_{d-1}(\operatorname{conv}\{x_i\})\,d\sigma^d(x)\,\mu^{\rm aff}(dF),
+\]
+where $b_{d,d-1}>0$ and $\mu^{\rm aff}$ is the motion-invariant measure on hyperplanes, normalized in \cite{SW} by
+$\int g\,d\mu^{\rm aff}=\int\int_{L^\perp}g(L+t)\,dt\,\nu^{\rm lin}(dL)$ with $\nu^{\rm lin}$ the rotation-invariant probability measure
+on linear hyperplanes. By uniqueness, $\nu^{\rm lin}$ is the image of $d\nu/|\Sph^{d-1}|$ under $\nu\mapsto\nu^\perp$, so
+$\int g\,d\mu^{\rm aff}=|\Sph^{d-1}|^{-1}\int_{\Sph^{d-1}}\int_\R g(H(\nu,p))\,dp\,d\nu$ (each hyperplane appears as $(\nu,p)$ and
+$(-\nu,-p)$, consistently). Hence
+\[
+  \int_{(\R^d)^d}f\,dx=b_d\int_{\Sph^{d-1}}\int_\R\int_{H(\nu,p)^d}f\,\vol_{d-1}(\operatorname{conv}\{x_i\})\,d\sigma^d(x)\,dp\,d\nu,\qquad
+  b_d=\frac{b_{d,d-1}(d-1)!}{|\Sph^{d-1}|}.
 \]
 Take $f=\Cone_{\Omega^d}$, and then $f(x)=\Cone_{\Omega^d}(x)\Cone\{V(x)>0,\ H(x)\in\mathcal A\}$, which is Borel because on $\{V>0\}$ the
-normalized cross product $\nu(x)$ of $x_2-x_1,\dots,x_d-x_1$ and $\ip{x_1}{\nu(x)}$ are continuous; on $H(\nu,p)^d$ every $x$ of
-positive weight has $H(x)=H(\nu,p)$. These give $|\Omega|^d=\varkappa_dZ_\Omega$ and \eqref{eq:BP}.
+normalized cross product $n(x)$ of $x_2-x_1,\dots,x_d-x_1$ and $\ip{x_1}{n(x)}$ are continuous; on $H(\nu,p)^d$ every $x$ of
+positive weight has $H(x)=H(\nu,p)$. These give $|\Omega|^d=b_dZ_\Omega$ and \eqref{eq:BP}. (Only the form of the formula
+matters: $b_d$ cancels in \eqref{eq:BP}.)
 \end{proof}
 
 \begin{lemma}[Spanned hyperplanes]\label{lem:ig}
@@ -196,22 +217,26 @@ $p$-measure $2t$ and at most $4\delta$.
 band $\{\nu:|\ip e\nu|<s\}$ has measure at most $Cs$ (for $s<1$ it is $|\Sph^{d-2}|\int_{-s}^s(1-u^2)^{(d-3)/2}du$, at most
 $2|\Sph^{d-2}|s$ if $d\ge3$ and $4\arcsin s\le2\pi s$ if $d=2$). Take $e=(x-y)/|x-y|$ and $s=2t/|x-y|$.
 
-(c) Fix $\nu$, let $[a_\nu,b_\nu]=\{\ip x\nu:x\in\Omega\}$ and $K_p=\{y\in\nu^\perp:y+p\nu\in\Omega\}$, so $G_\nu(p)=\Psi(K_p)$. For
-$a_\nu<p_0<b_\nu$, pick $w\in H(\nu,p_0)\cap\operatorname{int}\Omega$; every $x$ in the relative interior of $\Omega\cap H(\nu,p_0)$ lies on an open
-segment $(w,x')$ with $x'\in\Omega$, so $x\in\operatorname{int}\Omega$. Hence, $\Omega$ being closed, $\Cone_{K_p}\to\Cone_{K_{p_0}}$ off the
-$\sigma$-null relative boundary of $K_{p_0}$, and $G_\nu(p)\to G_\nu(p_0)$ by dominated convergence. The same argument at
-$p_0\in\{a_\nu,b_\nu\}$ gives continuity unless $\Omega\cap H(\nu,p_0)$ is a support set of positive $\sigma$-measure. Such
-support sets with distinct normals have disjoint relative interiors and total measure at most the surface area of $\Omega$,
-so the set $\mathcal N$ of $\nu$ for which $\pm\nu$ is the normal of one is countable, hence null. For $\nu\notin\mathcal N$, $G_\nu$ is
-uniformly continuous; let $\omega_\nu(t)$ be its modulus of continuity (a supremum over rational pairs, hence measurable in
-$\nu$), and $\omega_\nu=\Psi_{\max}$ for $\nu\in\mathcal N$. By \eqref{eq:BP},
+(c) Fix $\nu$, let $[a_\nu,b_\nu]=\{\ip x\nu:x\in\Omega\}$ and $K_p=\{y\in\nu^\perp:y+p\nu\in\Omega\}$, so $G_\nu(p)=\Psi(K_p)$. All $K_p$
+lie in a fixed ball $B'\subset\nu^\perp$, so the integrands defining $G_\nu(p)$ are at most $\kappa_{d-1}\Delta^{d-1}\prod_i\Cone_{B'}(y_i)$.
+Since $\Omega$ is closed, $\Cone_{K_p}(y)\to0$ as $p\to p_0$ for $y\notin K_{p_0}$. For $a_\nu<p_0<b_\nu$ there is
+$w_0\in H(\nu,p_0)\cap\operatorname{int}\Omega$ (the projection of $\operatorname{int}\Omega$ to $\R\nu$ is $(a_\nu,b_\nu)$); every $x$ in the relative
+interior of $\Omega\cap H(\nu,p_0)$ lies on an open segment $(w_0,x')$ with $x'\in\Omega$, so $x\in\operatorname{int}\Omega$, and
+$\Cone_{K_p}(y)\to1$ for $y$ in the relative interior of $K_{p_0}$. As the relative boundary of $K_{p_0}$ is $\sigma$-null, dominated
+convergence gives $G_\nu(p)\to G_\nu(p_0)$. At $p_0\in\{a_\nu,b_\nu\}$, the closedness half alone gives $G_\nu(p)\to G_\nu(p_0)=0$
+unless the support set $\Omega\cap H(\nu,p_0)$ has positive $\sigma$-measure. Support sets of positive measure with distinct
+normals have disjoint relative interiors and total measure at most the surface area of $\Omega$, so the set $\mathcal N$ of $\nu$
+for which $\pm\nu$ is the normal of one is countable, hence Borel and null. For $\nu\notin\mathcal N$, $G_\nu$ is uniformly
+continuous; let $\omega_\nu(t)$ be its modulus of continuity (a supremum over rational pairs, so measurable in $\nu$), and
+$\omega_\nu=\Psi_{\max}$ on $\mathcal N$. Since $|t^{-1}\int_{|p-q|<t}(G_\nu(p)-G_\nu(q))\,dp|\le2\omega_\nu(t)$ for all $q$, \eqref{eq:BP} gives
 \[
-  \Bigl|\frac{\Pr(\dist(z,H)<t)}t-h_\Omega(z)\Bigr|\le\frac1{Z_\Omega}\int_{\Sph^{d-1}}\Bigl|\frac1t\int_{|p-\ip z\nu|<t}G_\nu(p)\,dp-2G_\nu(\ip z\nu)\Bigr|d\nu
+  \sup_{z\in\R^d}\Bigl|\frac{\Pr(\dist(z,H)<t)}t-h_\Omega(z)\Bigr|\le\frac2{Z_\Omega}\int_{\Sph^{d-1}}\omega_\nu(t)\,d\nu\to0
 \]
-and the right-hand side is at most $2Z_\Omega^{-1}\int\omega_\nu(t)\,d\nu\to0$, uniformly in $z$. Continuity of $h_\Omega$ follows from that of $G_\nu$, $\nu\notin\mathcal N$, by bounded convergence. For $z\in\Omega$,
-let $e$ be a unit vector with $z-o\in\R_+e$. If $|\ip e\nu|\le s:=r_0/(2\Delta)$, then $H(\nu,\ip z\nu)$ passes within $r_0/2$ of
-$o$, so its section of $\Omega$ contains a $(d-1)$-ball of radius $\sqrt3r_0/2$ and $G_\nu(\ip z\nu)\ge(\sqrt3r_0/2)^{d^2-1}\Psi_{d-1}$,
-$\Psi_{d-1}>0$ being $\Psi$ of a unit $(d-1)$-ball. As $s\le\frac14$, these $\nu$ have measure $\ge cs$, so $h_\Omega(z)\ge c_1$.
+by dominated convergence ($\omega_\nu\le\Psi_{\max}$, and $\omega_\nu(t)\to0$ off $\mathcal N$). Continuity of $h_\Omega$ follows from that of
+$G_\nu$, $\nu\notin\mathcal N$, by bounded convergence. For $z\in\Omega$, let $e$ be a unit vector with $z-o\in\R_+e$. As $|z-o|\le\Delta$,
+if $|\ip e\nu|\le s:=r_0/(2\Delta)$ then $H(\nu,\ip z\nu)$ passes within $r_0/2$ of $o$, so its section of $\Omega$ contains a
+$(d-1)$-ball of radius $\sqrt3r_0/2$, and $G_\nu(\ip z\nu)\ge(\sqrt3r_0/2)^{d^2-1}\Psi_{d-1}$. As $s\le\frac14$, the band formula of (b)
+gives measure $\ge cs$ for these $\nu$, so $h_\Omega(z)\ge c_1$.
 \end{proof}
 
 \begin{lemma}[Pairs sharing points]\label{lem:share}
@@ -221,35 +246,39 @@ $z, z' \in \R^d$ and $0 < t \le \frac12$, $\Pr(\dist(z, H(S, A)) < t,\ \dist(z',
 \end{lemma}
 
 \begin{proof}
-Given $S$ the two events are independent, so by Cauchy--Schwarz it suffices to show $\E p_z(S)^2\le Ct^2(1+\log(1/t))$,
-where $p_z(S)$ is the conditional probability of the first. Write $A=(A_1,U_d)$, let $F=\Caff(S,A_1)$, a $(d-2)$-flat
-through $d-1$ uniform points, and $D=\dist(z,F)$. Let $\Cpr$ be the orthogonal projection onto the $2$-dimensional
+Given $S$ the two events are independent, so by Cauchy--Schwarz it suffices to show $\E q_z(S)^2\le Ct^2(1+\log(1/t))$,
+where $q_z(S)$ is the conditional probability of the first. Write $A=(A_1,U_d)$, let $F=\Caff(S,A_1)$, a $(d-2)$-flat
+through $d-1$ uniform points, and $\varrho=\dist(z,F)$. Let $\Cpr$ be the orthogonal projection onto the $2$-dimensional
 orthogonal complement of the direction space of $F$, so $\Cpr F$ is a point. Since $H(S,A)\supset F$,
-$\dist(z,H(S,A))=D|\sin(\Phi-\varphi)|$, where $\Phi$ and $\varphi$ are the angles of $\Cpr U_d-\Cpr F$ and $\Cpr z-\Cpr F$. Given
+$\dist(z,H(S,A))=\varrho|\sin(\Phi-\varphi)|$, where $\Phi$ and $\varphi$ are the angles of $\Cpr U_d-\Cpr F$ and $\Cpr z-\Cpr F$. Given
 $(S,A_1)$, $\Phi$ (mod $\pi$) lies in an arc $I$ with probability at most $\kappa_{d-2}\Delta^d|I|/|\Omega|$ (Fubini over a double
-sector of angle $|I|$ and radius $\Delta$), and if $t<D$ the event $\dist(z,H(S,A))<t$ is an arc of length
-$2\arcsin(t/D)\le\pi t/D$. Hence $\Pr(\dist(z,H(S,A))<t\mid S,A_1)\le\min(1,K_0t/D)$ with
-$K_0=\max(1,\pi\kappa_{d-2}\Delta^d/|\Omega|)$. By Jensen and Lemma~\ref{lem:flat} ($\Pr(D<y)\le C_0y^2$),
+sector of angle $|I|$ and radius $\Delta$), and if $t<\varrho$ the event $\dist(z,H(S,A))<t$ is an arc of length
+$2\arcsin(t/\varrho)\le\pi t/\varrho$. Hence $\Pr(\dist(z,H(S,A))<t\mid S,A_1)\le\min(1,K_0t/\varrho)$ with
+$K_0=\max(1,\pi\kappa_{d-2}\Delta^d/|\Omega|)$. By Jensen and Lemma~\ref{lem:flat} ($\Pr(\varrho<y)\le C_0y^2$, with $C_0\ge1$), and with
+$M=(K_0t)^{-2}$,
 \[
-  \E p_z^2\le\Pr(D<K_0t)+(K_0t)^2\int_0^{(K_0t)^{-2}}\Pr(D<y^{-1/2})\,dy\le Ct^2+(K_0t)^2\int_0^{(K_0t)^{-2}}\min\Bigl(1,\frac{C_0}y\Bigr)dy,
+  \E q_z^2\le\Pr(\varrho\le K_0t)+(K_0t)^2\int_0^{M}\Pr(\varrho<y^{-1/2})\,dy\le C_0K_0^2t^2+(K_0t)^2\int_0^{M}\min\Bigl(1,\frac{C_0}y\Bigr)dy.
 \]
-which is at most $Ct^2(1+\log(1/t))$ for $t\le\frac12$.
+If $M\le C_0$ the last term is $1\le C_0K_0^2t^2$; otherwise it is $C_0K_0^2t^2(1+\log(M/C_0))\le C_0K_0^2t^2(1+2\log(1/t))$. Both are
+$\le Ct^2(1+\log(1/t))$.
 \end{proof}
 
 \begin{lemma}[Perturbation]\label{lem:pert}
 (a) Let $c_2=1/(2(d-1)\Delta^{d-2})$ and $C_2=(4d-2)\Delta^{d-1}$. If $u, u' \in \Omega^d$, $|u_i - u'_i| \le \eta$, $\ell>0$,
 $V(u) \ge 2\ell$ and $\eta \le c_2\ell$, then $V(u') \ge \ell$ and $|\dist(x, H(u)) - \dist(x, H(u'))| \le C_2\eta/\ell$ for
-$x \in \Omega$. (b) $\Pr(V(U_1, \dots, U_d) < \ell) \le C\ell^\gamma$ with $\gamma = 2^{1-d}$.
+$x \in \Omega$. (b) $\Pr(V(U_1, \dots, U_d) < \ell) \le C\ell^\gamma$ with $\gamma = 2^{2-d}$.
 \end{lemma}
 
 \begin{proof}
-(a) $\dist(x, H(u)) = N_x(u)/V(u)$ with $N_x(u) = |\det(u_2 - u_1, \dots, u_d - u_1, x - u_1)|\le V(u)\Delta$. These vectors have
-norm $\le\Delta$ and change by $\le2\eta$, so by multilinearity and Hadamard's inequality $|N_x(u) - N_x(u')| \le 2d\Delta^{d-1}\eta$
-and $|V(u) - V(u')| \le 2(d-1)\Delta^{d-2}\eta\le\ell$. Then
+(a) By base times height for $u_1,\dots,u_d,x$, $\dist(x, H(u)) = N_x(u)/V(u)$ with $N_x(u)=V(u_1,\dots,u_d,x)\le V(u)\Delta$. Replacing
+the vectors $u_i-u_1$, $x-u_1$ by $u'_i-u'_1$, $x-u'_1$ one at a time, all intermediate vectors have norm $\le\Delta$ (as $u,u'\in\Omega^d$, $x\in\Omega$) and each
+changes by $\le2\eta$, so multilinearity and Hadamard's inequality $|a_1\wedge\dots\wedge a_m|\le\prod|a_i|$ give
+$|N_x(u) - N_x(u')| \le 2d\Delta^{d-1}\eta$ and $|V(u) - V(u')| \le 2(d-1)\Delta^{d-2}\eta\le\ell$. Then
 $|N_x/V - N_x'/V'| \le |N_x - N_x'|/V' + N_x|V - V'|/(VV') \le C_2\eta/\ell$.
-(b) For $\ell\le1$, $\Pr(V(U_1,\dots,U_k) < \ell) \le \Pr(V(U_1,\dots,U_{k-1}) < \ell^{1/2}) + C\ell$, since the $r$-neighbourhood of a
+(b) For $\ell>1$ take $C\ge1$. For $\ell\le1$ and $2\le k\le d$, base times height and the independence of $U_k$ from
+$U_1,\dots,U_{k-1}$ give $\Pr(V(U_1,\dots,U_k) < \ell) \le \Pr(V(U_1,\dots,U_{k-1}) < \ell^{1/2}) + C\ell$, since the $r$-neighbourhood of a
 flat of dimension $\le d-2$ through $U_1$ meets $\Omega$ in volume $\le Cr^2$ for $r\le1$. As $V(U_1)=1$, induction gives
-$C\ell^{2^{2-k}}$, and $\ell^{2^{2-d}}\le\ell^\gamma$ for $\ell\le1$.
+$C\ell^{2^{2-k}}$.
 \end{proof}
 
 \section{Poissonization and the correlation inequalities}\label{sec:poisson}
@@ -261,86 +290,99 @@ some $I_k$ from $1$ to $0$), then $\Pr(A_1 \cap \dots \cap A_r) \ge \prod_i \Pr(
 
 \begin{thmJ}[{Janson \cite{Janson}; see \cite[Section~8.1]{AS}}]
 Let $R$ contain each element $k$ of a finite set independently with probability $p_k$, let $S_1, \dots, S_r$ be subsets,
-$A_i = \{S_i \subseteq R\}$, $\mu_J = \sum_i\Pr(A_i)$ and $\Delta_J = \sum\Pr(A_i \cap A_j)$ over ordered pairs $i \ne j$ with
-$S_i \cap S_j \ne \emptyset$. Then $\Pr(\text{no }A_i) \le e^{-\mu_J + \Delta_J}$.
+$A_i = \{S_i \subseteq R\}$, $\mu_J = \sum_i\Pr(A_i)$ and $\mathcal D = \sum\Pr(A_i \cap A_j)$ over ordered pairs $i \ne j$ with
+$S_i \cap S_j \ne \emptyset$. Then $\Pr(\text{no }A_i) \le e^{-\mu_J + \mathcal D/2}\le e^{-\mu_J+\mathcal D}$.
 \end{thmJ}
 
 \paragraph{Set-up.} In Sections~\ref{sec:poisson}--\ref{sec:lower}, $\vartheta\in(0,1)$ and $\eps=\eps_n\in(0,\frac12]$ are given,
 and $o(1)$ tends to $0$ as $n\to\infty$, uniformly over the points to which the statement applies. Let
 $\lambda = (1 \mp \vartheta)n/|\Omega|$ ($-$ for the upper bound, $+$ for the lower bound), let $N \sim \mathrm{Poisson}(\lambda|\Omega|)$
 be independent of the $X_i$ (on a product extension of the probability space; this does not change the law of
-$\rho_\Omega^{(n)}$), and $\Pi = (X_1, \dots, X_N)$. Put $\eta = n^{-\beta}$ with $\beta = 4(d + 2)/\gamma$,
-$\ell = \eta^{1/2}$ and $\delta = C_2\eta^{1/2}$; then $\eta \le c_2\ell$, $\eta\Delta^{d-2}<2\ell$ and
+$\rho_\Omega^{(n)}$), and $\Pi = (X_1, \dots, X_N)$, a Poisson process of intensity $\lambda$ on $\Omega$. Put $\eta = n^{-\beta}$
+with $\beta = 4(d + 2)/\gamma$, $\ell = \eta^{1/2}$ and $\delta = C_2\eta^{1/2}$. For large $n$, $\eta^{1/2}\le\min(c_2,\Delta^{2-d},\frac14)$,
+so $\eta\le c_2\ell$, $\eta\Delta^{d-2}<2\ell$ and $2\ell\le1$; and since $\beta\gamma/2=2d+4$, $\beta/2\ge2d+4$ and
+$\beta d\ge4d(d+2)\ge d^2+4$,
 \begin{equation}\label{eq:params}
-  n^d\eta^{\gamma/2}\le n^{-d-4},\qquad n^d\delta\le n^{-1},\qquad n^2\eta^d\le n^{-d^2-2}
+  n^d\eta^{\gamma/2}= n^{-d-4},\qquad n^d\delta\le n^{-1},\qquad n^2\eta^d\le n^{-d^2-2}.
 \end{equation}
-for large $n$ ($\beta$ is not optimized). The \emph{cells} are the nonempty sets $Q_k = \Omega \cap ((\eta/\sqrt d)(k+[0,1)^d))$,
-$k\in\Z^d$; they partition $\Omega$ and have diameter $\le\eta$ and volume $v_k \le \eta^d$. The numbers $N_k$ of points of $\Pi$
-in $Q_k$ are independent $\mathrm{Poisson}(\lambda v_k)$, so $I_k = \Cone\{N_k \ge 1\}$ has $p_k = \Pr(I_k = 1)\in[\lambda v_k(1 - \lambda\eta^d),\lambda v_k]$,
-and the event $\mathrm{Two}$ that some cell holds two points has $\Pr(\mathrm{Two}) \le \lambda^2\eta^d|\Omega|$.
+($\beta$ is not optimized.) The \emph{cells} are the nonempty sets $Q_k = \Omega \cap ((\eta/\sqrt d)(k+[0,1)^d))$, $k\in\Z^d$; they
+partition $\Omega$ and have diameter $\le\eta$ and volume $v_k \le \eta^d$. The numbers $N_k$ of points of $\Pi$ in $Q_k$ are
+independent $\mathrm{Poisson}(\lambda v_k)$, so $I_k = \Cone\{N_k \ge 1\}$ has $p_k = \Pr(I_k = 1)\in[\lambda v_k(1 - \lambda\eta^d),\lambda v_k]$, and
+the event $\mathrm{Two}$ that some cell holds two points has $\Pr(\mathrm{Two}) \le \lambda^2\eta^d|\Omega|$.
 
-A \emph{cell set} is a set $S$ of $d$ distinct cell indices; $w(S)=\prod_{k\in S}v_k$. For $z\in\Omega$, $S\in\CB_\Cout(z)$ if some,
-and $S\in\CB_\Cin(z)$ if every, $u\in\prod_{k\in S}Q_k$ has $V(u)>0$ and $\dist(z,H(u))<\eps$. For a family $\CB$ of cell sets,
+A \emph{cell set} is a set $S$ of $d$ distinct cell indices; $v(S)=\prod_{k\in S}v_k$, and $\prod_{k\in S}Q_k$ denotes the set of
+$u\in\Omega^d$ with exactly one coordinate in each $Q_k$, $k\in S$ ($V$ and $H$ are symmetric). For $z\in\Omega$, $S\in\CB_\Cout(z)$ if
+some, and $S\in\CB_\Cin(z)$ if every, $u\in\prod_{k\in S}Q_k$ has $V(u)>0$ and $\dist(z,H(u))<\eps$. For a family $\CB$ of cell sets,
 $F_\CB$ is the event that no $S\in\CB$ is fully occupied, $\bar\mu(\CB)=\sum_{S\in\CB}\prod_{k\in S}p_k$, and $\mathcal U(\CB)$ is the set of
 $u\in\Omega^d$ whose coordinates lie in distinct cells forming a set in $\CB$. Let $E_z$ be the event that no $d$ points of $\Pi$
-span a hyperplane within $\eps$ of $z$, and
+span a hyperplane $H'$ with $\dist(z,H')<\eps$, and
 \[
-  \mu_z(t) = \frac{\lambda^d}{d!}\,|\{u \in \Omega^d : V(u) > 0,\ \dist(z, H(u)) < t\}| = \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(z,H)<t)\le Cn^dt,
+  \mu_z(t) = \frac{\lambda^d}{d!}\,|\{u \in \Omega^d : V(u) > 0,\ \dist(z, H(u)) < t\}| = \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(z,H)<t)\le Cn^dt.
 \]
-the mean number of $d$-subsets of $\Pi$ spanning a hyperplane within $t$ of $z$.
 
 \begin{lemma}[Sandwich]\label{lem:sand}
 Let $z,x,y\in\Omega$. (a) $F_{\CB_\Cout(z)} \setminus \mathrm{Two} \subseteq E_z \subseteq F_{\CB_\Cin(z)}$. (b) For large $n$,
-$\lambda^d\sum_{\CB_\Cout(z)}w \le \mu_z(\eps + \delta) + Cn^d\eta^{\gamma/2}$ and $\lambda^d\sum_{\CB_\Cin(z)}w \ge \mu_z(\eps - \delta) - Cn^d\eta^{\gamma/2}$.
-(c) $\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}w \le \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(x, H) < \eps,\ \dist(y, H) < \eps)$.
+$\lambda^d\sum_{S\in\CB_\Cout(z)}v(S) \le \mu_z(\eps + \delta) + Cn^d\eta^{\gamma/2}$ and
+$\lambda^d\sum_{S\in\CB_\Cin(z)}v(S) \ge \mu_z(\eps - \delta) - Cn^d\eta^{\gamma/2}$.
+(c) $\lambda^d\sum_{S\in\CB_\Cin(x) \cap \CB_\Cin(y)}v(S) \le \frac{(\lambda|\Omega|)^d}{d!}\Pr(\dist(x, H) < \eps,\ \dist(y, H) < \eps)$.
 \end{lemma}
 
 \begin{proof}
 (a) Off $\mathrm{Two}$, $d$ points spanning a hyperplane within $\eps$ of $z$ occupy a set in $\CB_\Cout(z)$; if a set in $\CB_\Cin(z)$
-is occupied, one point from each cell spans such a hyperplane. (b) Since $\lambda^d\sum_\CB w=(\lambda^d/d!)|\mathcal U(\CB)|$, it
-suffices to show $\mathcal U(\CB_\Cout(z))\subseteq\{\dist(z,H(u))<\eps+\delta\}\cup\{V<2\ell\}$ and
-$\mathcal U(\CB_\Cin(z))\supseteq\{\dist(z,H(u))<\eps-\delta\}\setminus\{V<2\ell\}$, because $(\lambda^d/d!)|\{V<2\ell\}|\le Cn^d\eta^{\gamma/2}$ by
-Lemma~\ref{lem:pert}(b). If $V(u)\ge2\ell$, the cells of $u$ are distinct (two coordinates in one cell would give
-$V(u)\le\eta\Delta^{d-2}<2\ell$), and by Lemma~\ref{lem:pert}(a) every $u'$ with $u'_i$ in the cell of $u_i$ has $V(u')>0$ and
-$|\dist(z,H(u'))-\dist(z,H(u))|\le\delta$. (c) $\mathcal U(\CB_\Cin(x)\cap\CB_\Cin(y))\subseteq\{\dist(x,H(u))<\eps,\ \dist(y,H(u))<\eps\}$.
+is occupied, one point from each cell spans such a hyperplane. (b) Since $\lambda^d\sum_{S\in\CB}v(S)=(\lambda^d/d!)|\mathcal U(\CB)|$ and
+$(\lambda^d/d!)|\{V<2\ell\}|\le Cn^d\eta^{\gamma/2}$ by Lemma~\ref{lem:pert}(b), it suffices to show, for $V(u)\ge2\ell$: if
+$u\in\mathcal U(\CB_\Cout(z))$ then $\dist(z,H(u))<\eps+\delta$, and if $\dist(z,H(u))<\eps-\delta$ then $u\in\mathcal U(\CB_\Cin(z))$. Two
+coordinates of $u$ in one cell would give $V(u)\le\eta\Delta^{d-2}<2\ell$, so the cells of $u$ are distinct; and every $u'$ with
+$u'_i$ in the cell of $u_i$ has $V(u')>0$ and $|\dist(z,H(u'))-\dist(z,H(u))|\le\delta$ by Lemma~\ref{lem:pert}(a). Applied to the
+$u'$ witnessing $\CB_\Cout(z)$, and to all such $u'$, this gives the two claims. (c)
+$\mathcal U(\CB_\Cin(x)\cap\CB_\Cin(y))\subseteq\{\dist(x,H(u))<\eps,\ \dist(y,H(u))<\eps\}$.
 \end{proof}
 
 \begin{lemma}[Uncovered pairs]\label{lem:janson}
-For $z, z' \in \Omega$ and $\CB = \CB_\Cin(z) \cup \CB_\Cin(z')$, $\Pr(E_z \cap E_{z'}) \le \exp(-\bar\mu(\CB) + \Delta_J)$ with
-$\Delta_J \le C\sum_{j=1}^{d-1}\lambda^{2d-j}\eps^2\log(1/\eps)$.
+For $z, z' \in \Omega$ and $\CB = \CB_\Cin(z) \cup \CB_\Cin(z')$, $\Pr(E_z \cap E_{z'}) \le \exp(-\bar\mu(\CB) + \mathcal D)$, where $\mathcal D$ is
+the quantity of Theorem~J for the events $A_S=\{S\subseteq R\}$, $S\in\CB$, $R=\{k:I_k=1\}$, and
+$\mathcal D \le C\sum_{j=1}^{d-1}\lambda^{2d-j}\eps^2\log(1/\eps)$.
 \end{lemma}
 
 \begin{proof}
-$E_z\cap E_{z'}\subseteq F_\CB$ by Lemma~\ref{lem:sand}(a); apply Theorem~J to $R=\{k:I_k=1\}$. An ordered pair $(S,S')$ in $\CB$
-with $|S\cap S'|=j\in[1,d-1]$ has $\Pr(A_S\cap A_{S'})\le\lambda^{2d-j}\prod_{k\in S\cup S'}v_k$. Fix $z_1,z_2\in\{z,z'\}$ and the pairs
-with $S\in\CB_\Cin(z_1)$, $S'\in\CB_\Cin(z_2)$. A pair with orderings of $S\cap S'$, $S\setminus S'$, $S'\setminus S$ gives a product of
-cells in $\Omega^{2d-j}$ of volume $\prod_{S\cup S'}v_k$; these products are disjoint (a point determines its cells), there are
-$j!((d-j)!)^2$ orderings per pair, and all lie in $\{(s,b,b'):\dist(z_1,H(s,b))<\eps,\ \dist(z_2,H(s,b'))<\eps\}$. By
-Lemma~\ref{lem:share}, these pairs contribute at most $C\lambda^{2d-j}\eps^2\log(1/\eps)$; sum over $j$ and the four $(z_1,z_2)$.
+$E_z\cap E_{z'}\subseteq F_\CB$ by Lemma~\ref{lem:sand}(a); apply Theorem~J. An ordered pair $(S,S')$ of distinct sets in $\CB$ has
+$|S\cap S'|=j\in[1,d-1]$ ($j=d$ is impossible) and $\Pr(A_S\cap A_{S'})\le\lambda^{2d-j}\prod_{k\in S\cup S'}v_k$. Fix
+$y_1,y_2\in\{z,z'\}$ and the pairs with $S\in\CB_\Cin(y_1)$, $S'\in\CB_\Cin(y_2)$ (a pair may be counted for several choices,
+which only increases the bound). A pair with orderings of $S\cap S'$, $S\setminus S'$, $S'\setminus S$ gives a product of cells
+in $\Omega^{2d-j}$ of volume $\prod_{S\cup S'}v_k$; these products are disjoint (a point determines its cells), there are
+$j!((d-j)!)^2$ orderings per pair, and all lie in $\{(s,b,b'):\dist(y_1,H(s,b))<\eps,\ \dist(y_2,H(s,b'))<\eps\}$. Hence the sum of
+$\prod_{S\cup S'}v_k$ over these pairs is at most $|\Omega|^{2d-j}$ times the probability in Lemma~\ref{lem:share}, which is at most
+$C\eps^2(1+\log(1/\eps))\le3C\eps^2\log(1/\eps)$ for $\eps\le\frac12$; sum over $j$ and the four $(y_1,y_2)$.
 \end{proof}
 
 \section{The upper bound}\label{sec:upper}
 
 \begin{proposition}\label{prop:upper}
-For every $\xi>0$ there are $C,c>0$ with $\Pr(\rho_\Omega^{(n)}>(c_\Omega+\xi)\log n/n^d)\le Cn^{-c}$.
+For every $\xi>0$ there are $C,c>0$ with $\Pr(\rho_\Omega^{(n)}>(c_\Omega+\xi)\log n/n^d)\le Cn^{-c}$ for all $n\ge d$.
 \end{proposition}
 
 \begin{proof}
-Let $c_+=c_\Omega+\xi/2$, fix $\vartheta\in(0,1)$ and $\zeta\in(0,m_\Omega)$ with $(1 - \vartheta)^d(m_\Omega - \zeta)c_+/d! \ge d^2 + 2\zeta$,
-let $\eps = c_+\log n/n^d$ and $\lambda=(1-\vartheta)n/|\Omega|$, and let $n$ be large.
+Let $c_+=c_\Omega+\xi/2$. Since $m_\Omega c_+/d!=d^2+m_\Omega\xi/(2\,d!)>d^2$, we can fix $\vartheta\in(0,1)$ and $\zeta\in(0,m_\Omega)$ with
+$(1 - \vartheta)^d(m_\Omega - \zeta)c_+/d! \ge d^2 + 2\zeta$. Let $\eps = c_+\log n/n^d$ and $\lambda=(1-\vartheta)n/|\Omega|$; it suffices to
+take $n$ large (then enlarge $C$).
 
-\emph{One point.} By Lemma~\ref{lem:ig}(c) and $n^d\delta\to0$, $\Pr(\dist(z, H) < \eps - \delta) \ge (m_\Omega - \zeta)(\eps - \delta)$
-for $z \in \Omega$. With $p_k\ge\lambda v_k(1-\lambda\eta^d)$, $(1-x)^d\ge1-dx$, Lemma~\ref{lem:sand}(b) and \eqref{eq:params},
+\emph{One point.} By Lemma~\ref{lem:ig}(c) there is $t_0>0$ with $\Pr(\dist(z, H) < t) \ge (m_\Omega - \zeta)t$ for $z \in \Omega$ and
+$t\le t_0$, and $0<\eps-\delta\le t_0$ for large $n$ as $n^d\delta\to0$. By $p_k\ge\lambda v_k(1-\lambda\eta^d)$ and
+Lemma~\ref{lem:sand}(b),
 \[
   \bar\mu(\CB_\Cin(z)) \ge (1 - \lambda\eta^d)^d\bigl(\mu_z(\eps - \delta) - Cn^d\eta^{\gamma/2}\bigr)
   \ge \frac{(1 - \vartheta)^dn^d}{d!}(m_\Omega - \zeta)\eps - o(1) \ge (d^2 + \zeta)\log n.
 \]
-By Lemma~\ref{lem:janson} with $z=z'$, $\Delta_J \le Cn^{2d-1}\eps^2\log n\le1$, so $\Pr(E_z) \le e\,n^{-d^2 - \zeta}$.
+Here the loss from $(1-\lambda\eta^d)^d\ge1-d\lambda\eta^d$ is at most $C\lambda\eta^d\log n$, replacing $\eps-\delta$ by $\eps$ costs
+$Cn^d\delta\le Cn^{-1}$, and $Cn^d\eta^{\gamma/2}=Cn^{-d-4}$; the margin $\zeta\log n$ absorbs these. By Lemma~\ref{lem:janson} with
+$z=z'$ and $\log(1/\eps)\le d\log n$, $\mathcal D \le Cn^{2d-1}\eps^2\log n\le C(\log n)^3/n\le1$, so $\Pr(E_z) \le e\,n^{-d^2 - \zeta}$.
 
-\emph{Net.} The nearest-point projections onto $\Omega$ of the points of the grid $(\eps/(\sqrt d\log n))\Z^d$ within
-$\eps/\log n$ of $\Omega$ form an $(\eps/\log n)$-net $\mathcal M$ of $\Omega$ (the projection is $1$-Lipschitz and fixes $\Omega$) with
-$|\mathcal M|\le C(\log n/\eps)^d\le Cn^{d^2}$. So $\Pr(\bigcup_{z\in\mathcal M}E_z)\le Cn^{-\zeta}$, and off this event every point of $\Omega$ is
-within $\eps(1 + 1/\log n)\le(c_\Omega+\xi)\log n/n^d$ of a hyperplane spanned by points of $\Pi$.
+\emph{Net.} Let $g_0=\eps/(\sqrt d\log n)$, and let $\mathcal M$ be the set of nearest-point projections onto $\Omega$ of the
+points of $g_0\Z^d$ within $\eps/\log n$ of $\Omega$. Every $x\in\Omega$ is within $\eps/(2\log n)$ of a grid point $g$, which is kept, and the projection
+is $1$-Lipschitz and fixes $x$; so $\mathcal M$ is an $(\eps/\log n)$-net of $\Omega$. The kept grid points lie in the
+$1$-neighbourhood of $\Omega$, so $|\mathcal M|\le C(\sqrt d\log n/\eps)^d\le Cn^{d^2}$. Hence the union of the $E_z$, $z\in\mathcal M$, has probability at most $Cn^{-\zeta}$, and off
+this event every point of $\Omega$ is within $\eps(1 + 1/\log n)\le(c_\Omega+\xi)\log n/n^d$ of a hyperplane spanned by points of
+$\Pi$.
 
 \emph{De-Poissonization.} On $\{N \le n\}$ these hyperplanes are spanned by $X_1,\dots,X_n$, and $\Pr(N > n) \le (\vartheta^2n)^{-1}$
 by Chebyshev's inequality.
@@ -349,67 +391,84 @@ by Chebyshev's inequality.
 \section{The lower bound and the proof of Theorem~\ref{thm:main}}\label{sec:lower}
 
 \begin{proposition}\label{prop:lower}
-For every $\xi\in(0,c_\Omega)$ there is $C$ with $\Pr(\rho_\Omega^{(n)}<(c_\Omega-\xi)\log n/n^d)\le C(\log n)^{-2}$.
+For every $\xi\in(0,c_\Omega)$ there is $C$ with $\Pr(\rho_\Omega^{(n)}<(c_\Omega-\xi)\log n/n^d)\le C(\log n)^{-2}$ for all $n\ge\max(d,3)$.
 \end{proposition}
 
 \begin{proof}
-Let $c_-=c_\Omega-\xi$, fix $\vartheta\in(0,1)$ and $\zeta > 0$ with $K_-c_- \le d^2 - 2\zeta$, where $K_- = (1 + \vartheta)^d(m_\Omega + \zeta)/d!$,
-let $\eps = c_-\log n/n^d$ and $\lambda=(1+\vartheta)n/|\Omega|$, and let $n$ be large. By \eqref{eq:params} and
-$\Delta_J\le C(\log n)^3/n$, all error terms below are $O(n^{-c})$ except the pair term in Step~4.
+Let $c_-=c_\Omega-\xi$. Since $m_\Omega c_-/d!=d^2-m_\Omega\xi/d!<d^2$, we can fix $\vartheta\in(0,1)$ and $\zeta > 0$ with
+$K_-c_- \le d^2 - 2\zeta$, where $K_- = (1 + \vartheta)^d(m_\Omega + \zeta)/d!$. Let $\eps = c_-\log n/n^d$ and $\lambda=(1+\vartheta)n/|\Omega|$;
+it suffices to take $n$ large.
 
 \emph{Step 1 (test points).} Let $h_\Omega(z_0) = m_\Omega$. By Lemma~\ref{lem:ig}(c) there are $r\in(0,\Delta]$ and $t_1>0$ with
-$\Pr(\dist(z, H) < t) \le (m_\Omega + \zeta)t$ for $z \in \Omega \cap B(z_0, r)$ and $t \le t_1$. With $\tau = r/(2\Delta + 2r_0)$, the
-ball $B(z_1,r_1)=(1-\tau)z_0+\tau B(o,r_0)$ lies in $\Omega\cap B(z_0,r)$. Let $\varsigma = (\log n)^4/n^d$ and
-$T = \varsigma\Z^d \cap B(z_1, r_1)$; then $|T| \ge c\varsigma^{-d}$, and distinct points of $T$ are $\ge\varsigma$ apart. For $z\in T$,
-$\mu_z(\eps + \delta) \le K_-n^d(\eps+\delta)\le K_-c_-\log n + 1$.
+$\Pr(\dist(z, H) < t) \le (m_\Omega + \zeta)t$ for $z \in \Omega \cap B(z_0, r)$ and $t \le t_1$. Let $\tau = r/(2\Delta + 2r_0)$,
+$z_1=(1-\tau)z_0+\tau o$ and $r_1=\tau r_0$; then $B(z_1,r_1)=(1-\tau)z_0+\tau B(o,r_0)\subseteq\Omega$ by convexity, and for $|w-o|\le r_0$,
+$|(1-\tau)z_0+\tau w-z_0|\le\tau(r_0+\Delta)=r/2$, so $B(z_1,r_1)\subseteq B(z_0,r)$. Let $\varsigma = (\log n)^4/n^d$ and
+$T = \varsigma\Z^d \cap B(z_1, r_1)$; distinct points of $T$ are $\ge\varsigma$ apart, and once $\varsigma\sqrt d\le r_1/2$ the cubes
+$g+[0,\varsigma)^d$, $g\in T$, cover $B(z_1,r_1/2)$, so $|T| \ge \kappa_d(r_1/2)^d\varsigma^{-d}$. For large $n$, $\eps+\delta\le t_1$ and, for
+$z\in T$, $\mu_z(\eps + \delta) \le K_-n^d(\eps+\delta)\le K_-c_-\log n + 1$.
 
 \emph{Step 2 (one test point).} The events that a set $S\in\CB_\Cout(z)$ is not fully occupied are decreasing, and
 $q_S=\prod_{k\in S}p_k\le(\lambda\eta^d)^d\le\frac12$. By Lemma~\ref{lem:sand}(a),(b), Theorem~H, $\log(1-q)\ge-q(1+q)$ and
 $p_k\le\lambda v_k$,
 \[
   \Pr(E_z)\ge\prod_{S\in\CB_\Cout(z)}(1-q_S)-\Pr(\mathrm{Two})\ge e^{-(1+(\lambda\eta^d)^d)(\mu_z(\eps+\delta)+Cn^d\eta^{\gamma/2})}-\Pr(\mathrm{Two})
-  \ge(1-O(n^{-c}))e^{-\mu_z(\eps+\delta)},
+  \ge(1-Cn^{-1})e^{-\mu_z(\eps+\delta)}.
 \]
-since $e^{-\mu_z(\eps+\delta)}\ge e^{-1}n^{-K_-c_-}\ge n^{-d^2}$ and $\Pr(\mathrm{Two}) \le Cn^2\eta^d \le Cn^{-d^2-2}$.
+Indeed the exponent exceeds $\mu_z(\eps+\delta)$ by at most $(\lambda\eta^d)^dC\log n+2Cn^{-d-4}$, and by Step~1 and
+$K_-c_-\le d^2-2\zeta$, $\Pr(\mathrm{Two})e^{\mu_z(\eps+\delta)}\le Cn^2\eta^d\cdot e\,n^{d^2}\le Cn^{-2}$.
 
 \emph{Step 3 (shell).} By Lemma~\ref{lem:ig}(a), $\mu_z(\eps + \delta) - \mu_z(\eps - \delta) \le Cn^d\delta \le Cn^{-1}$.
 
-\emph{Step 4 (pairs).} For $x\ne y$ in $T$, Lemmas~\ref{lem:sand}(c) and~\ref{lem:ig}(b) give
-$\lambda^d\sum_{\CB_\Cin(x) \cap \CB_\Cin(y)}w \le Cn^d\eps^2/\varsigma = O((\log n)^{-2})$. For $\CB=\CB_\Cin(x) \cup \CB_\Cin(y)$, applying
-$p_k \ge \lambda v_k(1 - \lambda\eta^d)$ to every set in $\CB$ and then inclusion--exclusion and Lemma~\ref{lem:sand}(b),
-$\bar\mu(\CB) \ge \mu_x(\eps - \delta) + \mu_y(\eps - \delta) - O((\log n)^{-2})$. By Lemma~\ref{lem:janson} and Steps~2--3,
+\emph{Step 4 (pairs).} Let $x\ne y$ in $T$ and $\CB=\CB_\Cin(x) \cup \CB_\Cin(y)$. Since $|x-y|\ge\varsigma$, Lemmas~\ref{lem:sand}(c)
+and~\ref{lem:ig}(b) give $\lambda^d\sum_{S\in\CB_\Cin(x) \cap \CB_\Cin(y)}v(S) \le Cn^d\eps^2/\varsigma = C(\log n)^{-2}$. Applying
+$p_k \ge \lambda v_k(1 - \lambda\eta^d)$ to every set in $\CB$, then inclusion--exclusion, Lemma~\ref{lem:sand}(b), $(1-\lambda\eta^d)^d\ge1-d\lambda\eta^d$ and Step~3,
+\begin{align*}
+  \bar\mu(\CB) &\ge (1-\lambda\eta^d)^d\lambda^d\Bigl(\sum_{\CB_\Cin(x)}+\sum_{\CB_\Cin(y)}-\sum_{\CB_\Cin(x)\cap\CB_\Cin(y)}\Bigr)v(S)\\
+  &\ge\mu_x(\eps+\delta)+\mu_y(\eps+\delta)-C(\log n)^{-2}-Cn^{-1}.
+\end{align*}
+With $\mathcal D\le C(\log n)^3/n$, Lemma~\ref{lem:janson} and Step~2 for $x$ and $y$ give, with $C$ independent of $x,y\in T$,
 \[
-  \Pr(E_x \cap E_y) \le e^{O((\log n)^{-2})}e^{-\mu_x(\eps+\delta)-\mu_y(\eps+\delta)}\le\bigl(1+C(\log n)^{-2}\bigr)\Pr(E_x)\Pr(E_y).
+  \Pr(E_x \cap E_y) \le e^{C(\log n)^{-2}}e^{-\mu_x(\eps+\delta)-\mu_y(\eps+\delta)}\le\bigl(1+C(\log n)^{-2}\bigr)\Pr(E_x)\Pr(E_y).
 \]
 
-\emph{Step 5 (second moment).} Let $Z = \sum_{z \in T}\Cone_{E_z}$. By Steps~1--2, $\E Z \ge c\varsigma^{-d}n^{-K_-c_-}\ge n^{\zeta}$, and by
-Step~4, $\operatorname{Var}Z\le\E Z+C(\log n)^{-2}(\E Z)^2$, so $\Pr(Z = 0) \le 1/\E Z + C(\log n)^{-2}$.
+\emph{Step 5 (second moment).} Let $Y = \sum_{z \in T}\Cone_{E_z}$. By Steps~1--2,
+$\E Y \ge c\varsigma^{-d}e^{-1}n^{-K_-c_-}\ge cn^{2\zeta}(\log n)^{-4d}\ge n^{\zeta}$. By Step~4,
+$\operatorname{Var}Y\le\sum_z\Pr(E_z)+\sum_{x\ne y}(\Pr(E_x\cap E_y)-\Pr(E_x)\Pr(E_y))\le\E Y+C(\log n)^{-2}(\E Y)^2$, so by Chebyshev's
+inequality $\Pr(Y = 0) \le 1/\E Y + C(\log n)^{-2}$.
 
-\emph{Step 6.} On $\{N\ge n\}\cap\{Z>0\}$ some $z\in T$ is at distance $\ge\eps$ from every hyperplane spanned by points of
+\emph{Step 6.} On $\{N\ge n\}\cap\{Y>0\}$ some $z\in T$ is at distance $\ge\eps$ from every hyperplane spanned by points of
 $\Pi\supseteq\{X_1,\dots,X_n\}$, so $\rho_\Omega^{(n)}\ge\eps$; and $\Pr(N < n) \le (1+\vartheta)(\vartheta^2n)^{-1}$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-Adding points only adds hyperplanes, so $\rho_\Omega^{(n)}$ is nonincreasing in $n$. Fix $\xi\in(0,c_\Omega)$ and $\theta>0$, and
-let $n_k=\lfloor(1+\theta)^k\rfloor$. By Propositions~\ref{prop:upper} and~\ref{prop:lower}, the probabilities that
-$n_k^d\rho_\Omega^{(n_k)}/\log n_k\notin[c_\Omega-\xi,c_\Omega+\xi]$ are summable over $k$ (for $k\ge k_0$, $\log n_k\ge k\log(1+\theta)-\log2$),
-so by Borel--Cantelli, almost surely this holds for only finitely many $k$. For $n_k\le n\le n_{k+1}$,
-$\rho_\Omega^{(n_{k+1})}\le\rho_\Omega^{(n)}\le\rho_\Omega^{(n_k)}$, and $n_{k+1}/n_k\to1+\theta$; hence almost surely
-$(c_\Omega-\xi)(1+\theta)^{-d}\le\liminf n^d\rho_\Omega^{(n)}/\log n\le\limsup n^d\rho_\Omega^{(n)}/\log n\le(c_\Omega+\xi)(1+\theta)^d$. Let
-$\xi,\theta\to0$ along countable sequences.
+Adding points only adds hyperplanes, so $\rho_\Omega^{(n)}$ is nonincreasing in $n$. Fix $\xi\in(0,c_\Omega)$ and $\alpha>0$, let
+$n_k=\lfloor(1+\alpha)^k\rfloor$, and let $k_0$ be such that $n_k\ge\max(d,3)$ for $k\ge k_0$. By Propositions~\ref{prop:upper}
+and~\ref{prop:lower}, the probabilities that $n_k^d\rho_\Omega^{(n_k)}/\log n_k\notin[c_\Omega-\xi,c_\Omega+\xi]$ are summable over $k\ge k_0$, as
+$\log n_k\ge k\log(1+\alpha)-\log2$; by Borel--Cantelli, almost surely this happens for only finitely many $k$. For $n_k\le n\le
+n_{k+1}$, the monotonicity of $\rho_\Omega^{(\cdot)}$ and of $\log$ gives
+\[
+  \Bigl(\frac{n_k}{n_{k+1}}\Bigr)^d\frac{n_{k+1}^d\rho_\Omega^{(n_{k+1})}}{\log n_{k+1}}\le\frac{n^d\rho_\Omega^{(n)}}{\log n}\le\Bigl(\frac{n_{k+1}}{n_k}\Bigr)^d\frac{n_k^d\rho_\Omega^{(n_k)}}{\log n_k},
+\]
+and $n_{k+1}/n_k\to1+\alpha$. Hence almost surely
+\[
+  (c_\Omega-\xi)(1+\alpha)^{-d}\le\liminf_{n\to\infty}\frac{n^d\rho_\Omega^{(n)}}{\log n}\le\limsup_{n\to\infty}\frac{n^d\rho_\Omega^{(n)}}{\log n}\le(c_\Omega+\xi)(1+\alpha)^d.
+\]
+Let $\xi,\alpha\to0$ along countable sequences.
 \end{proof}
 
 \section{The plane, the ball and the square}\label{sec:plane}
 
-In the plane let $\nu_\theta=(\cos\theta,\sin\theta)$, $e_\theta=(-\sin\theta,\cos\theta)$, and let $L(\theta,p)$ be the length of the chord of
-$\Omega$ on the line $\{p\nu_\theta+se_\theta:s\in\R\}$; thus $L(\theta,\ip z{\nu_\theta})=L_z((\theta+\pi/2)\bmod\pi)$.
+In the plane let $\nu_\theta=(\cos\theta,\sin\theta)$, $e_\theta=(-\sin\theta,\cos\theta)$, and let $L(\theta,p)$ be the length of
+$\Omega\cap\{p\nu_\theta+ye_\theta:y\in\R\}$; thus $L(\theta,\ip z{\nu_\theta})=L_z((\theta+\pi/2)\bmod\pi)$.
 
 \begin{proof}[Proof of Corollary~\ref{cor:plane}]
-The map $(\theta,p,s_1,s_2)\mapsto(p\nu_\theta+s_1e_\theta,\,p\nu_\theta+s_2e_\theta)$, $\theta\in[0,\pi)$, is a bijection onto pairs of distinct
-points; in the frame $(\nu_\theta,e_\theta)$ its partial derivatives are $(-s_1,p),(1,0),(0,1),(0,0)$ and
-$(-s_2,p),(1,0),(0,0),(0,1)$, so its Jacobian is $|s_1-s_2|$. A segment of length $L$ has $\Psi=\int\!\!\int_{[0,L]^2}|s_1-s_2|=L^3/3$,
-so $|\Omega|^2=\int_0^\pi\int_\R L(\theta,p)^3/3\,dp\,d\theta$, i.e.\ $Z_\Omega=2|\Omega|^2$ ($\Sph^1\times\R$ counts each line twice). By
-Lemma~\ref{lem:ig}(c), $h_\Omega(z)=\frac2{Z_\Omega}\cdot2\int_0^\pi\frac13L(\theta,\ip z{\nu_\theta})^3\,d\theta$, which is the claim.
+The map $(\theta,p,s_1,s_2)\mapsto(p\nu_\theta+s_1e_\theta,\,p\nu_\theta+s_2e_\theta)$, $\theta\in[0,\pi)$, $s_1\ne s_2$, is a bijection onto pairs
+of distinct points. In the frame $(\nu_\theta,e_\theta)$ its partial derivatives in $\theta,p,s_1,s_2$ are
+$(-s_1,p),(1,0),(0,1),(0,0)$ for the first point and $(-s_2,p),(1,0),(0,0),(0,1)$ for the second, so its Jacobian is
+$|s_1-s_2|$. A segment of length $L$ has $\Psi=\int\!\!\int_{[0,L]^2}|s_1-s_2|=L^3/3$,
+so $|\Omega|^2=\int_0^\pi\int_\R L(\theta,p)^3/3\,dp\,d\theta$, i.e.\ $Z_\Omega=2|\Omega|^2$ and $b_2=\frac12$ ($\Sph^1\times\R$ counts each line
+twice). By Lemma~\ref{lem:ig}(c), $h_\Omega(z)=\frac2{Z_\Omega}\cdot2\int_0^\pi\frac13L(\theta,\ip z{\nu_\theta})^3\,d\theta$, which is the claim
+after the substitution $\theta\mapsto(\theta+\pi/2)\bmod\pi$.
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:ball}]
@@ -417,60 +476,87 @@ $H(\nu,p)\cap\ball^d$ is a $(d-1)$-ball of radius $(1-p^2)^{1/2}$, so by homogen
 $k=(d^2-1)/2$, and $Z_\Omega=\Psi_{d-1}J(k)|\Sph^{d-1}|$. By Lemma~\ref{lem:ig}(c), for $|z|\le1$,
 $h_\Omega(z)=\frac{2}{J(k)}\E(1-|z|^2s^2)^{k}$, where $s=\ip{e}{\nu}$ for a fixed unit vector $e$ and $\nu$ uniform on $\Sph^{d-1}$;
 $s$ has density $(1-s^2)^{(d-3)/2}/J(\frac{d-3}2)$ on $(-1,1)$. This is strictly decreasing in $|z|$, and
-$m_\Omega=2J(k+\frac{d-3}2)/(J(\frac{d-3}2)J(k))$ with $k+\frac{d-3}2=\frac{d^2+d-4}2$. The values follow from $J(0)=2$, $J(-\frac12)=\pi$
-and $J(a)=\frac{2a}{2a+1}J(a-1)$; e.g.\ for $d=3$, $J(4)$ cancels and $c_{\ball^3}=27J(0)=54$.
+$m_\Omega=2J(k+\frac{d-3}2)/(J(\frac{d-3}2)J(k))$ with $k+\frac{d-3}2=\frac{d^2+d-4}2$, so $c_{\ball^d}=d^2\cdot d!/m_\Omega$ is the stated
+formula. The values follow from $J(0)=2$, $J(-\frac12)=\pi$ and $J(a)=\frac{2a}{2a+1}J(a-1)$; e.g.\ for $d=3$, $J(4)$ cancels and
+$c_{\ball^3}=27J(0)=54$, and $c_{\ball^4}=192\,J(\frac12)J(\frac{15}2)/J(8)$.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:sym}]
-Fix $\theta$. In the coordinates $q\nu_\theta+se_\theta$, the chord at offset $q$ is $\{a(q)\le s\le b(q)\}$ with $b$ concave and $a$
-convex, so $L(q)=L(\theta,q)=b-a$ is concave, and even by symmetry; hence nonincreasing in $|q|$. For $z\in\partial\Omega$, the chord
-through $sz$ has offset $s\ip z{\nu_\theta}$, so by Corollary~\ref{cor:plane} $h_\Omega(sz)$ is nonincreasing in $s$; as every point
-of $\Omega$ is $sz$ with $z\in\partial\Omega$, $s\in[0,1]$, $m_\Omega=\min_{\partial\Omega}h_\Omega$. If $L(q)=L(q')$ with $0\le q<q'$, concavity
-forces $L(0)=L(q')$, so $L$ is constant on $[-q',q']$, $b=a+L(0)$ is affine there, and $\partial\Omega$ contains the segment
-$\{q\nu_\theta+b(q)e_\theta:|q|\le q'\}$. So if $\Omega$ is strictly convex, $L$ is strictly decreasing in $|q|$ on $[0,w_\theta]$, $w_\theta=\max_\Omega\ip\cdot{\nu_\theta}\ge|\ip{sz}{\nu_\theta}|$, and $h_\Omega(sz)$ is
-strictly decreasing (for all $\theta$ but one, $\ip z{\nu_\theta}\ne0$).
+Fix $\theta$, and let $w_\theta=\max_\Omega\ip\cdot{\nu_\theta}$. In the coordinates $q\nu_\theta+ye_\theta$, the chord at offset $q\in[-w_\theta,w_\theta]$ is
+$\{y_-(q)\le y\le y_+(q)\}$ with $y_+$ concave and $y_-$ convex, so $L(q)=L(\theta,q)=y_+-y_-$ is concave, and even by symmetry;
+hence nonincreasing in $|q|$. For $z\in\partial\Omega$, the chord through $sz$ has offset $s\ip z{\nu_\theta}$, and
+$|s\ip z{\nu_\theta}|\le w_\theta$; so by Corollary~\ref{cor:plane} $h_\Omega(sz)$ is nonincreasing in $s$. As every point of $\Omega$ is
+$sz$ with $z\in\partial\Omega$, $s\in[0,1]$, $m_\Omega=\min_{\partial\Omega}h_\Omega$. If $L(q)=L(q')$ with $0\le q<q'\le w_\theta$, concavity forces
+$L(0)=L(q')$, so $L$ is constant on $[-q',q']$, $y_+=y_-+L(0)$ is affine there, and $\partial\Omega$ contains the segment
+$\{r\nu_\theta+y_+(r)e_\theta:|r|\le q'\}$. So if $\Omega$ is strictly convex, $L$ is strictly decreasing in $|q|$ on $[0,w_\theta]$. For
+$0\le s<s'\le1$ and every $\theta$ with $\ip z{\nu_\theta}\ne0$ (all but one), $L(\theta,s\ip z{\nu_\theta})>L(\theta,s'\ip z{\nu_\theta})$, so
+$h_\Omega(sz)>h_\Omega(s'z)$, and $h_\Omega>\min_{\partial\Omega}h_\Omega$ on $\operatorname{int}\Omega$.
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:square}]
-By Corollary~\ref{cor:plane}, $h$ is invariant under isometries, so Proposition~\ref{prop:sym} (for $Q-(\frac12,\frac12)$) and the
-symmetries of $Q$ reduce the claim to $z=(x,0)$, $0\le x\le1$. The chord through $z$ in direction $\theta\in(0,\pi/2)$ has
-length $\min(1/\sin\theta,(1-x)/\cos\theta)$, and in direction $\pi-\theta$ length $\min(1/\sin\theta,x/\cos\theta)$. So
-$h_Q(x,0)=\frac23(A(x)+A(1-x))$ with $A(a)=\int_0^{\pi/2}\min(\csc\theta,a\sec\theta)^3d\theta$. For $0<a\le1$ and $u=1/a$,
-$A(a)=a^3\int_0^{\arctan u}\sec^3+\int_{\arctan u}^{\pi/2}\csc^3$, and since the integrands agree at $\arctan u$,
+By isometry invariance and Proposition~\ref{prop:sym} for $\square-(\frac12,\frac12)$, $m_\square=\min_{\partial\square}h_\square$, and by
+the symmetries of $\square$ it suffices to consider $z=(x,0)$, $0\le x\le1$. The chord through $z$ in direction
+$\theta\in(0,\pi/2)$ has length $\min(1/\sin\theta,(1-x)/\cos\theta)$, and in direction $\pi-\theta$ length $\min(1/\sin\theta,x/\cos\theta)$. So
+$h_\square(x,0)=\frac23(A(x)+A(1-x))$ with $A(a)=\int_0^{\pi/2}\min(\csc\theta,a\sec\theta)^3d\theta$. For $0<a\le1$ and $u=1/a$,
+$A(a)=a^3\int_0^{\arctan u}\sec^3+\int_{\arctan u}^{\pi/2}\csc^3$; since the integrands agree at $\arctan u$, the substitution
+$s=\tan\theta$ gives
 \[
   A'(a)=3a^2\int_0^{\arctan u}\sec^3\theta\,d\theta=3g(u),\qquad g(u)=\frac1{u^2}\int_0^u\sqrt{1+s^2}\,ds,\qquad g'(u)=-\frac{\operatorname{arsinh}u}{u^3}<0.
 \]
-So $A'$ is strictly increasing, and $A$ (continuous on $[0,1]$, $A(0)=0$) is strictly convex; hence $A(x)+A(1-x)$ is uniquely
-minimized at $x=\frac12$, and $m_Q=\frac43A(\frac12)$. With $\int_0^{\arctan2}\sec^3=\frac12(2\sqrt5+\log(2+\sqrt5))$,
-$\int_{\arctan2}^{\pi/2}\csc^3=\frac12(\frac{\sqrt5}4+\log\phi)$ and $2+\sqrt5=\phi^3$, $A(\frac12)=\frac{\sqrt5}4+\frac{11}{16}\log\phi$. At a vertex,
-$h_Q=\frac23A(1)$ and $A(1)=2\int_0^{\pi/4}\sec^3=\sqrt2+\log(1+\sqrt2)$.
+As $u=1/a$ decreases in $a$, $A'$ is strictly increasing on $(0,1]$; and $A$ is continuous on $[0,1]$ with $A(0)=0$ (dominated
+convergence: the integrand is $\le2^{3/2}$ for $a\le1$). So $A$ is strictly convex, $A(x)+A(1-x)$ is uniquely minimized at
+$x=\frac12$, and $m_\square=\frac43A(\frac12)$. With the antiderivatives $\frac12(\sec\tan+\log(\sec+\tan))$ and
+$\frac12(-\csc\cot+\log\tan\frac\theta2)$, $\tan(\frac12\arctan2)=1/\phi$ and $2+\sqrt5=\phi^3$, we get
+$A(\frac12)=\frac18\cdot\frac12(2\sqrt5+3\log\phi)+\frac12(\frac{\sqrt5}4+\log\phi)=\frac{\sqrt5}4+\frac{11}{16}\log\phi$. At a vertex,
+$h_\square=\frac23A(1)$ and $A(1)=2\int_0^{\pi/4}\sec^3=\sqrt2+\log(1+\sqrt2)$.
+
+No interior point is a minimizer. In $\square-(\frac12,\frac12)$ take the edge midpoint $z=(0,-\frac12)$. Then $L(\theta,\cdot)$ is
+constant for $|q|\le\frac12||\cos\theta|-|\sin\theta||$ and, if $\cos\theta\sin\theta\ne0$, strictly decreasing in $|q|$ from there up to
+$w_\theta=\frac12(|\cos\theta|+|\sin\theta|)$; the offset $|\ip z{\nu_\theta}|=\frac12|\sin\theta|$ lies in the strictly decreasing range
+whenever $0<|\cos\theta|<2|\sin\theta|$, a set of $\theta$ of positive measure. So $h_\square(sz)>h_\square(z)$ for $0\le s<1$, and by
+symmetry the same holds for every edge midpoint. Every interior point is $sz'$ with $z'\in\partial\square$ and $s<1$, and
+$h_\square(sz')\ge h_\square(z')$, with equality impossible if $z'$ is an edge midpoint; so the edge midpoints are the only
+minimizers.
 \end{proof}
 
-\paragraph{A floating-point check.} In the unit disk, Monte Carlo estimates of $\Pr(\dist(z,H)<t)/t$ at $t=0.002$, from
-$4\cdot10^7$ pairs for each of $|z|=0,0.5,0.9,1$, agree with the values $1.6977$, $1.3948$, $0.8485$, $0.7205$ of $h_\Omega(z)$ within one standard
-error ($\le0.42\%$); at this $t$ the exact ratio differs from $h_\Omega$ by less than $10^{-5}$. Scripts are in \cite{Repo}.
+\paragraph{A floating-point check of Corollaries~\ref{cor:plane} and~\ref{cor:ball}.} In the unit disk, Monte Carlo
+estimates of $\Pr(\dist(z,H)<t)/t$ at $t=0.002$, from $4\cdot10^7$ independent pairs for each of $|z|=0,0.5,0.9,1$, are
+$1.7013$, $1.3952$, $0.8502$, $0.7213$; the values of $h_\Omega(z)$ are $1.6977$, $1.3948$, $0.8485$, $0.7205$, within one standard
+error ($\le0.42\%$). By quadrature, the exact ratio at this $t$ differs from $h_\Omega(z)$ by less than $10^{-5}$ in relative
+terms. Scripts: \texttt{density\_disc.py} and \texttt{bias\_disc.py} in \cite{Repo}.
 
 \section{Remarks}\label{sec:remarks}
 
-\paragraph{Where is $h_\Omega$ smallest?} Is $m_\Omega=\min_{\partial\Omega}h_\Omega$ for every convex body? For bodies symmetric
-about $0$ in $d\ge3$, $G_\nu$ is even, and the proof of Proposition~\ref{prop:sym} applies if
-$\Psi(\lambda K+(1-\lambda)(-K))\ge\Psi(K)$ for convex $K\subset\R^{d-1}$, $\lambda\in[0,1]$; we do not know whether this holds. A
-floating-point computation for the equilateral triangle of side $1$ puts the minimum at the edge midpoints, with
-$c_\Omega\approx4.62$.
+\paragraph{Where is $h_\Omega$ smallest?} Is $m_\Omega=\min_{\partial\Omega}h_\Omega$ for every convex body? For $\Omega=-\Omega$ in $d\ge3$,
+write $K_p$ for the section at offset $p$ in direction $\nu$; then $K_{(2s-1)p}\supseteq sK_p+(1-s)(-K_p)$ for $s\in[0,1]$, so if
+$\Psi(sK+(1-s)(-K))\ge\Psi(K)$ for convex $K\subset\R^{d-1}$ and $s\in[\frac12,1]$, then $G_\nu$ is nonincreasing in $|p|$ and
+Lemma~\ref{lem:ig}(c) gives $m_\Omega=\min_{\partial\Omega}h_\Omega$; we do not know whether this holds. A floating-point scan of
+Corollary~\ref{cor:plane} (fine boundary grid and interior grid; \texttt{h\_triangle\_scan.py} in \cite{Repo}) puts the minimum
+for the equilateral triangle of side $1$ at the edge midpoints, with $c_\Omega\approx4.621$, and for the triangle with vertices
+$(0,0),(1,0),(0.05,0.3)$ on the boundary but not at an edge midpoint. In scale-free terms, the factor
+$2c_\Omega/(d!\,w(\Omega))$ is $\approx5.55$ for the disk, $6.74$ for the square and $5.34$ for the equilateral triangle.
 
-\paragraph{Non-uniform points.} For points with a continuous density $f$ bounded away from $0$, Lemma~\ref{lem:rep} gives
-the analogue $h_f(z)=2\varkappa_d\int_{\Sph^{d-1}}G^f_\nu(\ip z\nu)\,d\nu$, where $G^f_\nu$ is defined like $G_\nu$ with the weight
-$\prod_if(x_i)$. We expect Theorem~\ref{thm:main} to hold with $c_f=d^2\cdot d!/\min h_f$, by the same proof with intensity
-$(1\mp\vartheta)nf$; we have not written out the details.
+\paragraph{Non-uniform points.} For points with a density $f$ that is continuous on $\Omega$ and bounded away from $0$, the
+identity in the proof of Lemma~\ref{lem:rep}, applied to $\prod_if(x_i)\Cone\{H(x)\in\mathcal A\}$, gives
+$h_f(z)=2b_d\int_{\Sph^{d-1}}G^f_\nu(\ip z\nu)\,d\nu$, where $G^f_\nu$ is defined like $G_\nu$ with the weight $\prod_if(x_i)$. Does
+Theorem~\ref{thm:main} hold with $c_f=d^2\cdot d!/\min_\Omega h_f$?
 
-\paragraph{Fluctuations and flats.} By analogy with \cite{Janson86}, does $m_\Omega n^d\rho_\Omega^{(n)}/d!-d^2\log n-b\log\log n$
-converge in distribution to a shifted Gumbel law for a suitable $b$, and does the dependence through shared points affect
-the limit? For the $j$-flats spanned by $j+1$ points, $1\le j\le d-2$, Lemma~\ref{lem:flat} suggests a covering radius of order
-$(\log n/n^{j+1})^{1/(d-j)}$; a limit constant would need an analogue of Lemma~\ref{lem:ig}.
+\paragraph{Fluctuations.} By analogy with \cite{Janson86}, does $m_\Omega n^d\rho_\Omega^{(n)}/d!-d^2\log n-b\log\log n$ converge in
+distribution to a shifted Gumbel law, and does the dependence through shared points affect the limit? The coefficient
+$b$ should depend on the set where $h_\Omega$ is minimal and on the growth of $h_\Omega$ near it; for instance, it should differ
+between the disk (minimal on the whole circle) and the square (four points). At second order the boundary of $\Omega$
+matters, since the minimizers typically lie on it.
+
+\paragraph{Flats.} For the $j$-flats spanned by $j+1$ points, $1\le j\le d-2$, Lemma~\ref{lem:flat} suggests a covering radius of
+order $(\log n/n^{j+1})^{1/(d-j)}$. A limit constant would need an analogue of Lemma~\ref{lem:ig}, and, when $2j+1\le d$, a
+different treatment of flats sharing a point: two $j$-flats through a sample point near $z$ both pass close to $z$, and
+the pair term in Janson's inequality no longer tends to $0$ unless sample points near $z$ are discarded first.
 
 \begin{thebibliography}{99}
+\bibitem{Aldous} D.~Aldous, Probability Approximations via the Poisson Clumping Heuristic, Applied Mathematical Sciences,
+Springer, New York, 1989.
 \bibitem{AS} N.~Alon and J.~H. Spencer, The Probabilistic Method, 4th ed., Wiley, Hoboken, NJ, 2016.
-\bibitem{Bang} T.~Bang, A solution of the ``plank problem'', Proc. Amer. Math. Soc. 2 (1951), 990--993.
+\bibitem{Bang} T.~Bang, A solution of the ``plank problem'', Proc. Amer. Math. Soc. 2 (1951), no.~6, 990--993.
 \bibitem{BCL} P.~B\"urgisser, F.~Cucker and M.~Lotz, Coverage processes on spheres and condition numbers for linear
 programming, Ann. Probab. 38 (2010), no.~2, 570--604.
 \bibitem{Chenavier} N.~Chenavier, A general study of extremes of stationary tessellations with examples, Stochastic
@@ -503,9 +589,9 @@ Berlin, 2008.
 geometric probability, Stochastic Process. Appl. 122 (2012), no.~12, 4096--4120.
 \bibitem{STbook} M.~Schulte and C.~Th\"ale, Poisson point process convergence and extreme values in stochastic geometry,
 in: G.~Peccati and M.~Reitzner (eds.), Stochastic Analysis for Poisson Point Processes, Bocconi \& Springer Series,
-Springer, 2016, 255--294.
+Springer, Cham, 2016, 255--294.
 \bibitem{Companion} M.~Werman, Planks through points: covering a ball by slabs around spanned hyperplanes, preprint.
-% TODO (author): arXiv identifier of the companion paper.
+% TODO (author): arXiv identifier of the companion paper; check that Proposition 6.10 is the number in the posted version.
 \bibitem{Repo} M.~Werman, planks: code and data for this paper and \cite{Companion},
 \url{https://github.com/michael-werman/planks}.
 % TODO (author): cite a tagged release (commit hash) and an archival DOI at submission.
