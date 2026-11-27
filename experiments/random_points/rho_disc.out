@@ -1,0 +1,5 @@
+n=8 median n^2 rho/log n in [9.75, 9.81]  (quartiles 8.78 12.62)
+n=12 median n^2 rho/log n in [11.49, 11.60]  (quartiles 9.61 12.99)
+n=20 median n^2 rho/log n in [11.14, 11.41]  (quartiles 9.65 12.98)
+n=30 median n^2 rho/log n in [10.24, 10.64]  (quartiles 9.17 12.13)
+n=40 median n^2 rho/log n in [10.62, 11.27]  (quartiles 9.65 12.08)

@@ -2,7 +2,7 @@
 
 This appendix states what the program \texttt{cert.c} of the accompanying repository checks and why its
 checks are sound. For a finite set $P$ of $n$ distinct points in the plane, the $L=\binom n2$ pairs give $L$
-directions in $\R/\pi\Z$, counted with multiplicity. Fix a cyclic order of the $L$ pairs compatible with their
+directions in $\R/\pi\Z$, counted with multiplicity; $d_p$ is the direction of the line through the pair $p$. Fix a cyclic order of the $L$ pairs compatible with their
 directions (pairs with equal directions in any order). Consecutive pairs in this order bound $L$ gaps
 $g_1,\dots,g_L\ge0$ with $\sum g_i=\pi$, and $G(P)=\max g_i$; $\gamma_n=\inf_P G(P)$. Lower bounds
 $\gamma_n\ge\theta$ are proved by contradiction from the assumption
@@ -13,7 +13,7 @@ $\gamma_n\ge\theta$ are proved by contradiction from the assumption
 \begin{lemma}\label{lem:cert-H}
 Assume \eqref{eq:cert-ass}. For pairs $p\ne q$, let $\ell(p\to q)$ be the sum of the gaps from $p$ to $q$ in the
 cyclic order and $m\in\{1,\dots,L-1\}$ their number, i.e.\ $m-1$ pairs lie strictly between $p$ and $q$. Then
-$m\theta-E<\ell(p\to q)<m\theta$. In particular $\ell(p\to q)>\theta-E>0$.
+$m\theta-E<\ell(p\to q)<m\theta$. In particular, $\ell(p\to q)>\theta-E>0$.
 \end{lemma}
 
 \begin{proof}
@@ -59,7 +59,7 @@ in the box satisfies the normalisation and \eqref{eq:cert-ass}.
     the half-turn), so that $\ell(p\to q)$ is the counterclockwise angle and lies in $[\ell^-,\ell^+]$, the
     corresponding interval of angles. The number $m-1$ of pairs strictly between $p$ and $q$ is at least the
     number $j^-$ of pairs whose known interval lies in the open arc from the end of $I_p$ to the start of $I_q$,
-    and at most the number $j^+$ of pairs that are unknown or whose interval meets the open arc from the start of
+    and at most the number $j^+$ of pairs other than $p,q$ that are unknown or whose interval meets the open arc from the start of
     $I_p$ to the end of $I_q$. The test discards the box if no
     $m\in[j^-+1,j^++1]$ has $(m\theta-E,m\theta)\cap[\ell^-,\ell^+]\ne\emptyset$, against
     Lemma~\ref{lem:cert-H}.
@@ -74,9 +74,9 @@ in the box satisfies the normalisation and \eqref{eq:cert-ass}.
 A box that is not discarded is split at the midpoint of one coordinate. A box whose chosen coordinate has
 width at most $2^{-40}$, or whose depth exceeds $200$, is reported as unresolved. The certificate is valid
 when the whole initial box $[0,1]^{n-2}\times[-1,1]^{n-2}$ (for $(x_k)$ and $(y_k)$) is processed with no
-unresolved box: then no normalised configuration satisfies \eqref{eq:cert-ass}, so $\gamma_n\ge\theta$. In practice
-the boxes left after a breadth-first phase are shared among several processes, run with the same parameters; a
-run is valid only if every process ends normally with exit status $0$ and reports no unresolved box.
+unresolved box: then no normalised configuration satisfies \eqref{eq:cert-ass}, so $\gamma_n\ge\theta$. In the runs,
+the boxes remaining after a breadth-first phase are distributed among several processes with the same
+parameters; a run is valid only if every process ends normally with exit status $0$ and reports no unresolved box.
 
 \paragraph{Runs.} With $\theta=64918$ units ($12.6792\ldots^\circ$) for $n=6$ and $\theta=100488$ units
 ($19.6265\ldots^\circ$) for $n=5$, every box is discarded (45{,}959{,}045 and 1{,}087{,}209 boxes; Table~\ref{tab:gamma}).
