@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
@@ -24,14 +24,13 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand{\ball}{\mathbb{B}}
 \newcommand{\Sph}{S}
-\providecommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\len}{len}
 
 % Notation of the proofs.
 \newcommand{\Cone}{\mathbf{1}}
-\newcommand{\Cout}{\mathrm{out}}
-\newcommand{\Cin}{\mathrm{in}}
 \newcommand{\CB}{\mathcal{B}}
 % Projection and affine hull.
 \newcommand{\Cpr}{\operatorname{pr}}
