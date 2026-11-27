@@ -566,7 +566,7 @@ $d = 4$ ($\approx 0.0832$) and increases for larger $d$ towards about $0.20$.
 \subsection{Flat clusters}\label{sec:B-lemma2}
 
 The following lemma holds for $j$-flats with any base points $t_i$ that affinely span $\R^{j-1}$;
-Lemma~\ref{D:M2} in Section~\ref{sec:D-flats} is the special case of moment-curve $t$'s.
+Section~\ref{sec:D-flats} uses it with moment-curve base points.
 
 \paragraph{Definitions.}
 \begin{itemize}
@@ -591,8 +591,8 @@ put $q_i = (t_i, s a_i)$. Then:
   \item as $s \to 0$, their $j$-flat $\Phi_s$ converges to the linear subspace
     $L_w = (\R^{j-1} \times \{0\}) \oplus \R(0, w)$, in the sense that
     $\dist(\cdot, \Phi_s) \to \dist(\cdot, L_w)$ uniformly on $\ball^d$;
-  \item for any finite nonempty family of such $(j+1)$-sets, all with the same $s$, with
-    directions $W = \{w_F\}$, the limit as $s \to 0$ of $\rho$ of their flats is
+  \item for any finite nonempty family of such $(j+1)$-sets $\{(t_i, s a_i^F)\}$, all with the same $t_i$ and the
+    same $s$, and with $a_i^F$ not depending on $s$, with directions $W = \{w_F\}$, $w_F = \sum_i c_i a_i^F$, the limit as $s \to 0$ of $\rho$ of their flats is
     $\rho(\{L_w : w \in W\}) = \sin \delta(W)$. For $j = d-1$ ($m = 2$) this is $\sin(G/2)$, with
     $G$ the largest gap mod $\pi$ of the directions of the $w_F$ (the wrap-around gap included; a
     single direction gives $G = \pi$).
@@ -637,7 +637,7 @@ $\abs{(I - \Pi)(x - (t_{i_0}, 0))} = \dist(x, L_w)$, since $L_w$ is linear and c
 $(t_{i_0}, 0)$.
 
 \emph{(iii)} $\rho$ of a finite family is a max over $x$ of a min of finitely many functions; if
-each function moves by at most $\eta$ uniformly, the max-min moves by at most $\eta$. So it
+each function moves by at most $\epsilon$ uniformly, the max-min moves by at most $\epsilon$. So it
 converges when they converge uniformly. For linear $L_w$ and
 $x = (x_1, x_2) \in \R^{j-1} \times \R^m$, $\dist(x, L_w) = \abs{x_2} \sin \angle(x_2, \R w)$
 ($0$ if $x_2 = 0$). The max over $\abs{x} \le 1$ of $\min_w$ is attained with $x_1 = 0$ and
@@ -1211,30 +1211,11 @@ For $0\le a<1$ let $f_a(x)=(1-\abs{x}^2)^{-a}$ on the open ball.
 \end{enumerate}
 \end{proof}
 
-\begin{lemma}[Flat clusters through a $(j-1)$-space]\label{D:M2}
-Write $\R^d=\R^{j-1}\times\R^m$. Let $\tau_0<\dots<\tau_j$ be reals,
-$t_r=\eta\cdot(\tau_r,\tau_r^2,\dots,\tau_r^{j-1})\in\R^{j-1}$ (empty if $j=1$) with $\eta>0$ (a
-scale),
-and $c_r=1/\prod_{k\ne r}(\tau_r-\tau_k)$. Then $\sum_rc_r=0$ and $\sum_rc_rt_r=0$, and $c$ spans
-the affine dependencies of $t_0,\dots,t_j$. For $a_r\in\R^m$ with $w=\sum_rc_ra_r\ne0$, and $s>0$,
-the points $q_r=(t_r,sa_r)$ are affinely independent. As $s\to0$, their $j$-flat converges (in the
-sense that $x\mapsto\dist(x,\cdot)$ converges uniformly on $\ball^d$) to the linear subspace
-$L_w=(\R^{j-1}\times\{0\})\oplus\R(0,w)$.
-\end{lemma}
-
-\begin{proof}
-\emph{The dependency.} The $j$-th divided difference $\sum_rc_rp(\tau_r)$ of a polynomial of degree
-$<j$ vanishes. So $\sum_rc_rp(\tau_r)=0$ for $p=1,\tau,\dots,\tau^{j-1}$, which gives $\sum c_r=0$
-and $\sum c_rt_r=0$. The $t_r$ affinely span $\R^{j-1}$: any $j$ of them have Vandermonde determinant
-$\ne0$. So the dependency space is one-dimensional and spanned by $c$. The rest is
-Lemma~\ref{lem:B-lemma2-flats}(i) and~(ii), applied to these $t_r$, $c$ and $a_r$.
-\end{proof}
-
-For linear $L_w$ and any $x$, $\dist(x,L_w)=\abs{x_\perp}\sin\angle(x_\perp,\R w)$, where $x_\perp$
-is the $\R^m$-component (read as $0$ when $x_\perp=0$). Hence
-\begin{equation*}
-  \max_{x\in\ball^d}\ \min_{w\in W}\dist(x,L_w)=\sin\delta(W).
-\end{equation*}
+\paragraph{Moment-curve base points.} For $j\ge1$ put $t_r=\eta\cdot(r,r^2,\dots,r^{j-1})\in\R^{j-1}$, $r=0,\dots,j$, with a
+scale $\eta>0$ ($t_r$ is empty if $j=1$), and $c_r=1/\prod_{k\ne r}(r-k)$. The $j$-th divided difference of a polynomial
+of degree $<j$ vanishes, so $\sum_rc_r=0$ and $\sum_rc_rt_r=0$; and the $j\times j$ matrix with rows $(1,t_r)$, $1\le r\le j$, has determinant $\eta^{j-1}$ times a nonzero
+Vandermonde determinant ($1$ if $j=1$), so the $t_r$ affinely span $\R^{j-1}$ and $c$ spans their affine dependencies. So
+Lemma~\ref{lem:B-lemma2-flats} applies to them.
 
 \begin{proposition}[Construction]\label{D:M3}
 Let $M\ge2$ and $N=M^{j+1}$, and assume $N-1\ge(2/\pi)\sqrt{m-1}$, so that
@@ -1251,8 +1232,7 @@ Adding a point keeps every flat already spanned, so $\lambda$ is non-increasing 
 For $j=1$, $d=3$ this is $6\sqrt2$. For $j=d-1$ it is $(2d)^d$.
 
 \begin{proof}
-\emph{Construction (one block).} Take $\tau_r=r$ ($r=0,\dots,j$), and $t_r$, $c_r$ as in
-Lemma~\ref{D:M2}. Let $G=\{0,\dots,M-1\}^{m-1}$, $h=(N-1)/2$ and $e=(1,\dots,1)\in\R^{m-1}$. Group
+\emph{Construction (one block).} Take $t_r$, $c_r$ as above. Let $G=\{0,\dots,M-1\}^{m-1}$, $h=(N-1)/2$ and $e=(1,\dots,1)\in\R^{m-1}$. Group
 $r$ consists of the points $(t_r,s\cdot b/c_r)$, where $b$ runs over
 \begin{itemize}
   \item $r=0$: $B_0=\{(g-h\cdot e,\,h):g\in G\}\subset\R^{m-1}\times\R$;
@@ -1267,8 +1247,7 @@ coordinate $-s\cdot h\ne0$ and group $1$ has last coordinate $0$, so the groups 
   w_F=\sum_rc_r(b_r/c_r)=\sum_rb_r=(g_0+Mg_1+\dots+M^jg_j-h\cdot e,\,h).
 \]
 By base-$M$ digits, $g_0+\dots+M^jg_j$ runs over $\{0,\dots,N-1\}^{m-1}$. So the set $W$ of all
-$w_F$ is $\{(x,h):x\in\{-h,-h+1,\dots,h\}^{m-1}\}$, and $w_F\ne0$. By Lemma~\ref{D:M2}, these flats
-converge to $L_{w_F}$.
+$w_F$ is $\{(x,h):x\in\{-h,-h+1,\dots,h\}^{m-1}\}$, and $w_F\ne0$.
 
 \emph{Covering one chart.} Let $x\in\Sph^{m-1}$ with $\abs{x_i}\le x_m$ for $i<m$. Then $x$ is a
 positive multiple of $(p,1)$ with $p\in[-1,1]^{m-1}$. Writing $w=(z,h)$, the points
@@ -1290,10 +1269,9 @@ in total.
 \emph{Conclusion.} Take $\eta$ small enough that $\abs{t_r}<\frac12$, and $s$ small enough that all
 points lie in $\ball^d$. Let $\mathcal{F}_s$ be the family of $j$-flats spanned by the transversal
 sets of all blocks. Then $\rho(P_s)\le\max_x\min_{F\in\mathcal{F}_s}\dist(x,F)$, because extra flats
-only lower $\rho$. By Lemma~\ref{D:M2} and uniform convergence, the right side tends to
+only lower $\rho$. By Lemma~\ref{lem:B-lemma2-flats}(iii), the right side tends to
 $\sin\delta(W_{\mathrm{all}})\le\sin\theta$, using $\theta\le\pi/2$ (the hypothesis) and $\sin$
-increasing on $[0,\pi/2]$. Without the hypothesis the bound can fail: for $(d,j,M)=(90,1,2)$,
-$\theta>\pi$ and $\sin\theta<0$. For the limsup, put
+increasing on $[0,\pi/2]$. For the limsup, put
 $M=\bigl\lfloor(n/(m(j+1)))^{1/(m-1)}\bigr\rfloor$, which satisfies the hypothesis for large $n$, and
 use monotonicity in $n$.
 \end{proof}
@@ -1309,14 +1287,6 @@ For all $d\ge2$ and $1\le j\le d-1$, $\lambda_d^{(j)}(n)=\Theta(n^{-(j+1)/(d-j)}
 The lower constant comes from Proposition~\ref{D:M1} with $\binom{n}{j+1}\sim n^{j+1}/(j+1)!$. For
 example, for planes through triples in $\ball^4$ ($d=4$, $j=2$):
 $\sqrt6\approx2.45\le\liminf n^{3/2}\lambda\le\limsup n^{3/2}\lambda\le27\sqrt2\approx38.2$.
-
-
-\begin{remark}[Lines through the centre of $\ball^3$]
-If $k$ lines through $0$ have covering radius $\rho=\max_{x\in\ball^3}\min_\ell\dist(x,\ell)<1$, each $\rho$-tube meets $\Sph^2$ in two antipodal
-caps of area $2\pi\bigl(1-\sqrt{1-\rho^2}\bigr)$, and the caps cover $\Sph^2$. So
-$k\bigl(1-\sqrt{1-\rho^2}\bigr)\ge1$, that is $k\rho^2\ge1+\sqrt{1-\rho^2}\to2$, against $k\rho^2\ge1$
-in general. This is the analogue for lines of the cost $\pi$ against $2$ of Proposition~\ref{prop:clusters}.
-\end{remark}
 
 \subsection{Every convex body}\label{sec:D-convex}\label{sec:convex}
 
