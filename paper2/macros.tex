@@ -6,10 +6,13 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 
-% One numbering scheme: Theorem 1, Corollary 2; lemmas numbered within sections (Lemma 3.1, ...).
-\newtheorem{theorem}{Theorem}
+% One numbering scheme, within sections (Theorem 2.1, Corollary 2.2, Lemma 3.1, ...).
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{thmH}{Theorem H (Harris)}
+\newtheorem*{thmJ}{Theorem J (Janson)}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
